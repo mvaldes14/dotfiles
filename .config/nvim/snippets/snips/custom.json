@@ -1,0 +1,23 @@
+{
+  "blog post": {
+    "prefix": "bpm",
+    "body": [
+      "title: ${1}\n date: ${2}\n description:${3}\n tags:[${4}]\n ---\n "
+    ],
+    "description": "New post metadata header"
+  },
+  "wiki document": {
+    "prefix": "wpm",
+    "body": [
+      "\ntitle: ${1}\ndescription:\npublished: true\ndate: ${2}\ntags: ${3}\neditor: markdown\ndateCreated:${4}\n---\n"
+    ],
+    "description": "New Wiki entry"
+  },
+  "todo items": {
+    "prefix": "tdi",
+    "body": [
+      "- [ ] ${1}\n- [ ] ${2}\n- [ ] ${3}"
+    ],
+    "description": "New todo item"
+  }
+}

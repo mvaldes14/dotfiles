@@ -1,0 +1,10 @@
+.ropeproject
+*tempt.txt*
+.vscode
+*.pyc
+*.retry
+.zcompdump*
+.zsh_history
+lazy-lock.json
+.zsh*
+flake.lock

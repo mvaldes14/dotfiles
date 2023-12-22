@@ -1,0 +1,24 @@
+#!/bin/bash
+
+#Get the current date
+today=$(date +"%Y-%m-%d")
+
+month=$(date +"%B-%Y")
+
+# Working Directory
+wkdir="$HOME/worklog"
+
+pushd $wkdir
+
+#Define the file name
+fileName="$month.md"
+
+#Check if the file already exists
+if [ -f $fileName ]; then
+  nvim $fileName
+else
+  #Create the file with the date as the header
+  echo "# $today" > $fileName
+  #Open the file in nvim
+  nvim $fileName
+fi

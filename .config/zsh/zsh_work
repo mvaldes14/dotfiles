@@ -1,0 +1,20 @@
+# Custom
+# source <(oc completion zsh)
+# source <(stern --completion=zsh)
+export no_proxy='*'
+export DOTFILES="$HOME/personal/dotfiles"
+
+# Load profile
+source ~/.platform_profile
+
+# Add to PATH for custom locations
+addToPath /Users/$USER/.local/bin
+addToPath /Users/$USER/Library/Python/3.11/lib/python/site-packages
+addToPath /Users/$USER/.rd/bin
+addToPath /opt/homebrew/opt/node@20/bin
+
+
+# Functions
+good_morning_me(){
+  awsl && good_morning && jws-fetch
+}

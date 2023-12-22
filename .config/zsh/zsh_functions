@@ -1,0 +1,21 @@
+addToPath() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$PATH:$1
+    fi
+}
+
+aws_profile () {
+  echo "Changing Profile to $1"
+  case "$1" in
+    aws)
+      export AWS_PROFILE="aws"
+      export AWS_DEFAULT_PROFILE="aws"
+      ;;
+    localstack)
+      export AWS_PROFILE="localstack"
+      export AWS_DEFAULT_PROFILE="localstack"
+      ;;
+    *)
+      echo "Usage: aws_profile [aws|localstack]"
+  esac
+}

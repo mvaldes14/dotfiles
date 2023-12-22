@@ -1,0 +1,48 @@
+# Home Aliases
+alias pip="pip3"
+alias v="nvim"
+alias vim="nvim"
+alias python="python3"
+alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+alias weather="curl 'wttr.in/55318?m'"
+alias du="ncdu"
+alias lg="lazygit"
+alias k="kubectl"
+alias tf="terraform"
+alias s="doppler run"
+
+# Navigation and tmux
+alias dot='cd $DOTFILES'
+alias cdg=~/.local/bin/tmux-layout.sh
+alias cdr='cd $(find ~/git -maxdepth 3 -type d | fzf --no-preview)'
+alias tmks=~/.local/bin/tmux-sessionkiller.sh
+alias tmkw=~/.local/bin/tmux-windowkiller.sh
+alias wezterm="flatpak run org.wezfurlong.wezterm"
+
+# Utilities
+if [[ -f /bin/batcat ]]; then
+  alias cat=batcat
+elif [[ -f /usr/bin/bat || -f /usr/local/bin/bat ]]; then
+  alias cat=bat
+fi
+
+if [[ -f /usr/bin/fdfind ]]; then
+  alias fd=fdfind
+fi
+
+if [[ $(command -v xcp) ]]; then
+  alias cp=xcp
+fi
+
+if [[ -f /usr/bin/exa ]]; then
+  alias ll='exa -lrh --icons -t=modified --git'
+  alias ls='exa -lh --git'
+  alias lr='exa -lrT'
+fi
+
+if [[ -f /usr/bin/prettyping ]]; then
+  alias ping="prettyping"
+fi
+
+autoload -Uz compinit && compinit
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

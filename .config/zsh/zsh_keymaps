@@ -1,0 +1,2 @@
+bindkey -s "^s" "tmux-sessionizer.sh\n"
+bindkey -s "^e" "nnn\n"
