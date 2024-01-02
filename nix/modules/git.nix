@@ -8,5 +8,4 @@
       init.defaultBranch = "main";
     };
   };
-
 }

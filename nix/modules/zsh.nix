@@ -1,6 +1,10 @@
 { pkgs, ...}:
 {
 
+  programs.nnn = {
+    enable = true;
+  };
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;

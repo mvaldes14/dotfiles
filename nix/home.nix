@@ -21,8 +21,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     LC_ALL = "C.UTF-8";
-    TEST = "ME";
-    PATH = "$PATHL:$HOME/.local/bin";
+    PATH = "$PATH:$HOME/.local/bin";
   };
 
   programs.home-manager.enable = true;
@@ -36,22 +35,17 @@
   #Pkgs installed via os
   # steam, spotify, discord, i3, picom, rofi, lutris
   home.packages = with pkgs; [
-    starship
-    neofetch
     neovim
-    nnn
+    neofetch
     tmux
-    bat
     jq
     tree
-    fzf
     fd
     ripgrep
     kubectl
     kubernetes-helm
     k9s
     gh
-    lazygit
     awscli2
     go
     nodejs_20
@@ -63,8 +57,6 @@
     blueman
     pasystray
     doppler
-    eza
-    nix-direnv
     ncdu
     feh
     dunst
@@ -77,9 +69,6 @@
     playerctl
     stern
     xclip
-    zsh
     flameshot
   ];
-
-
 }

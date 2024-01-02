@@ -26,7 +26,7 @@ return {
       "rust",
       "vue",
       "hcl",
-      -- "yaml",
+      "yaml",
       "typescript",
       "markdown",
       "http",
