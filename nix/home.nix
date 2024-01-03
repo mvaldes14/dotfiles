@@ -33,7 +33,7 @@
   ];
 
   #Pkgs installed via os
-  # steam, spotify, discord, i3, picom, rofi, lutris
+  # steam, spotify, discord, i3, picom, rofi, lutris, obs
   home.packages = with pkgs; [
     neovim
     neofetch
