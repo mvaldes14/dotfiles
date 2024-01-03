@@ -4,7 +4,7 @@ return {
   lazy = true,
   ft = "markdown",
   opts = {
-    disable_frontmatter = false,
+    disable_frontmatter = true,
     workspaces = {
       {
         name = "wiki",
@@ -25,8 +25,8 @@ return {
       min_chars = 2,
       new_notes_location = "current_dir",
       prepend_note_id = false,
-      prepend_note_path = true,
-      use_path_only = false,
+      prepend_note_path = false,
+      use_path_only = true,
     },
     yaml_parser = "native"
   },
