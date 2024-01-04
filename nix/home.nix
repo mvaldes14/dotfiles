@@ -16,6 +16,9 @@
       target = "/home/mvaldes/.local/bin";
       recursive = true;
     };
+    ".aws/config" = {
+      source = /home/mvaldes/git/dotfiles/.aws/config;
+    };
   };
 
   home.sessionVariables = {
