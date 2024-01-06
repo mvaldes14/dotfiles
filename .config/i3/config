@@ -167,10 +167,8 @@ bindsym $mod+p exec ~/git/dotfiles/i3/monitors.sh auto
 exec --no-startup-id blueman-applet
 exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
-exec --no-startup-id betterlockscreen -w dim
 exec --no-startup-id firefox
 exec --no-startup-id flatpak run  org.wezfurlong.wezterm
-exec_always $HOME/git/dotfiles/i3/autolock.sh
 exec_always picom -CGb 
 exec_always sh ~/.fehbg
 
@@ -216,7 +214,6 @@ for_window [window_type="menu"] floating enable
 bindsym $mod+Shift+x mode "$mode_system"
 set $mode_system (l)ock, (e)xit,  (s)uspend, (r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id betterlockscreen -l dim, mode "default"
     bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym e exec --no-startup-id loginctl terminate-session self, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"

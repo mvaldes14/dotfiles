@@ -65,7 +65,6 @@
     dunst
     pavucontrol
     i3status-rust
-    betterlockscreen
     arandr
     nixpkgs-fmt
     lxappearance
