@@ -1,12 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs.config.allowUnfreePredicate = _: true;
   home.username = "mvaldes";
   home.homeDirectory = "/home/mvaldes";
   home.stateVersion = "23.05"; # Please read the comment before changing.
-
-
   home.file = {
     ".ssh/config" = {
       source = /home/mvaldes/git/dotfiles/.ssh/config;
@@ -36,7 +33,7 @@
   ];
 
   #Pkgs installed via os
-  # steam, spotify, discord, i3, picom, rofi, lutris, obs
+  # steam, spotify, discord, i3, picom, rofi, lutris, obs, obsidian, syncthing
   home.packages = with pkgs; [
     neovim
     neofetch
@@ -52,12 +49,6 @@
     awscli2
     go
     nodejs_20
-    ruby_3_2
-    rustc
-    cargo
-    yarn
-    nodePackages.typescript
-    blueman
     pasystray
     doppler
     ncdu
@@ -72,5 +63,8 @@
     stern
     xclip
     flameshot
+    wezterm
+    firefox
+    clipmenu
   ];
 }
