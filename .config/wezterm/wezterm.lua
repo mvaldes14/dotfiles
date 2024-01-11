@@ -12,11 +12,10 @@ wezterm.on('gui-startup', function(cmd)
   window:gui_window():maximize()
 end)
 
-
 config.font = wezterm.font_with_fallback{"JetBrainsMono NF", "FiraCode Nerd Font","Hack"}
 config.font_size = 17
 config.line_height = 1.0
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.90
 config.enable_scroll_bar = false
 config.enable_tab_bar = false
 config.color_scheme = 'Catppuccin Mocha'

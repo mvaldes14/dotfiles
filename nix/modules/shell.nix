@@ -1,5 +1,11 @@
 { pkgs, lib,  ... }:
 {
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.lazygit = {
     enable = true;
     settings = {

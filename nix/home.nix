@@ -16,6 +16,11 @@
     ".aws/config" = {
       source = /home/mvaldes/git/dotfiles/.aws/config;
     };
+    ".config" = {
+      source = /home/mvaldes/git/dotfiles/.config;
+      target = "/home/mvaldes/.config";
+      recursive = true;
+    };
   };
 
   home.sessionVariables = {
@@ -25,15 +30,17 @@
   };
 
   programs.home-manager.enable = true;
+  programs.zsh.enable = true;
 
   imports = [
     ./modules/git.nix
     ./modules/zsh.nix
     ./modules/shell.nix
+    ./modules/nvim.nix
   ];
 
   #Pkgs installed via os
-  # steam, spotify, discord, i3, picom, rofi, lutris, obs, obsidian, syncthing
+  # steam, spotify, discord, i3, picom, rofi, lutris, obs, obsidian
   home.packages = with pkgs; [
     neovim
     neofetch
@@ -47,24 +54,24 @@
     k9s
     gh
     awscli2
-    go
-    nodejs_20
-    pasystray
     doppler
     ncdu
-    feh
-    dunst
-    pavucontrol
-    i3status-rust
     arandr
     nixpkgs-fmt
-    lxappearance
-    playerctl
     stern
-    xclip
     flameshot
-    wezterm
-    firefox
     clipmenu
+    #i3 apps
+    light
+    rofi
+    playerctl
+    xclip
+    feh
+    pasystray
+    dunst
+    lxappearance
+    i3status-rust
+    pavucontrol
+    picom
   ];
 }
