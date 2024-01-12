@@ -1,4 +1,3 @@
-
 ## i3-gaps config
 set $mod Mod4
 
@@ -161,15 +160,17 @@ bindsym $mod+space exec rofi -show combi --sidebar-mode -show-icons -config ~/.c
 
 #Custom app shortcuts
 bindsym $mod+b exec firefox
-bindsym $mod+p exec ~/git/dotfiles/i3/monitors.sh auto
+# bindsym $mod+p exec ~/git/dotfiles/i3/monitors.sh auto
 
 #Wallpapers and startup apps
-exec --no-startup-id blueman-applet
 exec --no-startup-id pasystray
 exec --no-startup-id nm-applet
 exec --no-startup-id firefox
-exec --no-startup-id flatpak run  org.wezfurlong.wezterm
-exec_always picom -CGb 
+exec --no-startup-id flatpak run com.discordapp.Discord
+exec --no-startup-id flatpak run org.wezfurlong.wezterm
+exec --no-startup-id flatpak run com.mozilla.Thunderbird
+exec --no-startup-id flatpak run com.spotify.Client
+exec_always picom
 exec_always sh ~/.fehbg
 
 
@@ -180,6 +181,7 @@ assign [class="firefox"]  $2
 assign [class="discord"]  $4
 assign [class="Thunderbird"]  $4
 assign [class="Steam"]  $3
+assign [class="Dota2"]  $3
 for_window [class="discord"] layout stacking
 
 
