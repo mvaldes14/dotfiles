@@ -16,11 +16,11 @@
     ".aws/config" = {
       source = /home/mvaldes/git/dotfiles/.aws/config;
     };
-    ".config" = {
-      source = /home/mvaldes/git/dotfiles/.config;
-      target = "/home/mvaldes/.config";
-      recursive = true;
-    };
+    # ".config" = {
+    #   source = /home/mvaldes/git/dotfiles/.config;
+    #   target = "/home/mvaldes/.config";
+    #   recursive = true;
+    # };
   };
 
   home.sessionVariables = {
@@ -63,7 +63,6 @@
     clipmenu
     #i3 apps
     light
-    rofi
     playerctl
     xclip
     feh
@@ -73,5 +72,8 @@
     i3status-rust
     pavucontrol
     picom
+    # languages
+    nodejs_20
+    jdk20
   ];
 }
