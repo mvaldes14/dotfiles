@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-playerctl status 2>/dev/null | grep -q "Playing"
-title="$(playerctl metadata xesam:title | cut -d ' ' -f 1-5)"
-artist="$(playerctl metadata xesam:artist)"
-
-
- 
-echo "$artist - $title"
