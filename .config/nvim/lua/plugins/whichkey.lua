@@ -93,7 +93,6 @@ return {
 
     local mappings = {
       ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
-      ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
       ["i"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["d"] = { "<cmd>Trouble<CR>", "Diagnostics" },
       ["S"] = { "<cmd>Lazy<cr>", "Lazy" },
