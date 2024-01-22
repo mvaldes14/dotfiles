@@ -29,6 +29,8 @@ return {
       "yaml",
       "typescript",
       "markdown",
+      "markdown_inline",
+      "regex",
       "http",
       "json",
       "dockerfile"

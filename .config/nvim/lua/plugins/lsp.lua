@@ -30,6 +30,7 @@ return {
       "astro",
       "tailwindcss",
       -- "htmx-lsp"
+      -- "nil"
     }
 
     local dap_adapters = {
