@@ -1,6 +1,4 @@
 # Custom
-# source <(oc completion zsh)
-# source <(stern --completion=zsh)
 export no_proxy='*'
 export DOTFILES="$HOME/personal/dotfiles"
 

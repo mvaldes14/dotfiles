@@ -17,32 +17,13 @@ alias cdg=~/.local/bin/tmux-layout.sh
 alias cdr='cd $(find ~/git -maxdepth 3 -type d | fzf --no-preview)'
 alias tmks=~/.local/bin/tmux-sessionkiller.sh
 alias tmkw=~/.local/bin/tmux-windowkiller.sh
-alias wezterm="flatpak run org.wezfurlong.wezterm"
 
 # Utilities
-if [[ -f /bin/batcat ]]; then
-  alias cat=batcat
-elif [[ -f /usr/bin/bat || -f /usr/local/bin/bat ]]; then
-  alias cat=bat
-fi
-
-if [[ -f /usr/bin/fdfind ]]; then
-  alias fd=fdfind
-fi
-
-if [[ $(command -v xcp) ]]; then
-  alias cp=xcp
-fi
-
-if [[ -f /usr/bin/exa ]]; then
-  alias ll='exa -lrh --icons -t=modified --git'
-  alias ls='exa -lh --git'
-  alias lr='exa -lrT'
-fi
-
-if [[ -f /usr/bin/prettyping ]]; then
-  alias ping="prettyping"
-fi
+alias cat=bat
+alias ll='exa -lrh --icons -t=modified --git'
+alias ls='exa -lh --git'
+alias lr='exa -lrT'
+alias find=fd
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
