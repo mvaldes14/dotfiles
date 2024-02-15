@@ -103,8 +103,8 @@ return {
       ["G"] = { "<cmd>Git<cr>", "Git" },
       b = {
         name = "Buffer",
-        a = {"<cmd>BufferLineCloseOthers<cr>","Close All But Current"},
-        s = {"<cmd>BufferLineSortByDirectory<cr>","Sort By Directory"}
+        a = { "<cmd>BufferLineCloseOthers<cr>", "Close All But Current" },
+        s = { "<cmd>BufferLineSortByDirectory<cr>", "Sort By Directory" },
       },
       h = {
         name = "Help",
@@ -122,6 +122,13 @@ return {
         t = { "<cmd>Copilot panel open<cr>", "Copilot Panel" },
         a = { "<cmd>ChatGptActAs<cr>", "Act As" },
         g = { "<cmd>ChatGptRun grammar_correction<cr>", "Grammar Correction" },
+      },
+      O = {
+        name = "Obsidian",
+        n = { "<cmd>ObsidianNew<cr>", "New Note" },
+        l = { "<cmd>ObsidianLink<cr>", "Link Note" },
+        s = { "<cmd>ObsidianSearch<cr>", "Search Note" },
+        t = {"<cmd>ObsidianTtemplate<cr>", "Template"},
       },
     }
     require("which-key").register(mappings, opts)
