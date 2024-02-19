@@ -101,6 +101,7 @@ return {
       ["L"] = { "<cmd>LazyGit<cr>", "LazyGit" },
       ["x"] = { "<cmd>lua require('rest-nvim').run()<cr>", "Execute Request" },
       ["G"] = { "<cmd>Git<cr>", "Git" },
+      ["e"] = {"<cmd>Oil<cr>", "Explorer"},
       b = {
         name = "Buffer",
         a = { "<cmd>BufferLineCloseOthers<cr>", "Close All But Current" },
