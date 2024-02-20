@@ -107,6 +107,7 @@ return {
 
     -- Specific LSP settings
     -- require("lspconfig").htmx.setup {}
+    require'lspconfig'.nil_ls.setup{}
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,
