@@ -7,31 +7,37 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "folke/neodev.nvim",
     "jay-babu/mason-nvim-dap.nvim",
+    "WhoIsSethDaniel/mason-tool-installer",
   },
   config = function()
     -- Setup mason so it can manage external tooling
     require("mason").setup()
-    local servers = {
+    local default_lsp = {
       "lua_ls",
       "pyright",
       "terraformls",
       "gopls",
-      "volar",
       "bashls",
       "ansiblels",
-      "html",
       "tsserver",
       "yamlls",
       "jsonls",
       "solargraph",
-      "marksman",
-      "ltex",
-      "rust_analyzer",
-      "astro",
-      "tailwindcss",
-      -- "htmx-lsp"
-      -- "nil"
     }
+
+    local check_cargo = os.execute "cargo version"
+    if check_cargo then
+      local home_lsp = {
+        "rust_analyzer",
+        "htmx",
+        "nil_ls",
+        "marksman",
+        "ltex",
+        "astro",
+        "tailwindcss",
+      }
+      vim.tbl_extend("force", default_lsp, home_lsp)
+    end
 
     local dap_adapters = {
       "python",
@@ -39,15 +45,37 @@ return {
       "bash",
     }
 
+    local tools = {
+      "stylua",
+      "black",
+      "prettier",
+      "stylua",
+      "yamlfmt",
+      "revive",
+      "pylint",
+      "ansible-lint",
+      "luacheck",
+      "cfn-lint",
+      "tfsec",
+      "rubocop",
+      "revive",
+      "yamllint",
+    }
+
+    require("mason-tool-installer").setup {
+      ensure_installed = tools,
+      run_on_start = true,
+    }
+
     require("mason-nvim-dap").setup {
       ensure_installed = dap_adapters,
-      automatic_installation = true,
+      automatic_installation = false,
     }
 
     -- Ensure the servers above are installed
     require("mason-lspconfig").setup {
-      ensure_installed = servers,
-      automatic_installation = true,
+      ensure_installed = default_lsp,
+      automatic_installation = false,
     }
 
     require("neodev").setup {}
@@ -82,18 +110,9 @@ return {
       nmap("K", vim.lsp.buf.hover, "Hover Documentation")
       nmap("<leader>f", vim.cmd.Formatter, "Format Document")
       nmap("<A-k>", vim.lsp.buf.signature_help, "Signature Documentation")
-
-      -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(bufnr, "Formatter", function(_)
-        if vim.lsp.buf.formatting or vim.lsp.format then
-          vim.lsp.buf.formatting { async = true }
-        else
-          vim.cmd [[Format]]
-        end
-      end, { desc = "Format current buffer with LSP" })
     end
 
-    for _, lsp in ipairs(servers) do
+    for _, lsp in ipairs(default_lsp) do
       require("lspconfig")[lsp].setup {
         on_attach = on_attach,
         capabilities = capabilities,
@@ -106,8 +125,8 @@ return {
     table.insert(runtime_path, "lua/?/init.lua")
 
     -- Specific LSP settings
-    -- require("lspconfig").htmx.setup {}
-    require'lspconfig'.nil_ls.setup{}
+    require("lspconfig").htmx.setup {}
+    require("lspconfig").nil_ls.setup {}
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,

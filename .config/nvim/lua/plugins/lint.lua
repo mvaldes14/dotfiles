@@ -4,7 +4,7 @@ return {
     local severity_map = {
       ["convention"] = vim.diagnostic.severity.INFO,
     }
-    
+
     require("lint").linters.cookstyle = {
       cmd = "cookstyle",
       args = { "-f", "json" },
@@ -37,7 +37,7 @@ return {
     require("lint").linters_by_ft = {
       python = { "pylint" },
       ansible = { "ansible_lint" },
-      lua = { "luacheck" },
+      -- lua = { "luacheck" }, #TODO: Check why this shows failures
       cf = { "cfn_lint" },
       terraform = { "tfsec" },
       chef = { "cookstyle" },

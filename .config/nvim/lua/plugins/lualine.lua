@@ -60,29 +60,27 @@ return {
 
         return "LSP: " .. table.concat(buf_client_names, ", ")
       end,
-      color = { gui = "bold", fg = "#c0caf5", },
+      color = { gui = "bold", fg = "#c0caf5" },
       padding = 1,
     }
 
     local formatter = {
       function()
-        if vim.lsp.buf.formatting or vim.lsp.format then
-          return
-        else
-          local config = require "formatter.config"
-          local fmts = config.formatters_for_filetype(vim.bo.filetype)
-          local buf_fmts = {}
-          for _, fmt_config in ipairs(fmts) do
-            local current_fmt = fmt_config()
-            if current_fmt.exe ~= "sed" then
-              table.insert(buf_fmts, current_fmt.exe)
-            end
+        --       { { Expecoted result
+        --   available = true,
+        --   command = "stylua",
+        --   cwd = "/home/mvaldes/git/dotfiles/.config/nvim",
+        --   name = "stylua"
+        -- } }
+        local bufr = vim.api.nvim_get_current_buf()
+        local fmt = require("conform").list_formatters(bufr)
+
+        for _, l in ipairs(fmt) do
+          if l.available then
+            return "Formatter: " .. l.name
           end
-          if buf_fmts[1] == nil then
-            return "Formatter: None"
-          end
-          return "Formatter: " .. table.concat(buf_fmts, ", ")
         end
+        return "Formatter: N/A"
       end,
       color = { fg = "#c0caf5" },
       padding = 1,
@@ -102,7 +100,7 @@ return {
         end
         return "Linter: " .. table.concat(buf_linters, ", ")
       end,
-      color = { fg = "#c0caf5"},
+      color = { fg = "#c0caf5" },
       padding = 1,
     }
 

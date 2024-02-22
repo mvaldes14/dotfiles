@@ -1,55 +1,53 @@
 return {
-  "mhartington/formatter.nvim",
+  "stevearc/conform.nvim",
   config = function()
-    -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
-    require("formatter").setup {
-      logging = true,
-      log_level = vim.log.levels.WARN,
-      filetype = {
-        python = {
-          require("formatter.filetypes.python").black,
-        },
-        lua = {
-          require("formatter.filetypes.lua").stylua,
-        },
+    require("conform").setup {
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+      formatters_by_ft = {
         ansible = {
-          require("formatter.filetypes.yaml").yamlfmt,
+          "yamlfmt",
         },
         terraform = {
-          require("formatter.filetypes.terraform").terraformfmt,
+          "terraform_fmt",
         },
         json = {
-          require("formatter.filetypes.json").jq,
+          "jq",
         },
         javascript = {
-          require("formatter.filetypes.javascript").prettier,
+          "prettier",
         },
         typescript = {
-          require("formatter.filetypes.typescript").prettier,
+          "prettier",
         },
         html = {
-          require("formatter.filetypes.html").prettier,
+          "prettier",
         },
         go = {
-          require("formatter.filetypes.go").gofmt,
+          "gofmt",
         },
         ruby = {
-          require("formatter.filetypes.ruby").rubocop,
+          "rubocop",
         },
         yaml = {
-          require("formatter.filetypes.yaml").yamlfmt,
+          "yamlfmt",
         },
         chef = {
-          require("formatter.filetypes.ruby").rubocop,
+          "rubocop",
         },
         sh = {
-          require("formatter.filetypes.sh").shfmt,
+          "shfmt",
         },
         nix = {
-          require("formatter.filetypes.nix").nixpkgs_fmt,
+          "nixpkgs_fmt",
         },
-        ["*"] = {
-          require("formatter.filetypes.any").remove_trailing_whitespace,
+        python = {
+          "black",
+        },
+        lua = {
+          "stylua",
         },
       },
     }

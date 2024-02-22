@@ -7,12 +7,6 @@ return {
     end,
   },
   {
-    "kylechui/nvim-surround",
-    config = function()
-      require("nvim-surround").setup {}
-    end,
-  },
-  {
     "folke/trouble.nvim",
     config = function()
       require("trouble").setup {}
