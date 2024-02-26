@@ -65,7 +65,7 @@ return {
 
     require("mason-tool-installer").setup {
       ensure_installed = tools,
-      run_on_start = true,
+      run_on_start = false,
     }
 
     require("mason-nvim-dap").setup {
@@ -110,7 +110,7 @@ return {
 
       -- See `:help K` for why this keymap
       nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-      nmap("<leader>f", vim.cmd.Formatter, "Format Document")
+      nmap("<leader>f", vim.cmd.Format, "Format Document")
       nmap("<A-k>", vim.lsp.buf.signature_help, "Signature Documentation")
     end
 

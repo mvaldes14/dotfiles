@@ -35,6 +35,7 @@ return {
       "json",
       "dockerfile",
       "templ",
+      "vimdoc",
     },
 
     indent = { enable = true },
