@@ -99,6 +99,7 @@ return {
       nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
       nmap("[d", vim.diagnostic.goto_prev, "Previous diagnostic")
       nmap("]d", vim.diagnostic.goto_next, "Next diagnostic")
+      nmap("<leader>e", vim.diagnostic.open_float, "Show diagnostic [E]rror messages")
 
       nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
       nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")

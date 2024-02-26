@@ -101,7 +101,7 @@ return {
       ["L"] = { "<cmd>LazyGit<cr>", "LazyGit" },
       ["x"] = { "<cmd>lua require('rest-nvim').run()<cr>", "Execute Request" },
       ["G"] = { "<cmd>Git<cr>", "Git" },
-      ["e"] = {"<cmd>Oil<cr>", "Explorer"},
+      ["E"] = { "<cmd>Oil<cr>", "Explorer" },
       b = {
         name = "Buffer",
         a = { "<cmd>BufferLineCloseOthers<cr>", "Close All But Current" },
@@ -129,7 +129,7 @@ return {
         n = { "<cmd>ObsidianNew<cr>", "New Note" },
         l = { "<cmd>ObsidianLink<cr>", "Link Note" },
         s = { "<cmd>ObsidianSearch<cr>", "Search Note" },
-        t = {"<cmd>ObsidianTtemplate<cr>", "Template"},
+        t = { "<cmd>ObsidianTtemplate<cr>", "Template" },
       },
     }
     require("which-key").register(mappings, opts)
