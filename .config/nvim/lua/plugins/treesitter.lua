@@ -33,7 +33,8 @@ return {
       "regex",
       "http",
       "json",
-      "dockerfile"
+      "dockerfile",
+      "templ",
     },
 
     indent = { enable = true },
@@ -104,7 +105,6 @@ return {
   config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
 
-
-    require("treesitter-context").setup{}
+    require("treesitter-context").setup {}
   end,
 }

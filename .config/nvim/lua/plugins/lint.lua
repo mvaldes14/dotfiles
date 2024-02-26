@@ -37,7 +37,7 @@ return {
     require("lint").linters_by_ft = {
       python = { "pylint" },
       ansible = { "ansible_lint" },
-      -- lua = { "luacheck" }, #TODO: Check why this shows failures
+      lua = { "luacheck" },
       cf = { "cfn_lint" },
       terraform = { "tfsec" },
       chef = { "cookstyle" },
