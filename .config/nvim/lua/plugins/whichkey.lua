@@ -129,7 +129,7 @@ return {
         n = { "<cmd>ObsidianNew<cr>", "New Note" },
         l = { "<cmd>ObsidianLink<cr>", "Link Note" },
         s = { "<cmd>ObsidianSearch<cr>", "Search Note" },
-        t = { "<cmd>ObsidianTtemplate<cr>", "Template" },
+        t = { "<cmd>ObsidianTemplate<cr>", "Template" },
       },
     }
     require("which-key").register(mappings, opts)
