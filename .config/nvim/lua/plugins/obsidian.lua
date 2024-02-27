@@ -4,7 +4,7 @@ return {
   lazy = true,
   ft = "markdown",
   opts = {
-    disable_frontmatter = true,
+    disable_frontmatter = false,
     workspaces = {
       {
         name = "wiki",
@@ -16,8 +16,14 @@ return {
       min_chars = 2,
     },
     new_notes_location = "current_dir",
+    note_id_func = function(title)
+      return title
+    end,
     templates = {
       subdir = "_templates",
+    },
+    ui = {
+      enable = false,
     },
   },
 }
