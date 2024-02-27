@@ -16,12 +16,17 @@ return {
       Fix_Grammar = {
         prompt = "Fix the grammar and enhance the readability of the following text: \n$buf",
         action = "replace",
-        model = "mistral"
+        model = "mistral",
       },
-      Grammar_Selection= {
+      Grammar_Selection = {
         prompt = "Validate the grammar of the selected text: \n$sel",
         action = "display",
-        model = "mistral"
+        model = "mistral",
+      },
+      Fix_Code = {
+        prompt = "Fix the code provided: \n$sel",
+        action = "display",
+        model = "gemma",
       },
     },
   },
