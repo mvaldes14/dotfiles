@@ -36,6 +36,7 @@ return {
         "astro",
         "tailwindcss",
         "templ",
+        "ruff-lsp",
       }
       vim.tbl_extend("force", default_lsp, home_lsp)
     end
