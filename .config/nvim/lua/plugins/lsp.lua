@@ -1,5 +1,5 @@
 return {
-  -- LSP Configuration & Plugins
+  -- LSP Configuration & Plugins "neovim/nvim-lspconfig",
   "neovim/nvim-lspconfig",
   event = "BufEnter",
   dependencies = {
@@ -15,6 +15,7 @@ return {
     local default_lsp = {
       "lua_ls",
       "pyright",
+      "ruff_lsp",
       "terraformls",
       "gopls",
       "bashls",
@@ -36,7 +37,6 @@ return {
         "astro",
         "tailwindcss",
         "templ",
-        "ruff-lsp",
       }
       vim.tbl_extend("force", default_lsp, home_lsp)
     end
@@ -79,8 +79,6 @@ return {
       ensure_installed = default_lsp,
       automatic_installation = false,
     }
-
-    require("neodev").setup {}
 
     -- nvim-cmp supports additional completion capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -130,6 +128,8 @@ return {
     -- Specific LSP settings
     require("lspconfig").htmx.setup {}
     require("lspconfig").nil_ls.setup {}
+    require("lspconfig").templ.setup {}
+    require("neodev").setup {}
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,

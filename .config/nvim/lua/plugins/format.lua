@@ -28,6 +28,9 @@ return {
         go = {
           "gofmt",
         },
+        templ = {
+          "gofmt",
+        },
         ruby = {
           "rubocop",
         },
