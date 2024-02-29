@@ -4,7 +4,7 @@ return {
   lazy = true,
   ft = "markdown",
   opts = {
-    disable_frontmatter = false,
+    disable_frontmatter = true,
     workspaces = {
       {
         name = "wiki",
