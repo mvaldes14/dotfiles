@@ -2,16 +2,9 @@
   "blog post": {
     "prefix": "bpm",
     "body": [
-      "title: ${1}\n date: ${2}\n description:${3}\n tags:[${4}]\n ---\n "
+      "---\ntitle: ${1}\n date: ${2}\n description:${3}\n status: Draft\n ---\n "
     ],
     "description": "New post metadata header"
-  },
-  "wiki document": {
-    "prefix": "wpm",
-    "body": [
-      "\ntitle: ${1}\ndescription:\npublished: true\ndate: ${2}\ntags: ${3}\neditor: markdown\ndateCreated:${4}\n---\n"
-    ],
-    "description": "New Wiki entry"
   },
   "todo items": {
     "prefix": "tdi",
@@ -19,5 +12,19 @@
       "- [ ] ${1}\n- [ ] ${2}\n- [ ] ${3}"
     ],
     "description": "New todo item"
+  },
+  "insert code block": {
+    "prefix": "icb",
+    "body": [
+      "```${1}\n${2}\n```"
+    ],
+    "description": "Insert code block"
+  },
+  "new obsidian document": {
+    "prefix": "nod",
+    "body": [
+      "---\nname:${1}\ntags: ${2}\ntopics: ${3}\n---"
+    ],
+    "description": "New obsidian document"
   }
 }
