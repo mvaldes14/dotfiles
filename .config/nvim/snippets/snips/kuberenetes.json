@@ -1,0 +1,21 @@
+{
+  "k-ingress-route": {
+    "prefix": "k-ingress-route",
+    "body": [
+      "apiVersion: traefik.containo.us/v1alpha1",
+      "kind: IngressRoute",
+      "metadata:",
+      "  name: ${1}",
+      "  namespace: ${2}",
+      "spec:",
+      "  entryPoints:",
+      "    - ${3}",
+      "  routes:",
+      "    - kind: Rule",
+      "      match: Host(`${4}`)",
+      "      services:",
+      "        - name: ${5}",
+      "          port: ${6}"
+    ]
+  }
+}

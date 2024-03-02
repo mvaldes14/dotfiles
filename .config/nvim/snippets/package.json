@@ -7,6 +7,12 @@
           "all"
         ],
         "path": "./snips/custom.json"
+      },
+      {
+        "language": [
+          "kubernetes"
+        ],
+        "path": "./snips/kubernetes.json"
       }
     ]
   }
