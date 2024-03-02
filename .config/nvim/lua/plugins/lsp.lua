@@ -26,7 +26,7 @@ return {
       "solargraph",
     }
 
-    local check_cargo = os.execute "cargo version"
+    local check_cargo = vim.fn.executable "cargo version"
     if check_cargo then
       local home_lsp = {
         "rust_analyzer",
