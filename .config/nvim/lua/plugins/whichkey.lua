@@ -84,6 +84,12 @@ return {
         r = { "<cmd>ChatGPTRun refactor_code<cr>", "Refactor Code" },
         s = { "<cmd>ChatGPTRun summarize_code<cr>", "Summarize Code" },
       },
+      o = {
+        name = "Ollama",
+        f = { "<cmd>Ollama Fix_Code<cr>", "Fix Code" },
+        e = { "<cmd>Ollama Explain_Code<cr>", "Explain Code" },
+        g = { "<cmd>Ollama Fix_grammar<cr>", "Fix Grammar" },
+      },
       g = {
         name = "Git",
         b = { "<cmd>Git blame<cr>", "Blame" },
@@ -100,7 +106,7 @@ return {
       ["Z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
       ["L"] = { "<cmd>LazyGit<cr>", "LazyGit" },
       ["x"] = { "<cmd>lua require('rest-nvim').run()<cr>", "Execute Request" },
-      ["G"] = { "<cmd>Git<cr>", "Git" },
+      ["g"] = { "<cmd>Git<cr>", "Git" },
       ["E"] = { "<cmd>Oil<cr>", "Explorer" },
       b = {
         name = "Buffer",
@@ -112,7 +118,7 @@ return {
         h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
         k = { "<cmd>Telescope keymaps<cr>", "Key Maps" },
       },
-      o = {
+      G = {
         name = "Octo",
         l = { "<cmd>Octo pr list<cr>", "PR List" },
         s = { "<cmd>Octo review start<cr>", "Review Start" },
@@ -130,6 +136,11 @@ return {
         l = { "<cmd>ObsidianLink<cr>", "Link Note" },
         s = { "<cmd>ObsidianSearch<cr>", "Search Note" },
         t = { "<cmd>ObsidianTemplate<cr>", "Template" },
+      },
+      D = {
+        name = "Dadbod",
+        a = { "<cmd>DB<cr>", "Open DB" },
+        c = { "<cmd>DBUIToggle<cr>", "Toggle UI" },
       },
     }
     require("which-key").register(mappings, opts)

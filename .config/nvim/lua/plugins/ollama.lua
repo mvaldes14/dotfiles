@@ -26,7 +26,7 @@ return {
       Fix_Code = {
         prompt = "Fix the code provided: \n$sel",
         action = "display",
-        model = "gemma",
+        model = "codellama",
       },
     },
   },
