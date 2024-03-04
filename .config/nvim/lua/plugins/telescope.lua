@@ -52,7 +52,7 @@ return {
         },
         file_browser = {
           hijack_netwr = true,
-          hidden = {file_browser = true}
+          hidden = { file_browser = true },
         },
       },
     }
@@ -69,6 +69,11 @@ return {
     vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
     vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
     vim.keymap.set("n", "<leader>su", ":Telescope undo<cr>", { desc = "[S]earch [U]ndo" })
-    vim.keymap.set("n", "<leader>se", ":Telescope file_browser path=%:p:h select_buffer=true<cr>", { desc = "[S]earch [E]xplorer" })
+    vim.keymap.set(
+      "n",
+      "<leader>se",
+      ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
+      { desc = "[S]earch [E]xplorer" }
+    )
   end,
 }
