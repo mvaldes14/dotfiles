@@ -119,10 +119,9 @@ return {
         k = { "<cmd>Telescope keymaps<cr>", "Key Maps" },
       },
       G = {
-        name = "Octo",
-        l = { "<cmd>Octo pr list<cr>", "PR List" },
-        s = { "<cmd>Octo review start<cr>", "Review Start" },
-        e = { "<cmd>Octo review submit<cr>", "Review End" },
+        name = "Github",
+        p = { "<cmd>Telescope gh pull_request<cr>", "PRs" },
+        i = { "<cmd>Telescope gh issues<cr>", "PRs" },
       },
       a = {
         name = "AI",

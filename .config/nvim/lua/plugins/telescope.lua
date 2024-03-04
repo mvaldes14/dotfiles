@@ -4,6 +4,7 @@ return {
     "nvim-lua/plenary.nvim",
     "debugloop/telescope-undo.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-github.nvim",
   },
   branch = "0.1.x",
   config = function()
@@ -59,6 +60,7 @@ return {
 
     require("telescope").load_extension "undo"
     require("telescope").load_extension "file_browser"
+    require("telescope").load_extension "gh"
 
     -- See `:help telescope.builtin`
     vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
