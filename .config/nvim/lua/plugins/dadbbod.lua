@@ -1,6 +1,6 @@
 return {
   "tpope/vim-dadbod",
-  lazy = true,
+  event = "VeryLazy",
   keys = {
     { "<leader>Da", "<cmd>DB<cr>", desc = "Connect to DB" },
   },
