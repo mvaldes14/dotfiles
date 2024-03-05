@@ -1,16 +1,9 @@
 local wezterm = require("wezterm")
-local mux = wezterm.mux
-
 local config = {}
 
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
-
-wezterm.on("gui-startup", function(cmd)
-	local tab, pane, window = mux.spawn_window(cmd or {})
-	window:gui_window():maximize()
-end)
 
 config.font = wezterm.font_with_fallback({ "JetBrainsMono NF", "FiraCode Nerd Font", "Hack" })
 config.font_size = 20
@@ -29,6 +22,21 @@ config.window_padding = {
 	bottom = 1,
 	left = 10,
 	right = 10,
+}
+
+config.keys = {
+	-- Disable CMD + T in favor of I3
+	{
+		key = "t",
+		mods = "CMD",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
+	-- Disable Hide built in
+	{
+		key = "m",
+		mods = "CMD",
+		action = wezterm.action.DisableDefaultAssignment,
+	},
 }
 
 config.warn_about_missing_glyphs = false
