@@ -101,13 +101,19 @@ return {
       ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
       ["i"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["d"] = { "<cmd>Trouble<CR>", "Diagnostics" },
-      ["S"] = { "<cmd>Lazy<cr>", "Lazy" },
+      ["L"] = { "<cmd>Lazy<cr>", "Lazy" },
       ["M"] = { "<cmd>Mason<cr>", "Mason" },
       ["Z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
-      ["L"] = { "<cmd>LazyGit<cr>", "LazyGit" },
-      ["x"] = { "<cmd>lua require('rest-nvim').run()<cr>", "Execute Request" },
-      ["g"] = { "<cmd>Git<cr>", "Git" },
+      ["l"] = { "<cmd>LazyGit<cr>", "LazyGit" },
+      ["G"] = { "<cmd>Git<cr>", "Git" },
       ["E"] = { "<cmd>Oil<cr>", "Explorer" },
+      x = {
+        name = "Utilities",
+        d = { "<cmd>DBUIToggle<cr>", "Toggle UI" },
+        p = { "<cmd>Telescope gh pull_request<cr>", "PRs" },
+        i = { "<cmd>Telescope gh issues<cr>", "PRs" },
+        x = { "<cmd>lua require('rest-nvim').run()<cr>", "Execute Request" },
+      },
       b = {
         name = "Buffer",
         a = { "<cmd>BufferLineCloseOthers<cr>", "Close All But Current" },
@@ -116,12 +122,8 @@ return {
       h = {
         name = "Help",
         h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
+        c = { "<cmd>Telescope commands<cr>", "Commands" },
         k = { "<cmd>Telescope keymaps<cr>", "Key Maps" },
-      },
-      G = {
-        name = "Github",
-        p = { "<cmd>Telescope gh pull_request<cr>", "PRs" },
-        i = { "<cmd>Telescope gh issues<cr>", "PRs" },
       },
       a = {
         name = "AI",
@@ -135,11 +137,7 @@ return {
         l = { "<cmd>ObsidianLink<cr>", "Link Note" },
         s = { "<cmd>ObsidianSearch<cr>", "Search Note" },
         t = { "<cmd>ObsidianTemplate<cr>", "Template" },
-      },
-      D = {
-        name = "Dadbod",
-        a = { "<cmd>DB<cr>", "Open DB" },
-        c = { "<cmd>DBUIToggle<cr>", "Toggle UI" },
+        T = { "<cmd>ObsidianTags<cr>", "Tags" },
       },
     }
     require("which-key").register(mappings, opts)
