@@ -29,7 +29,7 @@ return {
           "gofmt",
         },
         templ = {
-          "gofmt",
+          "templ",
         },
         ruby = {
           "rubocop",
