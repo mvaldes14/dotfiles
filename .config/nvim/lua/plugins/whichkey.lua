@@ -98,7 +98,6 @@ return {
     }
 
     local mappings = {
-      ["c"] = { "<cmd>bd<CR>", "Close Buffer" },
       ["i"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
       ["d"] = { "<cmd>Trouble<CR>", "Diagnostics" },
       ["L"] = { "<cmd>Lazy<cr>", "Lazy" },
@@ -116,6 +115,7 @@ return {
       },
       b = {
         name = "Buffer",
+        c = { "<cmd>bd<CR>", "Close Buffer" },
         a = { "<cmd>BufferLineCloseOthers<cr>", "Close All But Current" },
         s = { "<cmd>BufferLineSortByDirectory<cr>", "Sort By Directory" },
       },
