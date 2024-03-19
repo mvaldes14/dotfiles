@@ -31,7 +31,7 @@ return {
     local filename = {
       "filename",
       file_status = true,
-      path = 0,
+      path = 1,
     }
 
     local treesitter = {
@@ -66,12 +66,6 @@ return {
 
     local formatter = {
       function()
-        --       { { Expecoted result
-        --   available = true,
-        --   command = "stylua",
-        --   cwd = "/home/mvaldes/git/dotfiles/.config/nvim",
-        --   name = "stylua"
-        -- } }
         local bufr = vim.api.nvim_get_current_buf()
         local fmt = require("conform").list_formatters(bufr)
 
@@ -106,16 +100,8 @@ return {
 
     local diagnostics = {
       "diagnostics",
-
-      -- Table of diagnostic sources, available sources are:
-      --   'nvim_lsp', 'nvim_diagnostic', 'nvim_workspace_diagnostic', 'coc', 'ale', 'vim_lsp'.
-      -- or a function that returns a table as such:
-      --   { error=error_cnt, warn=warn_cnt, info=info_cnt, hint=hint_cnt }
-      sources = { "nvim_diagnostic", "coc" },
-
-      -- Displays diagnostics for the defined severity types
+      sources = { "nvim_diagnostic" },
       sections = { "error", "warn", "info", "hint" },
-
       diagnostics_color = {
         -- Same values as the general color option can be used here.
         error = "DiagnosticError", -- Changes diagnostics' error color.
@@ -136,7 +122,8 @@ return {
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
         disabled_filetypes = {
-          statusline = { "NvimTree" },
+          statusline = {},
+          winbar = {},
         },
         always_divide_middle = true,
       },
@@ -144,7 +131,7 @@ return {
         lualine_a = { mode },
         lualine_b = { branch },
         lualine_c = { diagnostics, filename },
-        lualine_x = { "rest", treesitter, lsp, formatter, linter, filetype },
+        lualine_x = { treesitter, lsp, formatter, linter, filetype },
         lualine_y = { location },
         lualine_z = {},
       },
@@ -156,7 +143,7 @@ return {
         lualine_y = {},
         lualine_z = {},
       },
-      extensions = {},
+      extensions = { "oil", "lazy" },
     }
   end,
 }
