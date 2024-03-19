@@ -61,6 +61,7 @@ return {
     require("telescope").load_extension "undo"
     require("telescope").load_extension "file_browser"
     require("telescope").load_extension "gh"
+    require("telescope").load_extension "rest"
 
     -- See `:help telescope.builtin`
     vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })

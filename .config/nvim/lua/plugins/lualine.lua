@@ -144,7 +144,7 @@ return {
         lualine_a = { mode },
         lualine_b = { branch },
         lualine_c = { diagnostics, filename },
-        lualine_x = { treesitter, lsp, formatter, linter, filetype },
+        lualine_x = { "rest", treesitter, lsp, formatter, linter, filetype },
         lualine_y = { location },
         lualine_z = {},
       },
