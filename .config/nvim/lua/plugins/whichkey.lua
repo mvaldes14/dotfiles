@@ -106,6 +106,12 @@ return {
       ["l"] = { "<cmd>LazyGit<cr>", "LazyGit" },
       ["G"] = { "<cmd>Git<cr>", "Git" },
       ["E"] = { "<cmd>Oil<cr>", "Explorer" },
+      t = {
+        name = "Tmux",
+        o = { "<cmd>VimuxPromptCommand<cr>", "Tmux Prompt" },
+        c = { "<cmd>VimuxCloseRunner<cr>", "Tmux Close" },
+        r = { "<cmd>VimuxRunLastCommand<cr>", "Tmux Rerun" },
+      },
       x = {
         name = "Utilities",
         d = { "<cmd>DBUIToggle<cr>", "Toggle UI" },
