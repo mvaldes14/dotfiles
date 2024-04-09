@@ -9,7 +9,8 @@ vim.api.nvim_create_user_command("ToggleTodo", function()
       break
     end
   end
-  local newline = line:sub(0, delimiter) .. "x" .. line:sub(delimiter + 2, #line)
+  local today = os.date "%Y-%m-%d"
+  local newline = line:sub(0, delimiter) .. "x" .. line:sub(delimiter + 2, #line) .. " " .. "✅ " .. today
   vim.api.nvim_set_current_line(newline)
 end, {})
 
@@ -51,3 +52,18 @@ vim.api.nvim_create_user_command("Format", function(args)
   end
   require("conform").format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
+
+vim.api.nvim_create_user_command("Today", function()
+  local todos = require "helper"
+  todos.show_todos "/Users/a1471283/Obsidian/wiki/Work/2024.md"
+end, {})
+
+vim.api.nvim_create_user_command("TodayOpen", function()
+  local todos = require "helper"
+  todos.edit "/Users/a1471283/Obsidian/wiki/Work/2024.md"
+end, {})
+
+vim.api.nvim_create_user_command("TodayClose", function()
+  local todos = require "helper"
+  todos.hide_todos()
+end, {})
