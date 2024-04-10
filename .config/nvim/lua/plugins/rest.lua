@@ -1,6 +1,7 @@
 return {
   {
     "vhyrro/luarocks.nvim",
+    ft = "http",
     config = function()
       require("luarocks").setup {}
     end,
