@@ -55,12 +55,24 @@ end, { range = true })
 
 vim.api.nvim_create_user_command("Today", function()
   local todos = require "helper"
-  todos.show_todos "/Users/a1471283/Obsidian/wiki/Work/2024.md"
+  local current_machine = vim.fn.hostname()
+  local home = vim.fn.getenv("$HOME")
+  if current_machine == "nixos" then
+    todos.show_todos "/mnt/c/Users/migue/Documents/wiki/Streaming/Topics.md"
+  else
+    todos.show_todos(home .. "/Obsidian/wiki/Work/2024.md")
+  end
 end, {})
 
 vim.api.nvim_create_user_command("TodayOpen", function()
   local todos = require "helper"
-  todos.edit "/Users/a1471283/Obsidian/wiki/Work/2024.md"
+  local current_machine = vim.fn.hostname()
+  local home = vim.fn.getenv("$HOME")
+  if current_machine == "nixos" then
+    todos.edit "/mnt/c/Users/migue/Documents/wiki/Streaming/Topics.md"
+  else
+    todos.edit (home .. "/Obsidian/wiki/Work/2024.md")
+  end
 end, {})
 
 vim.api.nvim_create_user_command("TodayClose", function()
