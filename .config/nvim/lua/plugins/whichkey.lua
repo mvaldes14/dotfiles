@@ -114,10 +114,10 @@ return {
       },
       x = {
         name = "Utilities",
-        d = { "<cmd>DBUIToggle<cr>", "Toggle UI" },
+        d = { "<cmd>DBUIToggle<cr>", "DB Toggle UI" },
         p = { "<cmd>Telescope gh pull_request<cr>", "PRs" },
         i = { "<cmd>Telescope gh issues<cr>", "Issues" },
-        x = { "<cmd>lua require('rest-nvim').run()<cr>", "Execute Request" },
+        x = { "<cmd>Rest run<cr>", "Execute Request" },
       },
       b = {
         name = "Buffer",

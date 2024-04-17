@@ -1,10 +1,9 @@
 return {
   {
     "vhyrro/luarocks.nvim",
+    priority = 1000,
     ft = "http",
-    config = function()
-      require("luarocks").setup {}
-    end,
+    config = true,
   },
   {
     "rest-nvim/rest.nvim",
