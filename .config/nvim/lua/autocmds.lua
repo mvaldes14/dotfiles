@@ -56,7 +56,7 @@ end, { range = true })
 vim.api.nvim_create_user_command("Today", function()
   local todos = require "helper"
   local current_machine = vim.fn.hostname()
-  local home = vim.fn.getenv("$HOME")
+  local home = vim.fn.getenv "HOME"
   if current_machine == "nixos" then
     todos.show_todos "/mnt/c/Users/migue/Documents/wiki/Streaming/Topics.md"
   else
@@ -67,11 +67,11 @@ end, {})
 vim.api.nvim_create_user_command("TodayOpen", function()
   local todos = require "helper"
   local current_machine = vim.fn.hostname()
-  local home = vim.fn.getenv("$HOME")
+  local home = vim.fn.getenv "$HOME"
   if current_machine == "nixos" then
     todos.edit "/mnt/c/Users/migue/Documents/wiki/Streaming/Topics.md"
   else
-    todos.edit (home .. "/Obsidian/wiki/Work/2024.md")
+    todos.edit(home .. "/Obsidian/wiki/Work/2024.md")
   end
 end, {})
 
