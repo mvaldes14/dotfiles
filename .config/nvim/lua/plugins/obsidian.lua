@@ -7,11 +7,7 @@ return {
     disable_frontmatter = true,
     workspaces = {
       {
-        name = "wiki_home",
-        path = "/mnt/c/Users/migue/Documents/wiki",
-      },
-      {
-        name = "wiki_work",
+        name = "wiki",
         path = "~/Obsidian/wiki",
       },
     },
