@@ -10,8 +10,8 @@ return {
     },
   },
   opts = {
-    model = "codellama",
-    url = "http://127.0.0.1:11434",
+    model = "mistral",
+    url = "http://192.168.1.206:11434",
     prompts = {
       Fix_Grammar = {
         prompt = "Fix the grammar and enhance the readability of the following text: \n$buf",
@@ -26,7 +26,7 @@ return {
       Fix_Code = {
         prompt = "Fix the code provided: \n$sel",
         action = "display",
-        model = "codellama",
+        model = "mistral",
       },
     },
   },
