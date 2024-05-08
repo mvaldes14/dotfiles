@@ -24,22 +24,15 @@ return {
       "yamlls",
       "jsonls",
       "solargraph",
+    "rust_analyzer",
+    "htmx",
+    "nil_ls",
+    "marksman",
+    "ltex",
+    "astro",
+    "tailwindcss",
+    "templ",
     }
-
-    local check_cargo = vim.fn.executable "cargo version"
-    if check_cargo then
-      local home_lsp = {
-        "rust_analyzer",
-        "htmx",
-        "nil_ls",
-        "marksman",
-        "ltex",
-        "astro",
-        "tailwindcss",
-        "templ",
-      }
-      vim.tbl_extend("force", default_lsp, home_lsp)
-    end
 
     local dap_adapters = {
       "python",
@@ -130,6 +123,18 @@ return {
     require("lspconfig").nil_ls.setup {}
     require("lspconfig").templ.setup {}
     require("neodev").setup {}
+
+    require("lspconfig").nil_ls.setup {
+      on_attach = on_attach,
+      capabilities =capabilities,
+      settings = {
+        ['nil'] = {
+          formatting = {
+            command = { "nixpkgs-fmt" },
+          },
+        },
+      },
+    }
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,
