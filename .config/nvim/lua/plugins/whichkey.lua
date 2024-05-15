@@ -105,7 +105,6 @@ return {
       ["Z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
       ["l"] = { "<cmd>LazyGit<cr>", "LazyGit" },
       ["G"] = { "<cmd>Git<cr>", "Git" },
-      ["E"] = { "<cmd>Oil<cr>", "Explorer" },
       t = {
         name = "Tmux",
         o = { "<cmd>VimuxPromptCommand<cr>", "Tmux Prompt" },
