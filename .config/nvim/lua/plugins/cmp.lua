@@ -120,5 +120,12 @@ return {
         { name = "cmdline" },
       }),
     })
+
+    cmp.setup.filetype("sql", {
+      sources = {
+        { name = "vim-dadbod-completion"},
+        { name = "buffer"},
+      }
+    })
   end,
 }
