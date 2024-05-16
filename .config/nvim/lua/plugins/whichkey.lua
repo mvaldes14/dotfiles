@@ -136,14 +136,6 @@ return {
         a = { "<cmd>ChatGptActAs<cr>", "Act As" },
         g = { "<cmd>ChatGptRun grammar_correction<cr>", "Grammar Correction" },
       },
-      O = {
-        name = "Obsidian",
-        n = { "<cmd>ObsidianNew<cr>", "New Note" },
-        l = { "<cmd>ObsidianLink<cr>", "Link Note" },
-        s = { "<cmd>ObsidianSearch<cr>", "Search Note" },
-        t = { "<cmd>ObsidianTemplate<cr>", "Template" },
-        T = { "<cmd>ObsidianTags<cr>", "Tags" },
-      },
     }
     require("which-key").register(mappings, opts)
     require("which-key").register(vmappings, vopts)
