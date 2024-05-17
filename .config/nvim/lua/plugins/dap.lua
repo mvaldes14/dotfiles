@@ -6,15 +6,6 @@ return {
     "leoluz/nvim-dap-go",
     "jbyuki/one-small-step-for-vimkind",
     "suketa/nvim-dap-ruby",
-    { "mxsdev/nvim-dap-vscode-js" },
-    {
-      "microsoft/vscode-js-debug",
-      lazy = true,
-      build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-    },
-  },
-  keys = {
-    { "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", desc = "DAP Toggle" },
   },
   config = function()
     local dap_ui = require "dapui"
@@ -129,47 +120,6 @@ return {
         program = "./${relativeFileDirname}",
       },
     }
-
-    require("dap-vscode-js").setup {
-      node_path = "node",
-      debugger_path = "~/.local/share/nvim/lazy/vscode-js-debug",
-      debugger_cmd = { "js-debug-adapter" },
-      adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" }, -- which adapters to register in nvim-dap
-    }
-
-    for _, language in ipairs { "typescript", "javascript" } do
-      require("dap").configurations[language] = {
-        {
-          type = "pwa-node",
-          request = "launch",
-          name = "Launch file",
-          program = "${file}",
-          cwd = "${workspaceFolder}",
-        },
-        {
-          type = "pwa-node",
-          request = "attach",
-          name = "Attach",
-          processId = require("dap.utils").pick_process,
-          cwd = "${workspaceFolder}",
-        },
-        {
-          type = "pwa-node",
-          request = "launch",
-          name = "Debug Jest Tests",
-          -- trace = true, -- include debugger info
-          runtimeExecutable = "node",
-          runtimeArgs = {
-            "./node_modules/jest/bin/jest.js",
-            "--runInBand",
-          },
-          rootPath = "${workspaceFolder}",
-          cwd = "${workspaceFolder}",
-          console = "integratedTerminal",
-          internalConsoleOptions = "neverOpen",
-        },
-      }
-    end
 
     -- Open UI on Debug
     dap.listeners.after.event_initialized["dapui_config"] = function()
