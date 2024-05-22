@@ -62,7 +62,7 @@ keymap("n", "<C-q>", "<Esc>:q<CR>", opts)
 keymap("c", "Q", "<cmd>qa!<cr>", opts)
 
 -- Inlay Hints
-keymap("n", "<leader>sh", "<cmd>lua vim.lsp.buf.inlay_hint(0,nil)<cr>", opts)
+keymap("n", "<leader>sh", "<cmd>lua vim.lsp.inlay_hint.enable()<cr>", opts)
 
 -- Toggle Todo
 keymap("n", "<leader>tt", "<cmd>ToggleTodo<cr>", opts)

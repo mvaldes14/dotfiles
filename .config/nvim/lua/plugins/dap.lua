@@ -6,6 +6,7 @@ return {
     "leoluz/nvim-dap-go",
     "jbyuki/one-small-step-for-vimkind",
     "suketa/nvim-dap-ruby",
+    "nvim-neotest/nvim-nio"
   },
   config = function()
     local dap_ui = require "dapui"
