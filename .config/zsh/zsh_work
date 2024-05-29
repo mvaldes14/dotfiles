@@ -16,3 +16,23 @@ addToPath /opt/homebrew/opt/node@20/bin
 good_morning_me(){
   awsl && good_morning && jws-fetch
 }
+
+
+#compdef liops
+# _liops_autocomplete(){
+#   local -a options
+#   options=($(dcc jira story list --json | jq '.[].ID' | tr -d '"'))
+#
+#   compadd "$@" "${options[@]}"
+# }
+# compdef _liops_autocomplete ticket
+
+bruh () {
+  local selection
+  selection=$(compgen -W "$(dcc jira story list --json | jq '.[].ID')" -- "$1" | fzf --no-preview)
+
+  if [[ -n $selection ]]; then
+    summary=$(dcc jira story show --id $selection --json | jq '.fields.summary' | tr -d ':' | tr ' ' '-' | tr -d '"')
+    git checkout -b "minor/$selection/$summary"
+  fi
+}
