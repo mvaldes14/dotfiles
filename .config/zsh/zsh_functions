@@ -19,3 +19,8 @@ aws_profile () {
       echo "Usage: aws_profile [aws|localstack]"
   esac
 }
+
+gnb(){
+  selection=$(curl -s -X POST  -H "Content-Type: application/json"  -H "Authorization: $LINEAR_TOKEN"  --data '{ "query": "{ issues { nodes { identifier title } } }" }' https://api.linear.app/graphql | jq '.data.issues.nodes[] | .identifier + " => " + .title' |  tr -d '"' |fzf  | awk '{ print $ 1 }')
+  git checkout -b "feature/$selection"
+}
