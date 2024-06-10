@@ -12,7 +12,6 @@ config.font_size = 20
 config.line_height = 1.0
 config.window_background_opacity = 0.97
 config.enable_scroll_bar = false
-config.enable_tab_bar = false
 config.color_scheme = "tokyonight_night"
 config.adjust_window_size_when_changing_font_size = false
 config.detect_password_input = true
@@ -37,38 +36,37 @@ table.insert(config.hyperlink_rules, {
 	format = "https://linear.app/mvaldes/issues/TW-$1",
 })
 
-
 -- WSL
-config.default_domain = 'WSL:NixOS'
+config.default_domain = "WSL:NixOS"
 config.wsl_domains = {
-  {
-   name = "WSL:NixOS",
-   distribution = "NixOS",
-  },
-  {
-    name = "WSL:kali-linux",
-    distribution = "kali-linux",
-   }
+	{
+		name = "WSL:NixOS",
+		distribution = "NixOS",
+	},
+	{
+		name = "WSL:kali-linux",
+		distribution = "kali-linux",
+	},
 }
 
 -- Keymaps
 config.keys = {
-  { key = 'l', mods = 'ALT', action = wezterm.action.ShowLauncher },
-  {
-    key = 'E',
-    mods = 'CTRL|SHIFT',
-    action = act.PromptInputLine {
-      description = 'Enter new name for tab',
-      action = wezterm.action_callback(function(window, pane, line)
-        -- line will be `nil` if they hit escape without entering anything
-        -- An empty string if they just hit enter
-        -- Or the actual line of text they wrote
-        if line then
-          window:active_tab():set_title(line)
-        end
-      end),
-    },
-  },
+	{ key = "l", mods = "ALT", action = wezterm.action.ShowLauncher },
+	{
+		key = "E",
+		mods = "CTRL|SHIFT",
+		action = act.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				-- line will be `nil` if they hit escape without entering anything
+				-- An empty string if they just hit enter
+				-- Or the actual line of text they wrote
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
 }
 
 return config
