@@ -24,14 +24,14 @@ return {
       "yamlls",
       "jsonls",
       "solargraph",
-    "rust_analyzer",
-    "htmx",
-    "nil_ls",
-    "marksman",
-    "ltex",
-    "astro",
-    "tailwindcss",
-    "templ",
+      "rust_analyzer",
+      "htmx",
+      "nil_ls",
+      "marksman",
+      "ltex",
+      "astro",
+      "tailwindcss",
+      "templ",
     }
 
     local dap_adapters = {
@@ -119,22 +119,24 @@ return {
     table.insert(runtime_path, "lua/?/init.lua")
 
     -- Specific LSP settings
-    require("lspconfig").htmx.setup {}
-    require("lspconfig").nil_ls.setup {}
-    require("lspconfig").templ.setup {}
     require("neodev").setup {}
+    require("lspconfig").templ.setup {}
 
-    require("lspconfig").nil_ls.setup {
-      on_attach = on_attach,
-      capabilities =capabilities,
-      settings = {
-        ['nil'] = {
-          formatting = {
-            command = { "nixpkgs-fmt" },
+    local hostname = vim.fn.hostname()
+    if hostname ~= "MACG7YVXHYFWG" then
+      require("lspconfig").htmx.setup {}
+      require("lspconfig").nil_ls.setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
           },
         },
-      },
-    }
+      }
+    end
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,
