@@ -12,10 +12,8 @@ return {
   config = function()
     -- Setup mason so it can manage external tooling
     require("mason").setup()
-    local default_lsp = {
+    local work_lsp = {
       "lua_ls",
-      "pyright",
-      "ruff_lsp",
       "terraformls",
       "gopls",
       "bashls",
@@ -23,10 +21,15 @@ return {
       "tsserver",
       "yamlls",
       "jsonls",
-      "solargraph",
+    }
+
+    local home_lsp = {
       "rust_analyzer",
       "htmx",
       "nil_ls",
+      "pyright",
+      "ruff_lsp",
+      "solargraph",
       "marksman",
       "ltex",
       "astro",
@@ -56,6 +59,17 @@ return {
       "revive",
       "yamllint",
     }
+
+    local hostname = vim.fn.hostname()
+    local default_lsp = {}
+    if hostname == "MACG7YVXHYFWG" then
+      default_lsp = work_lsp
+    else
+      -- Merge tables for home setup
+      for _, lsp in ipairs(home_lsp) do
+        table.insert(default_lsp, lsp)
+      end
+    end
 
     require("mason-tool-installer").setup {
       ensure_installed = tools,
@@ -122,21 +136,18 @@ return {
     require("neodev").setup {}
     require("lspconfig").templ.setup {}
 
-    local hostname = vim.fn.hostname()
-    if hostname ~= "MACG7YVXHYFWG" then
-      require("lspconfig").htmx.setup {}
-      require("lspconfig").nil_ls.setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-          ["nil"] = {
-            formatting = {
-              command = { "nixpkgs-fmt" },
-            },
+    require("lspconfig").htmx.setup {}
+    require("lspconfig").nil_ls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        ["nil"] = {
+          formatting = {
+            command = { "nixpkgs-fmt" },
           },
         },
-      }
-    end
+      },
+    }
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,
