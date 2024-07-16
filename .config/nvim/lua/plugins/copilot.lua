@@ -3,6 +3,9 @@ return {
   dependencies = {
     "zbirenbaum/copilot-cmp",
   },
+  keys = {
+    { "<leader>ap", "<cmd>Copilot panel open<cr>", desc = "Copilot Panel" },
+  },
   cmd = "Copilot",
   event = "InsertEnter",
   config = function()

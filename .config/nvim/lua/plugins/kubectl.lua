@@ -7,11 +7,9 @@ return {
         function()
           require("kubectl").open()
         end,
+        group = "Utils",
         desc = "Kubectl",
       },
     },
-    config = function()
-      require("kubectl").setup()
-    end,
   },
 }

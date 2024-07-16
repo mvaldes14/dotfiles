@@ -61,13 +61,16 @@ keymap("n", "<C-q>", "<Esc>:q<CR>", opts)
 -- Exit and quit all buffers
 keymap("c", "Q", "<cmd>qa!<cr>", opts)
 
--- Inlay Hints
-keymap("n", "<leader>sh", "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>", opts)
-
--- Toggle Todo
-keymap("n", "<leader>tt", "<cmd>ToggleTodo<cr>", opts)
-keymap("v", "<leader>tt", "<cmd>ToggleTodo<cr>", opts)
-
 -- Smooth Scrolling at the middle
 keymap("n", "<C-d>", "<C-d>zz", opts)
 keymap("n", "<C-u>", "<C-u>zz", opts)
+
+-- Copy and Paste without system clipboard clunkiness
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
+vim.keymap.set(
+  { "n", "v", "x" },
+  "<leader>Y",
+  '"+yy',
+  { noremap = true, silent = true, desc = "Yank line to clipboard" }
+)
+vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })

@@ -1,8 +1,8 @@
 return {
   "folke/trouble.nvim",
-  config = function()
-    require("trouble").setup {
-      icons = false,
-    }
-  end,
+  cmd = "Trouble",
+  opts = {},
+  keys = {
+    { "<leader>dt", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics" },
+  },
 }

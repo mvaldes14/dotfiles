@@ -1,143 +1,90 @@
 return {
   "folke/which-key.nvim",
+  event = "VeryLazy",
   config = function()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300
-    require("which-key").setup {
+    local wk = require "which-key"
+    wk.setup {
+      preset = "modern",
+      filter = function(mapping)
+        return mapping.desc and mapping.desc ~= ""
+      end,
       plugins = {
         marks = false, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = {
           enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-          suggestions = 10,
+          suggestions = 20, -- how many suggestions should be shown in the list?
         },
-        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-        -- No actual key bindings are created
         presets = {
-          operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-          motions = false, -- adds help for motions
+          operators = true, -- adds help for operators like d, y, ...
+          motions = true, -- adds help for motions
           text_objects = true, -- help for text objects triggered after entering an operator
           windows = true, -- default bindings on <c-w>
           nav = true, -- misc bindings to work with windows
           z = true, -- bindings for folds, spelling and others prefixed with z
-          g = false, -- bindings for prefixed with g
+          g = true, -- bindings for prefixed with g
         },
       },
-      icons = {
-        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-        separator = "➜", -- symbol used between a key and it's label
-        group = "+", -- symbol prepended to a group
-      },
-      popup_mappings = {
-        scroll_down = "<c-d>", -- binding to scroll down inside the popup
-        scroll_up = "<c-u>", -- binding to scroll up inside the popup
-      },
-      window = {
-        border = "single", -- none, single, double, shadow
-        position = "bottom", -- bottom, top
-        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = 0,
-      },
       layout = {
-        height = { min = 4, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 50 }, -- min and max width of the columns
-        spacing = 3, -- spacing between columns
-        align = "center", -- align columns left, center or right
+        align = "center",
       },
-      ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-      hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-      show_help = true, -- show help message on the command line when the popup is visible
-      triggers = "auto", -- automatically setup triggers
-      -- triggers = {"<leader>"} -- or specify a list manually
-      triggers_blacklist = {
-        -- list of mode / prefixes that should never be hooked by WhichKey
-        -- this is mostly relevant for key maps that start with a native binding
-        -- most people should not need to change this
-        i = { "j", "k" },
-        v = { "j", "k" },
+      icons = {
+        mappings = false,
       },
-    }
-    local opts = {
-      mode = "n", -- NORMAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    }
-
-    local vopts = {
-      mode = "v", -- VISUAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    }
-
-    local vmappings = {
-      a = {
-        name = "AI",
-        e = { "<cmd>ChatGPTRun explain_code<cr>", "Explain Code" },
-        o = { "<cmd>ChatGPTRun optimize_code<cr>", "Optimize Code" },
-        r = { "<cmd>ChatGPTRun refactor_code<cr>", "Refactor Code" },
-        s = { "<cmd>ChatGPTRun summarize_code<cr>", "Summarize Code" },
-      },
-      o = {
-        name = "Ollama",
-        f = { "<cmd>Ollama Fix_Code<cr>", "Fix Code" },
-        e = { "<cmd>Ollama Explain_Code<cr>", "Explain Code" },
-        g = { "<cmd>Ollama Fix_grammar<cr>", "Fix Grammar" },
-      },
-      g = {
-        name = "Git",
-        b = { "<cmd>Git blame<cr>", "Blame" },
-        d = { "<cmd>Git diff<cr>", "Diff" },
-      },
+      expand = function(node)
+        return not node.desc
+      end,
     }
 
     local mappings = {
-      ["i"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-      ["d"] = { "<cmd>Trouble<CR>", "Diagnostics" },
-      ["L"] = { "<cmd>Lazy<cr>", "Lazy" },
-      ["M"] = { "<cmd>Mason<cr>", "Mason" },
-      ["Z"] = { "<cmd>ZenMode<cr>", "Zen Mode" },
-      ["l"] = { "<cmd>LazyGit<cr>", "LazyGit" },
-      ["G"] = { "<cmd>Git<cr>", "Git" },
-      t = {
-        name = "Tmux",
-        o = { "<cmd>VimuxPromptCommand<cr>", "Tmux Prompt" },
-        c = { "<cmd>VimuxCloseRunner<cr>", "Tmux Close" },
-        r = { "<cmd>VimuxRunLastCommand<cr>", "Tmux Rerun" },
+      {
+        "<leader>sh",
+        "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+        desc = "[S]how Inlay Hints",
+        mode = "n",
       },
-      x = {
-        name = "Utilities",
-        d = { "<cmd>DBUIToggle<cr>", "DB Toggle UI" },
-        p = { "<cmd>Telescope gh pull_request<cr>", "PRs" },
-        i = { "<cmd>Telescope gh issues<cr>", "Issues" },
-        x = { "<cmd>Rest run<cr>", "Execute Request" },
+      { "<leader>G", "<cmd>Git<cr>", desc = "NeoGit", mode = "n" },
+      { "<leader>L", "<cmd>Lazy<cr>", desc = "Lazy", mode = "n" },
+      { "<leader>M", "<cmd>Mason<cr>", desc = "Mason", mode = "n" },
+      { "<leader>Z", "<cmd>ZenMode<cr>", desc = "Zen Mode", mode = "n" },
+      {
+        "<leader>ae",
+        "<cmd>ChatGPTRun explain_code<cr>",
+        desc = "GPT Explain Code",
+        mode = "v",
       },
-      b = {
-        name = "Buffer",
-        c = { "<cmd>bd<CR>", "Close Buffer" },
-        a = { "<cmd>BufferLineCloseOthers<cr>", "Close All But Current" },
-        s = { "<cmd>BufferLineSortByDirectory<cr>", "Sort By Directory" },
+      {
+        "<leader>ao",
+        "<cmd>ChatGPTRun optimize_code<cr>",
+        desc = "GPT Optimize Code",
+        mode = "v",
       },
-      h = {
-        name = "Help",
-        h = { "<cmd>Telescope help_tags<cr>", "Help Tags" },
-        c = { "<cmd>Telescope commands<cr>", "Commands" },
-        k = { "<cmd>Telescope keymaps<cr>", "Key Maps" },
+      {
+        "<leader>ar",
+        "<cmd>ChatGPTRun refactor_code<cr>",
+        desc = "GPT Refactor Code",
+        mode = "v",
       },
-      a = {
-        name = "AI",
-        t = { "<cmd>Copilot panel open<cr>", "Copilot Panel" },
-        a = { "<cmd>ChatGptActAs<cr>", "Act As" },
-        g = { "<cmd>ChatGptRun grammar_correction<cr>", "Grammar Correction" },
+      {
+        "<leader>ba",
+        "<cmd>BufferLineCloseOthers<cr>",
+        desc = "[B]uffer Close All But Current",
+        mode = "n",
       },
+      { "<leader>bc", "<cmd>bd<cr>", desc = "[B]uffer Close Current", mode = "n" },
+      { "<leader>gb", "<cmd>Git blame<cr>", desc = "Blame", mode = "v" },
+      { "<leader>gd", "<cmd>Git diffthis<cr>", desc = "Diff", mode = "v" },
+      { "<leader>hc", "<cmd>Telescope commands<cr>", desc = "Commands", mode = "n" },
+      { "<leader>hh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags", mode = "n" },
+      { "<leader>hk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps", mode = "n" },
+      { "<leader>i", "<cmd>nohlsearch<cr>", hidden = true, mode = "n" },
+      { "<leader>oe", "<cmd>Ollama Explain_Code<cr>", desc = "Ollama Explain Code", mode = "v" },
+      { "<leader>of", "<cmd>Ollama Fix_Code<cr>", desc = "Ollama Fix Code", mode = "v" },
+      { "<leader>og", "<cmd>Ollama Fix_grammar<cr>", desc = "Ollama Fix Grammar", mode = "v" },
+      { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "n" },
+      { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "v" },
+      { "<leader>xx", "<cmd>Rest run<cr>", desc = "Execute Request", mode = "n" },
     }
-    require("which-key").register(mappings, opts)
-    require("which-key").register(vmappings, vopts)
+    wk.add(mappings)
   end,
 }

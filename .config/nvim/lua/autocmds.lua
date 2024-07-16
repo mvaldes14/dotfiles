@@ -67,11 +67,11 @@ end, {})
 vim.api.nvim_create_user_command("TodayOpen", function()
   local todos = require "helper"
   local current_machine = vim.fn.hostname()
-  local home = vim.fn.getenv "$HOME"
+  local user = vim.fn.getenv "LOGNAME"
   if current_machine == "nixos" then
     todos.edit "/mnt/c/Users/migue/Documents/wiki/Streaming/Topics.md"
   else
-    todos.edit(home .. "/Obsidian/wiki/Work/2024.md")
+    todos.edit("/Users/" .. user .. "/Obsidian/wiki/Work/2024.md")
   end
 end, {})
 
