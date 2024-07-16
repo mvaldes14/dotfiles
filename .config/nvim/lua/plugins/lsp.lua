@@ -116,7 +116,7 @@ return {
 
       -- See `:help K` for why this keymap
       nmap("K", vim.lsp.buf.hover, "Hover Documentation")
-      nmap("<leader>f", vim.cmd.Format, "Format Document")
+      nmap("<leader>F", vim.cmd.Format, "Format Document")
       nmap("<A-k>", vim.lsp.buf.signature_help, "Signature Documentation")
     end
 

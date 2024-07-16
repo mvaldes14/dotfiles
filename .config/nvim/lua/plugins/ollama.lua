@@ -8,6 +8,9 @@ return {
       desc = "ollama prompt",
       mode = { "n", "v" },
     },
+    { "<leader>oe", "<cmd>Ollama Explain_Code<cr>", desc = "Ollama Explain Code", mode = "v" },
+    { "<leader>of", "<cmd>Ollama Fix_Code<cr>", desc = "Ollama Fix Code", mode = "v" },
+    { "<leader>og", "<cmd>Ollama Fix_grammar<cr>", desc = "Ollama Fix Grammar", mode = "v" },
   },
   opts = {
     model = "mistral",

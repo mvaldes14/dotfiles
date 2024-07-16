@@ -37,33 +37,40 @@ return {
     }
 
     local mappings = {
+      -- Visual
       {
-        "<leader>sh",
-        "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
-        desc = "[S]how Inlay Hints",
-        mode = "n",
+        "<leader>a",
+        group = "GPT",
+        {
+          "<leader>ae",
+          "<cmd>ChatGPTRun explain_code<cr>",
+          desc = "GPT Explain Code",
+          mode = "v",
+        },
+        {
+          "<leader>ao",
+          "<cmd>ChatGPTRun optimize_code<cr>",
+          desc = "GPT Optimize Code",
+          mode = "v",
+        },
+        {
+          "<leader>ar",
+          "<cmd>ChatGPTRun refactor_code<cr>",
+          desc = "GPT Refactor Code",
+          mode = "v",
+        },
       },
+      { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "v" },
+      -- Normal
       { "<leader>G", "<cmd>Git<cr>", desc = "NeoGit", mode = "n" },
       { "<leader>L", "<cmd>Lazy<cr>", desc = "Lazy", mode = "n" },
       { "<leader>M", "<cmd>Mason<cr>", desc = "Mason", mode = "n" },
       { "<leader>Z", "<cmd>ZenMode<cr>", desc = "Zen Mode", mode = "n" },
       {
-        "<leader>ae",
-        "<cmd>ChatGPTRun explain_code<cr>",
-        desc = "GPT Explain Code",
-        mode = "v",
-      },
-      {
-        "<leader>ao",
-        "<cmd>ChatGPTRun optimize_code<cr>",
-        desc = "GPT Optimize Code",
-        mode = "v",
-      },
-      {
-        "<leader>ar",
-        "<cmd>ChatGPTRun refactor_code<cr>",
-        desc = "GPT Refactor Code",
-        mode = "v",
+        "<leader>sh",
+        "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+        desc = "[S]how Inlay Hints",
+        mode = "n",
       },
       {
         "<leader>ba",
@@ -78,11 +85,7 @@ return {
       { "<leader>hh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags", mode = "n" },
       { "<leader>hk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps", mode = "n" },
       { "<leader>i", "<cmd>nohlsearch<cr>", hidden = true, mode = "n" },
-      { "<leader>oe", "<cmd>Ollama Explain_Code<cr>", desc = "Ollama Explain Code", mode = "v" },
-      { "<leader>of", "<cmd>Ollama Fix_Code<cr>", desc = "Ollama Fix Code", mode = "v" },
-      { "<leader>og", "<cmd>Ollama Fix_grammar<cr>", desc = "Ollama Fix Grammar", mode = "v" },
       { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "n" },
-      { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "v" },
       { "<leader>xx", "<cmd>Rest run<cr>", desc = "Execute Request", mode = "n" },
     }
     wk.add(mappings)
