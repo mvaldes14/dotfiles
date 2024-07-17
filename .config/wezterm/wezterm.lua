@@ -32,11 +32,11 @@ config.warn_about_missing_glyphs = false
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 table.insert(config.hyperlink_rules, {
 	regex = [[(?i)liops-(\d+)]],
-	format = "https://code.bestbuy.com/jira/browse/LIOPS-$1",
+	format = "https://jira.tools.bestbuy.com/browse/LIOPS-$1",
 })
 table.insert(config.hyperlink_rules, {
 	regex = [[(?i)iip-(\d+)]],
-	format = "https://code.bestbuy.com/jira/browse/IIP-$1",
+	format = "https://jira.tools.bestbuy.com/browse/IIP-$1",
 })
 
 config.keys = {

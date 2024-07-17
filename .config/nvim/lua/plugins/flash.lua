@@ -7,7 +7,7 @@ return {
         jump_labels = true,
       },
       search = {
-        enabled = false,
+        enabled = true,
       },
     },
   },
