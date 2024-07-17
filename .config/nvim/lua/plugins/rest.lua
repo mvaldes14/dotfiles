@@ -1,16 +1,7 @@
 return {
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000,
-    ft = "http",
-    config = true,
-  },
-  {
-    "rest-nvim/rest.nvim",
-    ft = "http",
-    dependencies = { "luarocks.nvim" },
-    config = function()
-      require("rest-nvim").setup {}
-    end,
+  "nicwest/vim-http",
+  ft = "http",
+  keys = {
+      { "<leader>xx", "<cmd>Http<cr>", desc = "Execute Request", mode = "n" },
   },
 }

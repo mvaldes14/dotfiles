@@ -86,7 +86,6 @@ return {
       { "<leader>hk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps", mode = "n" },
       { "<leader>i", "<cmd>nohlsearch<cr>", hidden = true, mode = "n" },
       { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "n" },
-      { "<leader>xx", "<cmd>Rest run<cr>", desc = "Execute Request", mode = "n" },
     }
     wk.add(mappings)
   end,
