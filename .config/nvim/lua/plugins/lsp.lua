@@ -21,6 +21,7 @@ return {
       "tsserver",
       "yamlls",
       "jsonls",
+      "solargraph",
     }
 
     local home_lsp = {
