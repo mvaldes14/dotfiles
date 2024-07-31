@@ -58,4 +58,9 @@ config.keys = {
 	},
 }
 
+config.quick_select_patterns = {
+	"[0-9.]{7,40}",
+	"[https://][a-zA-Z0-9.-]{7,40}",
+}
+
 return config
