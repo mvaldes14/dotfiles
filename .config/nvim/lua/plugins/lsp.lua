@@ -34,7 +34,7 @@ return {
       "marksman",
       "ltex",
       "astro",
-      "tailwindcss",
+      -- "tailwindcss",
       "templ",
     }
 
