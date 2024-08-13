@@ -47,7 +47,7 @@ return {
 
     local lsp = {
       function()
-        local buf_clients = vim.lsp.get_active_clients()
+        local buf_clients = vim.lsp.get_clients()
         if next(buf_clients) == nil then
           return "LS Inactive"
         end
