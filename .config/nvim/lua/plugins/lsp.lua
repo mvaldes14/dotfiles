@@ -34,8 +34,9 @@ return {
       "marksman",
       "ltex",
       "astro",
-      -- "tailwindcss",
+      "tailwindcss",
       "templ",
+      "harper-ls",
     }
 
     local dap_adapters = {

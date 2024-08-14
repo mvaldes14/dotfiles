@@ -1,7 +1,10 @@
 return {
-  "nicwest/vim-http",
+  "mistweaverco/kulala.nvim",
   ft = "http",
+  config = function()
+    require("kulala").setup()
+  end,
   keys = {
-      { "<leader>xx", "<cmd>Http<cr>", desc = "Execute Request", mode = "n" },
+    { "<leader>xx", "<cmd>require('kuala').run()<cr>", desc = "Execute Request", mode = "n" },
   },
 }
