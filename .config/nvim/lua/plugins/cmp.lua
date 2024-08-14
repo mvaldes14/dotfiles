@@ -73,6 +73,7 @@ return {
       },
       sources = cmp.config.sources {
         -- { name = "copilot" },
+        { name = "cody" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip", keyword_length = 2, max_item_count = 5 },
