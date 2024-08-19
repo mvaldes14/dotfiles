@@ -36,7 +36,7 @@ return {
       "astro",
       "tailwindcss",
       "templ",
-      "harper-ls",
+      "harper_ls",
     }
 
     local dap_adapters = {
@@ -290,6 +290,10 @@ return {
           },
         },
       },
+    }
+
+    require("lspconfig").harper_ls.setup {
+      filetypes = { "markdown" },
     }
   end,
 }
