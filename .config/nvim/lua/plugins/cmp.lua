@@ -62,7 +62,7 @@ return {
         format = lspkind.cmp_format {
           with_text = true,
           menu = {
-            -- coipilot = "[Copilot]",
+            coipilot = "[Copilot]",
             nvim_lsp = "[LSP]",
             nvim_lua = "[Lua]",
             luasnip = "[Snip]",
@@ -72,7 +72,7 @@ return {
         },
       },
       sources = cmp.config.sources {
-        -- { name = "copilot" },
+        { name = "copilot" },
         { name = "cody" },
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
@@ -90,7 +90,7 @@ return {
       sorting = {
         priority_weight = 2,
         comparators = {
-          -- require("copilot_cmp.comparators").prioritize,
+          require("copilot_cmp.comparators").prioritize,
           -- Below is the default comparitor list and order for nvim-cmp
           cmp.config.compare.offset,
           -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
