@@ -61,6 +61,7 @@ config.keys = {
 config.quick_select_patterns = {
 	"[0-9.]{7,40}",
 	"[https://][a-zA-Z0-9.-]{7,40}",
+	"\b(?:d{1,3}.){3}d{1,3}\b",
 }
 
 return config
