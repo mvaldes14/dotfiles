@@ -62,7 +62,8 @@ return {
       },
       { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "v" },
       -- Normal
-      { "<leader>G", "<cmd>Git<cr>", desc = "NeoGit", mode = "n" },
+      { "<leader>G", "<cmd>Git<cr>", desc = "Git", mode = "n" },
+      { "<leader>g", "<cmd>Neogit<cr>", desc = "NeoGit", mode = "n" },
       { "<leader>L", "<cmd>Lazy<cr>", desc = "Lazy", mode = "n" },
       { "<leader>M", "<cmd>Mason<cr>", desc = "Mason", mode = "n" },
       { "<leader>Z", "<cmd>ZenMode<cr>", desc = "Zen Mode", mode = "n" },

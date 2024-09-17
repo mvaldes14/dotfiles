@@ -18,7 +18,7 @@ return {
       "gopls",
       "bashls",
       "ansiblels",
-      "tsserver",
+      "ts_ls",
       "yamlls",
       "jsonls",
     }
@@ -259,7 +259,7 @@ return {
       },
     }
 
-    require("lspconfig").tsserver.setup {
+    require("lspconfig").ts_ls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
