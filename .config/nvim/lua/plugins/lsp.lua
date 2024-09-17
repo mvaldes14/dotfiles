@@ -21,7 +21,6 @@ return {
       "tsserver",
       "yamlls",
       "jsonls",
-      "solargraph",
     }
 
     local home_lsp = {
@@ -30,7 +29,6 @@ return {
       -- "nil_ls",
       "pyright",
       "ruff_lsp",
-      "solargraph",
       "marksman",
       "ltex",
       "astro",
