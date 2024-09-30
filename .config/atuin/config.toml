@@ -4,3 +4,5 @@ sync_address = "http://atuin.local.net"
 sync_frequency = "5m"
 search_mode_shell_up_key_binding = "fuzzy"
 keymap_mode = "vim-insert"
+style = "compact"
+secrets_filter = true

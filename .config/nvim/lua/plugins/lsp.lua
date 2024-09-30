@@ -26,7 +26,7 @@ return {
     local home_lsp = {
       "rust_analyzer",
       "htmx",
-      -- "nil_ls",
+      "nil_ls",
       "pyright",
       "ruff_lsp",
       "marksman",
@@ -34,7 +34,8 @@ return {
       "astro",
       "tailwindcss",
       "templ",
-      -- "harper_ls",
+      "harper_ls",
+      "gopls",
     }
 
     local dap_adapters = {
