@@ -66,10 +66,9 @@ return {
     if hostname == "MACG7YVXHYFWG" then
       default_lsp = work_lsp
     else
-      -- Merge tables for home setup
-      for _, lsp in ipairs(home_lsp) do
-        table.insert(default_lsp, lsp)
-      end
+      default_lsp = home_lsp
+      -- Setup for lsps i only use at home
+      require("lspconfig").htmx.setup {}
     end
 
     require("mason-tool-installer").setup {
@@ -137,7 +136,6 @@ return {
     require("neodev").setup {}
     require("lspconfig").templ.setup {}
 
-    require("lspconfig").htmx.setup {}
     require("lspconfig").nil_ls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
