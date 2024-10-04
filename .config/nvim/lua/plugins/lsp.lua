@@ -25,16 +25,16 @@ return {
 
     local home_lsp = {
       "rust_analyzer",
-      "htmx",
+      -- "htmx",
       "nil_ls",
       "pyright",
       "ruff_lsp",
-      "marksman",
+      -- "marksman",
       "ltex",
       "astro",
       "tailwindcss",
       "templ",
-      "harper_ls",
+      -- "harper_ls",
       "gopls",
     }
 
@@ -68,7 +68,13 @@ return {
     else
       default_lsp = home_lsp
       -- Setup for lsps i only use at home
-      require("lspconfig").htmx.setup {}
+      require("lspconfig").htmx.setup {
+        cmd = { "test" },
+        filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" }
+      }
+      require("lspconfig").harper_ls.setup {
+        filetypes = { "markdown", "mdx" }
+      }
     end
 
     require("mason-tool-installer").setup {
