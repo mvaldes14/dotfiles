@@ -12,6 +12,7 @@ return {
   config = function()
     -- Setup mason so it can manage external tooling
     require("mason").setup()
+    local utils = require "helper"
     local work_lsp = {
       "lua_ls",
       "terraformls",
@@ -61,9 +62,8 @@ return {
       "yamllint",
     }
 
-    local hostname = vim.fn.hostname()
     local default_lsp = {}
-    if hostname == "MACG7YVXHYFWG" then
+    if utils.check_work() then
       default_lsp = work_lsp
     else
       default_lsp = home_lsp

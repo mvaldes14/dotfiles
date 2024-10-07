@@ -6,6 +6,10 @@ return {
   keys = {
     { "<leader>ap", "<cmd>Copilot panel open<cr>", desc = "Copilot Panel" },
   },
+  cond = function()
+    local validation = require "helper"
+    return validation.check_work()
+  end,
   cmd = "Copilot",
   event = "InsertEnter",
   config = function()
@@ -40,5 +44,5 @@ return {
       server_opts_overrides = {},
     }
     require("copilot_cmp").setup {}
-  end,
+  end
 }

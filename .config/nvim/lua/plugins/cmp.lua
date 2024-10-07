@@ -16,6 +16,7 @@ return {
     local cmp = require "cmp"
     local luasnip = require "luasnip"
     local lspkind = require "lspkind"
+    local validation = require "helper"
 
     require("luasnip.loaders.from_vscode").lazy_load()
     require("luasnip.loaders.from_vscode").load { paths = "./snippets" }
@@ -27,6 +28,11 @@ return {
       end
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match "^%s*$" == nil
+    end
+
+    if validation.check_work() then
+      local copilot_cmp = require("copilot_cmp.comparators").prioritize
+      table.insert(cmp.setup.sorting.comparators, copilot_cmp)
     end
 
     cmp.setup {
@@ -77,7 +83,7 @@ return {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip", keyword_length = 2, max_item_count = 5 },
-        { name = "buffer", keyword_length = 5, max_item_count = 10 },
+        { name = "buffer",  keyword_length = 5, max_item_count = 10 },
       },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
@@ -90,7 +96,6 @@ return {
       sorting = {
         priority_weight = 2,
         comparators = {
-          require("copilot_cmp.comparators").prioritize,
           -- Below is the default comparitor list and order for nvim-cmp
           cmp.config.compare.offset,
           -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
@@ -105,6 +110,7 @@ return {
         },
       },
     }
+
 
     cmp.setup.cmdline({ "/", "?" }, {
       mapping = cmp.mapping.preset.cmdline(),

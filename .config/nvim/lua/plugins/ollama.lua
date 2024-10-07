@@ -9,12 +9,12 @@ return {
       mode = { "n", "v" },
     },
     { "<leader>oe", "<cmd>Ollama Explain_Code<cr>", desc = "Ollama Explain Code", mode = "v" },
-    { "<leader>of", "<cmd>Ollama Fix_Code<cr>", desc = "Ollama Fix Code", mode = "v" },
-    { "<leader>og", "<cmd>Ollama Fix_grammar<cr>", desc = "Ollama Fix Grammar", mode = "v" },
+    { "<leader>of", "<cmd>Ollama Fix_Code<cr>",     desc = "Ollama Fix Code",     mode = "v" },
+    { "<leader>og", "<cmd>Ollama Fix_grammar<cr>",  desc = "Ollama Fix Grammar",  mode = "v" },
   },
   opts = {
     model = "mistral",
-    url = "http://192.168.1.206:11434",
+    url = "http://192.168.1.218:11434",
     prompts = {
       Fix_Grammar = {
         prompt = "Fix the grammar and enhance the readability of the following text: \n$buf",
@@ -28,6 +28,11 @@ return {
       },
       Fix_Code = {
         prompt = "Fix the code provided: \n$sel",
+        action = "display",
+        model = "mistral",
+      },
+      Translate = {
+        prompt = "Translate the content to spanish: \n$buf",
         action = "display",
         model = "mistral",
       },

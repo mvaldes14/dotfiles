@@ -66,4 +66,11 @@ M.edit = function(path)
   vim.cmd("e " .. path)
 end
 
+M.check_work = function()
+  if vim.fn.hostname() == "MACG7YVXHYFWG" then
+    return true
+  end
+  return false
+end
+
 return M
