@@ -44,5 +44,5 @@ return {
       server_opts_overrides = {},
     }
     require("copilot_cmp").setup {}
-  end
+  end,
 }
