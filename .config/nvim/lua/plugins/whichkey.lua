@@ -38,28 +38,6 @@ return {
 
     local mappings = {
       -- Visual
-      {
-        "<leader>a",
-        group = "GPT",
-        {
-          "<leader>ae",
-          "<cmd>ChatGPTRun explain_code<cr>",
-          desc = "GPT Explain Code",
-          mode = "v",
-        },
-        {
-          "<leader>ao",
-          "<cmd>ChatGPTRun optimize_code<cr>",
-          desc = "GPT Optimize Code",
-          mode = "v",
-        },
-        {
-          "<leader>ar",
-          "<cmd>ChatGPTRun refactor_code<cr>",
-          desc = "GPT Refactor Code",
-          mode = "v",
-        },
-      },
       { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "v" },
       -- Normal
       { "<leader>G", "<cmd>Git<cr>", desc = "Git", mode = "n" },
