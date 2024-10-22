@@ -27,7 +27,6 @@ return {
     local home_lsp = {
       "rust_analyzer",
       -- "htmx",
-      "nil_ls",
       "pyright",
       "ruff_lsp",
       -- "marksman",
@@ -141,18 +140,7 @@ return {
     -- Specific LSP settings
     require("neodev").setup {}
     require("lspconfig").templ.setup {}
-
-    require("lspconfig").nil_ls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = {
-        ["nil"] = {
-          formatting = {
-            command = { "nixpkgs-fmt" },
-          },
-        },
-      },
-    }
+    require 'lspconfig'.nixd.setup {}
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,

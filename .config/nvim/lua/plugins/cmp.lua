@@ -78,7 +78,7 @@ return {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip", keyword_length = 2, max_item_count = 5 },
-        { name = "buffer", keyword_length = 5, max_item_count = 10 },
+        { name = "buffer",  keyword_length = 5, max_item_count = 10 },
       },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
@@ -91,7 +91,6 @@ return {
       sorting = {
         priority_weight = 2,
         comparators = {
-          require("copilot_cmp.comparators").prioritize,
           cmp.config.compare.offset,
           cmp.config.compare.exact,
           cmp.config.compare.score,
