@@ -44,7 +44,7 @@ return {
           "shfmt",
         },
         nix = {
-          "nixpkgs_fmt",
+          "alejandra",
         },
         python = {
           "black",
