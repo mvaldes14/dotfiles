@@ -140,7 +140,15 @@ return {
     -- Specific LSP settings
     require("neodev").setup {}
     require("lspconfig").templ.setup {}
-    require 'lspconfig'.nixd.setup {}
+    require 'lspconfig'.nixd.setup {
+      settings = {
+        nixd = {
+          formatting = {
+            command = { "alejandra " }
+          }
+        }
+      }
+    }
 
     require("lspconfig").lua_ls.setup {
       on_attach = on_attach,
