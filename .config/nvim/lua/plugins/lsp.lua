@@ -94,7 +94,7 @@ return {
 
     -- nvim-cmp supports additional completion capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
     -- LSP settings.
     --  This function gets run when an LSP connects to a particular buffer.

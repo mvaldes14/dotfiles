@@ -43,6 +43,6 @@ return {
       copilot_node_command = "node", -- Node.js version must be > 16.x
       server_opts_overrides = {},
     }
-    require("copilot_cmp").setup {}
+    -- require("copilot_cmp").setup {}
   end,
 }
