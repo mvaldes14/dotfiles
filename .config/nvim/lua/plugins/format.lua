@@ -52,6 +52,9 @@ return {
         lua = {
           "stylua",
         },
+        bash = {
+          "shfmt"
+        }
       },
     }
   end,
