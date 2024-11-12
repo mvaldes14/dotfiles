@@ -4,8 +4,7 @@ return {
   lazy = false,
   version = false, -- set this if you want to always pull the latest change
   cond = function()
-    local validation = require "helper"
-    return validation.check_work()
+    return not require("helper").check_work()
   end,
   opts = {
     provider = "ollama",
