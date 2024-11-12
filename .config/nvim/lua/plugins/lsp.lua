@@ -22,6 +22,9 @@ return {
       "ts_ls",
       "yamlls",
       "jsonls",
+      "solargraph",
+      "rubocop",
+      "ruby_lsp",
     }
 
     local home_lsp = {
@@ -69,10 +72,10 @@ return {
       -- Setup for lsps i only use at home
       require("lspconfig").htmx.setup {
         cmd = { "test" },
-        filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" }
+        filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" },
       }
       require("lspconfig").harper_ls.setup {
-        filetypes = { "markdown", "mdx" }
+        filetypes = { "markdown", "mdx" },
       }
     end
 
@@ -140,11 +143,11 @@ return {
     -- Specific LSP settings
     require("neodev").setup {}
     require("lspconfig").templ.setup {}
-    require 'lspconfig'.nixd.setup {
+    require("lspconfig").nixd.setup {
       settings = {
         nixd = {
           formatting = {
-            command = { "alejandra " }
+            command = { "alejandra " },
           },
           options = {
             nixos = {
@@ -154,8 +157,8 @@ return {
               expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations.nixos.options',
             },
           },
-        }
-      }
+        },
+      },
     }
 
     require("lspconfig").lua_ls.setup {
