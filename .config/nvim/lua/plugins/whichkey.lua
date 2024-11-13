@@ -57,7 +57,6 @@ return {
         desc = "[B]uffer Close All But Current",
         mode = "n",
       },
-      { "<leader>bc", "<cmd>bd<cr>", desc = "[B]uffer Close Current", mode = "n" },
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "Blame", mode = "v" },
       { "<leader>gd", "<cmd>Git diffthis<cr>", desc = "Diff", mode = "v" },
       { "<leader>hc", "<cmd>Telescope commands<cr>", desc = "Commands", mode = "n" },
