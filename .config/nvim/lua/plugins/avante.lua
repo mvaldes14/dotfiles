@@ -10,11 +10,10 @@ return {
     provider = "ollama",
     use_absolute_path = true,
     vendors = {
-      ---@type AvanteProvider
       ollama = {
-        ["local"] = true,
-        endpoint = "http://localhost:11434/v1",
-        model = "codellama:7b-instruct",
+        ['local'] = true,
+        endpoint = "http://192.168.1.218:11434/v1",
+        model = "mistral:latest",
         parse_curl_args = function(opts, code_opts)
           return {
             url = opts.endpoint .. "/chat/completions",
@@ -73,8 +72,8 @@ return {
     windows = {
       ---@type "right" | "left" | "top" | "bottom"
       position = "right", -- the position of the sidebar
-      wrap = true, -- similar to vim.o.wrap
-      width = 30, -- default % based on available width
+      wrap = true,        -- similar to vim.o.wrap
+      width = 30,         -- default % based on available width
       sidebar_header = {
         align = "center", -- left, center, right for title
         rounded = true,
@@ -116,43 +115,75 @@ return {
           drag_and_drop = {
             insert_mode = true,
           },
-          -- required for Windows users
-          use_absolute_path = true,
+          sidebar = {
+            apply_all = "A",
+            apply_cursor = "a",
+            switch_windows = "<Tab>",
+            reverse_switch_windows = "<S-Tab>",
+          },
+        },
+        -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+        build = "make BUILD_FROM_SOURCE=true",
+        -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+        dependencies = {
+          "nvim-treesitter/nvim-treesitter",
+          "stevearc/dressing.nvim",
+          "nvim-lua/plenary.nvim",
+          "MunifTanjim/nui.nvim",
+          --- The below dependencies are optional,
+          "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+          {
+            -- support for image pasting
+            "HakonHarnes/img-clip.nvim",
+            event = "VeryLazy",
+            opts = {
+              -- recommended settings
+              default = {
+                embed_image_as_base64 = false,
+                prompt_for_file_name = false,
+                drag_and_drop = {
+                  insert_mode = true,
+                },
+                -- required for Windows users
+                use_absolute_path = true,
+              },
+            },
+          },
+        },
+        {
+          -- Make sure to set this up properly if you have lazy=true
+          "MeanderingProgrammer/render-markdown.nvim",
+          opts = {
+            file_types = { "markdown", "Avante" },
+          },
+          ft = { "markdown", "Avante" },
+        },
+      },
+      keys = {
+        {
+          "<leader>aa",
+          function()
+            require("avante.api").ask()
+          end,
+          desc = "avante: ask",
+          mode = { "n", "v" },
+        },
+        {
+          "<leader>ar",
+          function()
+            require("avante.api").refresh()
+          end,
+          desc = "avante: refresh",
+        },
+        {
+          "<leader>ae",
+          function()
+            require("avante.api").edit()
+          end,
+          desc = "avante: edit",
+          mode = "v",
         },
       },
     },
-    {
-      -- Make sure to set this up properly if you have lazy=true
-      "MeanderingProgrammer/render-markdown.nvim",
-      opts = {
-        file_types = { "markdown", "Avante" },
-      },
-      ft = { "markdown", "Avante" },
-    },
-  },
-  keys = {
-    {
-      "<leader>aa",
-      function()
-        require("avante.api").ask()
-      end,
-      desc = "avante: ask",
-      mode = { "n", "v" },
-    },
-    {
-      "<leader>ar",
-      function()
-        require("avante.api").refresh()
-      end,
-      desc = "avante: refresh",
-    },
-    {
-      "<leader>ae",
-      function()
-        require("avante.api").edit()
-      end,
-      desc = "avante: edit",
-      mode = "v",
-    },
-  },
+  }
 }
