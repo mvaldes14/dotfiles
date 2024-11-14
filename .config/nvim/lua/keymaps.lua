@@ -74,3 +74,33 @@ vim.keymap.set(
   { noremap = true, silent = true, desc = "Yank line to clipboard" }
 )
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
+
+local mappings = {
+  -- Visual
+  { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "v" },
+  -- Normal
+  { "<leader>G", "<cmd>Git<cr>", group = "Git", mode = "n" },
+  { "<leader>g", "<cmd>Neogit<cr>", desc = "NeoGit", mode = "n" },
+  { "<leader>L", "<cmd>Lazy<cr>", group = "Core", mode = "n" },
+  { "<leader>M", "<cmd>Mason<cr>", group = "Core", mode = "n" },
+  { "<leader>Z", "<cmd>ZenMode<cr>", desc = "Zen Mode", mode = "n" },
+  {
+    "<leader>sh",
+    "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+    desc = "[S]how Inlay Hints",
+    mode = "n",
+  },
+  {
+    "<leader>ba",
+    "<cmd>BufferLineCloseOthers<cr>",
+    desc = "[B]uffer Close All But Current",
+    mode = "n",
+  },
+  { "<leader>gb", "<cmd>Git blame<cr>", desc = "Blame", mode = "v" },
+  { "<leader>gd", "<cmd>Git diffthis<cr>", desc = "Diff", mode = "v" },
+  { "<leader>hc", "<cmd>Telescope commands<cr>", desc = "Commands", mode = "n" },
+  { "<leader>hh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags", mode = "n" },
+  { "<leader>hk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps", mode = "n" },
+  { "<leader>i", "<cmd>nohlsearch<cr>", hidden = true, mode = "n" },
+  { "<leader>tt", "<cmd>ToggleTodo<cr>", desc = "[T]oggle Todo", mode = "n" },
+}
