@@ -29,16 +29,17 @@ return {
 
     local home_lsp = {
       "rust_analyzer",
-      -- "htmx",
+      "htmx",
       "pyright",
       "ruff_lsp",
-      -- "marksman",
+      "marksman",
       "ltex",
       "astro",
       "tailwindcss",
       "templ",
-      -- "harper_ls",
+      "harper_ls",
       "gopls",
+      "solargraph",
     }
 
     local dap_adapters = {
