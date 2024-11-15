@@ -7,8 +7,4 @@ return {
       show_hidden = true,
     },
   },
-  keys = {
-    { "<leader>E", "<cmd>Oil<cr>", desc = "Oil" },
-    { "<leader>_", "<cmd>Oil --float <cr>", desc = "Oil Float" },
-  },
 }

@@ -11,23 +11,7 @@ return {
   config = function()
     local dap_ui = require "dapui"
     local dap = require "dap"
-    local keymap = vim.keymap.set
-    local opts = { noremap = true, silent = true }
 
-    -- Keymaps
-    keymap("n", "<F1>", "<cmd> lua require('dap').step_back()<cr>", opts)
-    keymap("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", opts)
-    keymap("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", opts)
-    keymap("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", opts)
-    keymap("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", opts)
-    keymap("n", "<leader>dr", "<cmd> lua require('dap').repl.open()<cr>", opts)
-    keymap("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
-    keymap("n", "<leader>dk", "<cmd> lua require'dap.ui.widgets'.hover()<cr>", opts)
-    keymap("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", opts)
-    keymap("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", opts)
-    keymap("n", "<leader>dB", function()
-      require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
-    end)
 
     -- Virtual Text
     require("nvim-dap-virtual-text").setup {
@@ -47,7 +31,7 @@ return {
 
       -- experimental features:
       virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
-      all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+      all_frames = false,    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
     }
 
     -- UI
