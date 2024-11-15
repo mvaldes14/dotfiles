@@ -1,63 +1,8 @@
--- vim.keymap.sets
 local opts = { noremap = true, silent = true }
 
---Remap space as leader key
-vim.keymap.set("", "<Space>", "<Nop>", opts)
-
--- Normal --
--- Better window navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
-
--- Resize with arrows
-vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
-vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
-vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-
--- Navigate buffers
-vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
-vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
-
--- Insert --
--- Press jk fast to enter
-vim.keymap.set("i", "jk", "<ESC>", opts)
-
--- Visual --
--- Stay in indent mode
-vim.keymap.set("v", "<", "<gv", opts)
-vim.keymap.set("v", ">", ">gv", opts)
-
--- Move text up and down
-vim.keymap.set("v", "<A-j>", ":m .+1<CR>==", opts)
-vim.keymap.set("v", "<A-k>", ":m .-2<CR>==", opts)
-
--- Visual Block --
--- Move text up and down
-vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
-vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
-vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-
--- Smooth Scrolling at the middle
-vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
-vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
-
--- Copy and Paste without system clipboard
-vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y',
-  { noremap = true, silent = true, desc = "Yank to clipboard" })
-vim.keymap.set(
-  { "n", "v", "x" },
-  "<leader>Y",
-  '"+yy',
-  { noremap = true, silent = true, desc = "Yank line to clipboard" }
-)
-vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p',
-  { noremap = true, silent = true, desc = "Paste from clipboard" })
-
 -- Core
+vim.keymap.set("", "<Space>", "<Nop>", opts)
+vim.keymap.set("i", "jk", "<ESC>", opts)
 vim.keymap.set({ "n" }, "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n" }, "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
 vim.keymap.set({ "n" }, "<leader>i", "<cmd>nohlsearch<cr>", { desc = "Help", silent = true, noremap = true })
@@ -76,11 +21,57 @@ vim.keymap.set({ "n" },
   end,
   { desc = "[B]uffer Delete ",
   })
+vim.keymap.set({ "n" }, "s",
+  function() require("flash").jump { search = { mode = function(str) return "\\<" .. str end, } } end,
+  { desc = "Flash"
+  })
+
+vim.keymap.set("n", "S", function()
+    require("flash").treesitter()
+  end,
+  { desc = "Flash Treesitter",
+  })
+-- Copy and Paste without system clipboard
+vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y',
+  { noremap = true, silent = true, desc = "Yank to clipboard" })
+vim.keymap.set(
+  { "n", "v", "x" },
+  "<leader>Y",
+  '"+yy',
+  { noremap = true, silent = true, desc = "Yank line to clipboard" }
+)
+vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p',
+  { noremap = true, silent = true, desc = "Paste from clipboard" })
 
 
--- Files
+-- Navigation
 vim.keymap.set({ "n" }, "<leader>E", "<cmd>Oil --float <cr>", { desc = "Oil Float" })
-
+vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
+vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
+vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
+vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("v", "<", "<gv", opts)
+vim.keymap.set("v", ">", ">gv", opts)
+-- Move text up and down
+vim.keymap.set("v", "<A-j>", ":m .+1<CR>==", opts)
+vim.keymap.set("v", "<A-k>", ":m .-2<CR>==", opts)
+-- Visual Block --
+-- Move text up and down
+vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
+vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
+vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+-- Smooth Scrolling at the middle
+vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+-- Resize with arrows
+vim.keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
+vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
+vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+-- Navigate buffers
+vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
+vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 
 -- Git
 vim.keymap.set({ "n" }, "<leader>G", "<cmd>Git<cr>", { desc = "Git" })
@@ -93,7 +84,9 @@ vim.keymap.set({ "n" }, "<leader>gr", "<cmd>Octo pr list<cr>", { desc = "Octo" }
 -- Random
 vim.keymap.set({ "n" }, "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen Mode" })
 vim.keymap.set({ "n" }, "<leader>tt", "<cmd>ToggleTodo<cr>", { desc = "[T]oggle Todo" })
-vim.keymap.set("n", "<leader>xx", "<cmd>require('kuala').run()<cr>", { desc = "Execute Request" })
+vim.keymap.set({ "n" }, "<leader>xx", "<cmd>require('kuala').run()<cr>", { desc = "Execute Request" })
+vim.keymap.set({ "n" }, "<leader>xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
+vim.keymap.set({ "n" }, "<leader>xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })
 
 
 -- LSP
@@ -139,15 +132,15 @@ vim.keymap.set({ "v" },
   })
 
 -- Telescope
-vim.keymap.set("n", "<leader>?", 'require("telescope.builtin").oldfiles', { desc = "[?] Find recently opened files" })
-vim.keymap.set("n", "<leader><space>", '<cmd>Telescope buffers<cr>', { desc = "[ ] Find existing buffers" })
-vim.keymap.set("n", "<leader>sp", "<cmd>Telescope gh pull_request<cr>", { desc = "[S]earch PRs" })
-vim.keymap.set("n", "<leader>si", "<cmd>Telescope gh issues<cr>", { desc = "[S]earch Issues" })
-vim.keymap.set("n", "<leader>sf", '<cmd>Telescope find_files<cr>', { desc = "[S]earch [F]iles" })
-vim.keymap.set("n", "<leader>sw", '<cmd>Telescope grep_string<cr>', { desc = "[S]earch current [W]ord" })
-vim.keymap.set("n", "<leader>sg", '<cmd>Telescope live_grep<cr>', { desc = "[S]earch by [G]rep" })
-vim.keymap.set("n", "<leader>ds", "<cmd>Trouble diagnostics toggle<cr>", { desc = "[S]how Diagnostics" })
-vim.keymap.set("n", "<leader>su", ":Telescope undo<cr>", { desc = "[S]earch [U]ndo" })
+vim.keymap.set({ "n" }, "<leader>?", '<cmd> Telescope oldfiles<cr>', { desc = "[?] Find recently opened files" })
+vim.keymap.set({ "n" }, "<leader><space>", '<cmd>Telescope buffers<cr>', { desc = "[ ] Find existing buffers" })
+vim.keymap.set({ "n" }, "<leader>sp", "<cmd>Telescope gh pull_request<cr>", { desc = "[S]earch PRs" })
+vim.keymap.set({ "n" }, "<leader>si", "<cmd>Telescope gh issues<cr>", { desc = "[S]earch Issues" })
+vim.keymap.set({ "n" }, "<leader>sf", '<cmd>Telescope find_files<cr>', { desc = "[S]earch [F]iles" })
+vim.keymap.set({ "n" }, "<leader>sw", '<cmd>Telescope grep_string<cr>', { desc = "[S]earch current [W]ord" })
+vim.keymap.set({ "n" }, "<leader>sg", '<cmd>Telescope live_grep<cr>', { desc = "[S]earch by [G]rep" })
+vim.keymap.set({ "n" }, "<leader>ds", "<cmd>Trouble diagnostics toggle<cr>", { desc = "[S]how Diagnostics" })
+vim.keymap.set({ "n" }, "<leader>su", ":Telescope undo<cr>", { desc = "[S]earch [U]ndo" })
 vim.keymap.set(
   "n",
   "<leader>se",
@@ -159,3 +152,19 @@ vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "[S]how [T]
 --- Language
 vim.keymap.set("n", "<leader>fa", "<cmd>ChefFindAny<cr>", { desc = "Chef Find" })
 vim.keymap.set("n", "<leader>fs", "<cmd>ChefFindAnySplit<cr>", { desc = "Chef Find (Split)" })
+
+
+-- DAP
+vim.keymap.set("n", "<F1>", "<cmd> lua require('dap').step_back()<cr>", opts)
+vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", opts)
+vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", opts)
+vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", opts)
+vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", opts)
+vim.keymap.set("n", "<leader>dr", "<cmd> lua require('dap').repl.open()<cr>", opts)
+vim.keymap.set("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
+vim.keymap.set("n", "<leader>dk", "<cmd> lua require'dap.ui.widgets'.hover()<cr>", opts)
+vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", opts)
+vim.keymap.set("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", opts)
+vim.keymap.set("n", "<leader>dB", function()
+  require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
+end)
