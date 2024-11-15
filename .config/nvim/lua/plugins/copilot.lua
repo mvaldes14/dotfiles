@@ -3,9 +3,6 @@ return {
   dependencies = {
     "zbirenbaum/copilot-cmp",
   },
-  keys = {
-    { "<leader>ap", "<cmd>Copilot panel open<cr>", desc = "Copilot Panel" },
-  },
   cond = function()
     return require("helper").check_work()
   end,

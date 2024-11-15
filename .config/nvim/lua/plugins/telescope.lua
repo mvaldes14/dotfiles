@@ -60,22 +60,5 @@ return {
     require("telescope").load_extension "undo"
     require("telescope").load_extension "file_browser"
     require("telescope").load_extension "gh"
-
-    -- See `:help telescope.builtin`
-    vim.keymap.set("n", "<leader>?", require("telescope.builtin").oldfiles, { desc = "[?] Find recently opened files" })
-    vim.keymap.set("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "[ ] Find existing buffers" })
-    vim.keymap.set("n", "<leader>sp", "<cmd>Telescope gh pull_request<cr>", { desc = "[S]earch PRs" })
-    vim.keymap.set("n", "<leader>si", "<cmd>Telescope gh issues<cr>", { desc = "[S]earch Issues" })
-    vim.keymap.set("n", "<leader>sf", require("telescope.builtin").find_files, { desc = "[S]earch [F]iles" })
-    vim.keymap.set("n", "<leader>sw", require("telescope.builtin").grep_string, { desc = "[S]earch current [W]ord" })
-    vim.keymap.set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earch by [G]rep" })
-    vim.keymap.set("n", "<leader>sd", require("telescope.builtin").diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<leader>su", ":Telescope undo<cr>", { desc = "[S]earch [U]ndo" })
-    vim.keymap.set(
-      "n",
-      "<leader>se",
-      ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
-      { desc = "[S]earch [E]xplorer" }
-    )
   end,
 }
