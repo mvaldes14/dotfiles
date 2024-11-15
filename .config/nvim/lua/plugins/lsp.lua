@@ -31,7 +31,7 @@ return {
       "rust_analyzer",
       "htmx",
       "pyright",
-      "ruff_lsp",
+      "ruff",
       "marksman",
       "ltex",
       "astro",
