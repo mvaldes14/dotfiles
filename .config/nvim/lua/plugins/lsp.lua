@@ -3,121 +3,20 @@ return {
   "neovim/nvim-lspconfig",
   event = "BufEnter",
   dependencies = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
     "folke/neodev.nvim",
-    "jay-babu/mason-nvim-dap.nvim",
-    "WhoIsSethDaniel/mason-tool-installer",
   },
   config = function()
-    -- Setup mason so it can manage external tooling
-    require("mason").setup()
-    local utils = require "helper"
-    local work_lsp = {
-      "lua_ls",
-      "terraformls",
-      "gopls",
-      "bashls",
-      "ansiblels",
-      "ts_ls",
-      "yamlls",
-      "jsonls",
-      "solargraph",
-      "rubocop",
-      "ruby_lsp",
-    }
-
-    local home_lsp = {
-      "rust_analyzer",
-      "htmx",
-      "pyright",
-      "ruff",
-      "marksman",
-      "ltex",
-      "astro",
-      "tailwindcss",
-      "templ",
-      "harper_ls",
-      "gopls",
-      "solargraph",
-    }
-
-    local dap_adapters = {
-      "python",
-      "js",
-      "bash",
-    }
-
-    local tools = {
-      "stylua",
-      "black",
-      "prettier",
-      "stylua",
-      "yamlfmt",
-      "revive",
-      "pylint",
-      "ansible-lint",
-      "luacheck",
-      "cfn-lint",
-      "tfsec",
-      "rubocop",
-      "revive",
-      "yamllint",
-    }
-
-    local default_lsp = {}
-    if utils.check_work() then
-      default_lsp = work_lsp
-    else
-      default_lsp = home_lsp
-      -- Setup for lsps i only use at home
-      require("lspconfig").htmx.setup {
-        cmd = { "test" },
-        filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" },
-      }
-      require("lspconfig").harper_ls.setup {
-        filetypes = { "markdown", "mdx" },
-      }
-    end
-
-    require("mason-tool-installer").setup {
-      ensure_installed = tools,
-      run_on_start = false,
-    }
-
-    require("mason-nvim-dap").setup {
-      ensure_installed = dap_adapters,
-      automatic_installation = false,
-    }
-
-    -- Ensure the servers above are installed
-    require("mason-lspconfig").setup {
-      ensure_installed = default_lsp,
-      automatic_installation = false,
-    }
-
-    -- nvim-cmp supports additional completion capabilities
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    -- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
-    -- LSP settings.
-    --  This function gets run when an LSP connects to a particular buffer.
-
-    for _, lsp in ipairs(default_lsp) do
-      require("lspconfig")[lsp].setup {
-        capabilities = capabilities,
-      }
-    end
-
-    -- Make runtime files discoverable to the server
-    local runtime_path = vim.split(package.path, ";")
-    table.insert(runtime_path, "lua/?.lua")
-    table.insert(runtime_path, "lua/?/init.lua")
-
-    -- Specific LSP settings
+    local lspconfig = require("lspconfig")
     require("neodev").setup {}
-    require("lspconfig").templ.setup {}
-    require("lspconfig").nixd.setup {
+    lspconfig.htmx.setup {
+      cmd = { "test" },
+      filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" },
+    }
+    lspconfig.templ.setup {}
+    lspconfig.rust_analyzer.setup {}
+    lspconfig.solargraph.setup {}
+    lspconfig.terraformls.setup {}
+    lspconfig.nixd.setup {
       settings = {
         nixd = {
           formatting = {
@@ -134,35 +33,31 @@ return {
         },
       },
     }
-
-    require("lspconfig").lua_ls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.lua_ls.setup {
       settings = {
         Lua = {
           hint = {
             enable = true,
           },
-          runtime = {
-            version = "LuaJIT",
-            path = runtime_path,
+          hover = {
+            enable = true,
+            expandAlias = true
           },
           diagnostics = {
             globals = { "vim" },
+          },
+          format = {
+            enable = true
           },
           workspace = {
             library = vim.api.nvim_get_runtime_file("", true),
             checkThirdParty = false,
             maxPreload = 10000,
           },
-          telemetry = { enable = false },
         },
       },
     }
-
-    require("lspconfig").yamlls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.yamlls.setup {
       settings = {
         yaml = {
           format = {
@@ -201,9 +96,7 @@ return {
       },
     }
 
-    require("lspconfig").jsonls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.jsonls.setup {
       settings = {
         json = {
           schemas = require("schemastore").json.schemas(),
@@ -212,9 +105,7 @@ return {
       },
     }
 
-    require("lspconfig").ltex.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.ltex.setup {
       settings = {
         ltex = {
           checkFrequency = "save",
@@ -222,9 +113,7 @@ return {
       },
     }
 
-    require("lspconfig").gopls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.gopls.setup {
       settings = {
         gopls = {
           completeUnimported = true,
@@ -245,9 +134,7 @@ return {
       },
     }
 
-    require("lspconfig").ts_ls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+    lspconfig.ts_ls.setup {
       settings = {
         javascript = {
           inlayHints = {
@@ -275,5 +162,12 @@ return {
         },
       },
     }
+
+    -- For the blog
+    lspconfig.tailwindcss.setup {
+      filetypes = { " astro", "html", "css", "javascript", "typescript", "templ", "vue" }
+    }
+    lspconfig.astro.setup {}
+    lspconfig.pyright.setup {}
   end,
 }
