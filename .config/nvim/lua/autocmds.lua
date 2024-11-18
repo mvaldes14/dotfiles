@@ -1,4 +1,4 @@
--- Autocmds
+-- User commands
 vim.api.nvim_create_user_command("ToggleTodo", function()
   local cursor = vim.api.nvim_win_get_cursor(0)
   local line = vim.fn.getline(cursor[1])
@@ -14,24 +14,6 @@ vim.api.nvim_create_user_command("ToggleTodo", function()
   vim.api.nvim_set_current_line(newline)
 end, {})
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
-  pattern = "*",
-  desc = "Highlight selection on yank",
-  callback = function()
-    vim.highlight.on_yank { timeout = 200, visual = true }
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("vertical_help", { clear = true }),
-  pattern = "help",
-  callback = function()
-    vim.bo.bufhidden = "unload"
-    vim.cmd.wincmd "L"
-    vim.cmd.wincmd "="
-  end,
-})
 
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil
@@ -71,3 +53,35 @@ vim.api.nvim_create_user_command("TodayClose", function()
   local todos = require "helper"
   todos.hide_todos()
 end, {})
+
+
+-- Autocmds
+vim.api.nvim_create_autocmd("VimEnter", {
+  group = vim.api.nvim_create_augroup("dashboard_launch", { clear = true }),
+  pattern = "*",
+  desc = "Launches Dashboard on Enter",
+  callback = function()
+    if vim.fn.argv(0) == "" then
+      require "snacks".dashboard.open()
+    end
+  end
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
+  pattern = "*",
+  desc = "Highlight selection on yank",
+  callback = function()
+    vim.highlight.on_yank { timeout = 200, visual = true }
+  end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("vertical_help", { clear = true }),
+  pattern = "help",
+  callback = function()
+    vim.bo.bufhidden = "unload"
+    vim.cmd.wincmd "L"
+    vim.cmd.wincmd "="
+  end,
+})
