@@ -4,4 +4,8 @@ return {
   dependencies = {
     "nvzone/volt",
   },
+  opts = {
+    style = "compact",
+    position = "top-right"
+  }
 }
