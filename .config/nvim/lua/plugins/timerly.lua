@@ -1,8 +1,7 @@
--- return {
---   "nvzone/timerly",
---   cmd = "TimerlyToggle",
---   dependencies = {
---     "nvzone/volt",
---   },
--- }
-return {}
+return {
+  "mvaldes14/timerly",
+  cmd = "TimerlyToggle",
+  dependencies = {
+    "nvzone/volt",
+  },
+}
