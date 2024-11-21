@@ -5,8 +5,9 @@ vim.keymap.set("", "<Space>", "<Nop>", opts)
 vim.keymap.set("i", "jk", "<ESC>", opts)
 vim.keymap.set({ "n" }, "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n" }, "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
-vim.keymap.set({ "n" }, "<leader>i", "<cmd>nohlsearch<cr>", { desc = "Help", silent = true, noremap = true })
+vim.keymap.set({ "n" }, "<leader>i", "<cmd>nohlsearch<cr>", { desc = "Highlight Off", silent = true, noremap = true })
 vim.keymap.set({ "n" }, "<leader>hh", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
+vim.keymap.set({ "n" }, "<leader>hk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
 vim.keymap.set({ "n" }, "<leader>ba", "<cmd>BufferLineCloseOthers<cr>", { desc = "[B]uffer Close all But Current" })
 vim.keymap.set("n", "<C-s>", "<Esc>:w<CR>", opts)
 vim.keymap.set("n", "<C-q>", "<Esc>:q<CR>", opts)
@@ -68,13 +69,21 @@ vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
 vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 
 -- Git
-vim.keymap.set({ "n" }, "<leader>g", "<cmd>Git<cr>", { desc = "Git" })
+vim.keymap.set({ "n" }, "<leader>g?", "<cmd>Git<cr>", { desc = "Git" })
 vim.keymap.set({ "n" }, "<leader>G", function()
   Snacks.lazygit()
-end, { desc = "NeoGit" })
-vim.keymap.set({ "n" }, "<leader>gb", "<cmd>Git blame<cr>", { desc = "Git Blame" })
-vim.keymap.set({ "n" }, "<leader>gd", "<cmd>Git diffthis<cr>", { desc = "Git Diff" })
-vim.keymap.set({ "n" }, "<leader>gr", "<cmd>Octo pr list<cr>", { desc = "Octo" })
+end, { desc = "LazyGit" })
+vim.keymap.set(
+  { "n" },
+  "<leader>gbl",
+  "<cmd>Gitsigns toggle_current_line_blame<cr>",
+  { desc = "[Git] Toggle Blame Line" }
+)
+vim.keymap.set({ "n" }, "<leader>gr", "<cmd>Octo pr list<cr>", { desc = "[Git] Octo" })
+vim.keymap.set({ "n" }, "[c", "<cmd>Gitsigns prev_hunk<cr>", { desc = "[Git] Previous Hunk" })
+vim.keymap.set({ "n" }, "]c", "<cmd>Gitsigns next_hunk<cr>", { desc = "[Git] Next Hunk" })
+vim.keymap.set({ "n" }, "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "[Git] Next Hunk" })
+vim.keymap.set({ "n" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "[Git] Preview Hunk" })
 
 -- Random
 vim.keymap.set({ "n" }, "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen Mode" })
@@ -131,6 +140,7 @@ vim.keymap.set({ "v" }, "<leader>ae", function()
 end, { desc = "avante: edit" })
 
 -- Telescope
+vim.keymap.set({ "n" }, "<leader>s?", "<cmd>Telescope <cr>", { desc = "Telescope" })
 vim.keymap.set({ "n" }, "<leader>?", "<cmd> Telescope oldfiles<cr>", { desc = "[?] Find recently opened files" })
 vim.keymap.set({ "n" }, "<leader><space>", "<cmd>Telescope buffers<cr>", { desc = "[ ] Find existing buffers" })
 vim.keymap.set({ "n" }, "<leader>sp", "<cmd>Telescope gh pull_request<cr>", { desc = "[S]earch PRs" })
