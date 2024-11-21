@@ -6,12 +6,12 @@ return {
     "leoluz/nvim-dap-go",
     "jbyuki/one-small-step-for-vimkind",
     "suketa/nvim-dap-ruby",
-    "nvim-neotest/nvim-nio"
+    "nvim-neotest/nvim-nio",
   },
+  cmd = "DAP",
   config = function()
     local dap_ui = require "dapui"
     local dap = require "dap"
-
 
     -- Virtual Text
     require("nvim-dap-virtual-text").setup {
@@ -31,7 +31,7 @@ return {
 
       -- experimental features:
       virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
-      all_frames = false,    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+      all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
     }
 
     -- UI
