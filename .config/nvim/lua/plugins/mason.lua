@@ -26,7 +26,7 @@ return {
       "rust_analyzer",
       "htmx",
       "pyright",
-      "ruff_lsp",
+      -- "ruff_lsp",
       "marksman",
       "ltex",
       "astro",
@@ -38,7 +38,7 @@ return {
     }
 
     local dap_adapters = {
-      "python",
+      -- "python",
       "js",
       "bash",
     }

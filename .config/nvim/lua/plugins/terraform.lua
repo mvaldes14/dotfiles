@@ -1,4 +1,4 @@
 return {
-  "mvaldes14/terraform.nvim",
-  ft = "terraform",
+  -- "mvaldes14/terraform.nvim",
+  -- ft = "terraform",
 }
