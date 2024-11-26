@@ -85,3 +85,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd.wincmd "="
   end,
 })
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "*.tf" },
+  callback = function()
+    vim.cmd("TerraformValidate")
+  end,
+})
