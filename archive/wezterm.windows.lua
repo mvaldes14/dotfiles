@@ -43,10 +43,6 @@ config.wsl_domains = {
 		name = "WSL:NixOS",
 		distribution = "NixOS",
 	},
-	{
-		name = "WSL:kali-linux",
-		distribution = "kali-linux",
-	},
 }
 
 -- Keymaps
