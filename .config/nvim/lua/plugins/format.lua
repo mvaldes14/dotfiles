@@ -26,7 +26,8 @@ return {
           "prettier",
         },
         go = {
-          "gofmt", "goimports"
+          "gofmt",
+          "goimports"
         },
         templ = {
           "templ",
