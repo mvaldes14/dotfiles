@@ -1,7 +1,7 @@
 return {
   "sourcegraph/sg.nvim",
   event = "InsertEnter",
-  config = function()
-    require("sg").setup()
+  cond = function()
+    return not require("helper").check_work()
   end,
 }

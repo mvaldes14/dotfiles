@@ -1,6 +1,7 @@
 return {
   {
     "zbirenbaum/copilot.lua",
+    dependencies = "zbirenbaum/copilot-cmp",
     cond = function()
       return require("helper").check_work()
     end,
@@ -9,13 +10,7 @@ return {
     config = function()
       require("copilot").setup {
         panel = {
-          enabled = true,
-          auto_refresh = true,
-          keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-          },
+          enabled = false,
           suggestion = {
             enabled = true,
             auto_trigger = true,
@@ -31,15 +26,18 @@ return {
           },
           copilot_node_command = "node", -- Node.js version must be > 16.x
           server_opts_overrides = {},
-        }
+          filetypes = {
+            ["."] = true,
+          },
+        },
       }
-    end
+      require("copilot_cmp").setup {}
+    end,
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    opts = { show_help = false },
     cond = function()
       return require("helper").check_work()
     end,
-  }
+  },
 }
