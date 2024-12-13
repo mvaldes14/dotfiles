@@ -5,6 +5,7 @@ return {
     "debugloop/telescope-undo.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     "nvim-telescope/telescope-github.nvim",
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
   },
   branch = "0.1.x",
   config = function()
@@ -37,6 +38,12 @@ return {
         },
       },
       extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case"
+        },
         undo = {
           use_delta = true,
           use_custom_command = nil, -- setting this implies `use_delta = false`. Accepted format is: { "bash", "-c", "echo '$DIFF' | delta" }
@@ -57,6 +64,7 @@ return {
       },
     }
 
+    require("telescope").load_extension "fzf"
     require("telescope").load_extension "undo"
     require("telescope").load_extension "file_browser"
     require("telescope").load_extension "gh"
