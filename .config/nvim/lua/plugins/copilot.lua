@@ -1,7 +1,6 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    dependencies = "zbirenbaum/copilot-cmp",
     cond = function()
       return require("helper").check_work()
     end,
@@ -12,7 +11,7 @@ return {
         panel = {
           enabled = false,
           suggestion = {
-            enabled = true,
+            enabled = false,
             auto_trigger = true,
             debounce = 75,
             keymap = {
@@ -31,7 +30,6 @@ return {
           },
         },
       }
-      require("copilot_cmp").setup {}
     end,
   },
   {

@@ -6,17 +6,20 @@ return {
     "folke/neodev.nvim",
   },
   config = function()
-    local lspconfig = require("lspconfig")
+    local lspconfig = require "lspconfig"
     require("neodev").setup {}
     lspconfig.htmx.setup {
       cmd = { "test" },
       filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" },
     }
-    lspconfig.templ.setup {}
-    lspconfig.rust_analyzer.setup {}
-    lspconfig.solargraph.setup {}
-    lspconfig.terraformls.setup {}
+
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+    lspconfig.templ.setup { capabilities = capabilities }
+    lspconfig.rust_analyzer.setup { capabilities = capabilities }
+    lspconfig.solargraph.setup { capabilities = capabilities }
+    lspconfig.terraformls.setup { capabilities = capabilities }
     lspconfig.nixd.setup {
+      capabilities = capabilities,
       settings = {
         nixd = {
           formatting = {
@@ -34,6 +37,7 @@ return {
       },
     }
     lspconfig.lua_ls.setup {
+      capabilities = capabilities,
       settings = {
         Lua = {
           hint = {
@@ -41,13 +45,13 @@ return {
           },
           hover = {
             enable = true,
-            expandAlias = true
+            expandAlias = true,
           },
           diagnostics = {
             globals = { "vim" },
           },
           format = {
-            enable = true
+            enable = true,
           },
           workspace = {
             library = vim.api.nvim_get_runtime_file("", true),
@@ -58,6 +62,7 @@ return {
       },
     }
     lspconfig.yamlls.setup {
+      capabilities = capabilities,
       settings = {
         yaml = {
           format = {
@@ -97,6 +102,7 @@ return {
     }
 
     lspconfig.jsonls.setup {
+      capabilities = capabilities,
       settings = {
         json = {
           schemas = require("schemastore").json.schemas(),
@@ -106,6 +112,7 @@ return {
     }
 
     lspconfig.ltex.setup {
+      capabilities = capabilities,
       settings = {
         ltex = {
           checkFrequency = "save",
@@ -114,6 +121,7 @@ return {
     }
 
     lspconfig.gopls.setup {
+      capabilities = capabilities,
       settings = {
         gopls = {
           completeUnimported = true,
@@ -135,6 +143,7 @@ return {
     }
 
     lspconfig.ts_ls.setup {
+      capabilities = capabilities,
       settings = {
         javascript = {
           inlayHints = {
@@ -165,7 +174,7 @@ return {
 
     -- For the blog
     lspconfig.tailwindcss.setup {
-      filetypes = { " astro", "html", "css", "javascript", "typescript", "templ", "vue" }
+      filetypes = { " astro", "html", "css", "javascript", "typescript", "templ", "vue" },
     }
     lspconfig.astro.setup {}
     lspconfig.pyright.setup {}
