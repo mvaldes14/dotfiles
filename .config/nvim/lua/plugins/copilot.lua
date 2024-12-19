@@ -1,9 +1,6 @@
 return {
   {
     "zbirenbaum/copilot.lua",
-    cond = function()
-      return require("helper").check_work()
-    end,
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
@@ -23,7 +20,7 @@ return {
               dismiss = "<C-]>",
             },
           },
-          copilot_node_command = "node", -- Node.js version must be > 16.x
+          copilot_node_command = "node",   -- Node.js version must be > 16.x
           server_opts_overrides = {},
           filetypes = {
             ["."] = true,
@@ -37,5 +34,5 @@ return {
     cond = function()
       return require("helper").check_work()
     end,
-  },
+  }
 }
