@@ -18,9 +18,6 @@ return {
           async = true,
         },
       },
-      completion = {
-        enabled_providers = { "lsp", "path", "snippets", "buffer", "copilot" },
-      },
     },
     signature = { enabled = true },
   },

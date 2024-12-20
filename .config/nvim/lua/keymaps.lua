@@ -105,7 +105,7 @@ vim.keymap.set({ "n" }, "[d", vim.diagnostic.goto_prev, { desc = "LSP:Previous d
 vim.keymap.set({ "n" }, "]d", vim.diagnostic.goto_next, { desc = "LSP:Next diagnostic" })
 vim.keymap.set({ "n" }, "<leader>e", vim.diagnostic.open_float, { desc = "LSP:Show diagnostic [E]rror messages" })
 vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "LSP:[G]oto [D]efinition" })
-vim.keymap.set({ "n" }, "gr", 'require("telescope.builtin").lsp_references', { desc = "LSP:[G]oto [R]eferences" })
+vim.keymap.set({ "n" }, "gr", "<cmd> Telescope lsp_references<cr>", { desc = "LSP:[G]oto [R]eferences" })
 vim.keymap.set({ "n" }, "gI", vim.lsp.buf.implementation, { desc = "LSP:[G]oto [I]mplementation" })
 vim.keymap.set({ "n" }, "<leader>D", vim.lsp.buf.type_definition, { desc = "LSP:Type [D]efinition" })
 vim.keymap.set(
