@@ -3,6 +3,9 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
+    cond = function()
+      return require("helper").check_work()
+    end,
     config = function()
       require("copilot").setup {
         panel = {
