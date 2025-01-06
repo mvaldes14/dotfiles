@@ -14,5 +14,8 @@ return {
     cond = function()
       return not require("helper").check_work()
     end,
+    config = function()
+      require("todoist").setup {}
+    end,
   },
 }
