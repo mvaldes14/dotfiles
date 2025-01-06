@@ -10,6 +10,7 @@ alias k="kubectl"
 alias tf="terraform"
 alias s="doppler run"
 alias vwiki="pushd ~/Obsidian/wiki/ && nvim"
+alias cd="z"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
