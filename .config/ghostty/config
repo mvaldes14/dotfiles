@@ -1,0 +1,5 @@
+theme = tokyonight
+window-decoration = false
+copy-on-select = true
+font-family = JetBrainsMono NF
+font-size = 14
