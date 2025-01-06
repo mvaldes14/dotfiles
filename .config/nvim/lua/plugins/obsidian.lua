@@ -19,16 +19,8 @@ return {
     note_id_func = function(title)
       return title
     end,
-    note_frontmatter_func = function(_)
-      return {}
-    end,
-    -- completion = {
-    -- Set to false to disable completion.
-    -- nvim_cmp = true,
-    -- Trigger completion at 2 chars.
-    -- min_chars = 2,
-    -- },
-    new_notes_location = "current_dir",
+    new_notes_location = "00-Inbox",
+    notes_subdir = "00-Inbox",
     disable_frontmatter = true,
     templates = {
       folder = "_templates",
