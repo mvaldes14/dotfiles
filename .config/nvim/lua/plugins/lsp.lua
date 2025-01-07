@@ -120,6 +120,8 @@ return {
       },
     }
 
+    lspconfig.marksman.setup {}
+
     lspconfig.gopls.setup {
       capabilities = capabilities,
       settings = {

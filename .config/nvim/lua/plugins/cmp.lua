@@ -1,6 +1,19 @@
 return {
   "saghen/blink.cmp",
-  dependencies = { "rafamadriz/friendly-snippets", "giuxtaposition/blink-cmp-copilot" },
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    "giuxtaposition/blink-cmp-copilot",
+    {
+      "saghen/blink.compat",
+      lazy = true,
+      version = "*",
+      opts = {
+        sources = {
+          compat = { "obsidian", "obsidian_new", "obsidian_tags" },
+        },
+      },
+    },
+  },
   version = "v0.*",
   opts = {
     keymap = { preset = "default" },

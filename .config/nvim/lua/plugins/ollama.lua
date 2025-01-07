@@ -1,6 +1,9 @@
 return {
   "nomnivore/ollama.nvim",
   cmd = { "Ollama", "OllamaModel", "OllamaServe", "OllamaServeStop" },
+  cond = function()
+    return not require("helper").check_work()
+  end,
   opts = {
     model = "mistral",
     url = "http://192.168.1.218:11434",

@@ -129,15 +129,6 @@ vim.keymap.set({ "n", "v" }, "<leader>oo", "<cmd> Ollama Raw<cr>", { desc = "[O]
 vim.keymap.set({ "v" }, "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = "[O]llama Explain Code" })
 vim.keymap.set({ "v" }, "<leader>of", "<cmd>Ollama Fix_Code<cr>", { desc = "[O]llama Fix Code" })
 vim.keymap.set({ "v" }, "<leader>og", "<cmd>Ollama Fix_grammar<cr>", { desc = "[O]llama Fix Grammar" })
-vim.keymap.set({ "n", "v" }, "<leader>aa", function()
-  require("avante.api").ask()
-end, { desc = "avante: ask" })
-vim.keymap.set({ "n" }, "<leader>ar", function()
-  require("avante.api").refresh()
-end, { desc = "avante: refresh" })
-vim.keymap.set({ "v" }, "<leader>ae", function()
-  require("avante.api").edit()
-end, { desc = "avante: edit" })
 
 -- Telescope
 vim.keymap.set({ "n" }, "<leader>s?", "<cmd>Telescope <cr>", { desc = "Telescope" })
@@ -176,3 +167,8 @@ vim.keymap.set("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", opts)
 vim.keymap.set("n", "<leader>dB", function()
   require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
 end)
+
+-- Obsidian
+vim.keymap.set("n", "<leader>On", "<cmd>ObsidianNew<cr>", opts)
+vim.keymap.set("n", "<leader>Ot", "<cmd>ObsidianTemplate<cr>", opts)
+vim.keymap.set("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", opts)
