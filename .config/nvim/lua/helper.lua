@@ -1,6 +1,6 @@
 local M = {}
 
---@description: Create a floating window with todos
+---@description: Create a floating window with todos
 local function create_win()
   local col = vim.o.columns
   local buf = vim.api.nvim_create_buf(false, true)
@@ -17,8 +17,8 @@ local function create_win()
   return buf
 end
 
---@param path: string
---@description: Get todos from a file
+---@param path string
+---@description Get todos from a file
 local function get_todos(path)
   local file = io.open(path, "r")
   if not file then
@@ -32,8 +32,8 @@ local function get_todos(path)
   return lines
 end
 
---@description: Update the window with todos
---@param lines: table
+---@description: Update the window with todos
+---@param lines table
 local function update_win(lines)
   local buf = create_win()
   vim.api.nvim_buf_set_lines(buf, 0, -1, false, {})
@@ -42,9 +42,9 @@ local function update_win(lines)
   end
 end
 
---@class: Todos
---@description: Show todos in a floating window
---@param: path string
+---@class Todos
+---@description Show todos in a floating window
+---@param path string
 M.show_todos = function(path)
   if not path then
     print "No path provided"
@@ -54,8 +54,8 @@ M.show_todos = function(path)
   update_win(lines)
 end
 
---@class: Todos
---@description: Hide the todos window
+---@class Todos
+---@description Hide the todos window
 M.hide_todos = function()
   local win = vim.api.nvim_list_wins()
   -- Close the last window created

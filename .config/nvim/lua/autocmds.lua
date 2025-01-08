@@ -14,7 +14,6 @@ vim.api.nvim_create_user_command("ToggleTodo", function()
   vim.api.nvim_set_current_line(newline)
 end, {})
 
-
 vim.api.nvim_create_user_command("Format", function(args)
   local range = nil
   if args.count ~= -1 then
@@ -38,6 +37,8 @@ vim.api.nvim_create_user_command("Today", function()
   end
 end, {})
 
+-- TODO: Make this in a floating window so we dont have to close it in another autocmd
+-- Needs to have its own keymaps
 vim.api.nvim_create_user_command("TodayOpen", function()
   local todos = require "helper"
   local current_machine = vim.fn.hostname()
@@ -54,7 +55,6 @@ vim.api.nvim_create_user_command("TodayClose", function()
   todos.hide_todos()
 end, {})
 
-
 -- Autocmds
 vim.api.nvim_create_autocmd("VimEnter", {
   group = vim.api.nvim_create_augroup("dashboard_launch", { clear = true }),
@@ -62,9 +62,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
   desc = "Launches Dashboard on Enter",
   callback = function()
     if vim.fn.argv(0) == "" then
-      require "snacks".dashboard.open()
+      require("snacks").dashboard.open()
     end
-  end
+  end,
 })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -86,9 +86,9 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "*.tf" },
-  callback = function()
-    vim.cmd("TerraformValidate")
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = { "*.tf" },
+--   callback = function()
+--     vim.cmd "TerraformValidate"
+--   end,
+-- })
