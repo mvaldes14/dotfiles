@@ -1,16 +1,18 @@
 #!/bin/bash
-
 # Runs a single command in multiple nodes
-#
-# Usage:
-# jws-cmd '<filter>' '<command>'
-#
 # Example:
 # jws-cmd 'vmstorage test' echo 'hello'
 
 filter=$1
 shift
 command=$@
+
+# If no command is given, print usage
+# Otherwise, run the command on all nodes matching the filter
+if [ -z "$command" ] || [ -z "$filter" ]; then
+    echo "Usage: jws-cmd '<filter>' '<command>'"
+    exit 1
+fi
 
 for node in $(jws-grep $filter | awk '{ print $2 }'); do
     echo $node

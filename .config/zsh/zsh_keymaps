@@ -1,1 +1,2 @@
-bindkey -s "^s" "bruh\n"
+# Launches NNN with shift+e(xplorer)
+bindkey -s "^e" "nnn\n"

@@ -5,6 +5,6 @@
 *.retry
 .zcompdump*
 .zsh_history
+.zsh_sessions
 lazy-lock.json
-.zsh*
 flake.lock
