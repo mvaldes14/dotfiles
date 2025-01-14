@@ -73,8 +73,8 @@ return {
           hover = true,
           completion = true,
           schemaStore = {
-            url = "https://www.schemastore.org/api/json/catalog.json",
-            enable = true,
+            url = "",
+            enable = false,
           },
           schemas = require("schemastore").yaml.schemas(),
           customTags = {
