@@ -9,6 +9,8 @@ return {
     },
     bifile = {
       enabled = true,
+      size = 1.0 * 1024 * 1024,
+      notify = true,
     },
   },
 }

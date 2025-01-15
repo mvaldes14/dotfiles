@@ -169,6 +169,6 @@ vim.keymap.set("n", "<leader>dB", function()
 end)
 
 -- Obsidian
-vim.keymap.set("n", "<leader>On", "<cmd>ObsidianNew<cr>", opts)
-vim.keymap.set("n", "<leader>Ot", "<cmd>ObsidianTemplate<cr>", opts)
-vim.keymap.set("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", opts)
+vim.keymap.set("n", "<leader>On", "<cmd>ObsidianNew<cr>", { desc = "Obsidian New" })
+vim.keymap.set("n", "<leader>Ot", "<cmd>ObsidianTemplate<cr>", { desc = "Obsidian Template" })
+vim.keymap.set("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian Search" })
