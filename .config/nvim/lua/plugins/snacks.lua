@@ -14,38 +14,57 @@ return {
     },
     notifier = {
       enabled = true,
-      timeout = 3000,
     },
     bigfile = {
       enabled = true,
-      size = 1.0 * 1024 * 1024,
-      notify = true,
     },
     picker = {
       enabled = true,
-      ui_select = true,
-      cwd = true,
     },
     dashboard = {
       sections = {
         { section = "header", padding = 3 },
-        { section = "recent_files", icon = " ", title = "Recent Files", padding = 3 },
-        { section = "keys", padding = 3, limit = 5 },
+        { icon = " ", title = "Keymaps", section = "keys", padding = 1 },
+        {
+          section = "recent_files",
+          icon = " ",
+          title = "Recent Files",
+          padding = 3,
+        },
         {
           section = "startup",
         },
-        -- {
-        --   section = "terminal",
-        --   icon = " ",
-        --   title = "Git Status",
-        --   enabled = vim.fn.isdirectory ".git" == 1,
-        --   cmd = "curl -s 'wttr.in/?0'",
-        --   height = 8,
-        --   padding = 2,
-        --   indent = 0,
-        -- },
       },
       preset = {
+        keys = {
+          { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          {
+            icon = " ",
+            key = "f",
+            desc = "Find File",
+            action = function()
+              Snacks.picker.files { hidden = true }
+            end,
+          },
+          {
+            icon = " ",
+            key = "g",
+            desc = "Find Text",
+            action = function()
+              Snacks.picker.grep { hidden = true }
+            end,
+          },
+          {
+            icon = " ",
+            key = "r",
+            desc = "Recent Files",
+            action = function()
+              Snacks.picker.recent()
+            end,
+          },
+          { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+        },
         header = [[
                                                    
             ████ ██████           █████      ██                 btw

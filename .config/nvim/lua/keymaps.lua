@@ -129,8 +129,8 @@ vim.keymap.set({ "v" }, "<leader>of", "<cmd>Ollama Fix_Code<cr>", { desc = "[O]l
 vim.keymap.set({ "v" }, "<leader>og", "<cmd>Ollama Fix_grammar<cr>", { desc = "[O]llama Fix Grammar" })
 
 --Snacks
-vim.keymap.set({ "n" }, "<leader>s?", function()
-  Snacks.pickers()
+vim.keymap.set({ "n" }, "<leader>!", function()
+  Snacks.picker()
 end, { desc = "Pickers" })
 vim.keymap.set({ "n" }, "<leader>?", function()
   Snacks.picker.recent()
