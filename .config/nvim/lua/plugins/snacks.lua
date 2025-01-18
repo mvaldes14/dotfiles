@@ -3,13 +3,10 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    quickfile = {
+    indent = {
       enabled = true,
     },
     scroll = {
-      enabled = true,
-    },
-    input = {
       enabled = true,
     },
     notifier = {
@@ -24,13 +21,24 @@ return {
     dashboard = {
       sections = {
         { section = "header", padding = 3 },
-        { icon = " ", title = "Keymaps", section = "keys", padding = 1 },
+        { icon = " ", title = "Keymaps", section = "keys", padding = 1, indent = 1 },
         {
           section = "recent_files",
           icon = " ",
           title = "Recent Files",
           padding = 3,
+          indent = 1,
         },
+        -- {
+        --   section = "terminal",
+        --   cmd = "git --no-pager diff --stat -B -C -M",
+        --   icon = " ",
+        --   title = "Git Status",
+        --   padding = 1,
+        --   enabled = vim.fn.isdirectory ".git",
+        --   ttl = 10,
+        --   indent = 1,
+        -- },
         {
           section = "startup",
         },
@@ -55,11 +63,11 @@ return {
             end,
           },
           {
-            icon = " ",
-            key = "r",
-            desc = "Recent Files",
+            icon = " ",
+            key = "B",
+            desc = "Browse Repo",
             action = function()
-              Snacks.picker.recent()
+              Snacks.gitbrowse()
             end,
           },
           { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
