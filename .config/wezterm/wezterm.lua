@@ -12,6 +12,7 @@ config.enable_scroll_bar = false
 config.color_scheme = "tokyonight_night"
 config.adjust_window_size_when_changing_font_size = false
 config.detect_password_input = true
+config.window_decorations = "RESIZE"
 config.warn_about_missing_glyphs = false
 config.colors = {
 	background = "#1a1b26",
