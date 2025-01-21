@@ -19,6 +19,7 @@ return {
       enabled = true,
     },
     dashboard = {
+      enabled = true,
       sections = {
         { section = "header", padding = 3 },
         { icon = " ", title = "Keymaps", section = "keys", padding = 1, indent = 1 },
@@ -29,21 +30,22 @@ return {
           padding = 3,
           indent = 1,
         },
-        -- {
-        --   section = "terminal",
-        --   cmd = "git --no-pager diff --stat -B -C -M",
-        --   icon = " ",
-        --   title = "Git Status",
-        --   padding = 1,
-        --   enabled = vim.fn.isdirectory ".git",
-        --   ttl = 10,
-        --   indent = 1,
-        -- },
+        {
+          section = "terminal",
+          cmd = "git --no-pager diff --stat -B -C -M",
+          icon = " ",
+          title = "Git Status",
+          padding = 1,
+          enabled = vim.fn.isdirectory ".git" == 1,
+          ttl = 10,
+          indent = 1,
+        },
         {
           section = "startup",
         },
       },
       preset = {
+        pick = "telescope.nvim",
         keys = {
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           {
@@ -51,7 +53,7 @@ return {
             key = "f",
             desc = "Find File",
             action = function()
-              Snacks.picker.files { hidden = true }
+              Snacks.picker.files({ hidden = true })
             end,
           },
           {
@@ -59,7 +61,7 @@ return {
             key = "g",
             desc = "Find Text",
             action = function()
-              Snacks.picker.grep { hidden = true }
+              Snacks.picker.grep({ hidden = true })
             end,
           },
           {
@@ -74,15 +76,15 @@ return {
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
         header = [[
-                                                   
-            ████ ██████           █████      ██                 btw
-           ███████████             █████ 
-           █████████ ███████████████████ ███   ███████████
-          █████████  ███    █████████████ █████ ██████████████
-         █████████ ██████████ █████████ █████ █████ ████ █████
-       ███████████ ███    ███ █████████ █████ █████ ████ █████
-      ██████  █████████████████████ ████ █████ █████ ████ ██████
-      ]],
+                                                     
+              ████ ██████           █████      ██                 btw
+             ███████████             █████ 
+             █████████ ███████████████████ ███   ███████████
+            █████████  ███    █████████████ █████ ██████████████
+           █████████ ██████████ █████████ █████ █████ ████ █████
+         ███████████ ███    ███ █████████ █████ █████ ████ █████
+        ██████  █████████████████████ ████ █████ █████ ████ ██████
+        ]],
       },
     },
   },

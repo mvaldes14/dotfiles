@@ -1,15 +1,4 @@
 -- Autocmds
-vim.api.nvim_create_autocmd("VimEnter", {
-  group = vim.api.nvim_create_augroup("dashboard_launch", { clear = true }),
-  pattern = "*",
-  desc = "Launches Dashboard on Enter",
-  callback = function()
-    if vim.fn.argv(0) == "" then
-      require("snacks").dashboard()
-    end
-  end,
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("highlight_yank", { clear = true }),
   pattern = "*",
