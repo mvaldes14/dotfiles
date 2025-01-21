@@ -22,7 +22,7 @@ return {
       nerd_font_variant = "mono",
     },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "copilot", "cmdline" },
+      default = { "lsp", "path", "snippets", "buffer", "copilot", "cmdline", "obsidian", "obsidian_tags", "obsidian_new" },
       providers = {
         copilot = {
           name = "copilot",
@@ -30,6 +30,18 @@ return {
           score_offset = 100,
           async = true,
         },
+        obsidian = {
+          name = "obsidian",
+          module = "blink.compat.source"
+        },
+        obsidian_new = {
+          name = "obsidian_new",
+          module = "blink.compat.source"
+        },
+        obsidian_tags = {
+          name = "obsidian_tags",
+          module = "blink.compat.source"
+        }
       },
     },
     signature = { enabled = true },
