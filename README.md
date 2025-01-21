@@ -3,7 +3,9 @@
 Repo consists of configuration for:
 - nvim
 - tmux
-- Zsh
+- zsh
+
+![dotfiles](dotfiles.png)
 
 Contains archives for old i3 setup
 

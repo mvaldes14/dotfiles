@@ -60,7 +60,7 @@ return {
     },
     textobjects = {
       select = {
-        enable = true,
+        enable = false,
         lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm

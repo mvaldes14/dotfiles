@@ -6,12 +6,21 @@ vim.keymap.set("i", "jk", "<ESC>", opts)
 vim.keymap.set({ "n" }, "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n" }, "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
 vim.keymap.set({ "n" }, "<leader>i", "<cmd>nohlsearch<cr>", { desc = "Highlight Off", silent = true, noremap = true })
-vim.keymap.set({ "n" }, "<leader>hh", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
-vim.keymap.set({ "n" }, "<leader>hk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
-vim.keymap.set({ "n" }, "<leader>ba", "<cmd>BufferLineCloseOthers<cr>", { desc = "[B]uffer Close all But Current" })
-vim.keymap.set("n", "<C-s>", "<Esc>:w<CR>", opts)
-vim.keymap.set("n", "<C-q>", "<Esc>:q<CR>", opts)
-vim.keymap.set("c", "Q", "<cmd>qa!<cr>", opts)
+vim.keymap.set({ "n" }, "<leader>:", function()
+  Snacks.picker.command_history()
+end, { desc = "Command History" })
+vim.keymap.set({ "n" }, "<leader>hh", function()
+  Snacks.picker.help()
+end, { desc = "Help" })
+vim.keymap.set({ "n" }, "<leader>hk", function()
+  Snacks.picker.keys()
+end, { desc = "Keymaps" })
+vim.keymap.set({ "n" }, "<leader>ba", function()
+  Snacks.bufdelete.other()
+end, { desc = "[B]uffer Close all But Current" })
+vim.keymap.set("n", "<C-s>", "<Esc>:w<CR>", { desc = "Save File" })
+vim.keymap.set("n", "<C-q>", "<Esc>:q<CR>", { desc = "Quit File" })
+vim.keymap.set("c", "Q", "<cmd>qa!<cr>", { desc = "Quit" })
 vim.keymap.set({ "n" }, "<leader>sH", function()
   Snacks.notifier.show_history()
 end, { desc = "Show Notification History" })
@@ -19,11 +28,7 @@ vim.keymap.set({ "n" }, "<leader>bc", function()
   Snacks.bufdelete()
 end, { desc = "[B]uffer Delete " })
 vim.keymap.set({ "n" }, "s", function()
-  require("flash").jump { search = {
-    mode = function(str)
-      return "\\<" .. str
-    end,
-  } }
+  require("flash").jump()
 end, { desc = "Flash" })
 
 vim.keymap.set("n", "S", function()
@@ -86,7 +91,9 @@ vim.keymap.set({ "n" }, "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "[Git]
 vim.keymap.set({ "n" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "[Git] Preview Hunk" })
 
 -- Random
-vim.keymap.set({ "n" }, "<leader>Z", "<cmd>ZenMode<cr>", { desc = "Zen Mode" })
+vim.keymap.set({ "n" }, "<leader>Z", function()
+  Snacks.zen()
+end, { desc = "Zen Mode" })
 vim.keymap.set({ "n" }, "<leader>tt", "<cmd>ToggleTodo<cr>", { desc = "[T]oggle Todo" })
 vim.keymap.set({ "n" }, "<leader>xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
 vim.keymap.set({ "n" }, "<leader>xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
@@ -105,21 +112,14 @@ vim.keymap.set({ "n" }, "[d", vim.diagnostic.goto_prev, { desc = "LSP:Previous d
 vim.keymap.set({ "n" }, "]d", vim.diagnostic.goto_next, { desc = "LSP:Next diagnostic" })
 vim.keymap.set({ "n" }, "<leader>e", vim.diagnostic.open_float, { desc = "LSP:Show diagnostic [E]rror messages" })
 vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "LSP:[G]oto [D]efinition" })
-vim.keymap.set({ "n" }, "gr", "<cmd> Telescope lsp_references<cr>", { desc = "LSP:[G]oto [R]eferences" })
+vim.keymap.set({ "n" }, "gr", function()
+  Snacks.picker.lsp_references()
+end, { desc = "LSP:[G]oto [R]eferences" })
 vim.keymap.set({ "n" }, "gI", vim.lsp.buf.implementation, { desc = "LSP:[G]oto [I]mplementation" })
 vim.keymap.set({ "n" }, "<leader>D", vim.lsp.buf.type_definition, { desc = "LSP:Type [D]efinition" })
-vim.keymap.set(
-  { "n" },
-  "<leader>ds",
-  'require("telescope.builtin").lsp_document_symbols',
-  { desc = "LSP: [D]ocument [S]ymbols" }
-)
-vim.keymap.set(
-  { "n" },
-  "<leader>ws",
-  'require("telescope.builtin").lsp_dynamic_workspace_symbols',
-  { desc = "LSP: [W]orkspace [S]ymbols" }
-)
+vim.keymap.set({ "n" }, "<leader>ds", function()
+  Snacks.picker.lsp_symbols()
+end, { desc = "LSP: [D]ocument [S]ymbols" })
 vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set({ "n" }, "<leader>F", vim.cmd.Format, { desc = "Format Document" })
 vim.keymap.set({ "n" }, "<A-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
@@ -130,24 +130,31 @@ vim.keymap.set({ "v" }, "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = "
 vim.keymap.set({ "v" }, "<leader>of", "<cmd>Ollama Fix_Code<cr>", { desc = "[O]llama Fix Code" })
 vim.keymap.set({ "v" }, "<leader>og", "<cmd>Ollama Fix_grammar<cr>", { desc = "[O]llama Fix Grammar" })
 
--- Telescope
-vim.keymap.set({ "n" }, "<leader>s?", "<cmd>Telescope <cr>", { desc = "Telescope" })
-vim.keymap.set({ "n" }, "<leader>?", "<cmd> Telescope oldfiles<cr>", { desc = "[?] Find recently opened files" })
-vim.keymap.set({ "n" }, "<leader><space>", "<cmd>Telescope buffers<cr>", { desc = "[ ] Find existing buffers" })
-vim.keymap.set({ "n" }, "<leader>sp", "<cmd>Telescope gh pull_request<cr>", { desc = "[S]earch PRs" })
-vim.keymap.set({ "n" }, "<leader>si", "<cmd>Telescope gh issues<cr>", { desc = "[S]earch Issues" })
-vim.keymap.set({ "n" }, "<leader>sf", "<cmd>Telescope find_files<cr>", { desc = "[S]earch [F]iles" })
-vim.keymap.set({ "n" }, "<leader>sw", "<cmd>Telescope grep_string<cr>", { desc = "[S]earch current [W]ord" })
-vim.keymap.set({ "n" }, "<leader>sg", "<cmd>Telescope live_grep<cr>", { desc = "[S]earch by [G]rep" })
-vim.keymap.set({ "n" }, "<leader>ds", "<cmd>Trouble diagnostics toggle<cr>", { desc = "[S]how Diagnostics" })
-vim.keymap.set({ "n" }, "<leader>su", ":Telescope undo<cr>", { desc = "[S]earch [U]ndo" })
-vim.keymap.set(
-  "n",
-  "<leader>se",
-  ":Telescope file_browser path=%:p:h select_buffer=true<cr>",
-  { desc = "[S]earch [E]xplorer" }
-)
-vim.keymap.set("n", "<leader>st", "<cmd>TodoTelescope<cr>", { desc = "[S]how [T]odos" })
+--Snacks
+vim.keymap.set({ "n" }, "<leader>!", function()
+  Snacks.picker()
+end, { desc = "Pickers" })
+vim.keymap.set({ "n" }, "<leader>?", function()
+  Snacks.picker.recent()
+end, { desc = "[?] Find recently opened files" })
+vim.keymap.set({ "n" }, "<leader><space>", function()
+  Snacks.picker.buffers()
+end, { desc = "[ ] Find existing buffers" })
+vim.keymap.set({ "n" }, "<leader>sf", function()
+  Snacks.picker.files { hidden = true }
+end, { desc = "[S]earch [F]iles" })
+vim.keymap.set({ "v" }, "<leader>sw", function()
+  Snacks.picker.grep_word()
+end, { desc = "[S]earch current [W]ord" })
+vim.keymap.set({ "n" }, "<leader>sg", function()
+  Snacks.picker.grep { hidden = true }
+end, { desc = "[S]earch by [G]rep" })
+vim.keymap.set({ "n" }, "<leader>ds", function()
+  Snacks.picker.diagnostics()
+end, { desc = "[S]how Diagnostics" })
+vim.keymap.set("n", "<leader>st", function()
+  Snacks.picker.todo_comments()
+end, { desc = "[S]how [T]odos" })
 
 --- Language
 vim.keymap.set("n", "<leader>fa", "<cmd>ChefFindAny<cr>", { desc = "Chef Find" })
