@@ -21,7 +21,7 @@ return {
     },
     completion = {
       nvim_cmp = true,
-      min_chars = 2,
+      min_chars = 1,
     },
     note_id_func = function(title)
       return title
