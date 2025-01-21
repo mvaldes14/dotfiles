@@ -4,25 +4,25 @@ local M = {}
 M.create_win = function()
   local col = vim.o.columns
   local buf = vim.api.nvim_create_buf(false, true)
-  local win = vim.api.nvim_open_win(buf, false, {
+  local win = vim.api.nvim_open_win(buf, true, {
     relative = "editor",
     style = "minimal",
-    border = "single",
+    border = "rounded",
     width = 50,
     height = 10,
     row = 1,
     col = col - 30,
   })
   vim.wo[win].wrap = false
-  return { win = win, buf = buf }
+  return { buf = buf, win = win }
 end
 
 ---@description: Checks if a file exists
 ---@param path string
----@return boolean
+---@return boolean|nil error
 M.check_file = function(path)
   if vim.fn.filereadable(path) == 0 then
-    vim.notify("File does not exist", 1)
+    vim.notify("File does not exist", 3)
     return false
   end
   return true
@@ -41,10 +41,13 @@ end
 ---@return string
 M.vault_path = function()
   local userid = vim.fn.getenv "USER"
+  if userid == "nixos" then
+    return "/mnt/c/migue/Obsidian/wiki/02-Areas/Work/2025.md"
+  end
   if M.check_work() then
     return string.format("/Users/%s/Obsidian/wiki/02-Areas/Work/2025.md", userid)
   end
-  return "/mnt/c/migue/Obsidian/wiki/02-Areas/Work/2025.md"
+  return string.format("/home/mvaldes/Obsidian/wiki/02-Areas/Work/2025.md", userid)
 end
 
 return M
