@@ -11,7 +11,6 @@ config.font_size = 20
 config.line_height = 1.0
 config.enable_scroll_bar = false
 config.color_scheme = "tokyonight_night"
-config.adjust_window_size_when_changing_font_size = true
 config.detect_password_input = true
 config.warn_about_missing_glyphs = false
 config.max_fps = 240
@@ -47,4 +46,3 @@ config.wsl_domains = {
 }
 
 return config
-
