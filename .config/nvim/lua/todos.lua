@@ -28,9 +28,8 @@ M.show_todos = function()
   if not todoList then
     return
   end
-  local window = utils.create_win()
-  vim.api.nvim_buf_set_lines(window.buf, 0, 0, false, { "------ Todos ------" })
-  vim.api.nvim_buf_set_lines(window.buf, 1, 1, false, todoList)
+  local window = utils.create_win("Todos")
+  vim.api.nvim_buf_set_lines(window.buf, 0, 0, false, todoList)
 
   --- Keymaps for buffer/win
   vim.keymap.set({ "n" }, "q", function()

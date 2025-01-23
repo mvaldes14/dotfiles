@@ -1,7 +1,8 @@
 local M = {}
 
 ---@description: Create a floating window and a buffer
-M.create_win = function()
+---@param title string
+M.create_win = function(title)
   local col = vim.o.columns
   local buf = vim.api.nvim_create_buf(false, true)
   local win = vim.api.nvim_open_win(buf, true, {
@@ -9,9 +10,11 @@ M.create_win = function()
     style = "minimal",
     border = "rounded",
     width = 50,
-    height = 10,
+    height = 15,
     row = 1,
     col = col - 30,
+    title = title,
+    title_pos = "center"
   })
   vim.wo[win].wrap = false
   return { buf = buf, win = win }
