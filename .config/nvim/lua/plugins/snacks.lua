@@ -36,7 +36,14 @@ return {
           icon = " ",
           title = "Git Status",
           padding = 1,
-          enabled = vim.fn.isdirectory ".git" == 1,
+          enabled = function()
+            local is_git = Snacks.git.get_root() ~= nil
+            local has_change = vim.fn.system("git status --porcelain")
+            if is_git and #has_change > 0 then
+              return true
+            end
+            return false
+          end,
           ttl = 10,
           indent = 1,
         },
