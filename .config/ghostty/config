@@ -1,8 +1,9 @@
 theme = tokyonight
+font-family = JetBrains Mono
+font-size = 16
+background-opacity = 0.95
 window-decoration = false
 copy-on-select = true
-font-family = JetBrainsMono NF
-font-size = 14
-background-opacity = 0.9
-copy-on-select = true
 link-url = true
+macos-titlebar-style = hidden
+clipboard-trim-trailing-spaces = true
