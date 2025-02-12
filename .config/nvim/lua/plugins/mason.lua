@@ -7,6 +7,7 @@ return {
   },
   config = function()
     require("mason").setup()
+    -- TODO: These should be installed per project probably except on the mac
     local utils = require "helper"
     local work_lsp = {
       "lua_ls",
@@ -61,25 +62,25 @@ return {
     }
     local default_lsp = {}
     if utils.check_work() then
+      -- NOTE: Don't install if not work machine
       default_lsp = work_lsp
-    else
-      default_lsp = home_lsp
+      require("mason-tool-installer").setup {
+        ensure_installed = tools,
+        run_on_start = false,
+      }
+
+      require("mason-nvim-dap").setup {
+        ensure_installed = dap_adapters,
+        automatic_installation = false,
+      }
+
+      -- Ensure the servers above are installed
+      require("mason-lspconfig").setup {
+        ensure_installed = default_lsp,
+        automatic_installation = false,
+      }
     end
 
-    require("mason-tool-installer").setup {
-      ensure_installed = tools,
-      run_on_start = false,
-    }
 
-    require("mason-nvim-dap").setup {
-      ensure_installed = dap_adapters,
-      automatic_installation = false,
-    }
-
-    -- Ensure the servers above are installed
-    require("mason-lspconfig").setup {
-      ensure_installed = default_lsp,
-      automatic_installation = false,
-    }
   end
 }
