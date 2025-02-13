@@ -15,7 +15,15 @@ return {
       return not require("helper").check_work()
     end,
     config = function()
-      require("todoist").setup {}
+      require("todoist").setup {
+        token_api = "",
+        filters = {
+          all = "all",
+          today = "due:today",
+          no_recurring = "!recurring",
+          no_date = "no date",
+        },
+      }
     end,
   },
 }
