@@ -16,7 +16,6 @@ return {
     local capabilities = require("blink.cmp").get_lsp_capabilities()
     lspconfig.templ.setup { capabilities = capabilities }
     lspconfig.rust_analyzer.setup { capabilities = capabilities }
-    lspconfig.solargraph.setup { capabilities = capabilities }
     lspconfig.terraformls.setup { capabilities = capabilities }
     lspconfig.nixd.setup {
       capabilities = capabilities,
