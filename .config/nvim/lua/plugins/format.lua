@@ -55,6 +55,9 @@ return {
         },
         bash = {
           "shfmt"
+        },
+        jsonnet = {
+          "jsonnetfmt"
         }
       },
     }
