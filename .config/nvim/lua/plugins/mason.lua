@@ -5,10 +5,12 @@ return {
     "WhoIsSethDaniel/mason-tool-installer",
     "jay-babu/mason-nvim-dap.nvim",
   },
+  -- NOTE: Mason at work only, rest is nix
+  cond = function()
+    return require("helper").check_work()
+  end,
   config = function()
     require("mason").setup()
-    -- TODO: These should be installed per project probably except on the mac
-    local utils = require "helper"
     local work_lsp = {
       "lua_ls",
       "terraformls",
@@ -20,26 +22,10 @@ return {
       "jsonls",
       "solargraph",
       "rubocop",
-      "ruby_lsp",
-    }
-
-    local home_lsp = {
-      "rust_analyzer",
-      "htmx",
-      "pyright",
-      -- "ruff_lsp",
-      "marksman",
-      "ltex",
-      "astro",
-      "tailwindcss",
-      "templ",
-      "harper_ls",
-      "gopls",
-      "solargraph",
     }
 
     local dap_adapters = {
-      -- "python",
+      "python",
       "js",
       "bash",
     }
@@ -48,7 +34,6 @@ return {
       "stylua",
       "black",
       "prettier",
-      "stylua",
       "yamlfmt",
       "revive",
       "pylint",
@@ -56,31 +41,23 @@ return {
       "luacheck",
       "cfn-lint",
       "tfsec",
-      "rubocop",
       "revive",
       "yamllint",
     }
-    local default_lsp = {}
-    if utils.check_work() then
-      -- NOTE: Don't install if not work machine
-      default_lsp = work_lsp
-      require("mason-tool-installer").setup {
-        ensure_installed = tools,
-        run_on_start = false,
-      }
+    require("mason-tool-installer").setup {
+      ensure_installed = tools,
+      run_on_start = false,
+    }
 
-      require("mason-nvim-dap").setup {
-        ensure_installed = dap_adapters,
-        automatic_installation = false,
-      }
+    require("mason-nvim-dap").setup {
+      ensure_installed = dap_adapters,
+      automatic_installation = false,
+    }
 
-      -- Ensure the servers above are installed
-      require("mason-lspconfig").setup {
-        ensure_installed = default_lsp,
-        automatic_installation = false,
-      }
-    end
-
-
+    -- Ensure the servers above are installed
+    require("mason-lspconfig").setup {
+      ensure_installed = work_lsp,
+      automatic_installation = false,
+    }
   end
 }
