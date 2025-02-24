@@ -175,9 +175,14 @@ return {
 
     -- For the blog
     lspconfig.tailwindcss.setup {
+      capabilities = capabilities,
       filetypes = { " astro", "html", "css", "javascript", "typescript", "templ", "vue" },
     }
     lspconfig.astro.setup {}
     lspconfig.pyright.setup {}
+    lspconfig.ansiblels.setup {}
+    lspconfig.jsonnet_ls.setup {
+      capabilities = capabilities
+    }
   end,
 }
