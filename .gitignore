@@ -8,3 +8,4 @@
 .zsh_sessions
 lazy-lock.json
 flake.lock
+.direnv
