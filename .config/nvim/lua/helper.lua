@@ -23,7 +23,7 @@ local function create_float(opts)
     height = height,
     row = row,
     col = col,
-    title = opts.title,
+    title = "Terminal",
     title_pos = "center",
 
   })
@@ -32,10 +32,8 @@ local function create_float(opts)
 end
 
 local state = {
-  float = {
-    buf = -1,
-    win = -1
-  }
+  buf = -1,
+  win = -1
 }
 
 ---@description: Checks if a file exists
@@ -69,22 +67,17 @@ end
 
 ---@description: Open a floating terminal
 M.float_term = function()
-  local opts = {
-    title = "Terminal",
-    buf = state.float.buf,
-    win = state.float.win,
-  }
-  if not vim.api.nvim_win_is_valid(state.float.win) then
-    state.float = create_float(opts)
-    opts.buf = state.float.buf
-    opts.win = state.float.win
-    vim.cmd.terminal()
+  if not vim.api.nvim_win_is_valid(state.win) then
+    state = create_float(state)
+    if vim.bo[state.buf].buftype ~= "terminal" then
+      vim.cmd.terminal()
+    end
   else
-    vim.api.nvim_win_hide(state.float.win)
+    vim.api.nvim_win_hide(state.win)
   end
 
   --- Keymaps for buffer/win
-  vim.keymap.set({ "t" }, "<esc><esc>", "<c-\\><c-n>:q<cr>", { buffer = state.float.buf })
+  vim.keymap.set({ "t" }, "<esc><esc>", "<c-\\><c-n>:q<cr>", { buffer = state.buf })
 end
 
 return M
