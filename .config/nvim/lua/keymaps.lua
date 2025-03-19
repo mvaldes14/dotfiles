@@ -94,7 +94,7 @@ vim.keymap.set({ "n" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc =
 vim.keymap.set({ "n" }, "<leader>Z", function()
   Snacks.zen()
 end, { desc = "Zen Mode" })
-vim.keymap.set({ "n" }, "<leader>tt", "<cmd>ToggleTodo<cr>", { desc = "[T]oggle Todo" })
+vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>Floaterm<cr>", { desc = "[T]oggle Term" })
 vim.keymap.set({ "n" }, "<leader>xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
 vim.keymap.set({ "n" }, "<leader>xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
 vim.keymap.set({ "n" }, "<leader>xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })

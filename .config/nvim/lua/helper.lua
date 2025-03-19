@@ -1,21 +1,20 @@
 local M = {}
 
 ---@description: Create a floating window and a buffer
----@param title string
-M.create_win = function(title, type)
+---@param opts table
+local function create_float(opts)
   local width = math.floor(vim.o.columns * 0.8)
   local height = math.floor(vim.o.lines * 0.8)
-
-  -- Calculate the position to center the window
   local col = math.floor((vim.o.columns - width) / 2)
   local row = math.floor((vim.o.lines - height) / 2)
-  if type == "todo" then
-    width = 50
-    height = 15
-    col = col - 30
-    row = 1
+  local buf = nil
+
+  if vim.api.nvim_buf_is_valid(opts.buf) then
+    buf = opts.buf
+  else
+    buf = vim.api.nvim_create_buf(false, true)
   end
-  local buf = vim.api.nvim_create_buf(false, true)
+
   local win = vim.api.nvim_open_win(buf, true, {
     relative = "editor",
     style = "minimal",
@@ -24,12 +23,20 @@ M.create_win = function(title, type)
     height = height,
     row = row,
     col = col,
-    title = title,
+    title = opts.title,
     title_pos = "center",
+
   })
-  vim.wo[win].wrap = false
+
   return { buf = buf, win = win }
 end
+
+local state = {
+  float = {
+    buf = -1,
+    win = -1
+  }
+}
 
 ---@description: Checks if a file exists
 ---@param path string
@@ -58,23 +65,26 @@ M.vault_path = function()
   return string.format("/Users/%s/Obsidian/wiki/02-Areas/Work/2025.md", userid)
 end
 
-M.float_term = function(title, command)
-  if not title then
-    title = "Terminal"
-  end
-  if not command then
-    command = vim.o.shell
-  end
-  local window = M.create_win(title)
-  vim.api.nvim_win_set_option(window.win, "winblend", 0)
-  vim.api.nvim_buf_set_option(window.buf, "bufhidden", "wipe")
 
-  -- vim.cmd.terminal(command)
-  vim.fn.termopen(command)
+
+---@description: Open a floating terminal
+M.float_term = function()
+  local opts = {
+    title = "Terminal",
+    buf = state.float.buf,
+    win = state.float.win,
+  }
+  if not vim.api.nvim_win_is_valid(state.float.win) then
+    state.float = create_float(opts)
+    opts.buf = state.float.buf
+    opts.win = state.float.win
+    vim.cmd.terminal()
+  else
+    vim.api.nvim_win_hide(state.float.win)
+  end
+
   --- Keymaps for buffer/win
-  vim.keymap.set({ "n" }, "q", function()
-    vim.api.nvim_win_close(window.win, true)
-  end, { buffer = window.buf })
+  vim.keymap.set({ "t" }, "<esc><esc>", "<c-\\><c-n>:q<cr>", { buffer = state.float.buf })
 end
 
 return M
