@@ -20,7 +20,7 @@ return {
               dismiss = "<C-]>",
             },
           },
-          copilot_node_command = "node",   -- Node.js version must be > 16.x
+          copilot_node_command = "node", -- Node.js version must be > 16.x
           server_opts_overrides = {},
           filetypes = {
             ["."] = true,
@@ -31,5 +31,10 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-  }
+    dependencies = {
+      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",                          -- Only on MacOS or Linux
+  },
 }
