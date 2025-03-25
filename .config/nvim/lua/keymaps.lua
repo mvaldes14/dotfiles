@@ -129,6 +129,7 @@ vim.keymap.set({ "n", "v" }, "<leader>oo", "<cmd> Ollama Raw<cr>", { desc = "[O]
 vim.keymap.set({ "v" }, "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = "[O]llama Explain Code" })
 vim.keymap.set({ "v" }, "<leader>of", "<cmd>Ollama Fix_Code<cr>", { desc = "[O]llama Fix Code" })
 vim.keymap.set({ "v" }, "<leader>og", "<cmd>Ollama Fix_grammar<cr>", { desc = "[O]llama Fix Grammar" })
+vim.keymap.set({ "n" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "[C]opilot Chat" })
 
 --Snacks
 vim.keymap.set({ "n" }, "<leader>!", function()
