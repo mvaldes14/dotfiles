@@ -74,3 +74,5 @@ vim.opt.fillchars = {
   foldclose = "",
   diff = "╱",
 }
+
+vim.diagnostic.config({virtual_text = true})
