@@ -9,3 +9,4 @@
 lazy-lock.json
 flake.lock
 .direnv
+.DS_Store

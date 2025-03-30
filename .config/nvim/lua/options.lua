@@ -24,7 +24,6 @@ local options = {
   termguicolors = true, -- set term gui colors (most terminals support this)
   timeoutlen = 500, -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true, -- enable persistent undo
-  undodir = "~/.vim/undo", -- undo file location
   updatetime = 300, -- faster completion (4000ms default)
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   expandtab = true, -- convert tabs to spaces

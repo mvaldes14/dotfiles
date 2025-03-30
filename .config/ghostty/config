@@ -7,3 +7,4 @@ link-url = true
 macos-titlebar-style = hidden
 clipboard-trim-trailing-spaces = true
 copy-on-select = clipboard
+working-directory = home
