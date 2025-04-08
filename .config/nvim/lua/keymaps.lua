@@ -95,9 +95,9 @@ vim.keymap.set({ "n" }, "<leader>Z", function()
   Snacks.zen()
 end, { desc = "Zen Mode" })
 vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>Floaterm<cr>", { desc = "[T]oggle Term" })
-vim.keymap.set({ "n" }, "<leader>xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
-vim.keymap.set({ "n" }, "<leader>xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
-vim.keymap.set({ "n" }, "<leader>xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })
+vim.keymap.set({ "n" }, "<leader>Xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
+vim.keymap.set({ "n" }, "<leader>Xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
+vim.keymap.set({ "n" }, "<leader>Xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })
 
 -- LSP
 vim.keymap.set(
@@ -108,8 +108,6 @@ vim.keymap.set(
 )
 vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "LSP:[R]ename" })
 vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP:[C]ode [A]ction" })
-vim.keymap.set({ "n" }, "[d", vim.diagnostic.goto_prev, { desc = "LSP:Previous diagnostic" })
-vim.keymap.set({ "n" }, "]d", vim.diagnostic.goto_next, { desc = "LSP:Next diagnostic" })
 vim.keymap.set({ "n" }, "<leader>e", vim.diagnostic.open_float, { desc = "LSP:Show diagnostic [E]rror messages" })
 vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "LSP:[G]oto [D]efinition" })
 vim.keymap.set({ "n" }, "gr", function()
