@@ -1,6 +1,6 @@
 return {
   "nomnivore/ollama.nvim",
-  cmd = { "Ollama", "OllamaModel" },
+  cmd = { "Ollama" },
   cond = function()
     return not require("helper").check_work()
   end,
@@ -18,6 +18,14 @@ return {
       },
       Translate = {
         prompt = "Translate the content to Spanish while keeping it consistent and readable: \n$buf",
+        action = "display",
+      },
+      Fix_Code = {
+        prompt = "You are an expert coder and you need to help fix the following: \n$buf",
+        action = "display",
+      },
+      Explain_Code = {
+        prompt = "You are an expert coder please help explain the following code in an easy to understand way: \n$sel",
         action = "display",
       },
     },
