@@ -7,13 +7,13 @@ return {
   },
   config = function()
     local lspconfig = require "lspconfig"
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
     require("neodev").setup {}
     lspconfig.htmx.setup {
       cmd = { "test" },
       filetypes = { "astro", "html", "vue", "django-html", "htmldjango", "gohtml", "templ" },
     }
 
-    local capabilities = require("blink.cmp").get_lsp_capabilities()
     lspconfig.templ.setup { capabilities = capabilities }
     lspconfig.rust_analyzer.setup { capabilities = capabilities }
     lspconfig.terraformls.setup { capabilities = capabilities }
@@ -182,7 +182,7 @@ return {
     lspconfig.pyright.setup {}
     lspconfig.ansiblels.setup {}
     lspconfig.jsonnet_ls.setup {
-      capabilities = capabilities
+      capabilities = capabilities,
     }
   end,
 }
