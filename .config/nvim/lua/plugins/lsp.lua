@@ -180,6 +180,7 @@ return {
     }
     lspconfig.astro.setup {}
     lspconfig.pyright.setup {}
+    lspconfig.ruff.setup {}
     lspconfig.ansiblels.setup {}
     lspconfig.jsonnet_ls.setup {
       capabilities = capabilities,
