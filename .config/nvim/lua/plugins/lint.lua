@@ -6,6 +6,7 @@ return {
     }
 
     require("lint").linters.cookstyle = {
+      name = "cookstyle",
       cmd = "cookstyle",
       args = { "-f", "json" },
       append_fname = true,
@@ -35,7 +36,7 @@ return {
     }
 
     require("lint").linters_by_ft = {
-      python = { "pylint" },
+      python = { "ruff" },
       ansible = { "ansible_lint" },
       lua = { "luacheck" },
       cf = { "cfn_lint" },
