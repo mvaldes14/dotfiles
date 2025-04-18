@@ -63,6 +63,8 @@ workspaces:
   - name: '4'
     bind_to_monitor: 1
   - name: '5'
+    bind_to_monitor: 0
+  - name: '6'
     bind_to_monitor: 1
 
 window_rules:
