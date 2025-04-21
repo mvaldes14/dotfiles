@@ -2,12 +2,13 @@ local M = {}
 
 ---@description: Create a floating window and a buffer
 ---@param opts table
+---@return table
 local function create_float(opts)
   local width = math.floor(vim.o.columns * 0.8)
   local height = math.floor(vim.o.lines * 0.8)
   local col = math.floor((vim.o.columns - width) / 2)
   local row = math.floor((vim.o.lines - height) / 2)
-  local buf = nil
+  local buf
 
   if vim.api.nvim_buf_is_valid(opts.buf) then
     buf = opts.buf
@@ -55,15 +56,6 @@ M.check_work = function()
   end
   return false
 end
-
----@description: Get the path to the vault
----@return string
-M.vault_path = function()
-  local userid = vim.fn.getenv "USER"
-  return string.format("/Users/%s/Obsidian/wiki/02-Areas/Work/2025.md", userid)
-end
-
-
 
 ---@description: Open a floating terminal
 M.float_term = function()

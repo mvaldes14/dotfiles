@@ -30,13 +30,6 @@ vim.api.nvim_create_user_command("Today", function()
   require("todos").show_todos()
 end, {})
 
-vim.api.nvim_create_user_command("Glow", function()
-  local utils = require "helper"
-  local file = vim.fn.expand "%:t"
-  local path = vim.fn.expand "%:p"
-  utils.float_term(file, "glow " .. path)
-end, {})
-
 vim.api.nvim_create_user_command("Floaterm", function()
   local utils = require "helper"
   utils.float_term()

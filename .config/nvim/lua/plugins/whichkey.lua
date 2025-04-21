@@ -36,8 +36,17 @@ return {
       end,
     })
     wk.add({
-      { "<leader>f", group = "file" }, -- group
+      { "<leader>f", group = "file" },      -- group
       { "<leader>s", group = "telescope" }, -- group
+      { "<leader>g", group = "git" },       -- group
+      { "<leader>o", group = "Ollama" },    -- group
+      { "<leader>O", group = "Obsidian" },  -- group
+      { "<leader>x", group = "Utility" },   -- group
+      { "<leader>t", group = "Todoist" },   -- group
+      { "<leader>a", group = "Avante" },    -- group
+      { "<leader>h", group = "Help" },      -- group
+      { "<leader>X", group = "DB" },        -- group
+      { "<leader>b", group = "Buffer" },    -- group
     })
   end
 }
