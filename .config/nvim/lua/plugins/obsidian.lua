@@ -1,5 +1,5 @@
 return {
-  "epwalsh/obsidian.nvim",
+  "obsidian-nvim/obsidian.nvim",
   version = "*", -- recommended, use latest release instead of latest commit
   lazy = true,
   ft = "markdown",
@@ -17,8 +17,8 @@ return {
       },
     },
     completion = {
-      nvim_cmp = true,
-      min_chars = 1,
+      blink = true,
+      min_chars = 2
     },
     note_id_func = function(title)
       return title
@@ -31,5 +31,10 @@ return {
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
     },
+    picker = {
+      name = "snacks.pick"
+    },
+    sort_by = "modified",
+    sort_reversed = "true"
   },
 }
