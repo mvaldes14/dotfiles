@@ -18,16 +18,19 @@ return {
         },
         javascript = {
           "prettier",
+          "prettierd",
         },
         typescript = {
           "prettier",
+          "prettierd",
         },
         html = {
           "prettier",
+          "prettierd",
         },
         go = {
           "gofmt",
-          "goimports"
+          "goimports",
         },
         templ = {
           "templ",
@@ -54,11 +57,11 @@ return {
           "stylua",
         },
         bash = {
-          "shfmt"
+          "shfmt",
         },
         jsonnet = {
-          "jsonnetfmt"
-        }
+          "jsonnetfmt",
+        },
       },
     }
   end,

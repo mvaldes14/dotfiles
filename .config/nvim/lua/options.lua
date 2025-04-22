@@ -1,6 +1,6 @@
 -- Options
 local options = {
-  spell = true,
+  spell = false,
   spelllang = "en_us",
   backup = false, -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
