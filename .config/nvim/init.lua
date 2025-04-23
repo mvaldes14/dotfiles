@@ -55,3 +55,7 @@ if vim.fn.has("wsl") == 1 then
     cache_enabled = false,             -- Disable clipboard caching
   }
 end
+
+-- Enable LSPS
+vim.lsp.enable({ "lua_ls", "gopls", "terraformls", "astro", "pyright", "ruff", "ansiblels", "jsonnet_ls", "tailwindcss",
+  "marksman", "ltex", "rust_analyzer", "templ", "htmx", "jsonlls", "nixd", "ts_ls", "yamlls" })

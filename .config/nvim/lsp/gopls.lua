@@ -1,7 +1,4 @@
 return {
-  cmd = { "gopls" },
-  root_markers = { "go.mod", ".git" },
-  filetypes = { "go" },
   settings = {
     gopls = {
       completeUnimported = true,
