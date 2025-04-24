@@ -34,6 +34,9 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-j = 'move down'
     alt-shift-k = 'move up'
     alt-shift-l = 'move right'
+  
+    alt-shift-right = 'move-node-to-monitor right'
+    alt-shift-left  = 'move-node-to-monitor left'
 
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
