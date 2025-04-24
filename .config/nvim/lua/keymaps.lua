@@ -181,6 +181,7 @@ end)
 vim.keymap.set("n", "<leader>On", "<cmd>ObsidianNew<cr>", { desc = "Obsidian New" })
 vim.keymap.set("n", "<leader>Ot", "<cmd>ObsidianTemplate<cr>", { desc = "Obsidian Template" })
 vim.keymap.set("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian Search" })
+vim.keymap.set("n", "<leader>Of", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Obsidian Find" })
 
 -- Todoist
 vim.keymap.set("n", "<leader>ta", "<cmd>TodoistAdd<cr>", { desc = "Todoist Add" })
