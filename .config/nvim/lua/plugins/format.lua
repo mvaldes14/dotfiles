@@ -51,7 +51,7 @@ return {
           "alejandra",
         },
         python = {
-          "black",
+          "ruff",
         },
         lua = {
           "stylua",
