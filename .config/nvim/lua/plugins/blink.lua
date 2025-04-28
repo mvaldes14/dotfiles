@@ -12,13 +12,19 @@ return {
       nerd_font_variant = "mono",
     },
     sources = {
-      default = { "lsp", "path", "snippets", "buffer", "copilot", "cmdline" },
+      default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot", "cmdline" },
       providers = {
         copilot = {
           name = "copilot",
           module = "blink-cmp-copilot",
           score_offset = 100,
           async = true,
+        },
+        lazydev = {
+          name = "LazyDev",
+          module = "lazydev.integrations.blink",
+          -- make lazydev completions top priority (see `:h blink.cmp`)
+          score_offset = 100,
         },
       },
     },
