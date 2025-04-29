@@ -75,6 +75,7 @@ vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 
 -- Git
 vim.keymap.set({ "n" }, "<leader>g?", "<cmd>Git<cr>", { desc = "Git" })
+vim.keymap.set({ "n" }, "<leader>gg", "<cmd>Neogit<cr>", { desc = "NeoGit" })
 vim.keymap.set({ "n" }, "<leader>G", function()
   Snacks.lazygit()
 end, { desc = "LazyGit" })

@@ -9,19 +9,19 @@ return {
       },
     },
   },
-  {
-    dir = "~/git/terraform.nvim/",
-    ft = "terraform",
-    cond = function()
-      return not require("helper").check_work()
-    end,
-  },
-  {
-    dir = "~/git/linear.nvim",
-    cond = function()
-      return not require("helper").check_work()
-    end,
-  },
+  -- {
+  --   dir = "~/git/terraform.nvim/",
+  --   ft = "terraform",
+  --   cond = function()
+  --     return not require("helper").check_work()
+  --   end,
+  -- },
+  -- {
+  --   dir = "~/git/linear.nvim",
+  --   cond = function()
+  --     return not require("helper").check_work()
+  --   end,
+  -- },
   {
     dir = "~/git/todoist.nvim",
     cond = function()
