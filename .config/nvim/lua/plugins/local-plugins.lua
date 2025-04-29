@@ -1,7 +1,13 @@
 return {
+  -- LOCAL NEOVIM PLUGIN DEV
   {
     "folke/lazydev.nvim",
     ft = "lua",
+    opts = {
+      library = {
+        "lazy.nvim",
+      },
+    },
   },
   {
     dir = "~/git/terraform.nvim/",
