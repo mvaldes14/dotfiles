@@ -17,7 +17,6 @@ automatically-unhide-macos-hidden-apps = true
     outer.bottom =     0
     outer.top =        0
     outer.right =      0
-
 [mode.main.binding]
     alt-w = 'layout tiles horizontal vertical'
     alt-s = 'layout accordion vertical'
@@ -35,8 +34,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-k = 'move up'
     alt-shift-l = 'move right'
   
-    alt-shift-right = 'move-node-to-monitor right'
-    alt-shift-left  = 'move-node-to-monitor left'
+    alt-shift-right = 'move-workspace-to-monitor right'
+    alt-shift-left  = 'move-workspace-to-monitor left'
 
     alt-minus = 'resize smart -50'
     alt-equal = 'resize smart +50'
@@ -64,16 +63,20 @@ if.app-id = "com.mitchellh.ghostty" # term
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = "com.google.Chrome" # Browser
+run = "move-node-to-workspace 2"
+
+[[on-window-detected]]
 if.app-id = "com.spotify.client" # Music
 run = "move-node-to-workspace 4" 
 
 [[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap" # Slack
-run = "move-node-to-workspace 3" #Social
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.teams2" # Teams
-run = "move-node-to-workspace 3" #Social
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = "md.obsidian" # Obsidian
