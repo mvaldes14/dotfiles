@@ -11,12 +11,6 @@ return {
       end,
     }
 
-    local filetype = {
-      "filetype",
-      colored = true,
-      icon = { align = "left" },
-    }
-
     local branch = {
       "b:gitsigns_head",
       icons_enabled = true,
@@ -26,23 +20,6 @@ return {
     local location = {
       "location",
       padding = 0,
-    }
-
-    local filename = {
-      "filename",
-      file_status = true,
-      path = 1,
-    }
-
-    local treesitter = {
-      function()
-        local b = vim.api.nvim_get_current_buf()
-        if next(vim.treesitter.highlighter.active[b]) then
-          return ""
-        end
-        return ""
-      end,
-      colored = true,
     }
 
     local lsp = {
@@ -58,9 +35,9 @@ return {
           table.insert(buf_client_names, client.name)
         end
 
-        return "LSP: " .. table.concat(buf_client_names, ", ")
+        return table.concat(buf_client_names, ", ")
       end,
-      color = { gui = "bold", fg = "#c0caf5" },
+      -- color = { fg = "#c0caf5" },
       padding = 1,
     }
 
@@ -71,12 +48,12 @@ return {
 
         for _, l in ipairs(fmt) do
           if l.available then
-            return "Formatter: " .. l.name
+            return l.name
           end
         end
-        return "Formatter: N/A"
+        return "N/A"
       end,
-      color = { fg = "#c0caf5" },
+      -- color = { fg = "#c0caf5" },
       padding = 1,
     }
 
@@ -90,11 +67,11 @@ return {
           table.insert(buf_linters, l)
         end
         if buf_linters[1] == nil then
-          return "Lint: None"
+          return "N/A"
         end
-        return "Linter: " .. table.concat(buf_linters, ", ")
+        return table.concat(buf_linters, ", ")
       end,
-      color = { fg = "#c0caf5" },
+      -- color = { fg = "#c0caf5" },
       padding = 1,
     }
 
@@ -131,10 +108,10 @@ return {
       sections = {
         lualine_a = { mode },
         lualine_b = { branch },
-        lualine_c = { diagnostics, filename },
-        lualine_x = { treesitter, lsp, formatter, linter, filetype },
+        lualine_c = { diagnostics, "filename" },
+        lualine_x = { "encoding", lsp, formatter, linter, "filetype" },
         lualine_y = { location },
-        lualine_z = {},
+        lualine_z = { "fileformat" },
       },
       inactive_sections = {
         lualine_a = {},
