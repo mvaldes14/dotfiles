@@ -159,10 +159,6 @@ vim.keymap.set("n", "<leader>st", function()
   Snacks.picker.todo_comments()
 end, { desc = "[S]how [T]odos" })
 
---- Language
-vim.keymap.set("n", "<leader>fa", "<cmd>ChefFindAny<cr>", { desc = "Chef Find" })
-vim.keymap.set("n", "<leader>fs", "<cmd>ChefFindAnySplit<cr>", { desc = "Chef Find (Split)" })
-
 -- DAP
 vim.keymap.set("n", "<F1>", "<cmd> lua require('dap').step_back()<cr>", opts)
 vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", opts)
