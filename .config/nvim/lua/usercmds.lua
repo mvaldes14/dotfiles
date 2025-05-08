@@ -26,10 +26,6 @@ vim.api.nvim_create_user_command("Format", function(args)
   require("conform").format { async = true, lsp_fallback = true, range = range }
 end, { range = true })
 
-vim.api.nvim_create_user_command("Today", function()
-  require("todos").show_todos()
-end, {})
-
 vim.api.nvim_create_user_command("Floaterm", function()
   local utils = require "helper"
   utils.float_term()
