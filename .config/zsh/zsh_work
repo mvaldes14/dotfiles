@@ -19,10 +19,13 @@ good_morning_me(){
 
 bruh () {
   local selection
-  selection=$(compgen -W "$(dcc jira story list --json | jq '.[].ID')" -- "$1" | fzf --no-preview)
+  selection=$(dcc jira story list --json | jq -r '.[] | "\( .ID ) - \( .Summary )"' | fzf --no-preview)
 
   if [[ -n $selection ]]; then
-    summary=$(dcc jira story show --id $selection --json | jq '.fields.summary' | tr -d ':' | tr ' ' '-' | tr -d '"')
-    git checkout -b "minor/$selection/$summary"
+    id=$(echo "$selection" | awk -F' - ' '{$1=$1; print $1}')
+    summary=$(echo "$selection" | awk -F' - ' '{$1=$1; for (i=2; i<=NF; i++) printf "%s%s", (i>2 ? " - " : ""), $i; print ""}')
+    parsed_summary=$(echo $summary | sed -e 's/ /_/g' -e 's/-//g')
+    echo "Creating branch minor/$id/$parsed_summary"
+    git checkout -b "minor/$id/$parsed_summary"
   fi
 }

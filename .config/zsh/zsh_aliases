@@ -1,6 +1,7 @@
 # Home Aliases
 alias pip="pip3"
 alias v="nvim"
+alias n="nnn"
 alias python="python3"
 alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias weather="curl 'wttr.in/55318?m'"
