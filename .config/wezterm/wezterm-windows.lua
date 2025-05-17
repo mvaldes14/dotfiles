@@ -13,6 +13,7 @@ config.enable_scroll_bar = false
 config.color_scheme = "tokyonight_night"
 config.detect_password_input = true
 config.warn_about_missing_glyphs = false
+config.window_decorations = "RESIZE"
 config.max_fps = 240
 config.colors = {
 	background = "#1a1b26",
