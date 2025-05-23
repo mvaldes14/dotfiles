@@ -19,3 +19,8 @@ aws_profile () {
       echo "Usage: aws_profile [aws|localstack]"
   esac
 }
+
+ghpr () {
+  echo "List of open PRs:"
+  PAGER="" gh search prs --author=@me --state open
+}
