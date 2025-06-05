@@ -24,6 +24,7 @@ alias cat=bat
 alias ll='eza -lrh --icons -t=modified --git'
 alias ls='eza -lh --git'
 alias lr='eza -lrT'
+alias zed="/Applications/Zed.app/Contents/MacOS/cli"
 
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

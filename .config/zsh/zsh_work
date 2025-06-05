@@ -29,3 +29,4 @@ bruh () {
     git checkout -b "minor/$id/$parsed_summary"
   fi
 }
+
