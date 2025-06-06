@@ -125,10 +125,6 @@ vim.keymap.set({ "n" }, "<leader>F", vim.cmd.Format, { desc = "Format Document" 
 vim.keymap.set({ "n" }, "<A-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 
 -- AI
-vim.keymap.set({ "n", "v" }, "<leader>oo", "<cmd> Ollama Raw<cr>", { desc = "[O]llama Prompt" })
-vim.keymap.set({ "v" }, "<leader>oe", "<cmd>Ollama Explain_Code<cr>", { desc = "[O]llama Explain Code" })
-vim.keymap.set({ "v" }, "<leader>of", "<cmd>Ollama Fix_Code<cr>", { desc = "[O]llama Fix Code" })
-vim.keymap.set({ "v" }, "<leader>og", "<cmd>Ollama Fix_grammar<cr>", { desc = "[O]llama Fix Grammar" })
 vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "[C]opilot Chat" })
 
 --Snacks
