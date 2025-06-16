@@ -24,3 +24,20 @@ ghpr () {
   echo "List of open PRs:"
   PAGER="" gh search prs --author=@me --state open
 }
+
+how () {
+	if ! rg --version > /dev/null 2>&1; then
+		echo "ripgrep is not installed"
+	fi
+	if ! glow --version > /dev/null 2>&1; then
+		echo "glow is not installed"
+	fi
+	selected=$(rg --smart-case --files-with-matches --no-messages -g '*.md' "" ~/Obsidian/wiki/ | fzf --preview "highlight -O ansi -l {} 2> /dev/null \
+	        | rg --smart-case --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' \
+	        || rg --smart-case --ignore-case --pretty --context 10 '$1' {}")
+	if [ "$selected" = "" ]; then
+		echo 'no documents found'
+		exit 1
+	fi
+	glow -t $selected
+}
