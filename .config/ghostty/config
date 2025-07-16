@@ -1,4 +1,4 @@
-theme = tokyonight
+theme = forest-night
 font-family = JetBrains Mono
 font-size = 17
 background-opacity = 0.95
@@ -7,3 +7,5 @@ link-url = true
 macos-titlebar-style = hidden
 clipboard-trim-trailing-spaces = true
 copy-on-select = clipboard
+cursor-style = block
+cursor-style-blink = true

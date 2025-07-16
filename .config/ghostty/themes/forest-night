@@ -1,0 +1,46 @@
+# Forest Night - Ghostty Theme
+
+# Basic colors
+background = #1a2125
+foreground = #c9d1d9
+
+# Cursor
+cursor-color = #6b8fa3
+cursor-text = #1a2125
+
+# Selection
+selection-background = #2d3540
+selection-foreground = #c9d1d9
+
+# Color palette (16 colors)
+# Black
+palette = 0=#1a2125
+palette = 8=#4a5568
+
+# Red
+palette = 1=#E91E63
+palette = 9=#E91E63
+
+# Green
+palette = 2=#8FBC8F
+palette = 10=#8FBC8F
+
+# Yellow
+palette = 3=#F39C12
+palette = 11=#F39C12
+
+# Blue
+palette = 4=#4ECDC4
+palette = 12=#66D9EF
+
+# Magenta
+palette = 5=#9B59B6
+palette = 13=#9B59B6
+
+# Cyan
+palette = 6=#4ECDC4
+palette = 14=#4ECDC4
+
+# White
+palette = 7=#c9d1d9
+palette = 15=#ffffff
