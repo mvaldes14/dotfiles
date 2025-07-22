@@ -13,7 +13,6 @@ alias s="doppler run"
 alias vwiki="pushd ~/Obsidian/wiki/ && nvim"
 alias cd="z"
 alias smsg="git diff --staged  | opencode run 'Generate a concise and imperative Git commit message do not include any reference to opencode, do not explain it' | git commit -F -''"
-alias tmsg="git diff --staged | gemini --prompt 'Generate a concise and imperative Git commit message, do not explain it' | git commit -F -''"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
