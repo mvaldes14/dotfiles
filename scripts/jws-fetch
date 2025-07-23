@@ -1,0 +1,26 @@
+#!/bin/sh
+
+date=$(date +%s)
+for r in us-east-1 ;do
+	for p in browse cgraph telemetry; do
+		for e in test stage prod; do
+		dir="/tmp/jws/${r}/${p}/${e}"
+		mkdir -p "$dir"
+			echo "Fetching ${r}/${p}/${e}"
+			aws ec2 describe-instances --profile "${p}_${e}" --region "$r" --output text --query "Reservations[*].Instances[*].{
+			        Instance:InstanceId,
+			        Type:InstanceType,
+			        AZ:Placement.AvailabilityZone,
+			        Name:Tags[?Key==\`Name\`]|[0].Value,
+			        pubIP:PublicIpAddress,
+			        IP:PrivateIpAddress,
+			        State:State.Name
+			}" | sed "s/$/    ${p}_${e}/" > "$dir/$date" &
+			# add profile to end for easy greppin'
+			# link current for other scripts
+			ln -fs "$dir/$date" "$dir/current"
+		done
+	done
+done
+
+wait

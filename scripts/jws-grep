@@ -1,0 +1,7 @@
+#!/bin/sh
+stuff=$(cat /tmp/jws/*/*/*/current)
+for i in $@; do
+	stuff=$(echo "$stuff" | grep -i $i)
+done
+
+echo "$stuff"
