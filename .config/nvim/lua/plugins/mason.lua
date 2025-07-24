@@ -5,6 +5,7 @@ return {
     "WhoIsSethDaniel/mason-tool-installer",
     "jay-babu/mason-nvim-dap.nvim",
   },
+  event = "VeryLazy",
   -- NOTE: Mason at work only, rest is nix
   cond = function()
     return require("helper").check_work()
@@ -59,5 +60,5 @@ return {
       ensure_installed = work_lsp,
       automatic_installation = false,
     }
-  end
+  end,
 }
