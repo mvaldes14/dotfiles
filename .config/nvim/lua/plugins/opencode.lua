@@ -1,5 +1,6 @@
 return {
   "sudo-tee/opencode.nvim",
+  event = "VeryLazy",
   config = function()
     require("opencode").setup {}
   end,
