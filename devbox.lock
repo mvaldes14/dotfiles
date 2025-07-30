@@ -1,0 +1,153 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "github:NixOS/nixpkgs/nixpkgs-unstable": {
+      "last_modified": "2025-07-08T04:39:49Z",
+      "resolved": "github:NixOS/nixpkgs/9b008d60392981ad674e04016d25619281550a9d?lastModified=1751949589&narHash=sha256-mgFxAPLWw0Kq%2BC8P3dRrZrOYEQXOtKuYVlo9xvPntt8%3D"
+    },
+    "lua-language-server@latest": {
+      "last_modified": "2025-07-13T22:45:35Z",
+      "resolved": "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359#lua-language-server",
+      "source": "devbox-search",
+      "version": "3.15.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/8n4q2jrd947m6h41a2w84nvvqc62x7xy-lua-language-server-3.15.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/8n4q2jrd947m6h41a2w84nvvqc62x7xy-lua-language-server-3.15.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/izfzm41ajw310hdpbg7xjv22g6zjb1yg-lua-language-server-3.15.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/izfzm41ajw310hdpbg7xjv22g6zjb1yg-lua-language-server-3.15.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/rnnnmksma32f8h8ca6sz4s43pgvriknq-lua-language-server-3.15.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/rnnnmksma32f8h8ca6sz4s43pgvriknq-lua-language-server-3.15.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pd9j9854p3q2vsg5bsz26hkdh21hx4fs-lua-language-server-3.15.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pd9j9854p3q2vsg5bsz26hkdh21hx4fs-lua-language-server-3.15.0"
+        }
+      }
+    },
+    "lua52Packages.luacheck@latest": {
+      "last_modified": "2025-07-13T22:45:35Z",
+      "resolved": "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359#lua52Packages.luacheck",
+      "source": "devbox-search",
+      "version": "1.2.0-1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pd334qw589mwzdpmpxxcdrw0dki6wmzb-lua5.2-luacheck-1.2.0-1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pd334qw589mwzdpmpxxcdrw0dki6wmzb-lua5.2-luacheck-1.2.0-1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jgq4ckjr70q1qj70sxnvpx9d1kx37c2c-lua5.2-luacheck-1.2.0-1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jgq4ckjr70q1qj70sxnvpx9d1kx37c2c-lua5.2-luacheck-1.2.0-1"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/7d96ifl82xmyw428yxa010jalkjs9byd-lua5.2-luacheck-1.2.0-1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/7d96ifl82xmyw428yxa010jalkjs9byd-lua5.2-luacheck-1.2.0-1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/pkkg8j862h6qq7f7zh98ndbas0ssv0db-lua5.2-luacheck-1.2.0-1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/pkkg8j862h6qq7f7zh98ndbas0ssv0db-lua5.2-luacheck-1.2.0-1"
+        }
+      }
+    },
+    "stylua@latest": {
+      "last_modified": "2025-07-13T22:45:35Z",
+      "resolved": "github:NixOS/nixpkgs/a421ac6595024edcfbb1ef950a3712b89161c359#stylua",
+      "source": "devbox-search",
+      "version": "2.1.0",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jcwwwrl0y8k090cmzsd5nxf0qdn6dyxx-stylua-2.1.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jcwwwrl0y8k090cmzsd5nxf0qdn6dyxx-stylua-2.1.0"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6ld3ppi3ch18idry0j96k92rm7ydb9wi-stylua-2.1.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6ld3ppi3ch18idry0j96k92rm7ydb9wi-stylua-2.1.0"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/bz016gpqmnng16qpcxv2b61y4nvh1v4k-stylua-2.1.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/bz016gpqmnng16qpcxv2b61y4nvh1v4k-stylua-2.1.0"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/gkjyp5xb0zxl1wcval1aw125c9habjxk-stylua-2.1.0",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/gkjyp5xb0zxl1wcval1aw125c9habjxk-stylua-2.1.0"
+        }
+      }
+    }
+  }
+}
