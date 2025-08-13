@@ -42,10 +42,10 @@ return {
       { "<leader>O", group = "Obsidian" }, -- group
       { "<leader>x", group = "Utility" }, -- group
       { "<leader>t", group = "Todoist" }, -- group
-      { "<leader>a", group = "Avante" }, -- group
       { "<leader>h", group = "Help" }, -- group
       { "<leader>X", group = "DB" }, -- group
       { "<leader>b", group = "Buffer" }, -- group
+      { "<leader>o", group = "Opencode" }, -- group
     }
   end,
 }
