@@ -53,14 +53,5 @@
       }
     }
   },
-  "mcp": {
-    "weather-server": {
-      "type": "local",
-      "command": [
-        "node",
-        "/Users/a1471283/sandbox/mcp-server/mcp.js"
-      ],
-      "enabled": true
-    }
-  }
+  "mcp": {}
 }
