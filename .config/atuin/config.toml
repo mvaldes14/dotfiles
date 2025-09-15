@@ -8,4 +8,5 @@ style = "compact"
 secrets_filter = true
 history_filter = [
   "^export .*",
+  "^.*Authorization.*$"
 ]
