@@ -15,8 +15,16 @@ aws_profile () {
       export AWS_PROFILE="localstack"
       export AWS_DEFAULT_PROFILE="localstack"
       ;;
+    s3)
+      export AWS_PROFILE="s3"
+      export AWS_DEFAULT_PROFILE="s3"
+      ;;
+    r2)
+      export AWS_PROFILE="r2"
+      export AWS_DEFAULT_PROFILE="r2"
+      ;;
     *)
-      echo "Usage: aws_profile [aws|localstack]"
+      echo "Usage: aws_profile [aws|localstack|s3|r2]"
   esac
 }
 
