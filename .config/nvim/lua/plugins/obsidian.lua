@@ -18,23 +18,25 @@ return {
     },
     completion = {
       blink = true,
-      min_chars = 2
+      min_chars = 2,
     },
     note_id_func = function(title)
       return title
     end,
     new_notes_location = "00-Inbox",
     notes_subdir = "00-Inbox",
-    disable_frontmatter = true,
+    frontmatter = {
+      enabled = false,
+    },
     templates = {
       folder = "_templates",
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
     },
     picker = {
-      name = "snacks.pick"
+      name = "snacks.pick",
     },
     sort_by = "modified",
-    sort_reversed = "true"
+    sort_reversed = "true",
   },
 }
