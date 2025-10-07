@@ -28,15 +28,5 @@ return {
         },
       }
     end,
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    event = "InsertEnter",
-    opts = {
-      model = "gpt-4o-mini",
-      window = {
-        layout = "float",
-      },
-    }
   }
 }
