@@ -124,9 +124,6 @@ vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Hover Documentation" }
 vim.keymap.set({ "n" }, "<leader>F", vim.cmd.Format, { desc = "Format Document" })
 vim.keymap.set({ "n" }, "<A-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 
--- AI
-vim.keymap.set({ "n", "v" }, "<leader>cc", "<cmd>CopilotChat<cr>", { desc = "[C]opilot Chat" })
-
 --Snacks
 vim.keymap.set({ "n" }, "<leader>!", function()
   Snacks.picker()
