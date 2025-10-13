@@ -4,6 +4,7 @@ return {
   lazy = true,
   ft = "markdown",
   opts = {
+    legacy_commands = false,
     workspaces = {
       {
         name = "wiki",
