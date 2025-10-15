@@ -5,6 +5,7 @@ set -e pipefail
 # Gather details
 OS_TYPE=$(uname)
 USERNAME=$(whoami)
+ANSIBLE_REPO="https://github.com/mvaldes14/ansible_playbooks"
 
 # Install core packages
 if $OS_TYPE == "Linux"; then
@@ -16,11 +17,8 @@ if $OS_TYPE == "Linux"; then
     fi
 fi
 
+echo "Installed minimal packages for ansible playbook"
 
+git clone $ANSIBLE_REPO
 
-
-45  sudo apt-get install software-properties-common
-   46  sudo add-apt-repository ppa:neovim-ppa/unstable
-   47  sudo apt-get update
-   48  sudo apt-get install neovim
-  107  sudo apt install zsh rustup
+echo "Cloned ansible playbook repository"
