@@ -1,6 +1,4 @@
-local path = vim.fn.getcwd()
-
-if string.match(path, "chef") then
+if string.match(vim.fn.getcwd(), "chef") then
   vim.bo.filetype = "chef"
   --- Keybinds for chef only
   vim.keymap.set("n", "<leader>cf", "<cmd>ChefFindAny<cr>", { desc = "Chef Find" })

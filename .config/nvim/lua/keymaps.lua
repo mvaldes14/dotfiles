@@ -166,11 +166,10 @@ vim.keymap.set("n", "<leader>dB", function()
 end)
 
 -- Obsidian
-vim.keymap.set("n", "<leader>On", "<cmd>ObsidianNew<cr>", { desc = "Obsidian New" })
-vim.keymap.set("n", "<leader>Ot", "<cmd>ObsidianTemplate<cr>", { desc = "Obsidian Template" })
-vim.keymap.set("n", "<leader>Os", "<cmd>ObsidianSearch<cr>", { desc = "Obsidian Search" })
-vim.keymap.set("n", "<leader>Of", "<cmd>ObsidianQuickSwitch<cr>", { desc = "Obsidian Find" })
-vim.keymap.set("n", "<leader>Og", "<cmd>ObsidianTags<cr>", { desc = "Obsidian Tags" })
+vim.keymap.set("n", "<leader>On", "<cmd>Obsidian new_from_template<cr>", { desc = "Obsidian New" })
+vim.keymap.set("n", "<leader>Ot", "<cmd>Obsidian template<cr>", { desc = "Obsidian Template" })
+vim.keymap.set("n", "<leader>Os", "<cmd>Obsidian search<cr>", { desc = "Obsidian Search" })
+vim.keymap.set("n", "<leader>Of", "<cmd>Obsidian quick_switch<cr>", { desc = "Obsidian Find" })
 
 -- Todoist
 vim.keymap.set("n", "<leader>ta", "<cmd>TodoistAdd<cr>", { desc = "Todoist Add" })
