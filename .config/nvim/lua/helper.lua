@@ -51,7 +51,7 @@ end
 ---@description: Checks if the current system is my work computer
 ---@return boolean
 M.check_work = function()
-  if vim.fn.hostname() == "MACG7YVXHYFWG" then
+  if vim.fn.hostname() == "m5-pro.local.net" then
     return true
   end
   return false

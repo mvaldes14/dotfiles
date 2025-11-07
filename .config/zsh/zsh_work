@@ -1,32 +1,8 @@
 # Custom
 export no_proxy='*'
-export DOTFILES="$HOME/personal/dotfiles"
-
-# Load profile
-source ~/.platform_profile
+export DOTFILES="$HOME/git/dotfiles"
 
 # Add to PATH for custom locations
 addToPath /Users/$USER/.local/bin
-addToPath /Users/$USER/Library/Python/3.11/lib/python/site-packages
-addToPath /Users/$USER/.rd/bin
-addToPath /opt/homebrew/opt/node@20/bin
-
 
 # Functions
-good_morning_me(){
-  awsl && good_morning && jws-fetch
-}
-
-bruh () {
-  local selection
-  selection=$(dcc jira story list --json | jq -r '.[] | "\( .ID ) - \( .Summary )"' | fzf --no-preview)
-
-  if [[ -n $selection ]]; then
-    id=$(echo "$selection" | awk -F' - ' '{$1=$1; print $1}')
-    summary=$(echo "$selection" | awk -F' - ' '{$1=$1; for (i=2; i<=NF; i++) printf "%s%s", (i>2 ? " - " : ""), $i; print ""}')
-    parsed_summary=$(echo $summary | sed -e 's/ /_/g' -e 's/-//g')
-    echo "Creating branch minor/$id/$parsed_summary"
-    git checkout -b "minor/$id/$parsed_summary"
-  fi
-}
-

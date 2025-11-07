@@ -21,8 +21,6 @@ return {
       "ts_ls",
       "yamlls",
       "jsonls",
-      "solargraph",
-      "rubocop",
     }
 
     local dap_adapters = {
