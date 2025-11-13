@@ -7,9 +7,6 @@ return {
   },
   event = "VeryLazy",
   -- NOTE: Mason at work only, rest is nix
-  cond = function()
-    return require("helper").check_work()
-  end,
   config = function()
     require("mason").setup()
     local work_lsp = {
