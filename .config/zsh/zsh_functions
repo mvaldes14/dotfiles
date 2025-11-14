@@ -37,9 +37,6 @@ how () {
 	if ! rg --version > /dev/null 2>&1; then
 		echo "ripgrep is not installed"
 	fi
-	if ! glow --version > /dev/null 2>&1; then
-		echo "glow is not installed"
-	fi
 	selected=$(rg --smart-case --files-with-matches --no-messages -g '*.md' "" ~/Obsidian/wiki/ | fzf --preview "highlight -O ansi -l {} 2> /dev/null \
 	        | rg --smart-case --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' \
 	        || rg --smart-case --ignore-case --pretty --context 10 '$1' {}")
@@ -47,5 +44,9 @@ how () {
 		echo 'no documents found'
 		exit 1
 	fi
-	glow -t $selected
+	nvim $selected
+}
+
+kcc () {
+  kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
 }
