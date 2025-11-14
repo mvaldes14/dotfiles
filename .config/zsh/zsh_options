@@ -25,6 +25,4 @@ setopt nolistbeep
 setopt path_dirs
 setopt pushd_ignore_dups
 setopt share_history
-HISTFILE=$HOME/.zshistory
-HISTSIZE=10000
 setopt hist_expire_dups_first

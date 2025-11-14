@@ -1,7 +1,6 @@
 # Home Aliases
 alias pip="pip3"
 alias v="nvim"
-alias n="nnn"
 alias python="python3"
 alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias weather="curl 'wttr.in/55318?m'"
@@ -17,7 +16,7 @@ alias kk="k9s"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
-alias cdr='cd $(find ~/git -maxdepth 3 -type d | fzf --no-preview)'
+alias cdr='cd $(find ~/ -maxdepth 3 -type d | fzf --no-preview)'
 alias tmks=~/.local/bin/tmux-sessionkiller.sh
 alias tmkw=~/.local/bin/tmux-windowkiller.sh
 
@@ -27,6 +26,3 @@ alias ll='eza -lrh --icons -t=modified --git'
 alias ls='eza -lh --git'
 alias lr='eza -lrT'
 alias zed="/Applications/Zed.app/Contents/MacOS/cli"
-
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
