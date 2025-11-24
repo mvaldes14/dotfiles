@@ -62,6 +62,9 @@ return {
         jsonnet = {
           "jsonnetfmt",
         },
+        cue = {
+          "cue_fmt"
+        }
       },
     }
   end,
