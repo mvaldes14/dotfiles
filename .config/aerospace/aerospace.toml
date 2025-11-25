@@ -67,10 +67,6 @@ if.app-id = "com.google.Chrome" # Browser
 run = "move-node-to-workspace 2"
 
 [[on-window-detected]]
-if.app-id = "com.spotify.client" # Music
-run = "move-node-to-workspace 3"
-
-[[on-window-detected]]
 if.app-id = "com.tinyspeck.slackmacgap" # Slack
 run = "move-node-to-workspace 3"
 
@@ -83,9 +79,13 @@ if.app-id = "md.obsidian" # Obsidian
 run = "move-node-to-workspace 4"
 
 [[on-window-detected]]
-if.app-id = "notion.id"
+if.app-id = "notion.id" # Notion
 run = "move-node-to-workspace 4"
 
 # [[on-window-detected]]
 # if.app-id = "mcom.todoist.mac.Todois" # Todoist
 # run = "move-node-to-workspace 5"
+
+[[on-window-detected]]
+if.app-id = "com.spotify.client" # Music
+run = "move-node-to-workspace 5"
