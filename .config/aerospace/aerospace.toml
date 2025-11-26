@@ -63,6 +63,10 @@ if.app-id = "com.mitchellh.ghostty" # term
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
+if.app-id = "com.apple.finder" # finder
+run = "move-node-to-workspace 1"
+
+[[on-window-detected]]
 if.app-id = "com.google.Chrome" # Browser
 run = "move-node-to-workspace 2"
 
@@ -73,6 +77,10 @@ run = "move-node-to-workspace 3"
 # [[on-window-detected]]
 # if.app-id = "com.microsoft.teams2" # Teams
 # run = "move-node-to-workspace 3"
+
+[[on-window-detected]]
+if.app-id = "us.zoom.xos" # Zoom
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = "md.obsidian" # Obsidian
@@ -89,3 +97,4 @@ run = "move-node-to-workspace 4"
 [[on-window-detected]]
 if.app-id = "com.spotify.client" # Music
 run = "move-node-to-workspace 5"
+
