@@ -4,28 +4,17 @@ addToPath() {
     fi
 }
 
-aws_profile () {
-  echo "Changing Profile to $1"
-  case "$1" in
-    aws)
-      export AWS_PROFILE="aws"
-      export AWS_DEFAULT_PROFILE="aws"
-      ;;
-    localstack)
-      export AWS_PROFILE="localstack"
-      export AWS_DEFAULT_PROFILE="localstack"
-      ;;
-    s3)
-      export AWS_PROFILE="s3"
-      export AWS_DEFAULT_PROFILE="s3"
-      ;;
-    r2)
-      export AWS_PROFILE="r2"
-      export AWS_DEFAULT_PROFILE="r2"
-      ;;
-    *)
-      echo "Usage: aws_profile [aws|localstack|s3|r2]"
-  esac
+awsp(){
+  # Read the ~/.aws/config to list profiles
+  file=`cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g'`
+  profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
+  if [ -n "$profile" ]; then
+    echo "Changing Profile to $profile"
+    export AWS_PROFILE="$profile"
+    export AWS_DEFAULT_PROFILE="$profile"
+  else
+    echo "No profile selected"
+  fi
 }
 
 ghpr () {

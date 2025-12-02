@@ -40,6 +40,8 @@ local options = {
   foldlevelstart = 99,                       -- fold all folds by default
   foldcolumn = "1",                          -- show fold column
   foldtext = "",                             -- use default fold text
+  foldmethod = "expr",                       -- set fold method to expression
+  foldexpr = "nvim_treesitter#foldexpr()",   -- use treesitter for folding
   path = "**/*",                             -- search down into subfolders
   --pumborder = 'rounded',                     -- popup menu border
   pumheight = 15,                            -- popup menu height
@@ -63,7 +65,7 @@ vim.cmd [[set formatoptions-=cro]]
 
 vim.opt.list = true -- show whitespace characters
 vim.opt.listchars = {
-  eol = "↴",
+  eol = " ",
   tab = "__",
   trail = "•",
   extends = "❯",
