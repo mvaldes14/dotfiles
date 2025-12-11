@@ -19,7 +19,6 @@ $aws\
 """
 
 add_newline = true
-palette = "catppuccin_mocha"
 
 [character]
 success_symbol = '[➜](bold green) '
