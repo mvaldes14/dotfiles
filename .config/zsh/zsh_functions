@@ -60,3 +60,11 @@ how() {
 kcc() {
     kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
 }
+
+gli() {
+    gh issue list --assignee @me --state open -R signoz/platform-pod
+}
+
+gci() {
+    gh issue create -R signoz/platform-pod --assignee @me
+}

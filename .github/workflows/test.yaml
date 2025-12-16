@@ -1,0 +1,25 @@
+name: Dotfiles CI & Validation
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  nvim_config_test:
+    name: Validate Neovim Config
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+      - name: Setup Neovim and dependencies
+        # Install Neovim and any package managers/tools it needs
+        run: |
+          sudo apt-get update && sudo apt-get install -y neovim
+          # ... setup any custom nvim dependency manager (e.g., Packer, Lazy)
+      - name: Copy neovim configuration
+        run: |
+          mkdir -p ~/.config/nvim
+          cp /.config/nvim ~/.config/nvim
+      - name: Test Configuration Loading
+        # This command tries to start Neovim with your config and exits
+        run: nvim --headless -c 'quitall'
