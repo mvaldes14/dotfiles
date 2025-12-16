@@ -26,6 +26,12 @@ return {
         end,
         new_notes_location = "00-Inbox",
         notes_subdir = "00-Inbox",
+        daily_notes = {
+            folder = "06-Journal",
+            date_format = "%Y%m%d",
+            default_tags = { "log" },
+            template = "_templates/journal"
+        },
         frontmatter = {
             enabled = false,
         },
