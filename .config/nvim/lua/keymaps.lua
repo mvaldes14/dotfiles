@@ -8,40 +8,40 @@ vim.keymap.set({ "n" }, "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
 vim.keymap.set({ "n" }, "<leader>m", "<cmd>Noice<cr>", { desc = "Messages" })
 vim.keymap.set({ "n" }, "<leader>i", "<cmd>nohlsearch<cr>", { desc = "Highlight Off", silent = true, noremap = true })
 vim.keymap.set({ "n" }, "<leader>:", function()
-  Snacks.picker.command_history()
+    Snacks.picker.command_history()
 end, { desc = "Command History" })
 vim.keymap.set({ "n" }, "<leader>hh", function()
-  Snacks.picker.help()
+    Snacks.picker.help()
 end, { desc = "Help" })
 vim.keymap.set({ "n" }, "<leader>hk", function()
-  Snacks.picker.keymaps()
+    Snacks.picker.keymaps()
 end, { desc = "Keymaps" })
 vim.keymap.set({ "n" }, "<leader>ba", function()
-  Snacks.bufdelete.other()
+    Snacks.bufdelete.other()
 end, { desc = "[B]uffer Close all But Current" })
 vim.keymap.set("n", "<C-s>", "<Esc>:w<CR>", { desc = "Save File" })
 vim.keymap.set("n", "<C-q>", "<Esc>:q<CR>", { desc = "Quit File" })
 vim.keymap.set("c", "Q", "<cmd>qa!<cr>", { desc = "Quit" })
 vim.keymap.set({ "n" }, "<leader>sH", function()
-  Snacks.notifier.show_history()
+    Snacks.notifier.show_history()
 end, { desc = "Show Notification History" })
 vim.keymap.set({ "n" }, "<leader>bc", function()
-  Snacks.bufdelete()
+    Snacks.bufdelete()
 end, { desc = "[B]uffer Delete " })
 vim.keymap.set({ "n" }, "s", function()
-  require("flash").jump()
+    require("flash").jump()
 end, { desc = "Flash" })
 
 vim.keymap.set("n", "S", function()
-  require("flash").treesitter()
+    require("flash").treesitter()
 end, { desc = "Flash Treesitter" })
 -- Copy and Paste without system clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set(
-  { "n", "v", "x" },
-  "<leader>Y",
-  '"+yy',
-  { noremap = true, silent = true, desc = "Yank line to clipboard" }
+    { "n", "v", "x" },
+    "<leader>Y",
+    '"+yy',
+    { noremap = true, silent = true, desc = "Yank line to clipboard" }
 )
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 
@@ -78,13 +78,13 @@ vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 vim.keymap.set({ "n" }, "<leader>g?", "<cmd>Git<cr>", { desc = "Git" })
 vim.keymap.set({ "n" }, "<leader>gg", "<cmd>Neogit<cr>", { desc = "NeoGit" })
 vim.keymap.set({ "n" }, "<leader>G", function()
-  Snacks.lazygit()
+    Snacks.lazygit()
 end, { desc = "LazyGit" })
 vim.keymap.set(
-  { "n" },
-  "<leader>gbl",
-  "<cmd>Gitsigns toggle_current_line_blame<cr>",
-  { desc = "[Git] Toggle Blame Line" }
+    { "n" },
+    "<leader>gbl",
+    "<cmd>Gitsigns toggle_current_line_blame<cr>",
+    { desc = "[Git] Toggle Blame Line" }
 )
 vim.keymap.set({ "n" }, "<leader>gr", "<cmd>Octo pr list<cr>", { desc = "[Git] Octo" })
 vim.keymap.set({ "n" }, "[c", "<cmd>Gitsigns prev_hunk<cr>", { desc = "[Git] Previous Hunk" })
@@ -94,7 +94,7 @@ vim.keymap.set({ "n" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc =
 
 -- Random
 vim.keymap.set({ "n" }, "<leader>Z", function()
-  Snacks.zen()
+    Snacks.zen()
 end, { desc = "Zen Mode" })
 vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>Floaterm<cr>", { desc = "[T]oggle Term" })
 vim.keymap.set({ "n", "v" }, "<leader>Xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
@@ -103,22 +103,22 @@ vim.keymap.set({ "n" }, "<leader>Xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle
 
 -- LSP
 vim.keymap.set(
-  { "n" },
-  "<leader>sh",
-  "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
-  { desc = "[S]how Inlay Hints" }
+    { "n" },
+    "<leader>sh",
+    "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
+    { desc = "[S]how Inlay Hints" }
 )
 vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "LSP:[R]ename" })
 vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP:[C]ode [A]ction" })
 vim.keymap.set({ "n" }, "<leader>e", vim.diagnostic.open_float, { desc = "LSP:Show diagnostic [E]rror messages" })
 vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "LSP:[G]oto [D]efinition" })
 vim.keymap.set({ "n" }, "gr", function()
-  Snacks.picker.lsp_references()
+    Snacks.picker.lsp_references()
 end, { desc = "LSP:[G]oto [R]eferences" })
 vim.keymap.set({ "n" }, "gI", vim.lsp.buf.implementation, { desc = "LSP:[G]oto [I]mplementation" })
 vim.keymap.set({ "n" }, "<leader>D", vim.lsp.buf.type_definition, { desc = "LSP:Type [D]efinition" })
 vim.keymap.set({ "n" }, "<leader>ds", function()
-  Snacks.picker.lsp_symbols()
+    Snacks.picker.lsp_symbols()
 end, { desc = "LSP: [D]ocument [S]ymbols" })
 vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 vim.keymap.set({ "n" }, "<leader>F", vim.cmd.Format, { desc = "Format Document" })
@@ -126,28 +126,28 @@ vim.keymap.set({ "n" }, "<A-k>", vim.lsp.buf.signature_help, { desc = "Signature
 
 --Snacks
 vim.keymap.set({ "n" }, "<leader>!", function()
-  Snacks.picker()
+    Snacks.picker()
 end, { desc = "Pickers" })
 vim.keymap.set({ "n" }, "<leader>?", function()
-  Snacks.picker.recent()
+    Snacks.picker.recent()
 end, { desc = "[?] Find recently opened files" })
 vim.keymap.set({ "n" }, "<leader><space>", function()
-  Snacks.picker.buffers()
+    Snacks.picker.buffers()
 end, { desc = "[ ] Find existing buffers" })
 vim.keymap.set({ "n" }, "<leader>sf", function()
-  Snacks.picker.files { hidden = true }
+    Snacks.picker.files { hidden = true }
 end, { desc = "[S]earch [F]iles" })
 vim.keymap.set({ "v" }, "<leader>sw", function()
-  Snacks.picker.grep_word()
+    Snacks.picker.grep_word()
 end, { desc = "[S]earch current [W]ord" })
 vim.keymap.set({ "n" }, "<leader>sg", function()
-  Snacks.picker.grep { hidden = true }
+    Snacks.picker.grep { hidden = true }
 end, { desc = "[S]earch by [G]rep" })
 vim.keymap.set({ "n" }, "<leader>ds", function()
-  Snacks.picker.diagnostics()
+    Snacks.picker.diagnostics()
 end, { desc = "[S]how Diagnostics" })
 vim.keymap.set("n", "<leader>st", function()
-  Snacks.picker.todo_comments()
+    Snacks.picker.todo_comments()
 end, { desc = "[S]how [T]odos" })
 
 -- DAP
@@ -162,7 +162,7 @@ vim.keymap.set("n", "<leader>dk", "<cmd> lua require'dap.ui.widgets'.hover()<cr>
 vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", opts)
 vim.keymap.set("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", opts)
 vim.keymap.set("n", "<leader>dB", function()
-  require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
+    require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
 end)
 
 -- Obsidian
@@ -170,6 +170,7 @@ vim.keymap.set("n", "<leader>On", "<cmd>Obsidian new_from_template<cr>", { desc 
 vim.keymap.set("n", "<leader>Ot", "<cmd>Obsidian template<cr>", { desc = "Obsidian Template" })
 vim.keymap.set("n", "<leader>Os", "<cmd>Obsidian search<cr>", { desc = "Obsidian Search" })
 vim.keymap.set("n", "<leader>Of", "<cmd>Obsidian quick_switch<cr>", { desc = "Obsidian Find" })
+vim.keymap.set("n", "<leader>OT", "<cmd>Obsidian tags<cr>", { desc = "Obsidian tags" })
 
 -- Todoist
 vim.keymap.set("n", "<leader>ta", "<cmd>TodoistAdd<cr>", { desc = "Todoist Add" })

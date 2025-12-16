@@ -4,38 +4,59 @@ addToPath() {
     fi
 }
 
-awsp(){
-  # Read the ~/.aws/config to list profiles
-  file=`cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g'`
-  profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
-  if [ -n "$profile" ]; then
-    echo "Changing Profile to $profile"
-    export AWS_PROFILE="$profile"
-    export AWS_DEFAULT_PROFILE="$profile"
-  else
-    echo "No profile selected"
-  fi
+awsp() {
+    # Read the ~/.aws/config to list profiles
+    file=$(cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g')
+    profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
+    if [ -n "$profile" ]; then
+        echo "Changing Profile to $profile"
+        export AWS_PROFILE="$profile"
+        export AWS_DEFAULT_PROFILE="$profile"
+    else
+        echo "No profile selected"
+    fi
 }
 
-ghpr () {
-  echo "List of open PRs:"
-  PAGER="" gh search prs --author=@me --state open
+ghpr() {
+    echo "List of open PRs:"
+    PAGER="" gh search prs --author=@me --state open
 }
 
-how () {
-	if ! rg --version > /dev/null 2>&1; then
-		echo "ripgrep is not installed"
-	fi
-	selected=$(rg --smart-case --files-with-matches --no-messages -g '*.md' "" ~/Obsidian/wiki/ | fzf --preview "highlight -O ansi -l {} 2> /dev/null \
-	        | rg --smart-case --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '$1' \
-	        || rg --smart-case --ignore-case --pretty --context 10 '$1' {}")
-	if [ "$selected" = "" ]; then
-		echo 'no documents found'
-		exit 1
-	fi
-	nvim $selected
+how() {
+    if ! rg --version >/dev/null 2>&1; then
+        echo "ripgrep is not installed"
+    fi
+
+    # Check if a search term was provided
+    if [ -z "$1" ]; then
+        echo "Usage: how <search_term>"
+        return 1
+    fi
+
+    local search_term="$1"
+    local wiki_path="$HOME/Obsidian/wiki/"
+    local selected=$(
+        rg --smart-case \
+            --files-with-matches \
+            --vimgrep \
+            --no-messages \
+            -g '*.md' \
+            "$search_term" \
+            $wiki_path | fzf \
+            --preview-window 'bottom:60%,wrap,border:rounded' \
+            --preview \
+            "highlight -O ansi -l {} 2> /dev/null \
+             | rg --smart-case --colors 'match:bg:yellow' --ignore-case --pretty --no-line-number --no-column --context 10 '$search_term' \
+             || rg --smart-case --ignore-case --pretty --no-line-number --no-column --context 10 '$search_term' {}
+            "
+    )
+    if [ "$selected" = "" ]; then
+        echo 'no documents found'
+        exit 1
+    fi
+    nvim $selected
 }
 
-kcc () {
-  kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
+kcc() {
+    kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
 }
