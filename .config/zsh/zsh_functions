@@ -1,11 +1,12 @@
+# Add a directory to PATH if it's not already present
 addToPath() {
     if [[ "$PATH" != *"$1"* ]]; then
         export PATH=$PATH:$1
     fi
 }
 
+# Change AWS Profiles
 awsp() {
-    # Read the ~/.aws/config to list profiles
     file=$(cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g')
     profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
     if [ -n "$profile" ]; then
@@ -17,11 +18,13 @@ awsp() {
     fi
 }
 
+# List open PRs created by the user
 ghpr() {
     echo "List of open PRs:"
     PAGER="" gh search prs --author=@me --state open
 }
 
+# Search through Obsidian wiki notes and open the selected note in nvim
 how() {
     if ! rg --version >/dev/null 2>&1; then
         echo "ripgrep is not installed"
@@ -57,14 +60,25 @@ how() {
     nvim $selected
 }
 
+# Change kubernetes context
 kcc() {
     kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
 }
 
+WORK_REPO='signoz/platform-pod'
+
+# List open issues assigned to the user
 gli() {
-    gh issue list --assignee @me --state open -R signoz/platform-pod
+    gh issue list --assignee @me --state open -R $WORK_REPO
 }
 
+# Create a new issue and assign it to the user
 gci() {
-    gh issue create -R signoz/platform-pod --assignee @me
+    gh issue create -R $WORK_REPO --assignee @me
+}
+
+# Comment on an open issue assigned to the user
+gcu() {
+    issue=$(gh issue list --assignee @me --state open -R $WORK_REPO | fzf --no-preview | awk '{ print $1 }')
+    gh issue comment -R "$WORK_REPO" $issue
 }
