@@ -5,6 +5,9 @@ return {
     ft = "markdown",
     opts = {
         legacy_commands = false,
+        ui = {
+            enabled = true
+        },
         workspaces = {
             {
                 name = "wiki",
