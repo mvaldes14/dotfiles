@@ -1,5 +1,3 @@
-local path = vim.fn.getcwd()
-
-if string.match(path, "ansible") then
-	vim.opt_local.filetype = "ansible"
-end
+-- Settings for YAML files
+vim.bo.shiftwidth = 2
+vim.bo.tabstop = 2
