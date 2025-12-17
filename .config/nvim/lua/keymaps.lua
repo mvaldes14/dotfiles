@@ -2,7 +2,6 @@ local opts = { noremap = true, silent = true }
 
 -- Core
 vim.keymap.set("", "<Space>", "<Nop>", opts)
-vim.keymap.set("i", "jk", "<ESC>", opts)
 vim.keymap.set({ "n" }, "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set({ "n" }, "<leader>M", "<cmd>Mason<cr>", { desc = "Mason" })
 vim.keymap.set({ "n" }, "<leader>m", "<cmd>Noice<cr>", { desc = "Messages" })
@@ -86,7 +85,6 @@ vim.keymap.set(
     "<cmd>Gitsigns toggle_current_line_blame<cr>",
     { desc = "[Git] Toggle Blame Line" }
 )
-vim.keymap.set({ "n" }, "<leader>gr", "<cmd>Octo pr list<cr>", { desc = "[Git] Octo" })
 vim.keymap.set({ "n" }, "[c", "<cmd>Gitsigns prev_hunk<cr>", { desc = "[Git] Previous Hunk" })
 vim.keymap.set({ "n" }, "]c", "<cmd>Gitsigns next_hunk<cr>", { desc = "[Git] Next Hunk" })
 vim.keymap.set({ "n" }, "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "[Git] Next Hunk" })
@@ -121,8 +119,6 @@ vim.keymap.set({ "n" }, "<leader>ds", function()
     Snacks.picker.lsp_symbols()
 end, { desc = "LSP: [D]ocument [S]ymbols" })
 vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
-vim.keymap.set({ "n" }, "<leader>F", vim.cmd.Format, { desc = "Format Document" })
-vim.keymap.set({ "n" }, "<A-k>", vim.lsp.buf.signature_help, { desc = "Signature Documentation" })
 
 --Snacks
 vim.keymap.set({ "n" }, "<leader>!", function()
@@ -143,27 +139,22 @@ end, { desc = "[S]earch current [W]ord" })
 vim.keymap.set({ "n" }, "<leader>sg", function()
     Snacks.picker.grep { hidden = true }
 end, { desc = "[S]earch by [G]rep" })
-vim.keymap.set({ "n" }, "<leader>ds", function()
+vim.keymap.set({ "n" }, "<leader>sd", function()
     Snacks.picker.diagnostics()
 end, { desc = "[S]how Diagnostics" })
-vim.keymap.set("n", "<leader>st", function()
-    Snacks.picker.todo_comments()
-end, { desc = "[S]how [T]odos" })
+
 
 -- DAP
-vim.keymap.set("n", "<F1>", "<cmd> lua require('dap').step_back()<cr>", opts)
-vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", opts)
-vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", opts)
-vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", opts)
-vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", opts)
-vim.keymap.set("n", "<leader>dr", "<cmd> lua require('dap').repl.open()<cr>", opts)
-vim.keymap.set("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>")
-vim.keymap.set("n", "<leader>dk", "<cmd> lua require'dap.ui.widgets'.hover()<cr>", opts)
-vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", opts)
-vim.keymap.set("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", opts)
-vim.keymap.set("n", "<leader>dB", function()
-    require("dap").set_breakpoint(vim.fn.input "[DAP] Condition > ")
-end)
+vim.keymap.set("n", "<F1>", "<cmd> lua require('dap').step_back()<cr>", { desc = "Debugger Step Back" })
+vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", { desc = "Debug Into" })
+vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", { desc = "Debug Step Over" })
+vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = "Debug Step Out" })
+vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
+vim.keymap.set("n", "<leader>dr", "<cmd> lua require('dap').repl.open()<cr>", { desc = "Debug REPL" })
+vim.keymap.set("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "Debug Breakpoint" })
+vim.keymap.set("n", "<leader>dk", "<cmd> lua require'dap.ui.widgets'.hover()<cr>", { desc = " Debug Hover" })
+vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
+vim.keymap.set("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", { desc = "Debug Launch" })
 
 -- Obsidian
 vim.keymap.set("n", "<leader>On", "<cmd>Obsidian new_from_template<cr>", { desc = "Obsidian New" })
@@ -171,8 +162,4 @@ vim.keymap.set("n", "<leader>Ot", "<cmd>Obsidian template<cr>", { desc = "Obsidi
 vim.keymap.set("n", "<leader>Os", "<cmd>Obsidian search<cr>", { desc = "Obsidian Search" })
 vim.keymap.set("n", "<leader>Of", "<cmd>Obsidian quick_switch<cr>", { desc = "Obsidian Find" })
 vim.keymap.set("n", "<leader>OT", "<cmd>Obsidian tags<cr>", { desc = "Obsidian tags" })
-
--- Todoist
-vim.keymap.set("n", "<leader>ta", "<cmd>TodoistAdd<cr>", { desc = "Todoist Add" })
-vim.keymap.set("n", "<leader>tf", "<cmd>TodoistFind<cr>", { desc = "Todoist Find" })
-vim.keymap.set("n", "<leader>ts", "<cmd>TodoistTasks<cr>", { desc = "Todoist Show" })
+vim.keymap.set("n", "<leader>Od", "<cmd>Obsidian today<cr>", { desc = "Obsidian Today Note" })

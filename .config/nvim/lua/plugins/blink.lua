@@ -20,7 +20,7 @@ return {
       enabled = false,
     },
     sources = {
-      default = { "lazydev", "lsp", "path", "snippets", "buffer", "copilot", "ripgrep", "git" },
+      default = { "buffer", "lazydev", "lsp", "path", "snippets", "buffer", "copilot", "ripgrep", "git" },
       providers = {
         copilot = {
           name = "copilot",
