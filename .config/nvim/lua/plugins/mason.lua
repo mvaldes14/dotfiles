@@ -6,7 +6,9 @@ return {
     "jay-babu/mason-nvim-dap.nvim",
   },
   event = "VeryLazy",
-  -- NOTE: Mason at work only, rest is nix
+  cond = function()
+    return vim.fn.getenv "NIX_STORE" ~= "/nix/store" -- Do not enable on nix machines
+  end,
   config = function()
     require("mason").setup()
     local work_lsp = {
