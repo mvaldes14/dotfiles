@@ -1,0 +1,20 @@
+# Custom
+export no_proxy='*'
+export DOTFILES="$HOME/git/dotfiles" # Dotfiles Location in all machines
+export EDITOR="nvim"                 # EDITOR for everything
+export VISUAL='nvim'                 # GUI editors? No thanks
+export PAGER='cat'                   # For viewing long outputs
+export LANG=en_US.UTF-8              # Language settings
+export LC_ALL=en_US.UTF-8            # Ditto
+
+# FZF Settings
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --exclude .git'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview-window=right:60%'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --exclude .git'
+export FZF_ALT_C_OPTS="--preview 'eza --tree {} | head -200'"
+
+# Functions
+# Add to PATH for custom locations
+addToPath /Users/$USER/.local/bin
+addToPath /Users/$USER/go/bin

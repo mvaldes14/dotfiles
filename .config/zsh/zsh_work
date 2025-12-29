@@ -1,8 +1,0 @@
-# Custom
-export no_proxy='*'
-export DOTFILES="$HOME/git/dotfiles"
-
-# Add to PATH for custom locations
-addToPath /Users/$USER/.local/bin
-
-# Functions

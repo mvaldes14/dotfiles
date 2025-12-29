@@ -18,17 +18,16 @@ Personal development environment configuration for macOS and cross-platform tool
 
 ### Terminal Emulators
 - **ghostty** - GPU-accelerated terminal emulator configuration
-- **wezterm** - Terminal emulator with custom keybinds and themes
 
 ### Window Management
 - **aerospace** - Tiling window manager for macOS with custom keybinds
-- **glazewm** - Windows tiling window manager configuration
 
 ### Development Tools
 - **opencode** - AI coding assistant configuration with custom modes and agents
 - **direnv** - Environment variable management
 - **lazygit** - Git TUI configuration
 - **bat** - Cat replacement with syntax highlighting and custom themes
+- **awscli** - AWS CLI configuration with multiple profiles and endpoints
 
 ### Development Environment
 - **devbox** - Reproducible development environments with Lua tooling
@@ -57,7 +56,6 @@ Modern Lua-based configuration using Lazy.nvim with:
 
 ### Cross-Platform Support
 - macOS-specific tools (Aerospace)
-- Windows support (GlazeWM)
 - Linux compatibility for core tools
 
 ## Scripts & Utilities
@@ -65,3 +63,33 @@ Modern Lua-based configuration using Lazy.nvim with:
 - `tmux-sessionkiller.sh` - Session cleanup utility  
 - `jws-*` scripts - Custom workflow automation
 - SSH helpers and navigation tools
+
+
+# Brew Install list
+awscli
+bat
+cloudlens
+cue
+eza
+fd
+fzf
+gh
+go
+go-task
+helm
+helmfile
+k9s
+lazygit
+neovim
+nvm
+opencode
+ripgrep
+starship
+stern
+tfenv
+tmux
+tmux-fingers
+tree
+uv
+wget
+zoxide

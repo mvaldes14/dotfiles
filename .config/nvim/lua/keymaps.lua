@@ -85,10 +85,14 @@ vim.keymap.set(
     "<cmd>Gitsigns toggle_current_line_blame<cr>",
     { desc = "[Git] Toggle Blame Line" }
 )
+vim.keymap.set(
+    { "n" },
+    "<leader>gp",
+    "<cmd>Gitsigns preview_hunk_inline<cr>",
+    { desc = "[Git] Preview Hunk Inline" }
+)
 vim.keymap.set({ "n" }, "[c", "<cmd>Gitsigns prev_hunk<cr>", { desc = "[Git] Previous Hunk" })
 vim.keymap.set({ "n" }, "]c", "<cmd>Gitsigns next_hunk<cr>", { desc = "[Git] Next Hunk" })
-vim.keymap.set({ "n" }, "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "[Git] Next Hunk" })
-vim.keymap.set({ "n" }, "<leader>gp", "<cmd>Gitsigns preview_hunk<cr>", { desc = "[Git] Preview Hunk" })
 
 -- Random
 vim.keymap.set({ "n" }, "<leader>Z", function()

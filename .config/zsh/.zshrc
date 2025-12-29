@@ -9,13 +9,11 @@ HISTSIZE=50000
 plugins=(git brew aws vi-mode kubectl fzf fzf-tab zsh-autosuggestions zsh-syntax-highlighting zoxide ansible fluxcd helm k9s starship)
 
 # Source default alias and funcs
-source ~/.oh-my-zsh/oh-my-zsh.sh
+source $ZSH/oh-my-zsh.sh
 source ~/.config/zsh/zsh_aliases
 source ~/.config/zsh/zsh_functions
 source ~/.config/zsh/zsh_options
-source ~/.config/zsh/zsh_work
+source ~/.config/zsh/zsh_custom
 
 # Custom Completions and globals
-export EDITOR="nvim"
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+autoload -Uz compinit && compinit -i
