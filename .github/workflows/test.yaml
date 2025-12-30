@@ -19,7 +19,7 @@ jobs:
       - name: Copy neovim configuration
         run: |
           mkdir -p ~/.config/nvim
-          cp .config/nvim ~/.config/nvim
+          cp -r $GITHUB_WORKSPACE/.config/nvim/* ~/.config/nvim/
       - name: Test Configuration Loading
         # This command tries to start Neovim with your config and exits
         run: nvim --headless -c 'quitall'
