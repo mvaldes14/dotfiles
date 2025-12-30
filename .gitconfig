@@ -1,0 +1,19 @@
+[user]
+  name = "mvaldes14"
+  email = "elxilote@gmail.com"
+[author]
+  name = "mvaldes14"
+  email = "elxilote@gmail.com"
+[push]
+    autoSetupRemote = true ; prevents git push --set-upstream
+    default = current ; push current branch
+[core]
+    ignorecase = false ; for mac/windows compatibility
+[fetch]
+    prune = true ; cleanup on fetch
+[commit]
+  gpgsign = false ; override for work
+; [gpg]
+;   format = ssh ; not needed for personal
+[includeIf "gitdir:~/git/work/"]
+  path = .gitconfig-work ; work settings
