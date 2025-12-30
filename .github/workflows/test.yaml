@@ -12,9 +12,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v5
       - name: Setup Neovim and dependencies
-        # Install Neovim and any package managers/tools it needs
-        run: |
-          sudo apt-get update && sudo apt-get install -y neovim
+        uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
+          version: nightly
       - name: Copy neovim configuration
         run: |
           mkdir -p ~/.config/nvim
