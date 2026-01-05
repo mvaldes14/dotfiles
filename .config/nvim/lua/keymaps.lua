@@ -154,11 +154,9 @@ vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", { desc =
 vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", { desc = "Debug Step Over" })
 vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = "Debug Step Out" })
 vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
-vim.keymap.set("n", "<leader>dr", "<cmd> lua require('dap').repl.open()<cr>", { desc = "Debug REPL" })
-vim.keymap.set("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = "Debug Breakpoint" })
-vim.keymap.set("n", "<leader>dk", "<cmd> lua require'dap.ui.widgets'.hover()<cr>", { desc = " Debug Hover" })
+vim.keymap.set("n", "<leader>db", "<cmd>DapToogleBreakPoint<cr>", { desc = "Debug Breakpoint" })
 vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
-vim.keymap.set("n", "<leader>dl", "<cmd> lua require'osv'.run_this()<cr>", { desc = "Debug Launch" })
+vim.keymap.set("n", "<leader>dr", "<cmd>DapToogleRepl<cr> ", { desc = "Debug REPL Toogle" })
 
 -- Obsidian
 vim.keymap.set("n", "<leader>On", "<cmd>Obsidian new_from_template<cr>", { desc = "Obsidian New" })

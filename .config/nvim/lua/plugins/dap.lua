@@ -5,13 +5,16 @@ return {
     "rcarriga/nvim-dap-ui",
     "leoluz/nvim-dap-go",
     "jbyuki/one-small-step-for-vimkind",
-    "suketa/nvim-dap-ruby",
     "nvim-neotest/nvim-nio",
   },
-  cmd = "DAP",
   config = function()
     local dap_ui = require "dapui"
     local dap = require "dap"
+    local dapgo = require "dap-go"
+
+    -- Setup for plugins
+    dap_ui.setup()
+    dapgo.setup()
 
     -- Virtual Text
     require("nvim-dap-virtual-text").setup {
@@ -31,36 +34,12 @@ return {
 
       -- experimental features:
       virt_text_pos = "eol", -- position of virtual text, see `:h nvim_buf_set_extmark()`
-      all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+      all_frames = false,    -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
     }
 
-    -- UI
-    local _ = dap_ui.setup {
-      -- You can change the order of elements in the sidebar
-      sidebar = {
-        elements = {
-          -- Provide as ID strings or tables with "id" and "size" keys
-          {
-            id = "scopes",
-            size = 0.75, -- Can be float or integer > 1
-          },
-          { id = "watches", size = 00.25 },
-        },
-        size = 50,
-        position = "left", -- Can be "left" or "right"
-      },
-
-      tray = {
-        elements = {},
-        size = 15,
-        position = "bottom", -- Can be "bottom" or "top"
-      },
-    }
 
     -- Adapter configurations
-    require("dap-ruby").setup()
-    require("dap-go").setup()
-
+    -- LUA
     dap.configurations.lua = {
       {
         type = "nlua",
@@ -73,6 +52,7 @@ return {
       callback { type = "server", host = config.host or "127.0.0.1", port = config.port or 8086 }
     end
 
+    -- GO
     dap.adapters.delve = {
       type = "server",
       port = "${port}",
@@ -103,6 +83,13 @@ return {
         request = "launch",
         mode = "test",
         program = "./${relativeFileDirname}",
+      },
+      {
+        type = "delve",
+        name = "Debug CLI (with Args)",
+        request = "launch",
+        program = "${workspaceFolder}",
+        args = dapgo.get_arguments,
       },
     }
 

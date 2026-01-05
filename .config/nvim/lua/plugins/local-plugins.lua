@@ -6,6 +6,7 @@ return {
     opts = {
       library = {
         "lazy.nvim",
+        "nvim-dap-ui"
       },
     },
   },
