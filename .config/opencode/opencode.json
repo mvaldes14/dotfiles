@@ -1,57 +1,59 @@
 {
-    "$schema": "https://opencode.ai/config.json",
-    "theme": "tokyonight",
-    "autoupdate": true,
-    "model": "opencode/grok-code",
-    "mode": {
-        "review": {
-            "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
-            "tools": {
-                "write": false,
-                "edit": false,
-                "bash": false,
-                "read": true,
-                "grep": true,
-                "list": true,
-                "todowrite": true,
-                "todoread": true,
-                "webfetch": true
-            }
-        },
-        "ship": {
-            "prompt": "You are a code shipper. Focus on deploying code efficiently and securely.",
-            "tools": {
-                "write": true,
-                "edit": true,
-                "bash": true,
-                "read": true,
-                "grep": true,
-                "list": true,
-                "todowrite": true,
-                "todoread": true,
-                "webfetch": true
-            }
-        }
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "tokyonight",
+  "autoupdate": true,
+  "model": "anthropic/claude-opus-4-5",
+  "default_agent": "reader",
+  "tools": {
+    "read": true,
+    "grep": true,
+    "list": true,
+    "todowrite": true,
+    "todoread": true,
+    "webfetch": true
+  },
+  "agent": {
+      "plan": {
+          "disable": true
+      },
+      "build": {
+          "disable": true
+      },
+    "reader": {
+      "description": "Reviews code for best practices and potential issues",
+      "prompt": "You are a code reviewer. Focus on security, performance, and maintainability. Do not edit or change the code, only provide concise feedback",
+      "tools": {
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
     },
-    "agent": {
-        "read-agent": {
-            "description": "Reviews code for best practices and potential issues",
-            "prompt": "You are a code reviewer. Focus on security, performance, and maintainability.",
-            "tools": {
-                "write": false,
-                "edit": false,
-                "bash": false
-            }
-        },
-        "tester": {
-            "description": "Specialized agent for writing comprehensive tests",
-            "prompt": "You are a test writing specialist. Write thorough, maintainable tests.",
-            "tools": {
-                "bash": true,
-                "read": true,
-                "write": true
-            }
-        }
+    "builder": {
+      "description": "Specialized agent for writing comprehensive tests",
+      "prompt": "You are an expert code that writes thorough, maintainable code. You use DRY principles and best practices.",
+      "tools": {
+        "bash": true,
+        "read": true,
+        "write": true
+      }
     },
-    "mcp": {}
+    "org": {
+        "description": "Obsidian Reviewer",
+        "prompt": "You are an expert in reviewing Obsidian notes for clarity, organization, and completeness. Provide constructive feedback to improve the notes without altering their original intent. Suggest changes on tags, aliases or backlinks as needed",
+        "tools": {
+            "read": true,
+            "write": false,
+            "edit": false,
+            "bash": false
+        }
+    }
+  },
+  "mcp": {},
+  "command": {
+    "review-code": {
+      "template": "Review the codebase and suggest changes on improvements without touching the code, focus on missing tests, security vulnerabilities, performance bottlenecks, and maintainability issues.",
+      "description": "Reviews the entire codebase for potential issues and improvements.",
+      "agent": "read-agent",
+    },
+  }
 }
