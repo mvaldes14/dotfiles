@@ -151,6 +151,6 @@ vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", { desc =
 vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", { desc = "Debug Step Over" })
 vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = "Debug Step Out" })
 vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
-vim.keymap.set("n", "<leader>db", "<cmd>DapToogleBreakPoint<cr>", { desc = "Debug Breakpoint" })
+vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug Breakpoint" })
 vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
 vim.keymap.set("n", "<leader>dr", "<cmd>DapToogleRepl<cr> ", { desc = "Debug REPL Toogle" })
