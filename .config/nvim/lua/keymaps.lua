@@ -154,11 +154,3 @@ vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = 
 vim.keymap.set("n", "<leader>db", "<cmd>DapToogleBreakPoint<cr>", { desc = "Debug Breakpoint" })
 vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
 vim.keymap.set("n", "<leader>dr", "<cmd>DapToogleRepl<cr> ", { desc = "Debug REPL Toogle" })
-
--- Obsidian
-vim.keymap.set("n", "<leader>On", "<cmd>Obsidian new_from_template<cr>", { desc = "Obsidian New" })
-vim.keymap.set("n", "<leader>Ot", "<cmd>Obsidian template<cr>", { desc = "Obsidian Template" })
-vim.keymap.set("n", "<leader>Os", "<cmd>Obsidian search<cr>", { desc = "Obsidian Search" })
-vim.keymap.set("n", "<leader>Of", "<cmd>Obsidian quick_switch<cr>", { desc = "Obsidian Find" })
-vim.keymap.set("n", "<leader>OT", "<cmd>Obsidian tags<cr>", { desc = "Obsidian tags" })
-vim.keymap.set("n", "<leader>Od", "<cmd>Obsidian today<cr>", { desc = "Obsidian Today Note" })
