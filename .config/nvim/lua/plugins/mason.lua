@@ -7,7 +7,8 @@ return {
     },
     event = "VeryLazy",
     cond = function()
-        return vim.fn.getenv "NIX_STORE" ~= "/nix/store" -- Do not enable on nix machines
+        -- Disable mason on nix systems (packages managed by nix/home-manager instead)
+        return vim.fn.isdirectory("/nix/store") == 0
     end,
     config = function()
         require("mason").setup()
