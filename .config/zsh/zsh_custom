@@ -16,6 +16,7 @@ export FZF_ALT_C_OPTS="--preview 'eza --tree {} | head -200'"
 
 # Functions
 # Add to PATH for custom locations
-addToPath /Users/$USER/.local/bin
-addToPath /Users/$USER/go/bin
-addToPath /opt/homebrew/bin
+addToPath /Users/$USER/.local/bin/
+addToPath /Users/$USER/go/bin/
+addToPath /opt/homebrew/bin/
+addToPath /Applications/Obsidian.app/Contents/MacOS/
