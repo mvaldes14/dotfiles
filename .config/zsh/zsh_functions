@@ -7,7 +7,7 @@ addToPath() {
 
 # Change AWS Profiles
 awsp() {
-    file=$(cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g')
+    file=$(cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g' | sed 's/^profile //g')
     profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
     if [ -n "$profile" ]; then
         echo "Changing Profile to $profile"
