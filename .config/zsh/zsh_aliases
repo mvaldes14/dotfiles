@@ -13,6 +13,7 @@ alias vwiki="pushd ~/Obsidian/wiki/ && nvim"
 alias cd="z"
 alias smsg="git diff --staged  | opencode run 'Generate a concise and imperative Git commit message do not include any reference to opencode, do not explain it' | git commit -F -''"
 alias kk="k9s"
+alias obs="obsidian"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
