@@ -1,8 +1,5 @@
 -- Options
 local options = {
-  sw = 4,                                    -- Indentation 4 spaces
-  ts = 4,                                    -- same as above
-  et = true,                                 -- same as above
   spell = false,                             -- disable spell check, only needed in markdown files
   spelllang = "en_us",                       -- set spell check language
   backup = false,                            -- creates a backup file

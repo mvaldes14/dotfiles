@@ -11,7 +11,6 @@ alias tf="terraform"
 alias s="doppler run"
 alias vwiki="pushd ~/Obsidian/wiki/ && nvim"
 alias cd="z"
-alias smsg="git diff --staged  | opencode run 'Generate a concise and imperative Git commit message do not include any reference to opencode, do not explain it' | git commit -F -''"
 alias kk="k9s"
 alias obs="obsidian"
 
@@ -19,7 +18,6 @@ alias obs="obsidian"
 alias dot='cd $DOTFILES'
 alias cdr='cd $(find ~/ -maxdepth 3 -type d | fzf --no-preview)'
 alias tmks=~/.local/bin/tmux-sessionkiller.sh
-alias tmkw=~/.local/bin/tmux-windowkiller.sh
 
 # Utilities
 alias cat=bat

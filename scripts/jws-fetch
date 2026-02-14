@@ -16,11 +16,19 @@ for r in us-east-1 ;do
 			        IP:PrivateIpAddress,
 			        State:State.Name
 			}" | sed "s/$/    ${p}_${e}/" > "$dir/$date" &
-			# add profile to end for easy greppin'
-			# link current for other scripts
-			ln -fs "$dir/$date" "$dir/current"
 		done
 	done
 done
 
+# Wait for all background fetches to complete before linking
 wait
+
+# Link current symlinks after all data is fully written
+for r in us-east-1 ;do
+	for p in browse cgraph telemetry; do
+		for e in test stage prod; do
+			dir="/tmp/jws/${r}/${p}/${e}"
+			ln -fs "$dir/$date" "$dir/current"
+		done
+	done
+done

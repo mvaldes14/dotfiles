@@ -63,7 +63,7 @@ get_git_info() {
     if [ -f "$cache_file" ]; then
         local now cache_mtime cache_age
         now=$(date +%s)
-        cache_mtime=$(stat -f %m "$cache_file" 2>/dev/null || stat -c %Y "$cache_file" 2>/dev/null || echo 0)
+        cache_mtime=$(stat -f '%m' "$cache_file" 2>/dev/null) || cache_mtime=$(stat -c '%Y' "$cache_file" 2>/dev/null) || cache_mtime=0
         cache_age=$((now - cache_mtime))
         if [ "$cache_age" -lt 5 ]; then
             cat "$cache_file"
