@@ -5,42 +5,79 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown",
-      "space e": "workspace::ToggleLeftDock"
+      "ctrl-j": "workspace::ActivatePaneDown"
     }
   },
   {
     "context": "Editor",
     "bindings": {
-      // MOVE AND EDIT
       "ctrl-s": "workspace::Save",
+      "ctrl-q": "zed::Quit",
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-]": "pane::ActivateNextItem",
-      "ctrl-[": "pane::ActivatePreviousItem",
+      // Navigate buffers (shift-h/l like BufferLine in nvim)
+      "shift-l": "pane::ActivateNextItem",
+      "shift-h": "pane::ActivatePreviousItem",
+      // LSP
+      "shift-k": "editor::Hover",
+      "g shift-i": "editor::GoToImplementation"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && vim_operator == none && !VimWaiting",
+    "bindings": {
+      // LEADER
+      "space e": "project_panel::ToggleFocus",
       "space s f": "file_finder::Toggle",
       "space space": "tab_switcher::Toggle",
       "space /": "workspace::NewSearch",
       "space t t": "workspace::NewTerminal",
       "space b c": "pane::CloseActiveItem",
+      "space b a": "pane::CloseInactiveItems",
+      "space i": "buffer_search::Dismiss",
+      "space :": "command_palette::Toggle",
+      "space ?": "file_finder::Toggle",
+      // SEARCH
+      "space s g": "workspace::NewSearch",
+      "space s d": "diagnostics::Deploy",
+      "space s h": "editor::ToggleInlayHints",
+      "space d s": "outline::Toggle",
+      // LSP
+      "space r n": "editor::Rename",
+      "space c a": "editor::ToggleCodeActions",
+      "space shift-d": "editor::GoToTypeDefinition",
       // GIT
       "space g b": "git::Blame",
-      // LSP
-      "shift-k": "editor::Hover"
+      "space shift-g": "git_panel::ToggleFocus",
+      "] c": "editor::GoToHunk",
+      "[ c": "editor::GoToPreviousHunk",
+      // AGENT
+      "space o g": "workspace::ToggleRightDock",
+      // ZEN
+      "space shift-z": "workspace::ToggleCenteredLayout",
+      // DEBUG
+      "space d b": "editor::ToggleBreakpoint",
+      "f2": "debugger::StepInto",
+      "f3": "debugger::StepOver",
+      "f4": "debugger::StepOut",
+      "f5": "debugger::Continue"
     }
   },
   {
-    "context": "Editor && vim_mode ==normal && vim_operator == none && !VimWaiting",
+    "context": "ProjectPanel",
     "bindings": {
-      "space G": "git_panel::ToggleFocus"
+      "space e": "workspace::ToggleLeftDock"
     }
   },
   {
     "context": "vim_mode == visual",
     "bindings": {
-      "g s a": ["vim::PushAddSurrounds", {}]
+      "g s a": ["vim::PushAddSurrounds", {}],
+      // Move lines up/down
+      "alt-j": "editor::MoveLineDown",
+      "alt-k": "editor::MoveLineUp"
     }
   }
 ]

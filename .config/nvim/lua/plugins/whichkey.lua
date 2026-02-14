@@ -39,7 +39,6 @@ return {
             { "<leader>f", group = "Find" },     -- group
             { "<leader>s", group = "Search" },   -- group
             { "<leader>g", group = "Git" },      -- group
-            { "<leader>O", group = "Obsidian" }, -- group
             { "<leader>x", group = "Utility" },  -- group
             { "<leader>t", group = "Todoist" },  -- group
             { "<leader>h", group = "Help" },     -- group
