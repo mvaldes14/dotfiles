@@ -1,5 +1,10 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "env": {
+    "CLAUDE_CODE_THEME": "dark",
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1"
+  },
+  "includeCoAuthoredBy": false,
   "permissions": {
     "allow": [
       "Bash(npm run lint)",
@@ -13,14 +18,10 @@
       "Read(./secrets/**)"
     ]
   },
-  "env": {
-    "CLAUDE_CODE_THEME": "dark",
-    "CLAUDE_CODE_ENABLE_TELEMETRY": 1
-  },
   "statusLine": {
     "type": "command",
     "command": "~/git/dotfiles/claude/status_line.sh"
   },
-  "includeCoAuthoredBy": false,
-  "spinnerTipsEnabled": false
+  "spinnerTipsEnabled": false,
+  "model": "sonnet"
 }
