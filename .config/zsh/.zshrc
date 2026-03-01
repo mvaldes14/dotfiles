@@ -16,6 +16,18 @@ source ~/.config/zsh/zsh_options
 source ~/.config/zsh/zsh_custom
 
 eval "$(atuin init zsh)"
+eval "$(direnv hook zsh)"
+
+# Load Vorpal environment
+addToPath "$HOME/.vorpal/bin"
+if command -v vorpal &>/dev/null; then
+    VORPAL_PATH="$(cd "$HOME/git/dotfiles-vorpal" && vorpal build mvaldes --path 2>/dev/null)"
+    if [ -n "$VORPAL_PATH" ]; then
+        bash "$VORPAL_PATH/bin/vorpal-activate"
+        bash "$VORPAL_PATH/bin/vorpal-activate-symlinks"
+        source "$VORPAL_PATH/bin/vorpal-activate-shell"
+    fi
+fi
 
 # Custom Completions and globals
 autoload -Uz compinit && compinit -i
