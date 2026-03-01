@@ -15,5 +15,7 @@ source ~/.config/zsh/zsh_functions
 source ~/.config/zsh/zsh_options
 source ~/.config/zsh/zsh_custom
 
+eval "$(atuin init zsh)"
+
 # Custom Completions and globals
 autoload -Uz compinit && compinit -i
