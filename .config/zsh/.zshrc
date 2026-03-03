@@ -15,8 +15,5 @@ source ~/.config/zsh/zsh_custom
 source ~/.config/zsh/zsh_options
 source ~/.config/zsh/zsh_aliases
 
-eval "$(atuin init zsh)"
-eval "$(direnv hook zsh)"
-
 # Custom Completions and globals
 autoload -Uz compinit && compinit -i

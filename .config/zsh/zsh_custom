@@ -1,15 +1,19 @@
-# Vorpal - Load environment
-VORPAL_PATH="$(cat $HOME/.vorpal/.activated-path 2>/dev/null)"
-source "$VORPAL_PATH/bin/vorpal-activate-shell"
+# Vorpal - Load environment on personal machines
+if [[ $(command -v vorpal) ]]; then
+  VORPAL_PATH="$(cat $HOME/.vorpal/.activated-path 2>/dev/null)"
+  source "$VORPAL_PATH/bin/vorpal-activate-shell"
+  eval "$(atuin init zsh)"
+  eval "$(direnv hook zsh)"
+fi
 
 # Custom
 export no_proxy='*'
-export DOTFILES="$HOME/git/dotfiles" # Dotfiles Location in all machines
-export EDITOR="nvim"                 # EDITOR for everything
-export VISUAL='nvim'                 # GUI editors? No thanks
-export PAGER='cat'                   # For viewing long outputs
-export LANG=en_US.UTF-8              # Language settings
-export LC_ALL=en_US.UTF-8            # Ditto
+export DOTFILES="$HOME/git/dotfiles"                     # Dotfiles Location in all machines
+export EDITOR="nvim"                                     # EDITOR for everything
+export VISUAL='nvim'                                     # GUI editors? No thanks
+export PAGER='cat'                                       # For viewing long outputs
+export LANG=en_US.UTF-8                                  # Language settings
+export LC_ALL=en_US.UTF-8                                # Ditto
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yml" # Lazygigt Config Location
 
 # FZF Settings
@@ -25,7 +29,6 @@ export OTEL_METRICS_EXPORTER=otlp
 export OTEL_LOGS_EXPORTER=otlp
 export OTEL_EXPORTER_OTLP_PROTOCOL=http/json
 export OTEL_EXPORTER_OTLP_ENDPOINT=http://otel.local.net
-
 
 # Functions
 # Add to PATH for custom locations
