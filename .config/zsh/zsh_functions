@@ -1,85 +1,91 @@
 # Add a directory to PATH if it's not already present
 addToPath() {
-    case ":$PATH:" in
-        *":$1:"*) ;;
-        *) export PATH="$PATH:$1" ;;
-    esac
+  case ":$PATH:" in
+  *":$1:"*) ;;
+  *) export PATH="$PATH:$1" ;;
+  esac
 }
 
 # Change AWS Profiles
 awsp() {
-    file=$(cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g' | sed 's/^profile //g')
-    profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
-    if [ -n "$profile" ]; then
-        echo "Changing Profile to $profile"
-        export AWS_PROFILE="$profile"
-        export AWS_DEFAULT_PROFILE="$profile"
-    else
-        echo "No profile selected"
-    fi
+  file=$(cat ~/.aws/config | grep '\[' | sed 's/\[//g' | sed 's/\]//g' | sed 's/^profile //g')
+  profile=$(echo "$file" | fzf --height 40% --layout=reverse --border --preview "echo {}" --preview-window=up:1:hidden)
+  if [ -n "$profile" ]; then
+    echo "Changing Profile to $profile"
+    export AWS_PROFILE="$profile"
+    export AWS_DEFAULT_PROFILE="$profile"
+  else
+    echo "No profile selected"
+  fi
 }
 
 # List open PRs created by the user
 ghpr() {
-    echo "List of open PRs:"
-    PAGER="" gh search prs --author=@me --state open
+  echo "List of open PRs:"
+  PAGER="" gh search prs --author=@me --state open
 }
 
 # Search through Obsidian wiki notes and open the selected note in nvim
 how() {
-    if ! rg --version >/dev/null 2>&1; then
-        echo "ripgrep is not installed"
-    fi
+  if ! rg --version >/dev/null 2>&1; then
+    echo "ripgrep is not installed"
+  fi
 
-    # Check if a search term was provided
-    if [ -z "$1" ]; then
-        echo "Usage: how <search_term>"
-        return 1
-    fi
+  # Check if a search term was provided
+  if [ -z "$1" ]; then
+    echo "Usage: how <search_term>"
+    return 1
+  fi
 
-    local search_term="$1"
-    local wiki_path="$HOME/Obsidian/wiki/"
-    local selected=$(
-        rg --smart-case \
-            --files-with-matches \
-            --vimgrep \
-            --no-messages \
-            -g '*.md' \
-            "$search_term" \
-            $wiki_path | fzf \
-            --preview-window 'bottom:60%,wrap,border:rounded' \
-            --preview \
-            "highlight -O ansi -l {} 2> /dev/null \
+  local search_term="$1"
+  local wiki_path="$HOME/Obsidian/wiki/"
+  local selected=$(
+    rg --smart-case \
+      --files-with-matches \
+      --vimgrep \
+      --no-messages \
+      -g '*.md' \
+      "$search_term" \
+      $wiki_path | fzf \
+      --preview-window 'bottom:60%,wrap,border:rounded' \
+      --preview \
+      "highlight -O ansi -l {} 2> /dev/null \
              | rg --smart-case --colors 'match:bg:yellow' --ignore-case --pretty --no-line-number --no-column --context 10 '$search_term' \
              || rg --smart-case --ignore-case --pretty --no-line-number --no-column --context 10 '$search_term' {}
             "
-    )
-    if [ "$selected" = "" ]; then
-        echo 'no documents found'
-        return 1
-    fi
-    nvim $selected
+  )
+  if [ "$selected" = "" ]; then
+    echo 'no documents found'
+    return 1
+  fi
+  nvim $selected
 }
 
 # Change kubernetes context
 kcc() {
-    kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
+  kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 {print $1}' | fzf --no-preview)
 }
 
 WORK_REPO='signoz/platform-pod'
 
 # List open issues assigned to the user
 gli() {
-    gh issue list --assignee @me --state open -R $WORK_REPO
+  gh issue list --assignee @me --state open -R $WORK_REPO
 }
 
 # Create a new issue and assign it to the user
 gci() {
-    gh issue create -R $WORK_REPO --assignee @me
+  gh issue create -R $WORK_REPO --assignee @me
 }
 
 # Comment on an open issue assigned to the user
 gcu() {
-    issue=$(gh issue list --assignee @me --state open -R $WORK_REPO | fzf --no-preview | awk '{ print $1 }')
-    gh issue comment -R "$WORK_REPO" $issue
+  issue=$(gh issue list --assignee @me --state open -R $WORK_REPO | fzf --no-preview | awk '{ print $1 }')
+  gh issue comment -R "$WORK_REPO" $issue
+}
+
+# Navigation to projects
+cdr() {
+  local dir
+  dir=$(fd . $HOME --max-depth=3 --type=d | fzf --no-preview) && cd "$dir"
 }

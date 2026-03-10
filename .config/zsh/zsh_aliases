@@ -17,7 +17,6 @@ alias vp="vorpal"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
-alias cdr='cd $(fd ~/ -maxdepth 3 -type d | fzf --no-preview)'
 alias tmks=~/.local/bin/tmux-sessionkiller.sh
 
 # Utilities
