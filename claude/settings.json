@@ -18,10 +18,10 @@
       "Read(./secrets/**)"
     ]
   },
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "~/git/dotfiles/claude/status_line.sh"
   },
-  "spinnerTipsEnabled": false,
-  "model": "sonnet"
+  "spinnerTipsEnabled": false
 }
