@@ -2,7 +2,6 @@
 if [[ $(command -v vorpal) ]]; then
   VORPAL_PATH="$(cat $HOME/.vorpal/.activated-path 2>/dev/null)"
   source "$VORPAL_PATH/bin/vorpal-activate-shell"
-  eval "$(atuin init zsh)"
   eval "$(direnv hook zsh)"
 fi
 
@@ -36,3 +35,6 @@ addToPath /Users/$USER/.local/bin/
 addToPath /Users/$USER/go/bin/
 addToPath /opt/homebrew/bin/
 addToPath $HOME/.vorpal/bin
+
+# Load
+eval "$(atuin init zsh)"
