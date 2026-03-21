@@ -1,5 +1,5 @@
 ---
-name: go-dev
+name: godev
 description: >
   PROACTIVELY use this agent for Go development tasks: writing new packages or
   functions, refactoring existing Go code, adding error handling, writing tests,
