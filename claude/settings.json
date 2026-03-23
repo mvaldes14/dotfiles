@@ -10,7 +10,8 @@
       "Bash(npm run lint)",
       "Bash(npm run test *)",
       "Read(~/.zshrc)",
-      "Bash(curl * https://doit.mvaldes.dev/*)"
+      "Bash(curl * https://doit.mvaldes.dev/*)",
+      "Bash(python3 -c *)"
     ],
     "deny": [
       "Read(./.env)",
