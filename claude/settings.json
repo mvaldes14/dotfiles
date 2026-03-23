@@ -9,10 +9,10 @@
     "allow": [
       "Bash(npm run lint)",
       "Bash(npm run test *)",
-      "Read(~/.zshrc)"
+      "Read(~/.zshrc)",
+      "Bash(curl * https://doit.mvaldes.dev/*)"
     ],
     "deny": [
-      "Bash(curl *)",
       "Read(./.env)",
       "Read(./.env.*)",
       "Read(./secrets/**)"
@@ -23,5 +23,47 @@
     "type": "command",
     "command": "~/git/dotfiles/claude/status_line.sh"
   },
-  "spinnerTipsEnabled": false
+  "spinnerTipsEnabled": false,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh PreToolUse"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Stop"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Notification"
+          }
+        ]
+      }
+    ]
+  }
 }

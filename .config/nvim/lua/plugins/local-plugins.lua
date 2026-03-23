@@ -10,6 +10,9 @@ return {
       },
     },
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim"
+  }
   -- {
   --   dir = "~/git/terraform.nvim/",
   --   ft = "terraform",
