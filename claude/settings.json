@@ -11,7 +11,8 @@
       "Bash(npm run test *)",
       "Read(~/.zshrc)",
       "Bash(curl * https://doit.mvaldes.dev/*)",
-      "Bash(python3 -c *)"
+      "Bash(python3 -c *)",
+      "Bash(gws calendar *)"
     ],
     "deny": [
       "Read(./.env)",
@@ -19,12 +20,6 @@
       "Read(./secrets/**)"
     ]
   },
-  "model": "sonnet",
-  "statusLine": {
-    "type": "command",
-    "command": "~/git/dotfiles/claude/status_line.sh"
-  },
-  "spinnerTipsEnabled": false,
   "hooks": {
     "UserPromptSubmit": [
       {
@@ -66,5 +61,10 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/git/dotfiles/claude/status_line.sh"
+  },
+  "spinnerTipsEnabled": false
 }
