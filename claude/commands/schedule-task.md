@@ -74,11 +74,12 @@ Parse the JSON response. Extract the `calendars.primary.busy` array (list of obj
 Use an inline Python script to find available slots. Pass the busy times JSON, duration, and current date/time.
 
 The script should:
-- Working hours: **9:00 AM to 6:00 PM CT, Monday–Friday only**
-- Slot grid: 30-minute intervals (9:00, 9:30, 10:00, ..., 17:30)
+- Available scheduling window: **3:00 PM to 10:00 PM CST, Monday–Friday only** (8am–3pm is blocked for work)
+- Slot grid: 30-minute intervals (15:00, 15:30, 16:00, ..., 21:30)
 - For each potential slot start time in the grid:
   - Compute slot end time = start + duration
-  - If slot end time is past 6:00 PM: skip
+  - If slot end time is past 10:00 PM: skip
+  - If slot start time is before 3:00 PM: skip
   - If slot start time is in the past (before now, today only): skip
   - If slot overlaps any busy interval: skip
   - Otherwise: add to available list
@@ -109,18 +110,18 @@ for b in busy_list:
     busy_intervals.append((start, end))
 
 slots = []
-current = now.replace(hour=9, minute=0, second=0, microsecond=0)
+current = now.replace(hour=15, minute=0, second=0, microsecond=0)
 end_date = now + timedelta(days=7)
 
 while len(slots) < 5 and current < end_date:
     # Skip weekends (weekday >= 5 = Sat/Sun)
     if current.weekday() < 5:
-        # Skip if start time is past 6pm or in the past
-        if current.hour < 18 and (current.date() > now.date() or (current.date() == now.date() and current.time() >= now.time())):
+        # Skip if before 3pm, past 6pm, or in the past
+        if current.hour >= 15 and current.hour < 22 and (current.date() > now.date() or (current.date() == now.date() and current.time() >= now.time())):
             slot_end = current + timedelta(minutes=duration_min)
             
-            # Skip if end is past 6pm
-            if slot_end.hour <= 18:
+            # Skip if end is past 10pm
+            if slot_end.hour <= 22 and (slot_end.hour < 22 or slot_end.minute == 0):
                 # Check for overlap with busy times
                 overlaps = False
                 for busy_start, busy_end in busy_intervals:
@@ -138,7 +139,7 @@ while len(slots) < 5 and current < end_date:
                         "date": current.strftime("%Y-%m-%d"),
                         "start": current.strftime("%H:%M"),
                         "end": slot_end.strftime("%H:%M"),
-                        "display": f"{day_name} {mon_dd}  {start_ampm} – {end_ampm} CT"
+                        "display": f"{day_name} {mon_dd}  {start_ampm} – {end_ampm} CST"
                     })
     
     # Move to next 30-min interval
@@ -148,18 +149,18 @@ print(json.dumps(slots))
 '
 ```
 
-Parse the JSON output. If the array is empty, output: "No available slots in working hours over the next 7 days. Consider a shorter duration or check your calendar." and stop.
+Parse the JSON output. If the array is empty, output: "No available slots between 3pm–10pm over the next 7 days. Consider a shorter duration or check your calendar." and stop.
 
 If fewer than 5 slots are found (but at least 1), note: "Only N slots available in the next 7 days."
 
 Display the slots in a numbered list:
 ```
 Available time slots:
-1. Wednesday Apr 02  9:00 AM – 10:00 AM CT
-2. Wednesday Apr 02  10:30 AM – 11:30 AM CT
-3. Wednesday Apr 02  2:00 PM – 3:00 PM CT
-4. Thursday Apr 03   9:00 AM – 10:00 AM CT
-5. Friday Apr 04     11:00 AM – 12:00 PM CT
+1. Wednesday Apr 02  3:00 PM – 4:00 PM CST
+2. Wednesday Apr 02  3:30 PM – 4:30 PM CST
+3. Wednesday Apr 02  4:00 PM – 5:00 PM CST
+4. Thursday Apr 03   3:00 PM – 4:00 PM CST
+5. Friday Apr 04     3:30 PM – 4:30 PM CST
 ```
 
 **Pause and ask: "Which slot would you like? (enter number 1–N)"**
@@ -172,9 +173,9 @@ Store the chosen slot's `date`, `start`, `end`, and `display` string.
 
 **Create the calendar event via gws:**
 
-Format the slot times as ISO 8601 with CT offset. For April, use `-05:00` (CDT).
+Format the slot times as ISO 8601 using the `America/Chicago` timezone offset for the slot's date (CDT = `-05:00` Mar–Nov, CST = `-06:00` Nov–Mar). Do not hardcode one offset year-round.
 
-Example: slot starting at 9:00 AM on Apr 2 → `2026-04-02T09:00:00-05:00`
+Example: slot starting at 8:00 PM on Apr 7 (CDT) → `2026-04-07T20:00:00-05:00`
 
 Run:
 ```bash
