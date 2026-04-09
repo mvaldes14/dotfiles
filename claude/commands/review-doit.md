@@ -76,8 +76,8 @@ Present the report as a clean markdown document with:
 ## Save Report
 
 After presenting the report, **always** save it as a markdown file:
-- **Path:** `~/Obsidian/wiki/07-Personal/Reviews/YYYY-MM-DD.md` (using today's date)
-- Create the directory if it doesn't exist
+- **Path:** `Personal/YYYY-MM-DD.md` (using today's date, relative to vault root)
+- Use the obsidian CLI: `obsidian create path=Personal/YYYY-MM-DD.md content="..."`
 - After saving, **always** output the full file path so the user knows where to find it
 
 ## Tone

@@ -13,14 +13,19 @@ Retrieve tasks from the doit API at `https://doit.mvaldes.dev`, sync new Obsidia
 **API Base URL:** `https://doit.mvaldes.dev`
 **Auth:** `Authorization: Bearer $TD_API_KEY` (env var)
 **Obsidian Vault:** wiki
-**Projects Base Path:** 01-Projects
-**Project Mapping:**
-- homelab → Homelab
-- dev → Dev
-- signoz → Work
-- youtube → Content
+**Resources Path:** Resources
+**Project Mapping (filename prefix → doit project):**
+- homelab- → Homelab
+- dev- → Dev
+- signoz- → Work
+- youtube- → Content
 
 **Sync Statuses:** backlog, in-progress, todo (skip tasks with status: done)
+
+**GitHub:**
+- Repo: `signoz/platform-pod`
+- Pull open issues assigned to `@me` via `gh issue list`
+- Map to doit project: Work
 
 ---
 
@@ -37,7 +42,7 @@ name: My Task Name
 project: homelab
 due: 2026-03-01
 tags:
-  - pending/homelab
+  - homelab
 ```
 
 ---
@@ -65,18 +70,31 @@ curl -s https://doit.mvaldes.dev/api/tasks \
   -H "Authorization: Bearer $TD_API_KEY"
 ```
 
-### Step 2: Find Obsidian Task Files
+### Step 2: Fetch GitHub Issues
 
-Use the Grep tool to find all markdown files with `kind:` frontmatter under `01-Projects`:
+Run via Bash (mirrors the `gli` alias):
 
+```bash
+gh issue list --assignee @me --state open -R signoz/platform-pod \
+  --json number,title,url,createdAt,updatedAt \
+  --limit 100
 ```
-pattern: "^kind:"
-path: 01-Projects
-glob: **/*.md
-output_mode: files_with_matches
+
+For each issue:
+- **Title:** `[GH-<number>] <title>` — used as doit task title and for dedup
+- **Description:** include the GitHub URL so it's clickable in doit
+- **Project:** Work (resolved via project mapping)
+- **Dedup:** compare lowercased `[GH-<number>]` prefix against existing doit task titles — skip if already present
+
+### Step 3: Find Obsidian Task Files
+
+Use the obsidian CLI to find all markdown files with `kind:` frontmatter under `Resources`:
+
+```bash
+obsidian search query="kind:" path=Resources 2>/dev/null
 ```
 
-### Step 3: Read and Parse Obsidian Tasks
+### Step 4: Read and Parse Obsidian Tasks
 
 For each file found:
 1. Read the file to extract frontmatter
@@ -85,17 +103,18 @@ For each file found:
 4. Skip if status contains `done`
 5. If no `name` field, derive it from the filename (strip date prefix and dashes)
 
-### Step 4: Resolve Project IDs
+### Step 5: Resolve Project IDs
 
 From the `/api/projects` response, build a name → ID map. Use the project mapping above to translate Obsidian folder names to doit project names, then resolve the ID.
 
-### Step 5: Sync New Tasks
+### Step 6: Sync New Tasks
 
-For each Obsidian task **not already in doit** (compare lowercased title against existing task titles):
+For each Obsidian task **or GitHub issue** not already in doit (compare lowercased title against existing task titles):
 
+**For Obsidian tasks:**
 1. Build the Obsidian deep link:
    ```
-   obsidian://open?vault=wiki&file=01-Projects%2F<folder>%2F<filename>.md
+   obsidian://open?vault=wiki&file=Resources%2F<filename>.md
    ```
    (URL-encode path separators and spaces)
 
@@ -114,14 +133,31 @@ curl -s -X POST https://doit.mvaldes.dev/api/tasks \
   }'
 ```
 
-### Step 6: Provide Summary & Analytics
+**For GitHub issues:**
+```bash
+curl -s -X POST https://doit.mvaldes.dev/api/tasks \
+  -H "Authorization: Bearer $TD_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "[GH-<number>] <issue title>",
+    "description": "",
+    "status": "todo",
+    "project_id": "<Work project ID>",
+    "tags": [],
+    "links": [{"label": "GitHub Issue", "url": "<issue URL>"}]
+  }'
+```
+
+### Step 7: Provide Summary & Analytics
 
 After processing, output a structured report:
 
 #### Sync Summary
-- ✅ Tasks added (count + names)
+- ✅ Obsidian tasks added (count + names)
+- ✅ GitHub issues added (count + issue numbers + titles)
 - ⏭️ Tasks skipped — already exist in doit
 - ⏭️ Tasks skipped — status is `done`
+- ⚠️ GitHub issues skipped (if `gh` auth fails or no issues found)
 
 #### Task Analytics (from doit API data)
 - **Today:** count and titles of tasks due today

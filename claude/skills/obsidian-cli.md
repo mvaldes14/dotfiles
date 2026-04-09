@@ -10,6 +10,11 @@ The `obsidian` binary is installed at `/Applications/Obsidian.app/Contents/MacOS
 
 > **Note:** Every invocation prints a loading line to stderr. Pipe output through `2>/dev/null | grep -v "Loading updated"` when showing results to the user.
 
+**When working inside the wiki vault, always prefer obsidian CLI commands over Grep/Glob/Read/Write tools:**
+- Use `obsidian read` instead of the Read tool
+- Use `obsidian create` or `obsidian append` instead of Write/Edit tools
+- Use `obsidian search` or `obsidian files` instead of Grep/Glob
+
 ## Vault
 
 ```bash
@@ -37,19 +42,19 @@ obsidian unresolved format=json
 
 ```bash
 obsidian files                          # all files
-obsidian files folder=01-Projects       # filter by folder
+obsidian files folder=Resources         # filter by folder
 obsidian files ext=md                   # filter by extension
 obsidian files total
 
 obsidian folders
-obsidian folders folder=01-Projects     # sub-folders only
+obsidian folders folder=Resources       # sub-folders only
 ```
 
 ## Search
 
 ```bash
 obsidian search query="kubernetes"
-obsidian search query="kubernetes" path=02-Resources
+obsidian search query="kubernetes" path=Resources
 obsidian search query="kubernetes" limit=20
 obsidian search:context query="flux"    # includes surrounding line context
 ```
@@ -69,7 +74,7 @@ obsidian backlinks file="Dashboard"     # what links TO a file
 obsidian backlinks path=Dashboard.md counts
 
 obsidian links file="Dashboard"         # outgoing links FROM a file
-obsidian links path=01-Projects/homelab/20251218-k8s-lsp.md total
+obsidian links path=Resources/homelab-k8s-lsp.md total
 ```
 
 ## Tasks
@@ -78,7 +83,7 @@ obsidian links path=01-Projects/homelab/20251218-k8s-lsp.md total
 obsidian tasks                          # all tasks in vault
 obsidian tasks todo                     # incomplete only
 obsidian tasks done                     # completed only
-obsidian tasks path=06-Work/2026-02.md  # tasks in a specific file
+obsidian tasks path=Work/2026-02.md     # tasks in a specific file
 obsidian tasks format=json
 ```
 
@@ -86,13 +91,13 @@ obsidian tasks format=json
 
 ```bash
 obsidian read file="20251218-k8s-lsp"   # read by name (fuzzy)
-obsidian read path=01-Projects/homelab/20251218-k8s-lsp.md
+obsidian read path=Resources/homelab-k8s-lsp.md
 
 obsidian append path=<path> content="text"
 obsidian prepend path=<path> content="text"
 
 obsidian create name="new-note" content="..." template="notes"
-obsidian create path=00-Inbox/20260223-new.md content="..."
+obsidian create path=Inbox/20260223-new.md content="..."
 ```
 
 ## Properties / Frontmatter
@@ -102,7 +107,7 @@ obsidian properties                     # all properties in vault
 obsidian properties counts sort=count
 obsidian properties file="note-name"    # properties for one file
 
-obsidian property:read name=status path=01-Projects/homelab/20251218-k8s-lsp.md
+obsidian property:read name=status path=Resources/homelab-k8s-lsp.md
 obsidian property:set name=status value=done path=<path>
 obsidian property:remove name=status path=<path>
 ```
@@ -119,7 +124,7 @@ obsidian outline file="Dashboard" format=json
 
 ### Find all orphans in a specific folder
 ```bash
-obsidian orphans 2>/dev/null | grep "^01-Projects/"
+obsidian orphans 2>/dev/null | grep "^Resources/"
 ```
 
 ### Find all notes tagged with a specific tag
@@ -138,8 +143,13 @@ obsidian tasks done total 2>/dev/null
 obsidian backlinks file="note-name" 2>/dev/null
 ```
 
+### Find notes with a specific frontmatter property
+```bash
+obsidian search query="kind:" path=Resources 2>/dev/null
+```
+
 ## Notes
 - `file=<name>` resolves by name (like wikilinks, fuzzy) — use for convenience
 - `path=<path>` is exact relative path from vault root — use when names are ambiguous
-- Quote values with spaces: `name="My Note"` or `path="06-Work/2026-02.md"`
+- Quote values with spaces: `name="My Note"` or `path="Work/2026-02.md"`
 - Default vault is whichever is active in Obsidian; use `vault=<name>` to target a specific one

@@ -44,6 +44,18 @@ Develop main on a mac but also use windows wsl2.
 
 ## Note-taking / Task Management
 - **Obsidian**: primary notes + projects and knowledge management
+- **Vault path**: `/Users/mvaldes/Obsidian/wiki`
+- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Personal`, `Archive`, `Bases`, `Templates`, `Assets`
+- **Resources naming**: prefix indicates area — `signoz-*`, `homelab-*`, `dev-*`, `youtube-*`; no prefix = general reference
+- **Frontmatter**: every note has `name:` and `tags:`; canonical tags: `go`, `k8s`, `otel`, `nvim`
+- **When to search the vault**: before answering questions about my stack, homelab, projects, or workflows
+- **How to search**: use the `obsidian` CLI (at `/usr/local/bin/obsidian`), not grep
+  - Full-text search: `obsidian search query="<term>"`
+  - Search with context: `obsidian search:context query="<term>"`
+  - Find notes by tag: `obsidian tag name=<tag> verbose`
+  - List all tags: `obsidian tags`
+  - List files: `obsidian files`
+- **Task state lives in doit** (not Obsidian); `Personal/YYYY-MM-DD.md` holds daily reviews
 
 ## Current Focus Areas
 1. SigNoz production deployments — hardening and tuning
