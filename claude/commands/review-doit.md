@@ -75,10 +75,14 @@ Present the report as a clean markdown document with:
 
 ## Save Report
 
-After presenting the report, **always** save it as a markdown file:
-- **Path:** `Personal/YYYY-MM-DD.md` (using today's date, relative to vault root)
-- Use the obsidian CLI: `obsidian create path=Personal/YYYY-MM-DD.md content="..."`
-- After saving, **always** output the full file path so the user knows where to find it
+After presenting the report in chat, save it to the Obsidian vault as a weekly review:
+
+- **Path:** `Personal/weekly-YYYY-MM-DD.md` (use the date of the Friday/end of the current week)
+- Use the obsidian CLI:
+  ```bash
+  /usr/local/bin/obsidian create path="Personal/weekly-YYYY-MM-DD.md" content="..."
+  ```
+- Output the full file path after saving so it's easy to find
 
 ## Tone
 

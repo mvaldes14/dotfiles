@@ -12,7 +12,8 @@
       "Read(~/.zshrc)",
       "Bash(curl*doit.mvaldes.dev*)",
       "Bash(python3 -c *)",
-      "Bash(gws calendar *)"
+      "Bash(gws calendar *)",
+      "Bash(/usr/local/bin/obsidian *)"
     ],
     "deny": [
       "Read(./.env)",
