@@ -19,17 +19,6 @@ Develop main on a mac but also use windows wsl2.
 - **IaC/Config**: Ansible, Nix/home-manager, CUE, Terraform
 - **Languages**: Go (preferred), some Python, Bash
 
-## ClickHouse Context
-- Running SigNoz’s ClickHouse schema
-- Known issues: MEMORY_LIMIT_EXCEEDED errors, stuck merges, background merge pool tuning
-- Familiar with: system.merges, system.metrics, MergeTree internals, thread pool settings
-
-## OTel Collector Context
-- Use both standalone collectors and OTel Operator (OpAMP-managed)
-- Known gotcha: env var syntax differences — Kubernetes-style `$(VAR)` vs OTel-style `${env:VAR}`
-- Prometheus scrape binding issues (0.0.0.0 vs localhost)
-- OpAMP config override behavior
-
 ## Homelab (eva01/2/3/4)
 - k3s multi node cluster
 - FluxCD for GitOps
@@ -57,8 +46,24 @@ Develop main on a mac but also use windows wsl2.
   - List files: `obsidian files`
 - **Task state lives in doit** (not Obsidian); `Personal/YYYY-MM-DD.md` holds daily reviews
 
-## Current Focus Areas
-1. SigNoz production deployments — hardening and tuning
-2. ClickHouse operational stability — merge health, memory pressure
-3. OTel gateway reliability — health checks, BackendConfig
-4. Claude Code agent templates and portable config
+## Knowledge Base
+
+Maintain the fixes log at: `~/Obsidian/wiki/History/{date}.md`
+(Update this path if the vault moves.)
+
+**Log an entry when:**
+- Non-obvious bug resolved (config mismatches, timeout tuning, k8s/infra quirks)
+- Debugging took >30 min and the approach is reusable
+- Something will likely recur (infra drift, version upgrades, known limitations)
+
+**Skip if:** typo/syntax error, one-off with no reuse value, well-documented upstream.
+
+**Format:**
+YYYY-MM-DD | <component> | <title>
+Problem: ...
+Fix: ...
+Why: root cause if known
+Tags: clickhouse, k3s, cilium, otel, signoz, authelia, ...
+
+After logging, confirm with "📝 Logged to history in obsidian".
+At session start, surface any fixes or relevant entries to the current task from the vault
