@@ -10,6 +10,7 @@ description: >
 tools: Read, Bash, Grep, Glob
 model: sonnet
 permissionMode: default
+color: green
 ---
 
 ## Role

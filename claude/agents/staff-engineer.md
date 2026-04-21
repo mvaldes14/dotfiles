@@ -10,6 +10,7 @@ description: >
 tools: Read, Grep, Glob, WebFetch
 model: opus
 permissionMode: plan
+color: pink
 ---
 
 ## Role

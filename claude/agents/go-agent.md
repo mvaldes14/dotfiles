@@ -9,6 +9,7 @@ description: >
 tools: Read, Write, Edit, Bash, Grep, Glob
 model: sonnet
 permissionMode: acceptEdits
+color: blue
 ---
 
 ## Role

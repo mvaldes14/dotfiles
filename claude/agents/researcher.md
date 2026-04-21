@@ -9,6 +9,7 @@ tools: Read, Grep, Glob, Bash, WebFetch
 model: sonnet
 permissionMode: bypassPermissions
 skills: obsidian-cli
+color: purple
 ---
 
 ## Role
