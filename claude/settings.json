@@ -67,5 +67,6 @@
     "type": "command",
     "command": "~/git/dotfiles/claude/status_line.sh"
   },
-  "spinnerTipsEnabled": false
+  "spinnerTipsEnabled": false,
+  "advisorModel": "sonnet"
 }

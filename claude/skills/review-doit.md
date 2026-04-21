@@ -1,5 +1,6 @@
 ---
 description: Reviews all doit tasks for hygiene, prioritization, and actionability
+allowed-tools: Read, Grep, Glob
 ---
 
 Perform a comprehensive review of my tasks in doit (`https://doit.mvaldes.dev`) following productivity best practices. Use `curl` with `Authorization: Bearer $TD_API_KEY` to gather data, then produce an actionable report.

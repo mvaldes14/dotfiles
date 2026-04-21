@@ -1,7 +1,8 @@
 # Global Claude Context
 ## Who I Am
-DevOps/infrastructure engineer focused on observability and coding. I work across AWS/GCP mostly, owner of a homelab running in k3s.
-Develop main on a mac but also use windows wsl2.
+- DevOps/infrastructure engineer focused on observability and coding. 
+- I work across AWS/GCP mostly, owner of a homelab running in k3s.
+- Develop main on a mac but also use windows wsl2.
 
 ## Communication Preferences
 - Be direct and technical — no hand-holding on fundamentals
@@ -23,7 +24,7 @@ Develop main on a mac but also use windows wsl2.
 - k3s multi node cluster
 - FluxCD for GitOps
 - Traefik ingress
-- Running: Grafana, Signoz, Hashicorp Vault, Victoriametrics, Umami, Paperless-ngx, shlink, nocodb, home assistant, etc/
+- Running: Grafana, Signoz, Hashicorp Vault, Victoriametrics, Umami, Paperless-ngx, shlink, nocodb, home assistant, etc.
 
 ## Dev Environment
 - **Mac**: Mac M5 and M4 Pro (primary)
@@ -34,7 +35,7 @@ Develop main on a mac but also use windows wsl2.
 ## Note-taking / Task Management
 - **Obsidian**: primary notes + projects and knowledge management
 - **Vault path**: `/Users/mvaldes/Obsidian/wiki`
-- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Personal`, `Archive`, `Bases`, `Templates`, `Assets`
+- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Personal`, `Archive`, `Bases`, `Templates`, `Assets`, `History`
 - **Resources naming**: prefix indicates area — `signoz-*`, `homelab-*`, `dev-*`, `youtube-*`; no prefix = general reference
 - **Frontmatter**: every note has `name:` and `tags:`; canonical tags: `go`, `k8s`, `otel`, `nvim`
 - **When to search the vault**: before answering questions about my stack, homelab, projects, or workflows
@@ -48,8 +49,7 @@ Develop main on a mac but also use windows wsl2.
 
 ## Knowledge Base
 
-Maintain the fixes log at: `~/Obsidian/wiki/History/{date}.md`
-(Update this path if the vault moves.)
+Maintain the fixes log at: `~/Obsidian/wiki/History/{date}.md`. Date format is `YYYY-MM-DD`
 
 **Log an entry when:**
 - Non-obvious bug resolved (config mismatches, timeout tuning, k8s/infra quirks)
@@ -59,11 +59,10 @@ Maintain the fixes log at: `~/Obsidian/wiki/History/{date}.md`
 **Skip if:** typo/syntax error, one-off with no reuse value, well-documented upstream.
 
 **Format:**
-YYYY-MM-DD | <component> | <title>
+# YYYY-MM-DD | <component> | <title>
 Problem: ...
 Fix: ...
 Why: root cause if known
-Tags: clickhouse, k3s, cilium, otel, signoz, authelia, ...
 
 After logging, confirm with "📝 Logged to history in obsidian".
 At session start, surface any fixes or relevant entries to the current task from the vault
