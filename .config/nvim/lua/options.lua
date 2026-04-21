@@ -14,7 +14,8 @@ local options = {
   winblend = 0,                              -- floating window transparency
   winborder = "single",                      -- floating window border style
   showmode = false,                          -- we don't need to see things like -- INSERT -- anymore
-  showtabline = 2,                           -- always show tabs
+  showtabline = 2,
+  showcmd = true,                        -- always show tabs
   smartindent = true,                        -- make indenting smarter again
   splitbelow = true,                         -- force all horizontal splits to go below current window
   splitright = true,                         -- force all vertical splits to go to the right of current window
@@ -42,7 +43,8 @@ local options = {
   foldexpr = "nvim_treesitter#foldexpr()",   -- use treesitter for folding
   path = "**/*",                             -- search down into subfolders
   pumheight = 15,                            -- popup menu height
-  pumblend = 0,                              -- popup menu transparency
+  pumblend = 0,
+  wildmenu = true,                              -- popup menu transparency
   wildignore = {                             -- ignore files and folders in file completion
     "node_modules",
     ".git/",
