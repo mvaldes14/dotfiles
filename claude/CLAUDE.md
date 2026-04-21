@@ -47,8 +47,18 @@
   - List files: `obsidian files`
 - **Task state lives in doit** (not Obsidian); `Personal/YYYY-MM-DD.md` holds daily reviews
 
-## Knowledge Base
+## Sub-agents
+- For live/interactive k8s debugging, handle directly rather than delegating to the k8s-debugger sub-agent (too slow for active troubleshooting).
+- Use sub-agents only for planning/documentation tasks like migration guides.
 
+## Commits
+- Never run `git commit` or `git push` without explicit user confirmation. Stage changes and summarize, then wait.
+
+## Environment Variables
+- TD_API_KEY must be set before running doit/sync commands. If missing, prompt the user to export it rather than attempting the sync.
+- Check for required env vars at the start of any skill that calls external APIs.
+
+## Knowledge Base
 Maintain the fixes log at: `~/Obsidian/wiki/History/{date}.md`. Date format is `YYYY-MM-DD`
 
 **Log an entry when:**
