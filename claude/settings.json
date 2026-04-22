@@ -70,5 +70,15 @@
   },
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
-  "advisorModel": "opus"
+  "advisorModel": "opus",
+  "mcpServers": {
+    "signoz": {
+      "type": "http",
+      "url": "https://signoz-mcp.int.mvaldes.dev/mcp"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
 }

@@ -33,6 +33,7 @@ else
     fi
 fi
 AGENT_NAME=$(echo "$DATA" | jq -r '.agent.name // empty')
+ACCOUNT_EMAIL=$(jq -r '.oauthAccount.emailAddress // empty' ~/.claude.json 2>/dev/null || true)
 
 # -- Colors --
 
@@ -93,6 +94,16 @@ OUT=""
 
 # Model name
 OUT="${OUT}🤖 ${CYAN}${MODEL}${RESET}"
+
+# Account label (safe for streaming — no email leakage)
+if [ -n "$ACCOUNT_EMAIL" ]; then
+    case "$ACCOUNT_EMAIL" in
+        *gmail*) ACCOUNT_LABEL="Personal"; ACCOUNT_COLOR="$GREEN" ;;
+        *signoz*) ACCOUNT_LABEL="Work"; ACCOUNT_COLOR="$YELLOW" ;;
+        *) ACCOUNT_LABEL="Unknown"; ACCOUNT_COLOR="$DIM" ;;
+    esac
+    OUT="${OUT} ${BOLD}${ACCOUNT_COLOR}(${ACCOUNT_LABEL})${RESET}"
+fi
 
 # Agent name if present
 if [ -n "$AGENT_NAME" ]; then
