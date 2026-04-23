@@ -1,6 +1,6 @@
 auto_sync = true
 search_mode = "fuzzy"
-sync_address = "http://atuin.local.net"
+sync_address = "https://atuin.int.mvaldes.dev"
 sync_frequency = "5m"
 search_mode_shell_up_key_binding = "fuzzy"
 keymap_mode = "vim-insert"

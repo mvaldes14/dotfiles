@@ -59,7 +59,7 @@
 - Check for required env vars at the start of any skill that calls external APIs.
 
 ## Knowledge Base
-Maintain the fixes log at: `~/Obsidian/wiki/History/{date}.md`. Date format is `YYYY-MM-DD`
+Maintain the fixes log at: `~/Obsidian/wiki/Journal/{date}.md`. Date format is `YYYY-MM-DD`
 
 **Log an entry when:**
 - Non-obvious bug resolved (config mismatches, timeout tuning, k8s/infra quirks)
