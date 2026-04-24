@@ -70,15 +70,14 @@
   },
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
-  "advisorModel": "opus",
   "mcpServers": {
     "signoz": {
       "type": "http",
       "url": "https://signoz-mcp.int.mvaldes.dev/mcp"
     },
-    "github": {
+    "doit": {
       "type": "http",
-      "url": "https://api.githubcopilot.com/mcp/"
+      "url": "https://doit-mcp.int.mvaldes.dev/mcp"
     }
   }
 }
