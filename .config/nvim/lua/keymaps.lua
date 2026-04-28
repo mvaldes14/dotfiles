@@ -102,7 +102,6 @@ vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>Floaterm<cr>", { desc = "[T]ogg
 vim.keymap.set({ "n", "v" }, "<leader>Xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
 vim.keymap.set({ "n" }, "<leader>Xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
 vim.keymap.set({ "n" }, "<leader>Xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })
-vim.keymap.set({ "n" }, "<leader>co", "<cmd>ClaudeCode<cr>", { desc = "Claude Code Open" })
 
 -- LSP
 vim.keymap.set(
@@ -155,3 +154,8 @@ vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = 
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug Breakpoint" })
 vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
 vim.keymap.set("n", "<leader>dr", "<cmd>DapToogleRepl<cr> ", { desc = "Debug REPL Toogle" })
+
+
+-- AI
+vim.keymap.set({ "n" }, "<leader>co", "<cmd>ClaudeCode<cr>", { desc = "Claude Code Open" })
+vim.keymap.set({ "v" }, "<leader>cs", "<cmd>ClaudeCodeSend<cr>", { desc = "Claude Code Send" })

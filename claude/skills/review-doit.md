@@ -1,26 +1,18 @@
 ---
 description: Reviews all doit tasks for hygiene, prioritization, and actionability
-allowed-tools: Read, Grep, Glob
+allowed-tools: mcp__doit__list_tasks, mcp__doit__get_today_tasks, mcp__doit__get_overdue_tasks, mcp__doit__list_projects, mcp__doit__update_task, mcp__doit__delete_task, Bash
 ---
 
-Perform a comprehensive review of my tasks in doit (`https://doit.mvaldes.dev`) following productivity best practices. Use `curl` with `Authorization: Bearer $TD_API_KEY` to gather data, then produce an actionable report.
+Perform a comprehensive review of my tasks in doit following productivity best practices. Use the doit MCP tools to gather data, then produce an actionable report.
 
 ## Data Collection
 
-Run all of the following in parallel using Bash:
+Call all of the following in parallel using MCP tools:
 
-1. **All tasks** — `GET /api/tasks` — full task list for counts, status breakdown, and stale detection
-2. **Today's tasks** — `GET /api/tasks/today` — what's due today
-3. **Overdue tasks** — `GET /api/tasks/overdue` — past-due items
-5. **Projects** — `GET /api/projects` — project list with task counts
-
-Example:
-```bash
-curl -s https://doit.mvaldes.dev/api/tasks \
-  -H "Authorization: Bearer $TD_API_KEY"
-```
-
-If `$TD_API_KEY` is not set, stop and ask the user to set it before continuing.
+1. **All tasks** — `mcp__doit__list_tasks` — full task list for counts, status breakdown, and stale detection
+2. **Today's tasks** — `mcp__doit__get_today_tasks` — what's due today
+3. **Overdue tasks** — `mcp__doit__get_overdue_tasks` — past-due items
+4. **Projects** — `mcp__doit__list_projects` — project list with task counts
 
 ## Analysis & Report
 
@@ -72,7 +64,7 @@ Present the report as a clean markdown document with:
 - A **TL;DR** at the top with 3–5 key takeaways
 - Each section with counts and specific task titles/IDs
 - A **Quick Wins** section at the bottom: 3–5 small actions to take right now to improve task hygiene
-- Offer to help execute any recommended changes (reschedule via `PATCH /api/tasks/<id>`, delete via `DELETE /api/tasks/<id>`, etc.)
+- Offer to help execute any recommended changes (reschedule via `mcp__doit__update_task`, delete via `mcp__doit__delete_task`)
 
 ## Save Report
 
