@@ -37,7 +37,7 @@
 - **Vault path**: `/Users/mvaldes/Obsidian/wiki`
 - **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Personal`, `Archive`, `Bases`, `Templates`, `Assets`, `History`
 - **Resources naming**: prefix indicates area — `signoz-*`, `homelab-*`, `dev-*`, `youtube-*`; no prefix = general reference
-- **Frontmatter**: every note has `name:` and `tags:`; canonical tags: `go`, `k8s`, `otel`, `nvim`
+- **Frontmatter**: every note has `name:` and `tags:`; tags must be a YAML list (not comma-separated), e.g. `tags:\n  - go\n  - k8s`; canonical tags: `go`, `k8s`, `otel`, `nvim`
 - **When to search the vault**: before answering questions about my stack, homelab, projects, or workflows
 - **How to search**: use the `obsidian` CLI (at `/usr/local/bin/obsidian`), not grep
   - Full-text search: `obsidian search query="<term>"`
