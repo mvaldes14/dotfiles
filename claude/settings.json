@@ -22,6 +22,7 @@
       "Read(./secrets/**)"
     ]
   },
+  "model": "sonnet[1m]",
   "hooks": {
     "UserPromptSubmit": [
       {
