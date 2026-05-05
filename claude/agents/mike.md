@@ -1,5 +1,5 @@
 ---
-name: staff-engineer
+name: mike 
 description: >
   PROACTIVELY use this agent for high-level technical decisions: system design,
   architecture reviews, API design, RFC or design doc drafting, evaluating

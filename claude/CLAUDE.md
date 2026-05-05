@@ -55,8 +55,8 @@
 - Never run `git commit` or `git push` without explicit user confirmation. Stage changes and summarize, then wait.
 
 ## Environment Variables
-- TD_API_KEY must be set before running doit/sync commands. If missing, prompt the user to export it rather than attempting the sync.
-- Check for required env vars at the start of any skill that calls external APIs.
+- doit is accessed via the `mcp__doit__*` MCP tools — no API key needed.
+- Check for required env vars at the start of any skill that calls external APIs (non-MCP).
 
 ## Knowledge Base
 Maintain the fixes log at: `~/Obsidian/wiki/Journal/{date}.md`. Date format is `YYYY-MM-DD`

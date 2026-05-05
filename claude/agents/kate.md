@@ -1,5 +1,5 @@
 ---
-name: k8s-debugger
+name: kate
 description: >
   PROACTIVELY use this agent to diagnose and fix Kubernetes problems: pods in
   CrashLoopBackOff or Pending state, failed deployments, networking and ingress

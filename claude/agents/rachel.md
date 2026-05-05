@@ -1,5 +1,5 @@
 ---
-name: researcher
+name: rachel 
 description: >
   PROACTIVELY use this agent when the user wants to research a topic and write a summary for said topic.
   Invoke when the user asks "can you explain" or "help me research".
