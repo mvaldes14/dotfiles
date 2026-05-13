@@ -35,9 +35,9 @@
 ## Note-taking / Task Management
 - **Obsidian**: primary notes + projects and knowledge management
 - **Vault path**: `/Users/mvaldes/Obsidian/wiki`
-- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Personal`, `Archive`, `Bases`, `Templates`, `Assets`, `History`
+- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Reviews`, `Logs`, `Archive`, `Bases`, `Templates`, `Assets`, `History`
 - **Resources naming**: prefix indicates area — `signoz-*`, `homelab-*`, `dev-*`, `youtube-*`; no prefix = general reference
-- **Frontmatter**: every note has `name:` and `tags:`; tags must be a YAML list (not comma-separated), e.g. `tags:\n  - go\n  - k8s`; canonical tags: `go`, `k8s`, `otel`, `nvim`
+- **Frontmatter**: every note has `name:`; tags are only used in `Blog/` notes (YAML list, e.g. `tags:\n  - go\n  - k8s`)
 - **When to search the vault**: before answering questions about my stack, homelab, projects, or workflows
 - **How to search**: use the `obsidian` CLI (at `/usr/local/bin/obsidian`), not grep
   - Full-text search: `obsidian search query="<term>"`
@@ -45,7 +45,7 @@
   - Find notes by tag: `obsidian tag name=<tag> verbose`
   - List all tags: `obsidian tags`
   - List files: `obsidian files`
-- **Task state lives in doit** (not Obsidian); `Personal/YYYY-MM-DD.md` holds daily reviews
+- **Task state lives in doit** (not Obsidian); `Reviews/weekly-YYYY-MM-DD.md` holds weekly reviews
 
 ## Sub-agents
 - For live/interactive k8s debugging, handle directly rather than delegating to the k8s-debugger sub-agent (too slow for active troubleshooting).
@@ -59,7 +59,7 @@
 - Check for required env vars at the start of any skill that calls external APIs (non-MCP).
 
 ## Knowledge Base
-Maintain the fixes log at: `~/Obsidian/wiki/Journal/{date}.md`. Date format is `YYYY-MM-DD`
+Maintain the log at: `~/Obsidian/wiki/Logs/{date}.md`. Date format is `YYYY-MM-DD`. Use for fixes, random historical notes, and anything worth preserving from an LLM-assisted debugging session.
 
 **Log an entry when:**
 - Non-obvious bug resolved (config mismatches, timeout tuning, k8s/infra quirks)
@@ -69,10 +69,16 @@ Maintain the fixes log at: `~/Obsidian/wiki/Journal/{date}.md`. Date format is `
 **Skip if:** typo/syntax error, one-off with no reuse value, well-documented upstream.
 
 **Format:**
+```
+---
+name: <short descriptive title>
+type: fix | note | session
+---
 # YYYY-MM-DD | <component> | <title>
 Problem: ...
 Fix: ...
 Why: root cause if known
+```
 
 After logging, confirm with "📝 Logged to history in obsidian".
 At session start, surface any fixes or relevant entries to the current task from the vault
