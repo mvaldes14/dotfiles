@@ -9,10 +9,10 @@ vim.keymap.set({ "n" }, "<leader>i", "<cmd>nohlsearch<cr>", { desc = "Highlight 
 vim.keymap.set({ "n" }, "<leader>:", function()
   Snacks.picker.command_history()
 end, { desc = "Command History" })
-vim.keymap.set({ "n" }, "<leader>hh", function()
+vim.keymap.set({ "n" }, "<leader>Hh", function()
   Snacks.picker.help()
 end, { desc = "Help" })
-vim.keymap.set({ "n" }, "<leader>hk", function()
+vim.keymap.set({ "n" }, "<leader>Hk", function()
   Snacks.picker.keymaps()
 end, { desc = "Keymaps" })
 vim.keymap.set({ "n" }, "<leader>ba", function()
@@ -36,7 +36,6 @@ vim.keymap.set("n", "S", function()
 end, { desc = "Flash Treesitter" })
 -- Copy and Paste without system clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
-vim.keymap.set("n", "<leader>Y", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 
 -- Navigation
@@ -124,9 +123,7 @@ vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", { desc =
 vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", { desc = "Debug Step Over" })
 vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = "Debug Step Out" })
 vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
-vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug Breakpoint" })
-vim.keymap.set("n", "<leader>do", "<cmd>lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
-vim.keymap.set("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", { desc = "Debug REPL Toggle" })
+-- <leader>d* debug maps are registered on session start in plugins/dap.lua
 
 
 -- AI

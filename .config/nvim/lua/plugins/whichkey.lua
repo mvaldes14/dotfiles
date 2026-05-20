@@ -41,8 +41,8 @@ return {
       { "<leader>g", group = "Git" },           -- group
       { "<leader>x", group = "Diagnostics" },   -- group (trouble)
       { "<leader>r", group = "Go" },            -- group (buffer-local in Go files)
-      { "<leader>h", group = "Help" },          -- group
-      { "<leader>H", group = "Harpoon" },       -- group
+      { "<leader>h", group = "Harpoon" },       -- group
+      { "<leader>H", group = "Help" },          -- group
       { "<leader>o", group = "Obsidian" },      -- group
       { "<leader>X", group = "DB" },            -- group
       { "<leader>b", group = "Buffer" },        -- group

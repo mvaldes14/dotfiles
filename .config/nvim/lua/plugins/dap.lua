@@ -93,17 +93,33 @@ return {
             },
         }
 
-        -- Open UI on Debug
+        -- Session-only leader keymaps (hidden from which-key when no session is live)
+        local function set_session_keys()
+            vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "[Dbg] Breakpoint" })
+            vim.keymap.set("n", "<leader>do", "<cmd>lua require'dapui'.toggle()<cr>", { desc = "[Dbg] UI Toggle" })
+            vim.keymap.set("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", { desc = "[Dbg] REPL Toggle" })
+        end
+
+        local function del_session_keys()
+            pcall(vim.keymap.del, "n", "<leader>db")
+            pcall(vim.keymap.del, "n", "<leader>do")
+            pcall(vim.keymap.del, "n", "<leader>dr")
+        end
+
+        -- Open UI + bind keys on session start; close + unbind on end
         dap.listeners.after.event_initialized["dapui_config"] = function()
             dap_ui.open()
+            set_session_keys()
         end
 
         dap.listeners.before.event_terminated["dapui_config"] = function()
             dap_ui.close()
+            del_session_keys()
         end
 
         dap.listeners.before.event_exited["dapui_config"] = function()
             dap_ui.close()
+            del_session_keys()
         end
     end,
 }
