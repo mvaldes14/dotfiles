@@ -48,15 +48,6 @@ M.check_file = function(path)
   return true
 end
 
----@description: Checks if the current system is my work computer
----@return boolean
-M.check_work = function()
-  if vim.fn.hostname() == "m5-pro.local.net" then
-    return true
-  end
-  return false
-end
-
 ---@description: Open a floating terminal
 M.float_term = function()
   if not vim.api.nvim_win_is_valid(state.win) then

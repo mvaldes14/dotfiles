@@ -1,5 +1,0 @@
-return {
-  settings = {
-    telemetryLevel = "all",
-  },
-}

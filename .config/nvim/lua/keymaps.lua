@@ -36,20 +36,12 @@ vim.keymap.set("n", "S", function()
 end, { desc = "Flash Treesitter" })
 -- Copy and Paste without system clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
-vim.keymap.set(
-  { "n", "v", "x" },
-  "<leader>Y",
-  '"+yy',
-  { noremap = true, silent = true, desc = "Yank line to clipboard" }
-)
+vim.keymap.set("n", "<leader>Y", '"+yy', { noremap = true, silent = true, desc = "Yank line to clipboard" })
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 
 -- Navigation
 vim.keymap.set({ "n" }, "<leader>E", "<cmd>Oil --float <cr>", { desc = "Oil Float" })
-vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
-vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
-vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
-vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
+-- <C-hjkl> for window/tmux nav is handled by nvim-tmux-navigation
 vim.keymap.set("v", "<", "<gv", opts)
 vim.keymap.set("v", ">", ">gv", opts)
 -- Move text up and down
@@ -98,31 +90,12 @@ vim.keymap.set({ "n" }, "]c", "<cmd>Gitsigns next_hunk<cr>", { desc = "[Git] Nex
 vim.keymap.set({ "n" }, "<leader>Z", function()
   Snacks.zen()
 end, { desc = "Zen Mode" })
-vim.keymap.set({ "n", "t" }, "<leader>tt", "<cmd>Floaterm<cr>", { desc = "[T]oggle Term" })
+vim.keymap.set({ "n", "t" }, "<leader>tt", function()
+  require("helper").float_term()
+end, { desc = "[T]oggle Term" })
 vim.keymap.set({ "n", "v" }, "<leader>Xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
 vim.keymap.set({ "n" }, "<leader>Xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
 vim.keymap.set({ "n" }, "<leader>Xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })
-
--- LSP
-vim.keymap.set(
-  { "n" },
-  "<leader>sh",
-  "<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<cr>",
-  { desc = "[S]how Inlay Hints" }
-)
-vim.keymap.set({ "n" }, "<leader>rn", vim.lsp.buf.rename, { desc = "LSP:[R]ename" })
-vim.keymap.set({ "n" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP:[C]ode [A]ction" })
-vim.keymap.set({ "n" }, "<leader>e", vim.diagnostic.open_float, { desc = "LSP:Show diagnostic [E]rror messages" })
-vim.keymap.set({ "n" }, "gd", vim.lsp.buf.definition, { desc = "LSP:[G]oto [D]efinition" })
-vim.keymap.set({ "n" }, "gr", function()
-  Snacks.picker.lsp_references()
-end, { desc = "LSP:[G]oto [R]eferences" })
-vim.keymap.set({ "n" }, "gI", vim.lsp.buf.implementation, { desc = "LSP:[G]oto [I]mplementation" })
-vim.keymap.set({ "n" }, "<leader>D", vim.lsp.buf.type_definition, { desc = "LSP:Type [D]efinition" })
-vim.keymap.set({ "n" }, "<leader>ds", function()
-  Snacks.picker.lsp_symbols()
-end, { desc = "LSP: [D]ocument [S]ymbols" })
-vim.keymap.set({ "n" }, "K", vim.lsp.buf.hover, { desc = "Hover Documentation" })
 
 --Snacks
 vim.keymap.set({ "n" }, "<leader>?", function()
@@ -152,8 +125,8 @@ vim.keymap.set("n", "<F3>", "<cmd> lua require('dap').step_over()<cr>", { desc =
 vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = "Debug Step Out" })
 vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
 vim.keymap.set("n", "<leader>db", "<cmd>DapToggleBreakpoint<cr>", { desc = "Debug Breakpoint" })
-vim.keymap.set("n", "<leader>do", "<cmd> lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
-vim.keymap.set("n", "<leader>dr", "<cmd>DapToogleRepl<cr> ", { desc = "Debug REPL Toogle" })
+vim.keymap.set("n", "<leader>do", "<cmd>lua require'dapui'.toggle()<cr>", { desc = "Debug UI Toggle" })
+vim.keymap.set("n", "<leader>dr", "<cmd>DapToggleRepl<cr>", { desc = "Debug REPL Toggle" })
 
 
 -- AI

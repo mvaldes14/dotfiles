@@ -2,7 +2,6 @@ return {
   "NStefan002/screenkey.nvim",
   cmd = "Screenkey",
   version = "*",
-  lazy = false,
   config = function()
     require("screenkey").setup {
       win_opts = {

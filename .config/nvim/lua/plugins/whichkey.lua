@@ -39,9 +39,11 @@ return {
       { "<leader>f", group = "Find" },          -- group
       { "<leader>s", group = "Search" },        -- group
       { "<leader>g", group = "Git" },           -- group
-      { "<leader>x", group = "Utility" },       -- group
-      { "<leader>t", group = "Todoist" },       -- group
+      { "<leader>x", group = "Diagnostics" },   -- group (trouble)
+      { "<leader>r", group = "Go" },            -- group (buffer-local in Go files)
       { "<leader>h", group = "Help" },          -- group
+      { "<leader>H", group = "Harpoon" },       -- group
+      { "<leader>o", group = "Obsidian" },      -- group
       { "<leader>X", group = "DB" },            -- group
       { "<leader>b", group = "Buffer" },        -- group
       { "<leader>c", group = "Claude" },        -- group

@@ -32,17 +32,25 @@ return {
 
         local tools = {
             "stylua",
+            "selene",
+            "luacheck",
+            "gofumpt",
+            "goimports",
+            "golangci-lint",
+            "gotests",
+            "iferr",
+            "impl",
+            "gomodifytags",
+            "delve",
             "black",
             "prettier",
             "yamlfmt",
-            "revive",
             "pylint",
             "ansible-lint",
-            "luacheck",
             "cfn-lint",
             "tfsec",
-            "revive",
             "yamllint",
+            "shfmt",
         }
         require("mason-tool-installer").setup {
             ensure_installed = tools,

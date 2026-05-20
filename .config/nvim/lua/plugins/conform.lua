@@ -29,26 +29,14 @@ return {
           "prettierd",
         },
         go = {
-          "gofmt",
           "goimports",
+          "gofumpt",
         },
         templ = {
           "templ",
         },
-        ruby = {
-          "rubocop",
-        },
-        yaml = {
-          "yamlfmt",
-        },
-        chef = {
-          "rubocop",
-        },
         sh = {
           "shfmt",
-        },
-        nix = {
-          "alejandra",
         },
         python = {
           "ruff",
@@ -63,8 +51,8 @@ return {
           "jsonnetfmt",
         },
         cue = {
-          "cue_fmt"
-        }
+          "cue_fmt",
+        },
       },
     }
   end,

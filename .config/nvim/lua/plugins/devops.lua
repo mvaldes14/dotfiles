@@ -1,9 +1,5 @@
 return {
   {
-    -- YAML Companion for Kubernetes and other YAML files
-    "mosheavni/yaml-companion.nvim",
-  },
-  {
     -- Terraform plugin
     "mvaldes14/terraform.nvim",
     ft = "terraform",
