@@ -7,17 +7,21 @@ return {
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "markdown",
       callback = function(ev)
-        -- Defer + pcall: otter walks treesitter nodes on activation; if the
-        -- parser hasn't built a tree yet (e.g. empty buffer), node:range()
-        -- fails. Defer to next tick and swallow errors silently.
-        vim.schedule(function()
+        vim.defer_fn(function()
           if not vim.api.nvim_buf_is_valid(ev.buf) then
             return
           end
+          local ok_p, parser = pcall(vim.treesitter.get_parser, ev.buf, "markdown")
+          if not ok_p or not parser then
+            return
+          end
+          pcall(function()
+            parser:parse(true)
+          end)
           pcall(function()
             require("otter").activate { "go", "python", "lua", "bash", "yaml", "json" }
           end)
-        end)
+        end, 50)
       end,
     })
   end,

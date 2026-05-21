@@ -10,7 +10,6 @@ return {
     keymap = {
       preset = "default",
       ["<C-y>"] = {
-        "select_and_accept",
         function()
           local ok, preview = pcall(require, "supermaven-nvim.completion_preview")
           if ok and preview.has_suggestion() then
@@ -18,6 +17,7 @@ return {
             return true
           end
         end,
+        "select_and_accept",
         "fallback",
       },
       ["<C-]>"] = {

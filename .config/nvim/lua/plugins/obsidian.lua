@@ -17,11 +17,23 @@ return {
     daily_notes = {
       folder = "Logs",
       date_format = "%Y-%m-%d",
+      template = nil,
     },
-    new_notes_location = "current_dir",
+    notes_subdir = "Inbox",
+    new_notes_location = "notes_subdir",
+    templates = {
+      folder = "Templates",
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+    },
+    frontmatter = {
+      enabled = function(fname)
+        return fname:match("^Logs/") == nil
+      end,
+    },
   },
   keys = {
-    { "<leader>on", "<cmd>Obsidian new<cr>", desc = "Obsidian: New" },
+    { "<leader>on", "<cmd>Obsidian new_from_template<cr>", desc = "Obsidian: New from template" },
     { "<leader>oo", "<cmd>Obsidian search<cr>", desc = "Obsidian: Search" },
     { "<leader>of", "<cmd>Obsidian quick_switch<cr>", desc = "Obsidian: Find note" },
     { "<leader>oh", "<cmd>Obsidian follow_link<cr>", desc = "Obsidian: Follow link" },
