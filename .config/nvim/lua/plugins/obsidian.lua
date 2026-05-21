@@ -27,8 +27,9 @@ return {
       time_format = "%H:%M",
     },
     frontmatter = {
-      enabled = function(fname)
-        return fname:match("^Logs/") == nil
+      enabled = true,
+      func = function(note)
+        return { name = note.title }
       end,
     },
   },
