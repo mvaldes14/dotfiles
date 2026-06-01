@@ -4,42 +4,12 @@ return {
     "rafamadriz/friendly-snippets",
     "mikavilpas/blink-ripgrep.nvim",
     "Kaiser-Yang/blink-cmp-git",
+    "Huijiro/blink-cmp-supermaven",
   },
   version = "1.*",
   opts = {
     keymap = {
       preset = "default",
-      ["<C-y>"] = {
-        function()
-          local ok, preview = pcall(require, "supermaven-nvim.completion_preview")
-          if ok and preview.has_suggestion() then
-            preview.on_accept_suggestion()
-            return true
-          end
-        end,
-        "select_and_accept",
-        "fallback",
-      },
-      ["<C-]>"] = {
-        function()
-          local ok, preview = pcall(require, "supermaven-nvim.completion_preview")
-          if ok and preview.has_suggestion() then
-            preview.on_dispose_inlay()
-            return true
-          end
-        end,
-        "fallback",
-      },
-      ["<C-j>"] = {
-        function()
-          local ok, preview = pcall(require, "supermaven-nvim.completion_preview")
-          if ok and preview.has_suggestion() then
-            preview.on_accept_suggestion_word()
-            return true
-          end
-        end,
-        "fallback",
-      },
     },
     appearance = {
       nerd_font_variant = "mono",
@@ -58,12 +28,17 @@ return {
       enabled = false,
     },
     sources = {
-      default = { "buffer", "lazydev", "lsp", "path", "snippets", "ripgrep", "git" },
+      default = { "lsp", "path", "supermaven", "snippets", "buffer", "lazydev", "ripgrep", "git" },
       providers = {
         lazydev = {
           name = "LazyDev",
           module = "lazydev.integrations.blink",
           score_offset = 100,
+        },
+        supermaven = {
+          name = "supermaven",
+          module = "blink-cmp-supermaven",
+          async = true,
         },
         ripgrep = {
           module = "blink-ripgrep",

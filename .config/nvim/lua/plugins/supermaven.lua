@@ -4,8 +4,9 @@ return {
   config = function()
     require("supermaven-nvim").setup {
       ignore_filetypes = { "snacks_dashboard", "TelescopePrompt", "oil" },
-      disable_inline_completion = false,
-      disable_keymaps = true, -- handled in blink config so <C-y> can accept either
+      disable_inline_completion = true, -- consumed by blink via blink-cmp-supermaven
+      disable_keymaps = true,
+      log_level = "off",
     }
   end,
 }

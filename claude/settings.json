@@ -80,5 +80,8 @@
       "type": "http",
       "url": "https://doit-mcp.int.mvaldes.dev/mcp"
     }
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
   }
 }

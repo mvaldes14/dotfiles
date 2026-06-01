@@ -35,7 +35,8 @@
 ## Note-taking / Task Management
 - **Obsidian**: primary notes + projects and knowledge management
 - **Vault path**: `/Users/mvaldes/Obsidian/wiki`
-- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Reviews`, `Logs`, `Archive`, `Bases`, `Templates`, `Assets`, `History`
+- **Folder layout**: `Inbox`, `Resources` (flat, all topic notes), `Blog`, `Web`, `Work`, `Reviews`, `Logs`, `Archive`, `Templates`, `Assets`
+- **Dashboards**: root-level `.base` files (`Main.base`, `Blog.base`, `Customers.base`, `OKRs.base`) — query views, not notes. **Ignore them when inventorying or searching content.**
 - **Resources naming**: prefix indicates area — `signoz-*`, `homelab-*`, `dev-*`, `youtube-*`; no prefix = general reference
 - **Frontmatter**: every note has `name:`; tags are only used in `Blog/` notes (YAML list, e.g. `tags:\n  - go\n  - k8s`)
 - **When to search the vault**: before answering questions about my stack, homelab, projects, or workflows

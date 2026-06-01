@@ -8,7 +8,7 @@ Perform a monthly journal review for the current month. Read all source material
 
 Run all of the following reads in parallel:
 
-1. **Work journal** — read `~/Obsidian/wiki/06-Work/YYYY-MM.md` for the current month
+1. **Work journal** — read `~/Obsidian/wiki/Work/YYYY-MM.md` for the current month
 
 Use today's date to determine the correct month.
 
@@ -32,7 +32,7 @@ Write the summary in plain prose and short lists. Do not use horizontal rules (`
 
 ## Write the Summary
 
-Edit `~/Obsidian/wiki/06-Work/YYYY-MM.md` to replace the `# Summary` section content. Specifically, replace the placeholder comment:
+Edit `~/Obsidian/wiki/Work/YYYY-MM.md` to replace the `# Summary` section content. Specifically, replace the placeholder comment:
 
 ```
 <!-- End-of-month reflection: wins, blockers, learnings -->

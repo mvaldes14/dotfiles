@@ -1,9 +1,9 @@
 ---
 description: Reviews all doit tasks for hygiene, prioritization, and actionability
-allowed-tools: mcp__doit__list_tasks, mcp__doit__get_today_tasks, mcp__doit__get_overdue_tasks, mcp__doit__list_projects, mcp__doit__update_task, mcp__doit__delete_task, Bash
+allowed-tools: mcp__doit__list_tasks, mcp__doit__get_today_tasks, mcp__doit__get_overdue_tasks, mcp__doit__list_projects, mcp__doit__update_task, mcp__doit__delete_task
 ---
 
-Perform a comprehensive review of my tasks in doit following productivity best practices. Use the doit MCP tools to gather data, then produce an actionable report.
+Perform a comprehensive review of my tasks in doit following productivity best practices. Use the doit MCP tools to gather data, then give me pointers in chat I can action on. Do NOT save the report anywhere — output to chat only.
 
 ## Data Collection
 
@@ -65,17 +65,6 @@ Present the report as a clean markdown document with:
 - Each section with counts and specific task titles/IDs
 - A **Quick Wins** section at the bottom: 3–5 small actions to take right now to improve task hygiene
 - Offer to help execute any recommended changes (reschedule via `mcp__doit__update_task`, delete via `mcp__doit__delete_task`)
-
-## Save Report
-
-After presenting the report in chat, save it to the Obsidian vault as a weekly review:
-
-- **Path:** `Personal/weekly-YYYY-MM-DD.md` (use the date of the Friday/end of the current week)
-- Use the obsidian CLI:
-  ```bash
-  /usr/local/bin/obsidian create path="Personal/weekly-YYYY-MM-DD.md" content="..."
-  ```
-- Output the full file path after saving so it's easy to find
 
 ## Tone
 
