@@ -1,3 +1,8 @@
+---
+name: youtube-script
+description: Write a complete YouTube video script and supporting metadata (titles, description, chapters) in Spanish from a given topic. Use when the user asks for a YouTube script.
+---
+
 # YouTube Script Writer Skill
 
 When given a topic, write a complete YouTube video script and supporting metadata following the rules below.

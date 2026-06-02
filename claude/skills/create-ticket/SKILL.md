@@ -1,3 +1,8 @@
+---
+name: create-ticket
+description: Create a well-structured GitHub issue in SigNoz/platform-pod following team templates and label conventions. Use when the user wants to open or draft a ticket/issue for platform-pod.
+---
+
 # Create GitHub Issue — SigNoz platform-pod
 
 Help the user create a well-structured GitHub issue in `SigNoz/platform-pod` following team templates and label conventions. Walk through the steps below in order.

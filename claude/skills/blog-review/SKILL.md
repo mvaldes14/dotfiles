@@ -1,3 +1,8 @@
+---
+name: blog-review
+description: Evaluate a blog post draft against the blog's criteria and return structured, actionable feedback without rewriting it. Use when the user shares a draft post or asks for a blog review.
+---
+
 # Blog Post Review Skill
 
 When given a blog post draft, evaluate it using the criteria below and return structured feedback. Do not rewrite the post — give actionable guidance so the author can improve it in their own voice.
