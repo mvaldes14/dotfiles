@@ -58,6 +58,23 @@ After collecting data, produce a structured report with these sections:
 - Compare against total open tasks (todo + doing) — are you keeping up?
 - Note any trends (all done tasks in one project? others neglected?)
 
+### 9. OKR Progress (Content project)
+Most Content-project tasks contribute to the current quarter's OKRs via tag conventions. Reconcile OKR progress with completed Content tasks.
+
+**Tag conventions:** short form, no `kr-` prefix — `video`, `blog`, `stream`. If any Content task is still tagged `kr-video`, `kr-blog`, or `kr-stream`, rename it in place via `mcp__doit__update_task` before computing progress, and call out the migration in the report.
+
+1. Find the active OKR file: `/Users/mvaldes/Obsidian/wiki/Resources/okr-YYYY-qN.md` for the current quarter (today is in Q2 → `okr-2026-q2.md`). Read it to get the `key_results` list and tag → kr-id mapping (defined in the "doit tag conventions" section).
+2. From the full task list, filter to tasks where `project` matches the **Content** project and `status == "done"`. Only count tasks completed in the current quarter (use `updated_at`/`completed_at` if present; if unavailable, count all `done` tasks in Content and note the caveat).
+3. Bucket done tasks by tag (`video` → `kr-video`, `blog` → `kr-blog`, `stream` → kr-stream). A task with no matching tag is reported separately as "untagged Content done tasks — won't update OKRs".
+4. For each KR, compare the new computed `progress` against the value currently in the OKR file's frontmatter. Show a diff table: `KR | current progress | computed progress | delta`.
+5. If there are changes, update the OKR file in place using the Edit tool:
+   - Update each KR's `progress:` field in the YAML frontmatter
+   - Update the matching row in the markdown progress table
+   - Re-evaluate `status:` (on-track / at-risk / off-track) based on `progress/target` and time remaining in the quarter; only change it if clearly warranted, and call out the change in the report
+6. Report what was updated (or "no changes — OKRs already in sync") in the review output. Include the path of the OKR file edited.
+
+If no active OKR file exists for the current quarter, skip this section and flag it as a quick win ("create OKR file for current quarter").
+
 ## Output Format
 
 Present the report as a clean markdown document with:
