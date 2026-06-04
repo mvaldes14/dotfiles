@@ -1,5 +1,5 @@
 theme = tokyonight
-font-family = JetBrains Mono
+font-family = JetBrainsMono Nerd Font Mono
 font-size = 20
 background-opacity = 0.98
 window-decoration = auto

@@ -15,6 +15,7 @@ $nodejs\
 $rust\
 $lua\
 $aws\
+$status\
 \n$character
 """
 
@@ -36,7 +37,7 @@ symbol = " "
 
 [aws]
 format = "[$symbol($profile )]($style)"
-symbol = "☁️ "
+symbol = "☁ "
 style = "bold yellow"
 force_display = false
 
@@ -45,17 +46,17 @@ symbol = " "
 format = "[$symbol$branch(:$remote_branch)]($style) "
 
 [git_status]
-conflicted = "🏳"
+conflicted = "="
 ahead = "⇡"
-behind = "😰"
-diverged = "😵"
+behind = "⇣"
+diverged = "⇕"
 up_to_date = "✓"
 untracked = "?"
-stashed = "📦"
+stashed = "$"
 modified = "!"
 staged = '[++\($count\)](green)'
 renamed = "»"
-deleted = "🗑"
+deleted = "✘"
 
 [golang]
 symbol = " "
@@ -63,6 +64,7 @@ format = '[$symbol($version )]($style)'
 
 [python]
 pyenv_version_name = false
+symbol = " "
 format = '[$symbol($version )]($style)'
 detect_extensions = ["py"]
 
@@ -74,26 +76,37 @@ format = "[$symbol($version )]($style)"
 detect_variables = []
 
 [terraform]
-format = '[💠 $version]($style) '
+symbol = "⬡ "
+format = '[$symbol($version )]($style)'
 disabled = false
 detect_folders = ['.terraform']
 
 [nodejs]
-format = '[$version](bold green) '
+symbol = ' '
+format = '[$symbol($version )](bold green)'
 disabled = false
 detect_files = ['package.json', 'package-lock.json', 'yarn.lock', 'pnpm-lock.yaml']
 
 [rust]
-format = '[⚙️$version](red bold)'
+symbol = " "
+format = '[$symbol($version )](red bold)'
 
 [lua]
-format = '[🌕$version](bold white)'
+symbol = " "
+format = '[$symbol($version )](bold white)'
 
 [kubernetes]
-format = '[⛵($cluster)](dimmed green) '
+symbol = "☸ "
+format = '[$symbol$context](dimmed green) '
 disabled = false
 detect_files = []
 
 [helm]
-format = '[⎈ $version](bold white) '
+symbol = "⎈ "
+format = '[$symbol($version )](bold white)'
+
+[status]
+disabled = false
+format = '[$status]($style) '
+style = "bold red"
 
