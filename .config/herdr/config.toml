@@ -80,11 +80,12 @@ command = "~/.local/bin/tmux-sessionizer.sh"
 # - clipboard/base-index/escape-time/history-limit/theme/plugins: not keymaps.
 
 [theme]
-name = "tokyo-night"
+name = "terminal"
 auto_switch = false
 
 [ui.toast]
-delivery = "herdr"
+delivery = "terminal"
 
 [ui]
 show_agent_labels_on_pane_borders = true
+sidebar_width = 20
