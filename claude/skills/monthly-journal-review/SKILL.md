@@ -2,15 +2,17 @@
 description: Synthesizes weekly reviews and work journal into a monthly summary
 ---
 
-Perform a monthly journal review for the current month. Read all source material, synthesize it, and write the summary directly into the existing month file — no new files.
+Perform a monthly journal review for the **last completed month**. Read all source material, synthesize it, and write the summary directly into the existing month file — no new files.
 
 ## Data Collection
 
 Run all of the following reads in parallel:
 
-1. **Work journal** — read `~/Obsidian/wiki/Work/YYYY-MM.md` for the current month
+1. **Work journal** — read `~/Obsidian/wiki/Work/YYYY-MM.md` for the target month
 
-Use today's date to determine the correct month.
+Determine the target month from today's date: the review targets the **previous** calendar month (e.g. if today is in July, review June). This is because the current month is usually still in progress and sparse. In January, the target is December of the prior year.
+
+If the target month's file is empty or missing meaningful entries, tell the user and ask whether to review a different month instead of writing an empty summary.
 
 ## Synthesis
 

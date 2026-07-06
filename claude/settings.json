@@ -1,10 +1,79 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "effortLevel": "high",
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
   "env": {
-    "CLAUDE_CODE_THEME": "dark",
-    "CLAUDE_CODE_ENABLE_TELEMETRY": "1"
+    "CLAUDE_CODE_ENABLE_TELEMETRY": "1",
+    "CLAUDE_CODE_THEME": "dark"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Notification",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh PreToolUse",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '/Users/mvaldes/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Stop",
+            "type": "command"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh UserPromptSubmit",
+            "type": "command"
+          }
+        ]
+      }
+    ]
   },
   "includeCoAuthoredBy": false,
+  "mcpServers": {
+    "doit": {
+      "type": "http",
+      "url": "https://doit-mcp.int.mvaldes.dev/mcp"
+    },
+    "signoz": {
+      "type": "http",
+      "url": "https://signoz-mcp.int.mvaldes.dev/mcp"
+    }
+  },
+  "model": "opus[1m]",
   "permissions": {
     "allow": [
       "Bash(helm show *)",
@@ -22,67 +91,10 @@
       "Read(./secrets/**)"
     ]
   },
-  "model": "opus[1m]",
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh UserPromptSubmit"
-          }
-        ]
-      }
-    ],
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh PreToolUse"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Stop"
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Notification"
-          }
-        ]
-      }
-    ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "~/git/dotfiles/claude/status_line.sh"
-  },
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
-  },
   "spinnerTipsEnabled": false,
-  "effortLevel": "high",
-  "mcpServers": {
-    "signoz": {
-      "type": "http",
-      "url": "https://signoz-mcp.int.mvaldes.dev/mcp"
-    },
-    "doit": {
-      "type": "http",
-      "url": "https://doit-mcp.int.mvaldes.dev/mcp"
-    }
+  "statusLine": {
+    "command": "~/git/dotfiles/claude/status_line.sh",
+    "type": "command"
   },
   "tui": "fullscreen"
 }

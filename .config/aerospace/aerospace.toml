@@ -19,7 +19,7 @@ automatically-unhide-macos-hidden-apps = true
     outer.right =      0
 [mode.main.binding]
     alt-w = 'layout tiles horizontal vertical'
-    alt-s = 'layout accordion vertical'
+    alt-s = 'layout accordion horizontal vertical'
     alt-f = 'fullscreen'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
