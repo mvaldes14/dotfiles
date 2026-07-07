@@ -6,8 +6,7 @@ return {
       python = { "ruff" },
       ansible = { "ansible_lint" },
       lua = { "luacheck" },
-      cf = { "cfn_lint" },
-      terraform = { "tfsec" },
+      terraform = { "tflint" },
       go = { "golangcilint" },
       yaml = { "yamllint" },
     }

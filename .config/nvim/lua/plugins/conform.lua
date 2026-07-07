@@ -4,7 +4,7 @@ return {
     require("conform").setup {
       format_on_save = {
         timeout_ms = 500,
-        lsp_fallback = true,
+        lsp_fallback = false,
       },
       formatters_by_ft = {
         ansible = {
@@ -17,16 +17,19 @@ return {
           "jq",
         },
         javascript = {
-          "prettier",
           "prettierd",
+          "prettier",
+          stop_after_first = true,
         },
         typescript = {
-          "prettier",
           "prettierd",
+          "prettier",
+          stop_after_first = true,
         },
         html = {
-          "prettier",
           "prettierd",
+          "prettier",
+          stop_after_first = true,
         },
         go = {
           "goimports",
@@ -53,6 +56,7 @@ return {
         cue = {
           "cue_fmt",
         },
+        yaml = {},
       },
     }
   end,

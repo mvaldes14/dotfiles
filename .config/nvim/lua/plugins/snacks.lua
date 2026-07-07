@@ -23,6 +23,10 @@ return {
     },
     picker = {
       enabled = true,
+      sources = {
+        files = { hidden = true, ignored = true },
+        smart = { hidden = true, ignored = true },
+      },
     },
     toggle = {
       enabled = true,

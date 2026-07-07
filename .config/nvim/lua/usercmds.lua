@@ -26,7 +26,3 @@ end, {})
 --   require("conform").format { async = true, lsp_fallback = true, range = range }
 -- end, { range = true })
 
-vim.api.nvim_create_user_command("Floaterm", function()
-  local utils = require "helper"
-  utils.float_term()
-end, {})

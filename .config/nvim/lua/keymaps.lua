@@ -34,7 +34,7 @@ end, { desc = "Flash" })
 vim.keymap.set("n", "S", function()
   require("flash").treesitter()
 end, { desc = "Flash Treesitter" })
--- Copy and Paste without system clipboard
+-- Copy and Paste with the system clipboard
 vim.keymap.set({ "n", "v", "x" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to clipboard" })
 vim.keymap.set({ "n", "v", "x" }, "<leader>p", '"+p', { noremap = true, silent = true, desc = "Paste from clipboard" })
 
@@ -66,7 +66,6 @@ vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 
 -- Git
 vim.keymap.set({ "n" }, "<leader>g?", "<cmd>Git<cr>", { desc = "Git" })
-vim.keymap.set({ "n" }, "<leader>gg", "<cmd>Neogit<cr>", { desc = "NeoGit" })
 vim.keymap.set({ "n" }, "<leader>G", function()
   Snacks.lazygit()
 end, { desc = "LazyGit" })
@@ -76,12 +75,7 @@ vim.keymap.set(
   "<cmd>Gitsigns toggle_current_line_blame<cr>",
   { desc = "[Git] Toggle Blame Line" }
 )
-vim.keymap.set(
-  { "n" },
-  "<leader>gp",
-  "<cmd>Gitsigns preview_hunk_inline<cr>",
-  { desc = "[Git] Preview Hunk Inline" }
-)
+vim.keymap.set({ "n" }, "<leader>gp", "<cmd>Gitsigns preview_hunk_inline<cr>", { desc = "[Git] Preview Hunk Inline" })
 vim.keymap.set({ "n" }, "[c", "<cmd>Gitsigns prev_hunk<cr>", { desc = "[Git] Previous Hunk" })
 vim.keymap.set({ "n" }, "]c", "<cmd>Gitsigns next_hunk<cr>", { desc = "[Git] Next Hunk" })
 
@@ -89,9 +83,6 @@ vim.keymap.set({ "n" }, "]c", "<cmd>Gitsigns next_hunk<cr>", { desc = "[Git] Nex
 vim.keymap.set({ "n" }, "<leader>Z", function()
   Snacks.zen()
 end, { desc = "Zen Mode" })
-vim.keymap.set({ "n", "t" }, "<leader>tt", function()
-  require("helper").float_term()
-end, { desc = "[T]oggle Term" })
 vim.keymap.set({ "n", "v" }, "<leader>Xx", "<cmd>lua require('kulala').run()<cr>", { desc = "Execute Request" })
 vim.keymap.set({ "n" }, "<leader>Xc", "<cmd>DB<cr>", { desc = "Connect to DB" })
 vim.keymap.set({ "n" }, "<leader>Xd", "<cmd>DBUIToggle<cr>", { desc = "DB Toggle UI" })
@@ -104,9 +95,12 @@ vim.keymap.set({ "n" }, "<leader><space>", function()
   Snacks.picker()
 end, { desc = "[S]how pickers " })
 vim.keymap.set({ "n" }, "<leader>sf", function()
-  Snacks.picker.smart()
+  Snacks.picker.files()
 end, { desc = "[S]earch [F]iles" })
-vim.keymap.set({ "v" }, "<leader>sw", function()
+vim.keymap.set({ "n" }, "<leader>ss", function()
+  Snacks.picker.smart()
+end, { desc = "[S]earch [S]mart" })
+vim.keymap.set({ "n", "v" }, "<leader>sw", function()
   Snacks.picker.grep_word()
 end, { desc = "[S]earch current [W]ord" })
 vim.keymap.set({ "n" }, "<leader>sg", function()
@@ -116,7 +110,6 @@ vim.keymap.set({ "n" }, "<leader>sd", function()
   Snacks.picker.diagnostics()
 end, { desc = "[S]how Diagnostics" })
 
-
 -- DAP
 vim.keymap.set("n", "<F1>", "<cmd> lua require('dap').step_back()<cr>", { desc = "Debugger Step Back" })
 vim.keymap.set("n", "<F2>", "<cmd> lua require('dap').step_into()<cr>", { desc = "Debug Into" })
@@ -125,7 +118,32 @@ vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = 
 vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
 -- <leader>d* debug maps are registered on session start in plugins/dap.lua
 
-
 -- AI
 vim.keymap.set({ "n" }, "<leader>co", "<cmd>ClaudeCode<cr>", { desc = "Claude Code Open" })
 vim.keymap.set({ "v" }, "<leader>cs", "<cmd>ClaudeCodeSend<cr>", { desc = "Claude Code Send" })
+
+-- YAML
+vim.keymap.set("n", "<leader>F", function()
+  if vim.bo.filetype ~= "yaml" and vim.bo.filetype ~= "yml" then
+    vim.notify("Not a yaml buffer", vim.log.levels.WARN)
+    return
+  end
+
+  local bufnr = vim.api.nvim_get_current_buf()
+  local client = vim.lsp.get_clients({ bufnr = bufnr, name = "yamlls" })[1]
+  if not client then
+    vim.notify("yamlls not attached", vim.log.levels.WARN)
+    return
+  end
+
+  client.settings.yaml.format.enable = true
+  client:notify("workspace/didChangeConfiguration", { settings = client.settings })
+  vim.lsp.buf.format {
+    bufnr = bufnr,
+    filter = function(c)
+      return c.name == "yamlls"
+    end,
+  }
+  client.settings.yaml.format.enable = false
+  client:notify("workspace/didChangeConfiguration", { settings = client.settings })
+end, { desc = "Format current buffer with yamlls" })

@@ -9,10 +9,6 @@ return {
     workspaces = {
       { name = "wiki", path = "/Users/mvaldes/Obsidian/wiki" },
     },
-    completion = {
-      blink = true,
-      min_chars = 2,
-    },
     ui = { enable = false }, -- render-markdown handles rendering
     daily_notes = {
       folder = "Logs",

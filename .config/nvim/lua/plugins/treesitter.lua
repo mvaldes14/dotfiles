@@ -89,8 +89,8 @@ return {
       vim.keymap.set({ "n", "x", "o" }, "[M", function() move.goto_previous_end("@function.outer", "textobjects") end)
       vim.keymap.set({ "n", "x", "o" }, "[]", function() move.goto_previous_end("@class.outer", "textobjects") end)
 
-      vim.keymap.set("n", "<leader>a", function() swap.swap_next("@parameter.inner") end)
-      vim.keymap.set("n", "<leader>A", function() swap.swap_previous("@parameter.inner") end)
+      vim.keymap.set("n", "<leader>a", function() swap.swap_next("@parameter.inner") end, { desc = "Swap param next" })
+      vim.keymap.set("n", "<leader>A", function() swap.swap_previous("@parameter.inner") end, { desc = "Swap param prev" })
     end,
   },
   {

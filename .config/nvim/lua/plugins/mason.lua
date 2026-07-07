@@ -1,3 +1,6 @@
+-- On nix systems packages are managed by nix/home-manager, so mason is disabled entirely.
+local is_nix = vim.fn.isdirectory("/nix/store") == 1
+
 return {
     "williamboman/mason.nvim",
     dependencies = {
@@ -6,10 +9,7 @@ return {
         "jay-babu/mason-nvim-dap.nvim",
     },
     event = "VeryLazy",
-    cond = function()
-        -- Disable mason on nix systems (packages managed by nix/home-manager instead)
-        return vim.fn.isdirectory("/nix/store") == 0
-    end,
+    cond = not is_nix,
     config = function()
         require("mason").setup()
         local work_lsp = {
@@ -21,6 +21,11 @@ return {
             "ts_ls",
             "yamlls",
             "jsonls",
+            "helm_ls",
+            "pyright",
+            "jsonnet_ls",
+            "templ",
+            "marksman",
         }
 
         local dap_adapters = {
@@ -31,9 +36,10 @@ return {
         }
 
         local tools = {
+            -- lua
             "stylua",
-            "selene",
             "luacheck",
+            -- go
             "gofumpt",
             "goimports",
             "golangci-lint",
@@ -42,19 +48,24 @@ return {
             "impl",
             "gomodifytags",
             "delve",
-            "black",
+            -- python
+            "ruff",
+            -- web / json
             "prettier",
+            "prettierd",
+            "jq",
+            -- yaml / ansible
             "yamlfmt",
-            "pylint",
-            "ansible-lint",
-            "cfn-lint",
-            "tfsec",
             "yamllint",
+            "ansible-lint",
+            -- terraform
+            "tflint",
+            -- shell
             "shfmt",
         }
         require("mason-tool-installer").setup {
             ensure_installed = tools,
-            run_on_start = false,
+            run_on_start = true,
         }
 
         require("mason-nvim-dap").setup {

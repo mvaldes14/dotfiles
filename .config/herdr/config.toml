@@ -1,3 +1,4 @@
+onboarding = false
 # herdr configuration
 # Keymaps ported from ~/.config/tmux/tmux.conf
 # Concept mapping: tmux window -> herdr tab, tmux session -> herdr workspace.
