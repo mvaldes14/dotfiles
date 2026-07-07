@@ -1,0 +1,7 @@
+k9s:
+  ui:
+    headless: true
+    logoless: true
+    crumbsless: false
+    noIcons: false
+    skin: oxocarbon
