@@ -13,6 +13,9 @@ return {
         enable = false,
       },
       schemas = {
+        ["https://raw.githubusercontent.com/SigNoz/foundry/main/api/v1alpha1/installation/casting.schema.json"] = {
+          "casting.yaml",
+        },
         ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.34.1-standalone/all.json"] = {
           "**/*yaml",
         },
