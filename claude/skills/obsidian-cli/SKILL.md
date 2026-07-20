@@ -6,150 +6,72 @@ tags:
 ---
 # Obsidian CLI
 
-The `obsidian` binary is installed at `/Applications/Obsidian.app/Contents/MacOS/obsidian` and is also available as `obsidian` on PATH. Always use it for vault queries instead of grep/glob when a dedicated command exists.
+The `obsidian` CLI is on PATH (`/usr/local/bin/obsidian`). Always use it for vault queries instead of grep/glob/Read/Write when a dedicated command exists.
 
-> **Note:** Every invocation prints a loading line to stderr. Pipe output through `2>/dev/null | grep -v "Loading updated"` when showing results to the user.
+> Every invocation prints a loading line to stderr. Pipe through `2>/dev/null` when showing results to the user.
 
-**When working inside the wiki vault, always prefer obsidian CLI commands over Grep/Glob/Read/Write tools:**
-- Use `obsidian read` instead of the Read tool
-- Use `obsidian create` or `obsidian append` instead of Write/Edit tools
-- Use `obsidian search` or `obsidian files` instead of Grep/Glob
+**Inside the wiki vault, prefer these over the generic tools:**
+- `obsidian read` instead of Read
+- `obsidian create` / `obsidian append` instead of Write/Edit
+- `obsidian search` / `obsidian files` instead of Grep/Glob
 
-## Vault
+Most commands accept `total` (count only), `format=json`, and `verbose` modifiers.
+
+## Finding Files
+
+Prefer full-text content search and filename/prefix matching. The vault has few tags (only `Blog/` notes use them), so **do not rely on tag search** to locate files.
 
 ```bash
-obsidian vault                  # show vault name, path, file/folder counts
-obsidian vaults                 # list all known vaults
+obsidian search query="kubernetes"              # full-text content search
+obsidian search query="kubernetes" path=Resources limit=20
+obsidian search:context query="flux"            # with surrounding lines
+```
+
+`obsidian files` only filters by `folder=` and `ext=` — there is no name/glob flag. To find files by area prefix (`signoz-*`, `homelab-*`, `dev-*`, `youtube-*`), pipe to grep:
+
+```bash
+obsidian files folder=Resources 2>/dev/null | grep '^Resources/signoz-'   # by area prefix
+obsidian files 2>/dev/null | grep -i 'clickhouse'                          # by name substring
+obsidian files folder=Resources ext=md                                     # all Resources notes
 ```
 
 ## Vault Health
 
 ```bash
-obsidian orphans                # files with NO incoming links
-obsidian orphans total          # count only
-obsidian orphans all            # include non-markdown files
-
-obsidian deadends               # files with NO outgoing links
-obsidian deadends total
-
-obsidian unresolved             # broken wikilinks
-obsidian unresolved total
-obsidian unresolved verbose     # include source files
-obsidian unresolved format=json
+obsidian orphans          # files with NO incoming links
+obsidian deadends         # files with NO outgoing links
+obsidian unresolved       # broken wikilinks (add verbose for source files)
 ```
 
-## Files & Folders
+## Links & Tasks
 
 ```bash
-obsidian files                          # all files
-obsidian files folder=Resources         # filter by folder
-obsidian files ext=md                   # filter by extension
-obsidian files total
-
-obsidian folders
-obsidian folders folder=Resources       # sub-folders only
+obsidian backlinks file="Dashboard"      # what links TO a file
+obsidian links file="Dashboard"          # outgoing links FROM a file
+obsidian tasks todo                       # incomplete tasks (done / path=<file> to filter)
+obsidian tags                             # rarely useful — tags exist only in Blog/ notes
 ```
 
-## Search
+## Read & Write Notes
 
 ```bash
-obsidian search query="kubernetes"
-obsidian search query="kubernetes" path=Resources
-obsidian search query="kubernetes" limit=20
-obsidian search:context query="flux"    # includes surrounding line context
-```
-
-## Tags
-
-```bash
-obsidian tags                           # all tags in vault
-obsidian tags counts sort=count         # sorted by frequency
-obsidian tags file="20251218-k8s-lsp"  # tags for a specific note
-```
-
-## Backlinks & Links
-
-```bash
-obsidian backlinks file="Dashboard"     # what links TO a file
-obsidian backlinks path=Dashboard.md counts
-
-obsidian links file="Dashboard"         # outgoing links FROM a file
-obsidian links path=Resources/homelab-k8s-lsp.md total
-```
-
-## Tasks
-
-```bash
-obsidian tasks                          # all tasks in vault
-obsidian tasks todo                     # incomplete only
-obsidian tasks done                     # completed only
-obsidian tasks path=Work/2026-02.md     # tasks in a specific file
-obsidian tasks format=json
-```
-
-## Reading & Writing Notes
-
-```bash
-obsidian read file="20251218-k8s-lsp"   # read by name (fuzzy)
+obsidian read file="20251218-k8s-lsp"    # fuzzy by name
 obsidian read path=Resources/homelab-k8s-lsp.md
-
 obsidian append path=<path> content="text"
 obsidian prepend path=<path> content="text"
-
-obsidian create name="new-note" content="..." template="notes"
-obsidian create path=Inbox/20260223-new.md content="..."
+obsidian create path=Inbox/20260223-new.md content="..." template="notes"
 ```
 
-## Properties / Frontmatter
+## Frontmatter
 
 ```bash
-obsidian properties                     # all properties in vault
-obsidian properties counts sort=count
-obsidian properties file="note-name"    # properties for one file
-
-obsidian property:read name=status path=Resources/homelab-k8s-lsp.md
+obsidian properties file="note-name"                        # props on one file
+obsidian property:read name=status path=<path>
 obsidian property:set name=status value=done path=<path>
 obsidian property:remove name=status path=<path>
 ```
 
-## Aliases & Outlines
-
-```bash
-obsidian aliases verbose                # all aliases + file paths
-obsidian outline file="Dashboard"       # heading tree
-obsidian outline file="Dashboard" format=json
-```
-
-## Common Workflows
-
-### Find all orphans in a specific folder
-```bash
-obsidian orphans 2>/dev/null | grep "^Resources/"
-```
-
-### Find all notes tagged with a specific tag
-```bash
-obsidian search query="#homelab" 2>/dev/null
-```
-
-### Count tasks by status across the vault
-```bash
-obsidian tasks todo total 2>/dev/null
-obsidian tasks done total 2>/dev/null
-```
-
-### Check a note's backlinks before deleting
-```bash
-obsidian backlinks file="note-name" 2>/dev/null
-```
-
-### Find notes with a specific frontmatter property
-```bash
-obsidian search query="kind:" path=Resources 2>/dev/null
-```
-
 ## Notes
-- `file=<name>` resolves by name (like wikilinks, fuzzy) — use for convenience
-- `path=<path>` is exact relative path from vault root — use when names are ambiguous
-- Quote values with spaces: `name="My Note"` or `path="Work/2026-02.md"`
-- Default vault is whichever is active in Obsidian; use `vault=<name>` to target a specific one
+- `file=<name>` resolves fuzzily (like wikilinks); `path=<path>` is exact from vault root — use it when names are ambiguous.
+- Quote values with spaces: `path="Work/2026-02.md"`.
+- Default vault is whichever is active in Obsidian; use `vault=<name>` to target another.

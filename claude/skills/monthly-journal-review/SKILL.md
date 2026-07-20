@@ -1,5 +1,5 @@
 ---
-description: Synthesizes weekly reviews and work journal into a monthly summary
+description: Synthesizes the work journal into a monthly summary
 ---
 
 Perform a monthly journal review for the **last completed month**. Read all source material, synthesize it, and write the summary directly into the existing month file — no new files.
