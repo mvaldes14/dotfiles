@@ -17,6 +17,7 @@ resize_mode = "prefix+shift+r"
 new_tab = "prefix+t"
 next_tab = "prefix+tab"
 cycle_pane_next = ""
+last_pane = "prefix+l"
 
 new_workspace = "prefix+n"
 workspace_picker = "prefix+o"
