@@ -113,17 +113,9 @@
     "command": "~/git/dotfiles/claude/status_line.sh"
   },
   "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true,
-    "tmux-agent-sidebar@hiroppy": true
+    "gopls-lsp@claude-plugins-official": true
   },
-  "extraKnownMarketplaces": {
-    "hiroppy": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/mvaldes/.tmux/plugins/tmux-agent-sidebar"
-      }
-    }
-  },
+  "extraKnownMarketplaces": {},
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
   "tui": "fullscreen",
