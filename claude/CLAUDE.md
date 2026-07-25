@@ -46,6 +46,7 @@
   - Find notes by tag: `obsidian tag name=<tag> verbose`
   - List all tags: `obsidian tags`
   - List files: `obsidian files`
+  - **The Obsidian app must be running** for the CLI to respond. If a command fails, check `pgrep -x Obsidian` before assuming the CLI is broken — report which it is, don't silently fall back to `rg`.
 - **Task state lives in doit** (not Obsidian); `Reviews/weekly-YYYY-MM-DD.md` holds weekly reviews
 
 ## Sub-agents
