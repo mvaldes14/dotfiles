@@ -39,12 +39,7 @@ name = "terminal"
 auto_switch = false
 
 [theme.custom]
-# surface0 = selected sidebar row + tab bg; keep it dark.
-# Alts: purple80 #491d8b, magenta80 #740937, green70 #0e6027, blue80 #002d9c
-surface0 = "#005d5d" # oxocarbon teal70
-
-[ui.toast]
-delivery = "terminal"
+surface0 = "#005d5d"
 
 [ui]
 show_agent_labels_on_pane_borders = true
@@ -52,3 +47,12 @@ sidebar_width = 20
 sidebar_collapsed_mode = "hidden"
 prompt_new_tab_name = false
 pane_gaps = false
+accent = "red"
+agent_panel_sort = "priority"
+
+[ui.toast]
+delivery = "terminal"
+
+[ui.sidebar.agents]
+row_gap = 1
+rows = [["state_icon", "workspace"], ["agent"]]
