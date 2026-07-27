@@ -89,3 +89,9 @@ cdr() {
   local dir
   dir=$(fd . $HOME --max-depth=3 --type=d | fzf --no-preview) && cd "$dir"
 }
+
+# Format YAML with canonical k8s field ordering via primus kyaml
+kyaml() {
+  local primus="$HOME/git/work/primus"
+  PRIMUS_HOME="$primus" make -f "$primus/src/make/main.mk" kyaml-fmt KYAML_SRC="${1:-.}"
+}

@@ -1,11 +1,28 @@
 ---
 name: blog-review
-description: Evaluate a blog post draft against the blog's criteria and return structured, actionable feedback without rewriting it. Use when the user shares a draft post or asks for a blog review.
+description: Evaluate a blog post draft against the blog's criteria and return structured, actionable feedback without rewriting it. Use when the user shares a draft post or asks for a blog review. Takes the post as an argument — a path, a note slug, a fuzzy title, or the pasted draft itself.
+argument-hint: [path | note-slug | title]
 ---
 
 # Blog Post Review Skill
 
-When given a blog post draft, evaluate it using the criteria below and return structured feedback. Do not rewrite the post — give actionable guidance so the author can improve it in their own voice.
+Evaluate a blog post draft using the criteria below and return structured feedback. Do not rewrite the post — give actionable guidance so the author can improve it in their own voice.
+
+---
+
+## Input
+
+The post to review comes from the skill argument: `$ARGUMENTS`
+
+Resolve it in this order:
+
+1. **Absolute or relative path** (`/Users/mvaldes/Obsidian/wiki/Blog/foo.md`, `Blog/foo.md`) — read it directly.
+2. **Bare note name or slug** (`what-is-an-fde`, `what-is-an-fde.md`) — read `/Users/mvaldes/Obsidian/wiki/Blog/<slug>.md`. If that path doesn't exist, locate it with `obsidian files | grep -i <slug>` and read the match.
+3. **Fuzzy title or topic** (`the FDE post`, `latest draft`) — list candidates with `ls -lt /Users/mvaldes/Obsidian/wiki/Blog/`, pick the obvious match, and state which file you chose. If two or more are plausible, ask before reviewing.
+4. **Pasted draft text** — if the argument is the post body itself (multi-line, prose), review it as-is with no file read.
+5. **No argument** — if the conversation already contains a draft, review that. Otherwise show the five most recent files in `Blog/` and ask which one.
+
+Always name the file you reviewed at the top of your output. Read the whole file — including frontmatter — before reviewing; `tags:` and `name:` are part of the SEO check.
 
 ---
 
@@ -63,6 +80,8 @@ When given a blog post draft, evaluate it using the criteria below and return st
 ## Output Format
 
 ```
+**Reviewing:** `<path to the file reviewed>`
+
 ## Overall Impression
 [2–4 sentences. Is this ready to publish, close, or needs work? Be direct.]
 
