@@ -67,31 +67,10 @@ Modern Lua-based configuration using Lazy.nvim with:
 - SSH helpers and navigation tools
 
 
-# Brew Install list
-awscli
-bat
-cloudlens
-cue
-eza
-fd
-fzf
-gh
-go
-go-task
-helm
-helmfile
-k9s
-lazygit
-neovim
-nvm
-opencode
-ripgrep
-starship
-stern
-tfenv
-tmux
-tmux-fingers
-tree
-uv
-wget
-zoxide
+## Homebrew
+
+Install the macOS dependencies with:
+
+```sh
+brew bundle --file Brewfile
+```

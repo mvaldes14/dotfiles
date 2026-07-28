@@ -1,6 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "theme": "tokyonight",
   "autoupdate": true,
   "model": "anthropic/claude-opus-4-5",
   "default_agent": "reader",
@@ -30,7 +29,7 @@
     },
     "builder": {
       "description": "Specialized agent for writing comprehensive tests",
-      "prompt": "You are an expert code that writes thorough, maintainable code. You use DRY principles and best practices.",
+      "prompt": "You are an expert coder that writes thorough, maintainable code. You use DRY principles and best practices.",
       "tools": {
         "bash": true,
         "read": true,
@@ -53,7 +52,7 @@
     "review-code": {
       "template": "Review the codebase and suggest changes on improvements without touching the code, focus on missing tests, security vulnerabilities, performance bottlenecks, and maintainability issues.",
       "description": "Reviews the entire codebase for potential issues and improvements.",
-      "agent": "read-agent",
+      "agent": "reader",
     },
   }
 }

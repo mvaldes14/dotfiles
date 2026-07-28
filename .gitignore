@@ -1,12 +1,26 @@
+# Python
 .ropeproject
-*tempt.txt*
-.vscode
 *.pyc
+
+# Editor
+.vscode
+
+# Temp files
+*tempt.txt*
 *.retry
+*.bak
+
+# Shell
 .zcompdump*
 .zsh_history
 .zsh_sessions
-lazy-lock.json
+
+# Nix
 flake.lock
 .direnv
+
+# Node
+**/node_modules/
+
+# macOS
 .DS_Store

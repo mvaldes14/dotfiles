@@ -2,37 +2,75 @@ onboarding = false
 # herdr config — keymaps ported from tmux. Apply edits with: herdr server reload-config
 
 [keys]
-prefix = "ctrl+space"
-
-split_vertical = "prefix+v"
-split_horizontal = "prefix+h"
 close_pane = "prefix+w"
-
-focus_pane_left = "ctrl+h"
-focus_pane_down = "ctrl+j"
-focus_pane_up = "ctrl+k"
-focus_pane_right = "ctrl+l"
-resize_mode = "prefix+shift+r"
-
-new_tab = "prefix+t"
-next_tab = "prefix+tab"
-cycle_pane_next = ""
-last_pane = "prefix+l"
-
-new_workspace = "prefix+n"
-workspace_picker = "prefix+o"
+detach = "prefix+ctrl+d"
+focus_agent = "prefix+ctrl+1..9"
 goto = "prefix+s"
-navigate_workspace_up = "j"
-navigate_workspace_down = "k"
-
+last_pane = "prefix+l"
+navigate_workspace_down = "j"
+navigate_workspace_up = "k"
+new_tab = "prefix+t"
+new_workspace = "prefix+n"
+next_agent = "prefix+ctrl+n"
+next_tab = "prefix+tab"
+open_notification_target = "prefix+g"
+prefix = "ctrl+space"
+previous_agent = "prefix+ctrl+p"
 reload_config = "prefix+r"
-detach = "prefix+d"
 rename_tab = "prefix+,"
+resize_mode = "prefix+shift+r"
+settings = "prefix+shift+s"
+split_horizontal = "prefix+h"
+split_vertical = "prefix+v"
+switch_workspace = "prefix+shift+1..9"
+workspace_picker = "prefix+o"
 
 [[keys.command]]
 key = "prefix+f"
 type = "pane"
 command = "~/.local/bin/herdr-sessionizer.sh"
+
+[[keys.command]]
+key = "prefix+shift+f"
+type = "plugin_action"
+command = "fullerzz.sesh.open-picker"
+description = "Sesh picker"
+
+[[keys.command]]
+key = "prefix+u"
+type = "plugin_action"
+command = "usagebar.open-limits"
+description = "Agent Usage: open limits pane"
+
+[[keys.command]]
+key = "prefix+m"
+type = "plugin_action"
+command = "usagebar.refresh"
+description = "Agent Usage: refresh sidebar meters"
+
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "vim-herdr-navigation.left"
+description = "navigate left (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "vim-herdr-navigation.down"
+description = "navigate down (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "vim-herdr-navigation.up"
+description = "navigate up (vim/herdr)"
+
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "vim-herdr-navigation.right"
+description = "navigate right (vim/herdr)"
 
 [theme]
 name = "terminal"
@@ -43,16 +81,21 @@ surface0 = "#005d5d"
 
 [ui]
 show_agent_labels_on_pane_borders = true
-sidebar_width = 20
+sidebar_width = 26
 sidebar_collapsed_mode = "hidden"
 prompt_new_tab_name = false
 pane_gaps = false
-accent = "red"
 agent_panel_sort = "priority"
+hide_tab_bar_when_single_tab =  true
 
 [ui.toast]
 delivery = "terminal"
 
 [ui.sidebar.agents]
 row_gap = 1
-rows = [["state_icon", "workspace"], ["agent"]]
+rows = [
+  ["state_icon", "$title", "workspace"],
+  ["$provider", "$limit"],
+  ["$context"],
+]
+
