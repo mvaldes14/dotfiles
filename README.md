@@ -61,6 +61,8 @@ Modern Lua-based configuration using Lazy.nvim with:
 ## Scripts & Utilities
 - `tmux-sessionizer.sh` - Quick tmux session creation
 - `tmux-sessionkiller.sh` - Session cleanup utility  
+- `herdr-sessionizer.sh` - Quick herdr workspace creation
+- `herdr-sessionkiller.sh` - Workspace cleanup utility
 - `jws-*` scripts - Custom workflow automation
 - SSH helpers and navigation tools
 

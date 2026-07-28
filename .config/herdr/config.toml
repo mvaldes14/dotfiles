@@ -26,7 +26,7 @@ navigate_workspace_up = "j"
 navigate_workspace_down = "k"
 
 reload_config = "prefix+r"
-detach = "prefix+ctrl+d"
+detach = "prefix+d"
 rename_tab = "prefix+,"
 
 [[keys.command]]

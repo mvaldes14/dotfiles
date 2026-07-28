@@ -19,6 +19,7 @@ alias vp="vorpal"
 # Navigation and tmux
 alias dot='cd $DOTFILES'
 alias tmks=~/.local/bin/tmux-sessionkiller.sh
+alias hks=~/.local/bin/herdr-sessionkiller.sh
 
 # Utilities
 alias cat=bat
