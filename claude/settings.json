@@ -24,16 +24,6 @@
   },
   "model": "opus[1m]",
   "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Notification"
-          }
-        ]
-      }
-    ],
     "PostToolUse": [
       {
         "matcher": "Bash",
@@ -58,14 +48,6 @@
     ],
     "PreToolUse": [
       {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh PreToolUse"
-          }
-        ]
-      },
-      {
         "matcher": "Bash",
         "hooks": [
           {
@@ -83,26 +65,6 @@
             "type": "command",
             "command": "bash '/Users/mvaldes/.claude/hooks/herdr-agent-state.sh' session",
             "timeout": 10
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh Stop"
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "~/.tmux/plugins/tmux-agent-status/hooks/better-hook.sh UserPromptSubmit"
           }
         ]
       }
@@ -128,5 +90,9 @@
       "type": "http",
       "url": "https://signoz-mcp.int.mvaldes.dev/mcp"
     }
+  },
+  "subagentStatusLine": {
+    "type": "command",
+    "command": "~/git/dotfiles/claude/subagent_status_line.sh"
   }
 }
