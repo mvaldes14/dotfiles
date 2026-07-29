@@ -124,7 +124,8 @@ kubectl top pod <pod> -n <ns>
 - Never suggest changes to manifests until the root cause is confirmed
 - When suggesting a fix, explain *why* it addresses the root cause
 - If the issue requires a manifest or values change, describe the change clearly
-  and suggest the user invoke the `k8s-ops` agent (or go-dev for app-level fixes) to apply it
+  and hand it back to the user to apply, since they handle live cluster work directly.
+  For app-level Go fixes, suggest the `gomez` agent instead
 - For production clusters: flag any destructive commands before running them
 
 ## Output Format

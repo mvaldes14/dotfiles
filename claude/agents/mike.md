@@ -88,4 +88,4 @@ When finished, respond with:
 2. **Recommendation** — your preferred approach with rationale
 3. **Alternatives** — 1–2 other options and why you'd deprioritize them
 4. **Risks / open questions** — what could go wrong or needs more information
-5. **Next steps** — concrete actions (use go-dev or k8s-debugger agents for implementation)
+5. **Next steps** — concrete actions (use the `gomez` agent for Go implementation, `kate` for Kubernetes)
