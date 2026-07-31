@@ -66,14 +66,18 @@
 - Check for required env vars at the start of any skill that calls external APIs (non-MCP).
 
 ## Knowledge Base
-Maintain the log at: `~/Obsidian/wiki/Logs/{date}.md`. Date format is `YYYY-MM-DD`. Use for fixes, random historical notes, and anything worth preserving from an LLM-assisted debugging session.
+Maintain the log at: `~/Obsidian/wiki/Logs/{date}.md`. Date format is `YYYY-MM-DD`. High bar, not a session transcript — most sessions should end with nothing logged.
 
-**Log an entry when:**
-- Non-obvious bug resolved (config mismatches, timeout tuning, k8s/infra quirks)
-- Debugging took >30 min and the approach is reusable
-- Something will likely recur (infra drift, version upgrades, known limitations)
+**Default is: don't log.** Only write an entry when ALL of these hold:
+- Root cause was non-obvious and cost real investigation (>30 min of actual debugging, not just a long session)
+- Future-me would burn that time again without the note
+- It isn't recoverable from the code, config, git history, or upstream docs
 
-**Skip if:** typo/syntax error, one-off with no reuse value, well-documented upstream.
+**Never log:** setup or install steps, tool configuration that already lives in a config file, "how I wired X up" walkthroughs, anything re-derivable by reading the file just edited, typos, one-offs.
+
+**Logs/ only.** Do not create notes in `Resources/` or elsewhere in the vault unless explicitly asked. No new docs as a side effect of finishing a task.
+
+Borderline? Ask "worth logging?" instead of writing.
 
 **Format:**
 ```

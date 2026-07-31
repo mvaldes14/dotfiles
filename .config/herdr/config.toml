@@ -30,6 +30,26 @@ key = "prefix+f"
 type = "pane"
 command = "~/.local/bin/herdr-sessionizer.sh"
 
+# Swap panes (tmux: prefix+{ = swap-pane -U, prefix+} = swap-pane -D)
+[[keys.command]]
+key = "prefix+{"
+type = "shell"
+command = "~/.local/bin/herdr-pane-swap.sh prev"
+description = "Swap pane with previous"
+
+[[keys.command]]
+key = "prefix+}"
+type = "shell"
+command = "~/.local/bin/herdr-pane-swap.sh next"
+description = "Swap pane with next"
+
+# Toggle split orientation (tmux: prefix+space, select-layout next)
+[[keys.command]]
+key = "prefix+space"
+type = "shell"
+command = "~/.local/bin/herdr-layout-toggle.sh"
+description = "Toggle layout horizontal/vertical"
+
 [[keys.command]]
 key = "prefix+shift+f"
 type = "plugin_action"
