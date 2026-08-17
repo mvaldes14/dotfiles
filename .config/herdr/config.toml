@@ -115,6 +115,7 @@ delivery = "terminal"
 row_gap = 1
 rows = [
   ["state_icon", "$title", "workspace"],
+  ["agent"],
   ["$provider", "$limit"],
   ["$context"],
 ]
