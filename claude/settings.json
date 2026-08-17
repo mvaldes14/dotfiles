@@ -74,6 +74,10 @@
     "type": "command",
     "command": "~/git/dotfiles/claude/status_line.sh"
   },
+  "subagentStatusLine": {
+    "type": "command",
+    "command": "~/git/dotfiles/claude/subagent_status_line.sh"
+  },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true
   },
@@ -81,6 +85,11 @@
   "spinnerTipsEnabled": false,
   "effortLevel": "high",
   "tui": "fullscreen",
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "voiceEnabled": true,
   "mcpServers": {
     "doit": {
       "type": "http",
@@ -90,9 +99,5 @@
       "type": "http",
       "url": "https://signoz-mcp.int.mvaldes.dev/mcp"
     }
-  },
-  "subagentStatusLine": {
-    "type": "command",
-    "command": "~/git/dotfiles/claude/subagent_status_line.sh"
   }
 }
