@@ -2,6 +2,7 @@ return {
   "nyoom-engineering/oxocarbon.nvim",
   lazy = false,
   priority = 1000,
+  build = false, -- ships prebuilt colors/oxocarbon.lua; skip the luarocks/fennel build lazy.nvim otherwise tries
   opts = {},
   config = function()
     vim.opt.background = "dark" -- set this to dark or light
