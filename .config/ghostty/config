@@ -1,8 +1,8 @@
 theme = Oxocarbon
 font-family = JetBrainsMono Nerd Font Mono
 font-size = 20
-background-opacity = 0.99
-window-decoration = auto
+background-opacity = 0.97
+window-decoration = none
 link-url = true
 macos-titlebar-style = native
 clipboard-trim-trailing-spaces = true
