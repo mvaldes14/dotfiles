@@ -1,0 +1,46 @@
+k9s:
+  # TokyoNight Night — matched to the Ghostty/nvim palette
+  body:
+    fgColor: "#c0caf5"
+    bgColor: "#1a1b26"
+  prompt:
+    fgColor: "#bb9af7"
+    bgColor: "#1a1b26"
+  info:
+    sectionColor: "#7dcfff"
+    fgColor: "#c0caf5"
+    bgColor: "#1a1b26"
+  dialog:
+    fgColor: "#c0caf5"
+    bgColor: "#292e42"
+    label: "#7aa2f7"
+  frame:
+    border:
+      fgColor: "#3b4261"
+      focusColor: "#7aa2f7"
+    menu:
+      fgColor: "#bb9af7"
+      bgColor: "#1a1b26"
+      keyColor: "#7aa2f7"
+    crumbs:
+      fgColor: "#1a1b26"
+      bgColor: "#7aa2f7"
+      activeColor: "#9ece6a"
+    title:
+      fgColor: "#c0caf5"
+      bgColor: "#1a1b26"
+  views:
+    table:
+      fgColor: "#c0caf5"
+      bgColor: "#1a1b26"
+      header:
+        fgColor: "#565f89"
+        bgColor: "#1a1b26"
+    xray:
+      fgColor: "#c0caf5"
+      bgColor: "#1a1b26"
+    charts:
+      status:
+        ok: "#9ece6a"
+        warn: "#e0af68"
+        err: "#f7768e"
