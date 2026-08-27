@@ -98,23 +98,8 @@ type = "shell"
 command = "herdr-theme-sync"
 description = "sync herdr theme from ghostty"
 
-[theme.custom]
-panel_bg = "reset"
-accent = "#178ec8"
-text = "#9cc2c3"
-subtext0 = "#7a8f8e"
-surface0 = "#08262f"
-surface1 = "#0e2d35"
-surface_dim = "#05232c"
-overlay0 = "#37575e"
-overlay1 = "#56787d"
-mauve = "#e24d8e"
-green = "#51ef84"
-yellow = "#b27e28"
-red = "#f5163b"
-blue = "#178ec8"
-teal = "#00b39e"
-peach = "#f34b00"
+[theme]
+name = "tokyo-night"
 
 
 [ui]
