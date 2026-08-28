@@ -43,9 +43,9 @@ automatically-unhide-macos-hidden-apps = true
 
     alt-1 = 'workspace 1' #Term
     alt-2 = 'workspace 2' #Browser
-    alt-3 = 'workspace 3' #Social
+    alt-3 = 'workspace 3' #Social,Notes
     alt-4 = 'workspace 4' #Music,Video
-    alt-5 = 'workspace 5' #Productivity
+    alt-5 = 'workspace 5' #Random
     alt-6 = 'workspace 6' #Random
 
     alt-shift-1 = 'move-node-to-workspace 1'
@@ -80,17 +80,12 @@ run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = "md.obsidian" # Obsidian
-run = "move-node-to-workspace 4"
-
-[[on-window-detected]]
-if.app-id = "notion.id" # Notion
-run = "move-node-to-workspace 4"
-
-# [[on-window-detected]]
-# if.app-id = "mcom.todoist.mac.Todois" # Todoist
-# run = "move-node-to-workspace 5"
+run = "move-node-to-workspace 3"
 
 [[on-window-detected]]
 if.app-id = "com.spotify.client" # Music
-run = "move-node-to-workspace 5"
+run = "move-node-to-workspace 4"
 
+[[on-window-detected]]
+if.app-id = "com.obsproject.obs-studio" # OBS
+run = "move-node-to-workspace 4"
