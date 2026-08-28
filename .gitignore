@@ -5,6 +5,9 @@
 # Editor
 .vscode
 
+# Neovim - let plugin versions float per-machine
+.config/nvim/lazy-lock.json
+
 # Temp files
 *tempt.txt*
 *.retry
