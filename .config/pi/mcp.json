@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "gateway": {
+      "type": "http",
+      "url": "http://10.14.0.231/mcp"
+    }
+  }
+}
