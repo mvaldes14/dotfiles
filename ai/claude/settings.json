@@ -72,11 +72,11 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/git/dotfiles/claude/status_line.sh"
+    "command": "~/git/dotfiles/ai/claude/status_line.sh"
   },
   "subagentStatusLine": {
     "type": "command",
-    "command": "~/git/dotfiles/claude/subagent_status_line.sh"
+    "command": "~/git/dotfiles/ai/claude/subagent_status_line.sh"
   },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true

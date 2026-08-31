@@ -1,0 +1,14 @@
+{
+  "providers": {
+    "openrouter": {
+      "baseUrl": "http://10.14.0.231/v1",
+      "api": "openai-completions",
+      "apiKey": "dummy",
+    },
+    "anthropic": {
+      "baseUrl": "http://10.14.0.231/anthropic/v1",
+      "api": "anthropic-messages",
+      "apiKey": "dummy",
+    }
+  }
+}

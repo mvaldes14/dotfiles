@@ -1,8 +1,18 @@
-# Global Claude Context
+# Global Agent Context
+
+Harness-agnostic instructions. Symlinked into every agent that reads a global
+context file:
+- Claude Code — `~/.claude/AGENTS.md` (imported by `~/.claude/CLAUDE.md`)
+- Codex — `~/.codex/AGENTS.md`
+- pi — `~/.pi/agent/AGENTS.md`
+- opencode — `~/.config/opencode/AGENTS.md` (not otherwise wired up yet)
+
+Keep anything tool-specific out of this file — it belongs in the per-harness overlay.
+
 ## Who I Am
-- DevOps/infrastructure engineer focused on observability and coding. 
+- DevOps/infrastructure engineer focused on observability and coding.
 - I work across AWS/GCP mostly, owner of a homelab running in k3s.
-- Develop main on a mac but also use windows wsl2.
+- Develop mainly on a mac but also use Windows WSL2.
 
 ## Communication Preferences
 - Be direct and technical — no hand-holding on fundamentals
@@ -48,22 +58,19 @@
   - List files: `obsidian files`
   - **The Obsidian app must be running** for the CLI to respond. If a command fails, check `pgrep -x Obsidian` before assuming the CLI is broken — report which it is, don't silently fall back to `rg`.
 - **Task state lives in doit** (not Obsidian); `Reviews/weekly-YYYY-MM-DD.md` holds weekly reviews
+- **doit** is a task manager exposed over MCP. Exact tool names vary by harness; check the
+  available MCP tools for the `doit` server. No API key needed.
 
-## Sub-agents
-- For live/interactive k8s debugging, handle directly rather than delegating to the `kate` sub-agent (too slow for active troubleshooting).
+## Delegating to sub-agents
+- For live/interactive k8s debugging, handle it directly — sub-agents are too slow for active troubleshooting.
 - Use sub-agents only for planning/documentation tasks like migration guides.
-- **One named agent goes in its own herdr pane. Two or more at once stay inline.** A pane is visible, steerable, and outlives the turn. Inline subagents return clean structured results and fan out cheaply. Parallel panes lose on both counts: they carve up the screen and force terminal scraping.
-- Paned agents carry their persona with `--agent <name>` and need `--permission-mode acceptEdits`, or they stall on approval prompts. Both go after `--`:
-  `herdr agent start mike --kind claude --pane <id> -- --agent mike --permission-mode acceptEdits`
-- Claude Code renders on the alternate screen, so a paned agent's long output scrolls beyond `herdr agent read` and raising `--lines` will not recover it. If a paned agent is expected to produce a long deliverable, tell it up front to write the full response to a markdown file and reply with only the path.
-- `herdr agent read` returns plain text, not JSON. Close panes you created by explicit id, never `herdr pane close --current`.
+- Long deliverables from a sub-agent: have it write the full output to a markdown file and reply with only the path.
 
 ## Commits
 - Never run `git commit` or `git push` without explicit user confirmation. Stage changes and summarize, then wait.
 
 ## Environment Variables
-- doit is accessed via the `mcp__doit__*` MCP tools — no API key needed.
-- Check for required env vars at the start of any skill that calls external APIs (non-MCP).
+- Check for required env vars at the start of any skill/command that calls external APIs (non-MCP).
 
 ## Knowledge Base
 Maintain the log at: `~/Obsidian/wiki/Logs/{date}.md`. Date format is `YYYY-MM-DD`. High bar, not a session transcript — most sessions should end with nothing logged.
@@ -92,4 +99,4 @@ Why: root cause if known
 ```
 
 After logging, confirm with "📝 Logged to history in obsidian".
-At session start, surface any fixes or relevant entries to the current task from the vault
+At session start, surface any fixes or relevant entries to the current task from the vault.

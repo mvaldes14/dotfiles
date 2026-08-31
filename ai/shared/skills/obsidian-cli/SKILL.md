@@ -1,5 +1,5 @@
 ---
-name: Obsidian CLI
+name: obsidian-cli
 description: Use this skill whenever the user asks about vault health, orphans, dead-ends, unresolved links, tags, tasks, files, or any vault-wide query. Always prefer the obsidian CLI over manual file searches.
 tags:
   - ai

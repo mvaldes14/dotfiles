@@ -22,6 +22,25 @@ Personal development environment configuration for macOS and cross-platform tool
 ### Window Management
 - **aerospace** - Tiling window manager for macOS with custom keybinds
 
+### AI Agents (`ai/`)
+Layout is `ai/shared/` (vendor-neutral) + one dir per harness. One canonical
+source per file; every harness gets a symlink.
+
+| Source | Deployed to | Consumed by |
+|---|---|---|
+| `ai/shared/AGENTS.md` | `~/.claude/AGENTS.md`, `~/.codex/AGENTS.md`, `~/.pi/agent/AGENTS.md`, `~/.config/opencode/AGENTS.md` | all four (Claude Code via `CLAUDE.md` import) |
+| `ai/shared/skills/<name>` | `~/.claude/skills/<name>`, `~/.codex/skills/<name>`, `~/.agents/skills/<name>` (per-skill) | Claude Code, Codex, pi (`~/.agents` is pi's native path) |
+| `ai/pi/models.json` | `~/.pi/agent/models.json` | pi — custom model provider endpoints |
+| `ai/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code only — imports `AGENTS.md`, adds herdr/CC rules |
+| `ai/claude/agents/<name>` | `~/.claude/agents/` | Claude Code subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
+| `ai/claude/settings.json` | *(not symlinked — live `~/.claude/settings.json` has diverged; kept as reference)* | Claude Code |
+| `ai/claude/*status_line.sh` | referenced by `settings.json` | Claude Code |
+
+**Not yet ported:** subagents for Codex (`~/.codex/agents/` + `multi_agent` feature)
+and pi (`pi-subagents` package) — different frontmatter schemas; reuse the persona
+bodies from `ai/claude/agents/` when needed. opencode config beyond `AGENTS.md`.
+Third-party skills (`herdr`, `humanizer`) stay installer-managed in `~/.agents/skills/`.
+
 ### Development Tools
 - **opencode** - AI coding assistant configuration with custom modes and agents
 - **direnv** - Environment variable management
