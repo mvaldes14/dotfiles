@@ -4,9 +4,11 @@
 o.window("ghostty", { workspace = "1" })
 -- Browser on workspace 2
 o.window("([bB]rave-browser)", { workspace = "2" })
--- Obsidian on workspace 3
-o.window("(obsidian|md\\.obsidian\\.Obsidian)", { workspace = "3" })
--- Spotify and OBS on workspace 4
+-- Slack and Zoom on workspace 3
+o.window("[sS]lack", { workspace = "3" })
+o.window("(^[zZ]oom$|us\\.zoom\\.xos|[zZ]oom [Ww]orkplace)", { workspace = "3" })
+-- Obsidian, Spotify and OBS on workspace 4
+o.window("(obsidian|md\\.obsidian\\.Obsidian)", { workspace = "4" })
 o.window("[sS]potify", { workspace = "4" })
 o.window("(com\\.obsproject\\.Studio|^obs$)", { workspace = "4" })
 -- Browser extension popups (Bitwarden, etc.): float and center instead of
