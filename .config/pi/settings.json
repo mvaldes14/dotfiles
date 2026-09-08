@@ -1,0 +1,18 @@
+{
+  "theme": "dark",
+  "hideThinkingBlock": true,
+  "quietStartup": true,
+  "lastChangelogVersion": "0.85.1",
+  "outputPad": 0,
+  "collapseChangelog": true,
+  "autocompleteMaxVisible": 3,
+  "treeFilterMode": "no-tools",
+  "markdown": {
+    "mermaid": "off"
+  },
+  "warnings": {
+    "anthropicExtraUsage": false
+  },
+  "tuiMode": "fullscreen",
+  "fullscreenExitOutput": "resume-hint"
+}

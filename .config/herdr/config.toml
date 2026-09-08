@@ -126,6 +126,7 @@ delivery = "terminal"
 [ui.sidebar.agents]
 row_gap = 1
 rows = [
+  ["machine"],
   ["state_icon", "$title", "workspace"],
   ["agent"],
   ["$limit"],
