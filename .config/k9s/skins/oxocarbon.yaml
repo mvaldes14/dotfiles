@@ -1,0 +1,46 @@
+k9s:
+  # Oxocarbon — matched to the Ghostty palette (saturated variant)
+  body:
+    fgColor: "#dde1e6"
+    bgColor: "#161616"
+  prompt:
+    fgColor: "#ff4297"
+    bgColor: "#161616"
+  info:
+    sectionColor: "#00dfdb"
+    fgColor: "#dde1e6"
+    bgColor: "#161616"
+  dialog:
+    fgColor: "#dde1e6"
+    bgColor: "#262626"
+    label: "#00b4ff"
+  frame:
+    border:
+      fgColor: "#585858"
+      focusColor: "#00b4ff"
+    menu:
+      fgColor: "#ff4297"
+      bgColor: "#161616"
+      keyColor: "#00b4ff"
+    crumbs:
+      fgColor: "#161616"
+      bgColor: "#00b4ff"
+      activeColor: "#00c15a"
+    title:
+      fgColor: "#dde1e6"
+      bgColor: "#161616"
+  views:
+    table:
+      fgColor: "#dde1e6"
+      bgColor: "#161616"
+      header:
+        fgColor: "#585858"
+        bgColor: "#161616"
+    xray:
+      fgColor: "#dde1e6"
+      bgColor: "#161616"
+    charts:
+      status:
+        ok: "#00c15a"
+        warn: "#c693ff"
+        err: "#ff74b8"

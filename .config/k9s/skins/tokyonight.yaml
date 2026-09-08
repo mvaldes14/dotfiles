@@ -1,15 +1,16 @@
 k9s:
   # TokyoNight Night — matched to the Ghostty/nvim palette
+  # bgColor "default" = terminal default background (transparent)
   body:
     fgColor: "#c0caf5"
-    bgColor: "#1a1b26"
+    bgColor: default
   prompt:
     fgColor: "#bb9af7"
-    bgColor: "#1a1b26"
+    bgColor: default
   info:
     sectionColor: "#7dcfff"
     fgColor: "#c0caf5"
-    bgColor: "#1a1b26"
+    bgColor: default
   dialog:
     fgColor: "#c0caf5"
     bgColor: "#292e42"
@@ -20,7 +21,7 @@ k9s:
       focusColor: "#7aa2f7"
     menu:
       fgColor: "#bb9af7"
-      bgColor: "#1a1b26"
+      bgColor: default
       keyColor: "#7aa2f7"
     crumbs:
       fgColor: "#1a1b26"
@@ -28,17 +29,20 @@ k9s:
       activeColor: "#9ece6a"
     title:
       fgColor: "#c0caf5"
-      bgColor: "#1a1b26"
+      bgColor: default
   views:
     table:
       fgColor: "#c0caf5"
-      bgColor: "#1a1b26"
+      bgColor: default
       header:
         fgColor: "#565f89"
-        bgColor: "#1a1b26"
+        bgColor: default
     xray:
       fgColor: "#c0caf5"
-      bgColor: "#1a1b26"
+      bgColor: default
+    logs:
+      fgColor: "#c0caf5"
+      bgColor: default
     charts:
       status:
         ok: "#9ece6a"
