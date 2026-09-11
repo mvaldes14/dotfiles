@@ -1,5 +1,5 @@
 ---
-description: Pick up a code-related doit task, load its Obsidian spec, dispatch a subagent to implement it in an isolated worktree, and open a PR for review. Use when the user says "work task <id or search>", "pick up that ticket", or points at a doit task to be implemented.
+description: Pick up a code-related doit task, load its Obsidian spec if it has one, dispatch a subagent to implement it in an isolated worktree, and open a PR for review. Use when the user says "work task <id or search>", "pick up that ticket", or points at a doit task to be implemented.
 allowed-tools: mcp__doit__get_task, mcp__doit__list_tasks, mcp__doit__update_task, mcp__doit__update_subtask, mcp__doit__store_task_ai_result, Read, Write, Edit, Bash, Grep, Glob, WebFetch, Agent
 ---
 
@@ -16,9 +16,9 @@ The user's role in this loop is **reviewing the PR**, not babysitting the implem
 
 Keep the `id`, `title`, `description`, `subtasks[]` (with their IDs), `tags`, `links[]`.
 
-## Phase 2 — Find and load the spec
+## Phase 2 — Find and load the spec (optional)
 
-The spec is an Obsidian note. Look in this order:
+A spec is an Obsidian note. Many tasks have one; simple ones don't, and that is fine. Look in this order:
 
 1. `links[]` on the task — an `obsidian://` URL or vault path
 2. `description` — a `[[wikilink]]` or a `spec:` line
@@ -35,11 +35,23 @@ obsidian search:context query="<component>" path=Logs   # prior fixes
 
 **The Obsidian app must be running.** If a command fails, check `pgrep -x Obsidian` and report which problem it is rather than silently falling back to `rg`.
 
-Read the spec, then `obsidian read` each note from `links` that looks relevant — one hop only, don't spider the vault. Fetch any `References` URLs with WebFetch. Search `Logs` for prior entries on the same component; past fixes are frequently the reason a task exists.
+If you found a spec, read it, then `obsidian read` each note from its `links` that looks relevant — one hop only, don't spider the vault. Fetch any `References` URLs with WebFetch. Search `Logs` for prior entries on the same component; past fixes are frequently the reason a task exists.
 
-**If there is no spec note, stop and say so.** Do not infer a spec from a one-line task title. Offer to scaffold one from `Templates/code-spec.md` and let the user fill it in. A guessed spec produces a PR that wastes review time.
+### If there is no spec
 
-Pull `repo`, `base`, and `branch` from the spec's frontmatter. If `repo` is missing, ask — do not guess. Note that the session's working directory is the Obsidian vault, not the repo.
+Don't stop by default, and don't invent one either. Judge whether the task description alone is a sufficient brief:
+
+**Proceed without a spec** when the task is self-contained — the description (plus subtasks) names what to change and how you'd know it worked. Bump a dependency, fix a typo'd env var, add a missing label to a manifest, tighten one error message. The task description becomes the brief; derive acceptance criteria from the subtasks, or from the description if there are none, and say in your report that you did so.
+
+**Stop and ask** when implementing would mean guessing at something the user cares about: the task is a one-line title with no detail, it implies a design or API decision, it spans several components, or you can't tell what "done" looks like. Say specifically what you're missing — a vague "needs a spec" is not useful. Offer to scaffold one from `Templates/code-spec.md`.
+
+A guessed spec produces a PR that wastes review time; a five-line ticket you implemented literally does not.
+
+### Repo, base, branch
+
+With a spec, pull `repo`, `base`, and `branch` from its frontmatter. Without one, look at the task's `links[]` and `description` for a repo path or URL, then at its project and tags. If you still can't resolve `repo`, ask — never guess. `base` defaults to the repo's real default branch (resolved in Phase 3).
+
+Note that the session's working directory is the Obsidian vault, not the repo.
 
 ## Phase 3 — Preflight
 
@@ -67,11 +79,11 @@ Pass `isolation: "worktree"` so the agent works on an isolated copy and never to
 
 **The prompt must be self-contained.** Subagents start cold: they cannot read doit, they have no vault context, and `gomez`/`kate` have no MCP tools at all. Inline the full text of:
 
-- the spec note
+- the spec note, or — with no spec — the task title and full description verbatim
 - relevant excerpts from linked notes and fetched references
 - the subtask list as the implementation checklist
-- the acceptance criteria, verbatim
-- the verification commands
+- the acceptance criteria: verbatim from the spec, or the ones you derived in Phase 2
+- the verification commands; with no spec, the repo's own test/lint/build commands
 - the repo path, `base` branch, and branch name `task/<first-8-of-task-id>-<slug>`
 
 Instruct the agent to: branch from `base`, implement, run the verification commands, commit with conventional-commit messages, and report back the worktree path, branch name, files changed, verification output, and a per-line pass/fail against the acceptance criteria. Tell it to commit but **not** to push.
@@ -88,7 +100,7 @@ Guardrails, no exceptions:
 
 The user has standing authorization for commit-and-push-to-a-branch and PR creation *within this skill* — that is the point of the workflow, and it overrides the global "confirm before commit/push" rule for this path only. Everything else about that rule still applies.
 
-PR body: goal from the spec, acceptance criteria as a checklist with actual pass/fail, verification output, link back to the spec note, and the doit task ID.
+PR body: goal from the spec (or the task description), acceptance criteria as a checklist with actual pass/fail, verification output, a link back to the spec note if there is one, and the doit task ID.
 
 ## Phase 6 — Write back
 
@@ -99,4 +111,4 @@ PR body: goal from the spec, acceptance criteria as a checklist with actual pass
 
 ## Report
 
-In chat, short: PR URL, what changed, acceptance criteria pass/fail, and anything you had to assume. Lead with anything that needs the user's judgment.
+In chat, short: PR URL, what changed, acceptance criteria pass/fail, and anything you had to assume. Lead with anything that needs the user's judgment. If you worked without a spec, say so and state the acceptance criteria you derived, so the user can push back before reviewing the diff.
