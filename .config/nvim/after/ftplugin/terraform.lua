@@ -4,4 +4,5 @@ end
 
 map("<leader>tp", "<cmd>TerraformPlan<cr>",    "Plan")
 map("<leader>ti", "<cmd>TerraformInit<cr>",    "Init")
-map("<leader>te", "<cmd>TerraformExplore<cr>", "Explore")
+map("<leader>te", "<cmd>TerraformFind<cr>", "Find")
+map("<leader>td", "<cmd>TerraformDocs<cr>", "Docs")
