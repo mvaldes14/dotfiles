@@ -18,4 +18,7 @@ return {
       },
     },
   },
+  {
+   dir = "~/git/terraform.nvim/"
+  }
 }
