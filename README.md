@@ -95,3 +95,31 @@ Install the macOS dependencies with:
 ```sh
 brew bundle --file Brewfile
 ```
+
+## Non-Nix install with GNU Stow
+
+This repo can be stowed directly into `$HOME`. The `.stow-local-ignore` file
+keeps repo metadata, docs, archives, and non-home-shaped AI config out of the
+link set.
+
+Dry-run first:
+
+```sh
+cd ~/git
+stow -n -v -t "$HOME" dotfiles
+```
+
+Apply:
+
+```sh
+cd ~/git
+stow -v -t "$HOME" dotfiles
+```
+
+After that, edit files at their normal runtime paths, e.g. `~/.config/nvim`,
+`~/.config/zsh`, or `~/.ssh/config`; changes go through the symlinks back into
+this repo.
+
+Zsh uses a stowed `~/.zshenv` to set `ZDOTDIR=$HOME/.config/zsh`, so
+`~/.config/zsh/.zshrc` is loaded automatically. The zsh config also adds
+`$HOME/scripts` to `PATH`, which points at the stowed `scripts/` directory.

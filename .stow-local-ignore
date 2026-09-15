@@ -1,0 +1,35 @@
+# GNU Stow ignore rules for stowing this repo directly from ~/git:
+#   cd ~/git
+#   stow -n -v -t "$HOME" dotfiles
+#   stow -v -t "$HOME" dotfiles
+#
+# Keep repo metadata/docs/tooling out of $HOME. Regexes are matched against
+# paths relative to this package.
+
+# VCS / GitHub metadata
+^\.git$
+^\.git/.*
+^\.gitignore$
+^\.github$
+^\.github/.*
+
+# Stow metadata
+^\.stow-local-ignore$
+
+# Repo docs/assets
+^README\.md$
+^LICENSE$
+^dotfiles\.png$
+
+# Node/project tooling for repo checks, not home config
+^package\.json$
+^package-lock\.json$
+^node_modules$
+^node_modules/.*
+
+# Not intended to be linked into $HOME as-is
+^archive$
+^archive/.*
+^ai$
+^ai/.*
+^Brewfile$

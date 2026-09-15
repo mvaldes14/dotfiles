@@ -39,6 +39,7 @@ addToPath /Users/$USER/.local/bin/
 addToPath /Users/$USER/go/bin/
 addToPath /opt/homebrew/bin/
 addToPath $HOME/.vorpal/bin
+addToPath $HOME/scripts
 
 # Load
 eval "$(atuin init zsh)"
