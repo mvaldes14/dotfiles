@@ -18,7 +18,7 @@ return {
       },
     },
   },
-  {
-   dir = "~/git/terraform.nvim/"
-  }
+  -- {
+  --  dir = "~/git/terraform.nvim/"
+  -- }
 }
