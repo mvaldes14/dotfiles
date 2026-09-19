@@ -116,6 +116,7 @@ main() {
   fi
 
   # Pi overlay.
+  link_file "$PI_DIR/mcp.json" "$HOME/.pi/agent/mcp.json"
   link_file "$PI_DIR/models.json" "$HOME/.pi/agent/models.json"
 
   log "done"

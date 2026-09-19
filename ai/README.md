@@ -19,6 +19,7 @@ ai/
 │   ├── settings.json         # Reference settings; not linked by bootstrap
 │   └── *status_line.sh
 └── pi/
+    ├── mcp.json              # Pi MCP server config
     └── models.json           # Pi model/provider config
 ```
 
@@ -46,6 +47,7 @@ The script is idempotent. It links only agent config that should be source-contr
 | `shared/skills/<name>` | `~/.codex/skills/<name>` | Codex skills |
 | `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code-specific instructions |
 | `claude/agents/<name>.md` | `~/.claude/agents/<name>.md` | Claude Code subagents |
+| `pi/mcp.json` | `~/.pi/agent/mcp.json` | Pi MCP server config |
 | `pi/models.json` | `~/.pi/agent/models.json` | Pi model/provider config |
 
 ## What is intentionally not linked
