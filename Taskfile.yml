@@ -1,0 +1,110 @@
+version: "3"
+
+# Bootstrap runner for this dotfiles repo.
+#
+#   task            # list available tasks
+#   task bootstrap  # full setup on a new machine
+#
+# Only `stow` is a hard requirement. Homebrew is optional: on machines without
+# it the `packages` step is skipped with a note, and stow/ai still run.
+
+vars:
+  # stow links the repo as a package from its parent directory, so the package
+  # name is whatever this checkout is called (normally "dotfiles").
+  PACKAGE:
+    sh: basename "$PWD"
+  PARENT:
+    sh: dirname "$PWD"
+
+tasks:
+  default:
+    desc: List available tasks
+    silent: true
+    cmds:
+      - task --list
+
+  doctor:
+    desc: Report which bootstrap dependencies are present
+    silent: true
+    cmds:
+      - |
+        for tool in stow git nvim brew luacheck; do
+          if command -v "$tool" >/dev/null 2>&1; then
+            printf 'ok      %-10s %s\n' "$tool" "$(command -v "$tool")"
+          else
+            printf 'missing %-10s\n' "$tool"
+          fi
+        done
+
+  require:stow:
+    internal: true
+    silent: true
+    cmds:
+      - |
+        command -v stow >/dev/null 2>&1 || {
+          echo "stow is required but not installed." >&2
+          echo "  macOS:  brew install stow" >&2
+          echo "  Debian: sudo apt install stow" >&2
+          echo "  Arch:   sudo pacman -S stow" >&2
+          exit 1
+        }
+
+  packages:
+    desc: Install Homebrew packages (skipped when brew is unavailable)
+    silent: true
+    cmds:
+      - |
+        if command -v brew >/dev/null 2>&1; then
+          brew bundle --file Brewfile
+        else
+          echo "brew not found - skipping Brewfile."
+          echo "Install the equivalents with this machine's package manager;"
+          echo "Brewfile is the canonical list."
+        fi
+
+  stow:dry:
+    desc: Preview the symlinks stow would create in $HOME
+    deps: [require:stow]
+    cmds:
+      - stow -n -v -d "{{.PARENT}}" -t "$HOME" "{{.PACKAGE}}"
+
+  stow:
+    desc: Link this repo into $HOME
+    deps: [require:stow]
+    cmds:
+      - stow -v -d "{{.PARENT}}" -t "$HOME" "{{.PACKAGE}}"
+
+  unstow:
+    desc: Remove the symlinks this repo created in $HOME
+    deps: [require:stow]
+    cmds:
+      - stow -D -v -d "{{.PARENT}}" -t "$HOME" "{{.PACKAGE}}"
+
+  ai:
+    desc: Link shared AI agent config (ai/ is not stowed)
+    cmds:
+      - ./ai/bootstrap.sh
+
+  bootstrap:
+    desc: Full setup - packages, stow, AI config
+    cmds:
+      - task: packages
+      - task: stow
+      - task: ai
+
+  check:
+    desc: Validate configs (nvim loads, lua lints)
+    silent: true
+    cmds:
+      - |
+        if command -v nvim >/dev/null 2>&1; then
+          nvim --headless -c 'quitall' && echo "ok      nvim config loads"
+        else
+          echo "skip    nvim not installed"
+        fi
+      - |
+        if command -v luacheck >/dev/null 2>&1; then
+          luacheck .config/nvim
+        else
+          echo "skip    luacheck not installed"
+        fi

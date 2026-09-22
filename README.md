@@ -87,36 +87,58 @@ Modern Lua-based configuration using Lazy.nvim with:
 - `jws-*` scripts - Custom workflow automation
 - SSH helpers and navigation tools
 
+## Bootstrap
 
-## Homebrew
-
-Install the macOS dependencies with:
-
-```sh
-brew bundle --file Brewfile
-```
-
-## Non-Nix install with GNU Stow
-
-This repo can be stowed directly into `$HOME`. The `.stow-local-ignore` file
-keeps repo metadata, docs, archives, and non-home-shaped AI config out of the
-link set.
-
-Dry-run first:
+Everything is wired through a `Taskfile.yml`. Only GNU Stow is a hard
+requirement; the Homebrew step is skipped automatically on machines without it.
 
 ```sh
-cd ~/git
-stow -n -v -t "$HOME" dotfiles
+task            # list available tasks
+task doctor     # report which dependencies are present
+task bootstrap  # packages + stow + AI config
 ```
 
-Apply:
+| Task | What it does |
+|---|---|
+| `doctor` | Reports which of `stow`, `git`, `nvim`, `brew`, `luacheck` are installed |
+| `packages` | `brew bundle --file Brewfile`; prints a note and skips when brew is absent |
+| `stow:dry` | Previews the symlinks stow would create in `$HOME` |
+| `stow` | Links this repo into `$HOME` |
+| `unstow` | Removes those symlinks |
+| `ai` | Runs `ai/bootstrap.sh` (`ai/` is excluded from stow, so it links separately) |
+| `bootstrap` | `packages` → `stow` → `ai` |
+| `check` | Loads the nvim config headless and lints Lua when `luacheck` is present |
+
+Install `go-task` itself first (`brew install go-task`, or see
+[taskfile.dev](https://taskfile.dev/installation/) on non-brew machines).
+
+### On machines without Homebrew
+
+`task packages` is a no-op there. The `Brewfile` stays the canonical package
+list — install the equivalents with the local package manager, then run:
 
 ```sh
-cd ~/git
-stow -v -t "$HOME" dotfiles
+task stow
+task ai
 ```
 
-After that, edit files at their normal runtime paths, e.g. `~/.config/nvim`,
+### Manual equivalents
+
+If you would rather not install `go-task`:
+
+```sh
+brew bundle --file Brewfile          # macOS only
+stow -n -v -d ~/git -t "$HOME" dotfiles   # dry run
+stow -v -d ~/git -t "$HOME" dotfiles      # apply
+./ai/bootstrap.sh
+```
+
+## How the stow layout works
+
+The `.stow-local-ignore` file keeps repo metadata, docs, archives, the
+`Taskfile.yml`, and non-home-shaped AI config out of the link set.
+
+After stowing, edit files at their normal runtime paths, e.g. `~/.config/nvim`,
 `~/.config/zsh`, or `~/.ssh/config`; changes go through the symlinks back into
 this repo.
 

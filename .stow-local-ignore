@@ -22,6 +22,7 @@
 ^dotfiles\.png$
 
 # Node/project tooling for repo checks, not home config
+^Taskfile\.yml$
 ^package\.json$
 ^package-lock\.json$
 ^node_modules$
