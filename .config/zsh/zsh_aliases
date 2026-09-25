@@ -1,28 +1,36 @@
+# Only define an alias when the tool it points to is installed, so the same
+# dotfiles work on machines with a minimal toolset (e.g. homelab boxes).
+has() { (( $+commands[$1] )) }
+
 # Home Aliases
-alias pip="pip3"
-alias v="nvim"
-alias cc="claude"
-alias python="python3"
-alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+has pip3 && alias pip="pip3"
+has python3 && alias python="python3"
+has nvim && alias v="nvim"
+has nvim && alias vwiki="pushd ~/Obsidian/wiki/ && nvim"
+has claude && alias cc="claude"
+has fzf && has bat && alias fzf="fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 alias weather="curl 'wttr.in/55318?m'"
-alias du="ncdu"
-alias lg="lazygit"
-alias k="kubectl"
-alias tf="terraform"
-alias s="doppler run"
-alias vwiki="pushd ~/Obsidian/wiki/ && nvim"
-alias cd="z"
-alias kk="k9s"
-alias obs="obsidian"
-alias vp="vorpal"
+has ncdu && alias du="ncdu"
+has lazygit && alias lg="lazygit"
+has kubectl && alias k="kubectl"
+has terraform && alias tf="terraform"
+has doppler && alias s="doppler run"
+has zoxide && alias cd="z"
+has k9s && alias kk="k9s"
+has obsidian && alias obs="obsidian"
+has vorpal && alias vp="vorpal"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
-alias tmks=~/.local/bin/tmux-sessionkiller.sh
-alias hks=~/.local/bin/herdr-sessionkiller.sh
+# [[ -x ~/.local/bin/tmux-sessionkiller.sh ]] && alias tmks=~/.local/bin/tmux-sessionkiller.sh
+[[ -x ~/.local/bin/herdr-sessionkiller.sh ]] && alias hks=~/.local/bin/herdr-sessionkiller.sh
 
 # Utilities
-alias cat=bat
-alias ll='eza -lrh --icons -t=modified --git'
-alias ls='eza -lh --git'
-alias lr='eza -lrT'
+has bat && alias cat=bat
+if has eza; then
+  alias ll='eza -lrh --icons -t=modified --git'
+  alias ls='eza -lh --git'
+  alias lr='eza -lrT'
+fi
+
+unfunction has
