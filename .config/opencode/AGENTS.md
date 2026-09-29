@@ -1,1 +1,1 @@
-../../ai/shared/AGENTS.md
+/Users/mvaldes/git/dotfiles/ai/shared/AGENTS.md
