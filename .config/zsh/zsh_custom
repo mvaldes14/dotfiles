@@ -29,7 +29,7 @@ export CLAUDE_CODE_ENHANCED_TELEMETRY_BETA=1
 export OTEL_METRICS_EXPORTER=otlp
 export OTEL_LOGS_EXPORTER=otlp
 export OTEL_TRACES_EXPORTER=otlp
-export OTEL_EXPORTER_OTLP_PROTOCOL=http/json
+export OTEL_EXPORTER_OTLP_PROTOCOL=http/protobuf
 export OTEL_EXPORTER_OTLP_ENDPOINT=https://events.mvaldes.dev
 export PRIMUS_HOME=/Users/mvaldes/git/work/primus
 
