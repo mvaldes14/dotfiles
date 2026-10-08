@@ -4,7 +4,7 @@
   "theme": "dark",
   "hideThinkingBlock": true,
   "quietStartup": true,
-  "lastChangelogVersion": "0.87.1",
+  "lastChangelogVersion": "1.0.3",
   "outputPad": 0,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 3,
@@ -23,6 +23,11 @@
     "npm:@henryqw/pi-herdr",
     "npm:pi-obsidian",
     "npm:pi-web-access",
-    "npm:@quintinshaw/pi-dynamic-workflows"
+    "npm:@quintinshaw/pi-dynamic-workflows",
+    "npm:pi-caveman",
+    "npm:pi-ask-user"
+  ],
+  "extensions": [
+    "-builtin:mcp"
   ]
 }

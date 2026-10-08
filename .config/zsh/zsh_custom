@@ -35,11 +35,11 @@ export PRIMUS_HOME=/Users/mvaldes/git/work/primus
 
 # Functions
 # Add to PATH for custom locations
-addToPath /Users/$USER/.local/bin/
-addToPath /Users/$USER/go/bin/
-addToPath /opt/homebrew/bin/
-addToPath $HOME/.vorpal/bin
-addToPath $HOME/scripts
+addToPath "$HOME/.local/bin"
+addToPath "$HOME/go/bin"
+addToPath /opt/homebrew/bin
+addToPath "$HOME/.vorpal/bin"
+addToPath "$HOME/scripts"
 
 # Load
 eval "$(atuin init zsh)"
