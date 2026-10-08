@@ -114,7 +114,7 @@ status_indicators = "symbols"
 tab_bar_right = [
   { type = "hostname" },
   { type = "datetime", format = "%H:%M" },
-  { type = "text", text = "prod" },
+  { type = "command", command = "~/.local/bin/herdr-kube-context.sh", interval_seconds = 60, timeout_seconds = 2 },
 ]
 tab_bar_position = "top"
 tab_bar_right_separator = " · "
