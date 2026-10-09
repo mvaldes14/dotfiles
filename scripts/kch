@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+# Pick a ClickHouse pod in the current kube context, port-forward its native port and open clickhouse client.
+# Only pods with "clickhouse-cluster" in the name are listed (no operator pods).
+# Usage: kch [clickhouse client args...]
+# Env:   KCH_LOCAL_PORT (default 9000), KCH_REMOTE_PORT (default 9000),
+#        CLICKHOUSE_USER / CLICKHOUSE_PASSWORD (optional)
+
+set -euo pipefail
+
+for bin in kubectl fzf clickhouse; do
+  command -v "$bin" >/dev/null 2>&1 || { echo "kch: '$bin' is not installed" >&2; exit 1; }
+done
+
+local_port=${KCH_LOCAL_PORT:-9000}
+remote_port=${KCH_REMOTE_PORT:-9000}
+ctx=$(kubectl config current-context)
+
+pods=$(kubectl get pods -A --field-selector=status.phase=Running --no-headers \
+  -o custom-columns=NS:.metadata.namespace,NAME:.metadata.name |
+  awk '$2 ~ /clickhouse-cluster/')
+
+[ -z "$pods" ] && { echo "kch: no running clickhouse pods found in context '$ctx'" >&2; exit 1; }
+
+selection=$(echo "$pods" | fzf --no-preview --header "ctx: $ctx" --prompt "clickhouse> ") || exit 0
+read -r ns pod <<<"$selection"
+
+if lsof -nP -iTCP:"$local_port" -sTCP:LISTEN >/dev/null 2>&1; then
+  echo "kch: local port $local_port is already in use, set KCH_LOCAL_PORT" >&2
+  exit 1
+fi
+
+pf_log=$(mktemp -t kch)
+kubectl port-forward -n "$ns" "pod/$pod" "$local_port:$remote_port" >"$pf_log" 2>&1 &
+pf_pid=$!
+trap 'kill "$pf_pid" 2>/dev/null; rm -f "$pf_log"' EXIT INT TERM
+
+# Wait for the tunnel to come up, or for port-forward to die.
+for _ in $(seq 1 50); do
+  grep -q "Forwarding from" "$pf_log" && break
+  if ! kill -0 "$pf_pid" 2>/dev/null; then
+    echo "kch: cannot port-forward to $ns/$pod:" >&2
+    sed 's/^/  /' "$pf_log" >&2
+    exit 1
+  fi
+  sleep 0.1
+done
+
+if ! grep -q "Forwarding from" "$pf_log"; then
+  echo "kch: timed out waiting for port-forward to $ns/$pod" >&2
+  exit 1
+fi
+
+echo "⎈ $ctx → $ns/$pod (127.0.0.1:$local_port)"
+conn=(--host 127.0.0.1 --port "$local_port")
+[ -n "${CLICKHOUSE_USER:-}" ] && conn+=(--user "$CLICKHOUSE_USER")
+[ -n "${CLICKHOUSE_PASSWORD:-}" ] && conn+=(--password "$CLICKHOUSE_PASSWORD")
+
+clickhouse client "${conn[@]}" "$@"
