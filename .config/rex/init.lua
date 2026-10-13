@@ -46,29 +46,11 @@ rex.bind("ctrl+space>f", "session.switch")
 rex.bind("ctrl+space>s", "session.switch")
 
 ------------------------------------------------------------
--- Vim/Herdr-style pane navigation
+-- Vim-style pane navigation
 ------------------------------------------------------------
--- Keep these as Lua calls because focus actions vary by Rex client.
-
-rex.bind("ctrl+h", function(ctx, ev)
-  rex.session.focus_direction({ direction = "left" })
-  return true
-end)
-
-rex.bind("ctrl+j", function(ctx, ev)
-  rex.session.focus_direction({ direction = "down" })
-  return true
-end)
-
-rex.bind("ctrl+k", function(ctx, ev)
-  rex.session.focus_direction({ direction = "up" })
-  return true
-end)
-
-rex.bind("ctrl+l", function(ctx, ev)
-  rex.session.focus_direction({ direction = "right" })
-  return true
-end)
+-- Do not bind Ctrl-h/j/k/l in Rex. Let terminals receive raw keys.
+-- Neovim owns these maps, moves inside its own splits first, then calls Rex
+-- focus_direction at split edges.
 
 ------------------------------------------------------------
 -- Resize mode, similar to tmux C-M-h/j/k/l

@@ -148,13 +148,14 @@ vim.keymap.set("n", "<leader>F", function()
   client:notify("workspace/didChangeConfiguration", { settings = client.settings })
 end, { desc = "Format current buffer with yamlls" })
 
--- Herdr
+-- Vim window navigation, with multiplexer handoff at split edges.
 local function nav(wincmd, dir)
   local prev = vim.api.nvim_get_current_win()
   vim.cmd("wincmd " .. wincmd)
   if vim.api.nvim_get_current_win() ~= prev then
     return -- moved within Neovim
   end
+
   -- At a split edge: cross into the surrounding multiplexer.
   if vim.env.HERDR_PANE_ID and vim.env.HERDR_PANE_ID ~= "" then
     local herdr = vim.env.HERDR_BIN_PATH
@@ -162,6 +163,16 @@ local function nav(wincmd, dir)
       herdr = "herdr"
     end
     vim.fn.system { herdr, "pane", "focus", "--direction", dir, "--current" }
+  elseif (vim.env.REX_BLOCK and vim.env.REX_BLOCK ~= "") or (vim.env.REX_SESSION and vim.env.REX_SESSION ~= "") then
+    local rex = "rex"
+    if vim.env.REX_BIN_DIR and vim.env.REX_BIN_DIR ~= "" then
+      rex = vim.env.REX_BIN_DIR .. "/rex"
+    end
+
+    local session = vim.env.REX_SESSION
+    if session and session ~= "" then
+      vim.fn.system { rex, "api", "call", "session.focus_direction", "--session", session, "{\"direction\":\"" .. dir .. "\"}" }
+    end
   elseif vim.env.TMUX and vim.env.TMUX ~= "" then
     local tmux = { left = "Left", down = "Down", up = "Up", right = "Right" }
     pcall(vim.cmd, "TmuxNavigate" .. tmux[dir])
@@ -172,9 +183,19 @@ local function map(lhs, wincmd, dir, desc)
   vim.keymap.set("n", lhs, function()
     nav(wincmd, dir)
   end, { silent = true, noremap = true, desc = desc })
+
+  vim.keymap.set("i", lhs, function()
+    vim.cmd "stopinsert"
+    nav(wincmd, dir)
+  end, { silent = true, noremap = true, desc = desc })
+
+  vim.keymap.set("t", lhs, function()
+    vim.cmd "stopinsert"
+    nav(wincmd, dir)
+  end, { silent = true, noremap = true, desc = desc })
 end
 
-map("<C-h>", "h", "left", "Navigate left (vim/herdr)")
-map("<C-j>", "j", "down", "Navigate down (vim/herdr)")
-map("<C-k>", "k", "up", "Navigate up (vim/herdr)")
-map("<C-l>", "l", "right", "Navigate right (vim/herdr)")
+map("<C-h>", "h", "left", "Navigate left (vim/mux)")
+map("<C-j>", "j", "down", "Navigate down (vim/mux)")
+map("<C-k>", "k", "up", "Navigate up (vim/mux)")
+map("<C-l>", "l", "right", "Navigate right (vim/mux)")

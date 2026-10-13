@@ -1,7 +1,7 @@
 {
   "defaultProvider": "openai-codex",
   "defaultModel": "gpt-5.5",
-  "theme": "dark",
+  "theme": "light/dark",
   "hideThinkingBlock": true,
   "quietStartup": true,
   "lastChangelogVersion": "1.1.0",

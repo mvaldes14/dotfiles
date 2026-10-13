@@ -4,8 +4,29 @@ return {
   priority = 1000,
   opts = {},
   config = function()
+    local function system_background()
+      if vim.fn.has "mac" == 1 then
+        local result = vim.system({ "defaults", "read", "-g", "AppleInterfaceStyle" }):wait()
+        return result.code == 0 and "dark" or "light"
+      end
+
+      if vim.fn.executable "gsettings" == 1 then
+        local result = vim.system({
+          "gsettings",
+          "get",
+          "org.gnome.desktop.interface",
+          "color-scheme",
+        }):wait()
+        return result.stdout:match "dark" and "dark" or "light"
+      end
+
+      return "dark"
+    end
+
+    vim.o.background = system_background()
+
     require("tokyonight").setup {
-      style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+      style = "moon", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
       light_style = "day", -- The theme is used when the background is set to light
       transparent = true, -- Enable this to disable setting the background color
       terminal_colors = true, -- Configure the colors used when opening a `:terminal` in [Neovim](https://github.com/neovim/neovim)
