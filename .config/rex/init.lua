@@ -17,7 +17,7 @@ rex.bind("ctrl+space>ctrl+v", "pane.split", { direction = "right" })
 rex.bind("ctrl+space>h", "pane.split", { direction = "down" })
 rex.bind("ctrl+space>ctrl+h", "pane.split", { direction = "down" })
 
--- Close focused pane.
+-- Close focused pane/block.
 rex.bind("ctrl+space>w", "pane.close")
 rex.bind("ctrl+space>ctrl+w", "pane.close")
 
@@ -48,9 +48,11 @@ rex.bind("ctrl+space>s", "session.switch")
 ------------------------------------------------------------
 -- Vim-style pane navigation
 ------------------------------------------------------------
--- Do not bind Ctrl-h/j/k/l in Rex. Let terminals receive raw keys.
--- Neovim owns these maps, moves inside its own splits first, then calls Rex
--- focus_direction at split edges.
+-- Rex pane navigation. Needed outside Neovim; otherwise Ctrl-h/j/k/l go to shell.
+rex.bind("ctrl+h", "pane.focus", { direction = "left" })
+rex.bind("ctrl+j", "pane.focus", { direction = "down" })
+rex.bind("ctrl+k", "pane.focus", { direction = "up" })
+rex.bind("ctrl+l", "pane.focus", { direction = "right" })
 
 ------------------------------------------------------------
 -- Resize mode, similar to tmux C-M-h/j/k/l
