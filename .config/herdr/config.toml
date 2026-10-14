@@ -99,9 +99,11 @@ command = "herdr-theme-sync"
 description = "sync herdr theme from ghostty"
 
 [theme]
-name = "kanagawa"
+# Follow host terminal appearance, matching macOS auto light/dark.
+auto_switch = true
+dark_name = "tokyo-night"
+light_name = "tokyo-night-day"
 
-auto_switch = false
 [ui]
 show_agent_labels_on_pane_borders = true
 sidebar_width = 20

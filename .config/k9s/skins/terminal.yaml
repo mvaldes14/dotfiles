@@ -1,0 +1,85 @@
+k9s:
+  body:
+    fgColor: default
+    bgColor: default
+  prompt:
+    fgColor: default
+    bgColor: default
+  info:
+    sectionColor: blue
+    fgColor: default
+    bgColor: default
+  dialog:
+    fgColor: default
+    bgColor: default
+    buttonFgColor: default
+    buttonBgColor: default
+    buttonFocusFgColor: default
+    buttonFocusBgColor: blue
+    label: blue
+    fieldFgColor: default
+  frame:
+    border:
+      fgColor: default
+      focusColor: blue
+    menu:
+      fgColor: default
+      keyColor: blue
+      numKeyColor: blue
+      bgColor: default
+    crumbs:
+      fgColor: default
+      bgColor: default
+      activeColor: blue
+    status:
+      newColor: green
+      modifyColor: yellow
+      addColor: green
+      errorColor: red
+      highlightColor: blue
+      killColor: red
+      completedColor: green
+    title:
+      fgColor: default
+      bgColor: default
+      highlightColor: blue
+      counterColor: blue
+      filterColor: yellow
+  views:
+    charts:
+      bgColor: default
+      defaultDialColors:
+        - blue
+        - red
+      defaultChartColors:
+        - blue
+        - red
+      status:
+        ok: green
+        warn: yellow
+        err: red
+    table:
+      fgColor: default
+      bgColor: default
+      cursorFgColor: default
+      cursorBgColor: default
+      markColor: yellow
+      header:
+        fgColor: blue
+        bgColor: default
+        sorterColor: yellow
+    xray:
+      fgColor: default
+      bgColor: default
+      cursorColor: blue
+      graphicColor: blue
+    yaml:
+      keyColor: blue
+      colonColor: default
+      valueColor: default
+    logs:
+      fgColor: default
+      bgColor: default
+      indicator:
+        fgColor: blue
+        bgColor: default

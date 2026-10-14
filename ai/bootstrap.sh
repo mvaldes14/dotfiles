@@ -106,6 +106,7 @@ main() {
 
   # Claude Code overlay.
   link_file "$CLAUDE_DIR/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  link_file "$CLAUDE_DIR/settings.json" "$HOME/.claude/settings.json"
 
   if [[ -d "$CLAUDE_DIR/agents" ]]; then
     ensure_real_dir "$HOME/.claude/agents"

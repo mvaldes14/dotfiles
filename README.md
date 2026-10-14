@@ -2,90 +2,44 @@
 
 ![dotfiles](dotfiles.png)
 
-Personal development environment configuration for macOS and cross-platform tools.
+Personal development environment configuration, primarily for macOS. `Brewfile` lists packages; `.config/` contains application configs; `ai/` deploys agent config separately.
 
-## Tools & Configurations
+## Current setup
 
-### Terminal & Shell
-- **zsh** - Shell configuration with aliases, functions, and keymaps
-- **starship** - Cross-shell prompt with custom styling
-- **atuin** - Shell history sync and search
-- **tmux** - Terminal multiplexer with custom keybinds and theme
-
-### Text Editors & IDEs
-- **nvim** - Neovim configuration using Lazy.nvim with extensive LSP, DAP, and plugin setup
-- **zed** - Modern editor configuration replicating nvim-like experience
-
-### Terminal Emulators
-- **ghostty** - GPU-accelerated terminal emulator configuration
-
-### Window Management
-- **aerospace** - Tiling window manager for macOS with custom keybinds
+- **Terminal:** Ghostty (TokyoNight Day/Night follows system appearance), JetBrainsMono Nerd Font.
+- **Shell:** zsh + Oh My Zsh, Starship, Atuin, zoxide, fzf, direnv (via Vorpal on personal machines).
+- **Workspace:** Herdr with auto-switching TokyoNight Day/Night themes, workspace/session helpers and Ctrl-Space keybindings. tmux config and scripts remain available as an alternative; its custom theme is disabled.
+- **Editor:** Neovim + lazy.nvim, LSP, Treesitter, DAP, completion and Git tooling. TokyoNight follows system light/dark preference.
+- **Kubernetes:** k9s uses `terminal` skin (terminal background/foreground); custom dark skins remain in `.config/k9s/skins/`.
+- **CLI:** lazygit uses default terminal colors; bat selects light/dark syntax theme automatically; Starship uses terminal foreground for Kubernetes, Helm and Lua prompt segments.
+- **Window management:** Aerospace on macOS. GlazeWM and Hyprland configs remain for other environments.
+- **AI:** pi, Claude Code, Codex and opencode share `ai/shared/AGENTS.md` and reusable skills; harness-specific settings live under `ai/` or `.config/opencode/`.
 
 ### AI Agents (`ai/`)
-Layout is `ai/shared/` (vendor-neutral) + one dir per harness. One canonical
-source per file; every harness gets a symlink.
+Layout is `ai/shared/` (vendor-neutral) + one dir per harness. `ai/bootstrap.sh`
+links shared config to harness paths without replacing existing regular files.
 
 | Source | Deployed to | Consumed by |
 |---|---|---|
-| `ai/shared/AGENTS.md` | `~/.claude/AGENTS.md`, `~/.codex/AGENTS.md`, `~/.pi/agent/AGENTS.md`, `~/.config/opencode/AGENTS.md` | all four (Claude Code via `CLAUDE.md` import) |
+| `ai/shared/AGENTS.md` | `~/.agents/AGENTS.md`, `~/.claude/AGENTS.md`, `~/.codex/AGENTS.md`, `~/.pi/agent/AGENTS.md`, `~/.config/opencode/AGENTS.md` | shared context (Claude Code via `CLAUDE.md` import) |
 | `ai/shared/skills/<name>` | `~/.claude/skills/<name>`, `~/.codex/skills/<name>`, `~/.agents/skills/<name>` (per-skill) | Claude Code, Codex, pi (`~/.agents` is pi's native path) |
 | `ai/pi/models.json` | `~/.pi/agent/models.json` | pi — custom model provider endpoints |
 | `ai/pi/settings.json` | `~/.pi/agent/settings.json` | pi — theme, TUI, packages, warnings |
 | `ai/pi/mcp.json` | `~/.pi/agent/mcp.json` | pi — MCP server endpoints (gateway) |
 | `ai/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code only — imports `AGENTS.md`, adds herdr/CC rules |
 | `ai/claude/agents/<name>` | `~/.claude/agents/` | Claude Code subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
-| `ai/claude/settings.json` | *(not symlinked — live `~/.claude/settings.json` has diverged; kept as reference)* | Claude Code |
+| `ai/claude/settings.json` | `~/.claude/settings.json` | Claude Code |
 | `ai/claude/*status_line.sh` | referenced by `settings.json` | Claude Code |
 
-**Not yet ported:** subagents for Codex (`~/.codex/agents/` + `multi_agent` feature)
-and pi (`pi-subagents` package) — different frontmatter schemas; reuse the persona
-bodies from `ai/claude/agents/` when needed. opencode config beyond `AGENTS.md`.
-Third-party skills (`herdr`, `humanizer`) stay installer-managed in `~/.agents/skills/`.
+Claude Code personas live in `ai/claude/agents/`; pi uses `pi-subagents` as a package, not those Claude persona files. Third-party skills (e.g. `herdr`, `humanizer`) remain installer-managed in `~/.agents/skills/`. Bootstrap links repo-owned skills per skill rather than replacing installed ones. See [ai/README.md](ai/README.md) for full symlink map.
 
-### Development Tools
-- **opencode** - AI coding assistant configuration with custom modes and agents
-- **direnv** - Environment variable management
-- **lazygit** - Git TUI configuration
-- **bat** - Cat replacement with syntax highlighting and custom themes
-- **awscli** - AWS CLI configuration with multiple profiles and endpoints
+## Other configs and scripts
 
-### Development Environment
-- **devbox** - Reproducible development environments with Lua tooling
-- **ssh** - SSH client configuration for secure connections
-
-## Key Features
-
-### Neovim Setup
-Modern Lua-based configuration using Lazy.nvim with:
-- LSP support for multiple languages (Go, TypeScript, Lua, Nix, etc.)
-- DAP (Debug Adapter Protocol) integration
-- Advanced plugins: Telescope, Treesitter, Copilot, Obsidian integration
-- Custom snippets and spell checking
-
-### Tmux Configuration
-- Custom theme and status line
-- Plugin ecosystem integration
-- Session management scripts
-- Navigation helpers
-
-### Shell Environment  
-- Hostname-based configuration switching
-- Custom functions and aliases
-- Integrated history search with Atuin
-- Starship prompt with git and environment info
-
-### Cross-Platform Support
-- macOS-specific tools (Aerospace)
-- Linux compatibility for core tools
-
-## Scripts & Utilities
-- `tmux-sessionizer.sh` - Quick tmux session creation
-- `tmux-sessionkiller.sh` - Session cleanup utility  
-- `herdr-sessionizer.sh` - Quick herdr workspace creation
-- `herdr-sessionkiller.sh` - Workspace cleanup utility
-- `jws-*` scripts - Custom workflow automation
-- SSH helpers and navigation tools
+- `.config/opencode/`: opencode agent config; `.config/tmux/`: optional tmux keybindings/plugins (custom theme source commented out).
+- `.config/nvim/`: Lua Neovim config with LSP, DAP, Treesitter, completion, Git and Obsidian integrations.
+- `.aws/config`, `.ssh/config`: cloud and SSH client settings.
+- `scripts/herdr-*`, `scripts/tmux-*`: workspace/session helpers; `scripts/jws-*`: JWS helpers.
+- `Brewfile`: Homebrew CLI tools and macOS apps, including tools without repo-managed config.
 
 ## Bootstrap
 
@@ -138,10 +92,6 @@ stow -v -d ~/git -t "$HOME" dotfiles      # apply
 The `.stow-local-ignore` file keeps repo metadata, docs, archives, the
 `Taskfile.yml`, and non-home-shaped AI config out of the link set.
 
-After stowing, edit files at their normal runtime paths, e.g. `~/.config/nvim`,
-`~/.config/zsh`, or `~/.ssh/config`; changes go through the symlinks back into
-this repo.
+Stow links repo files into `$HOME` where no conflicting files exist. Existing real files are not replaced by `task stow`; check `task stow:dry` and reconcile conflicts before assuming runtime config matches repo. Agent files use `ai/bootstrap.sh` instead; it updates existing symlinks but leaves real files untouched.
 
-Zsh uses a stowed `~/.zshenv` to set `ZDOTDIR=$HOME/.config/zsh`, so
-`~/.config/zsh/.zshrc` is loaded automatically. The zsh config also adds
-`$HOME/scripts` to `PATH`, which points at the stowed `scripts/` directory.
+Zsh uses `~/.zshenv` to set `ZDOTDIR=$HOME/.config/zsh`, then loads `~/.config/zsh/.zshrc`. Shell config adds `$HOME/.local/bin` and `$HOME/scripts` to `PATH`; `scripts/bootstrap.sh` links executable helpers into `~/.local/bin`.

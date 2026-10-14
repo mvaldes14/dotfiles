@@ -93,17 +93,17 @@ format = '[$symbol($version )](red bold)'
 
 [lua]
 symbol = " "
-format = '[$symbol($version )](bold white)'
+format = '$symbol($version )'
 
 [kubernetes]
 symbol = "☸ "
-format = '[$symbol$context](dimmed green) '
+format = '$symbol$context '
 disabled = false
 detect_files = []
 
 [helm]
 symbol = "⎈ "
-format = '[$symbol($version )](bold white)'
+format = '$symbol($version )'
 
 [status]
 disabled = false

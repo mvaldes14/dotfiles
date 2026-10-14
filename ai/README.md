@@ -16,7 +16,7 @@ ai/
 ├── claude/                   # Claude Code-specific overlay
 │   ├── CLAUDE.md             # Imports shared AGENTS.md + Claude/herdr rules
 │   ├── agents/               # Claude Code subagents/personas
-│   ├── settings.json         # Reference settings; not linked by bootstrap
+│   ├── settings.json         # Linked to ~/.claude/settings.json
 │   └── *status_line.sh
 └── pi/
     ├── mcp.json              # Pi MCP server config
@@ -46,13 +46,13 @@ The script is idempotent. It links only agent config that should be source-contr
 | `shared/skills/<name>` | `~/.claude/skills/<name>` | Claude Code skills |
 | `shared/skills/<name>` | `~/.codex/skills/<name>` | Codex skills |
 | `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code-specific instructions |
+| `claude/settings.json` | `~/.claude/settings.json` | Claude Code settings |
 | `claude/agents/<name>.md` | `~/.claude/agents/<name>.md` | Claude Code subagents |
 | `pi/mcp.json` | `~/.pi/agent/mcp.json` | Pi MCP server config |
 | `pi/models.json` | `~/.pi/agent/models.json` | Pi model/provider config |
 
 ## What is intentionally not linked
 
-- `~/.claude/settings.json`: machine/local settings can diverge; `claude/settings.json` is a reference copy.
 - Auth, session, state, cache, history, and database files.
 - Third-party installer-managed skills. The bootstrap script links shared skills per-skill so those can coexist.
 
