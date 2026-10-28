@@ -36,6 +36,7 @@ export PRIMUS_HOME=/Users/mvaldes/git/work/primus
 # Functions
 # Add to PATH for custom locations
 addToPath "$HOME/.local/bin"
+addToPath "$HOME/.pi/agent/bin"
 addToPath "$HOME/go/bin"
 addToPath /opt/homebrew/bin
 addToPath "$HOME/.vorpal/bin"
