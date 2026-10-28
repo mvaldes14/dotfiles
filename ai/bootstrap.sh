@@ -117,7 +117,11 @@ main() {
   fi
 
   # Pi overlay.
-  link_file "$PI_DIR/mcp.json" "$HOME/.pi/agent/mcp.json"
+  if [[ -L "$HOME/.pi/agent/mcp.json" ]]; then
+    rm -- "$HOME/.pi/agent/mcp.json"
+    log "remove deprecated link: $HOME/.pi/agent/mcp.json"
+  fi
+  link_file "$PI_DIR/mcp-adapter.json" "$HOME/.pi/agent/mcp-adapter.json"
   link_file "$PI_DIR/models.json" "$HOME/.pi/agent/models.json"
   link_file "$PI_DIR/settings.json" "$HOME/.pi/agent/settings.json"
 

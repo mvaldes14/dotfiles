@@ -25,7 +25,7 @@ links shared config to harness paths without replacing existing regular files.
 | `ai/shared/skills/<name>` | `~/.claude/skills/<name>`, `~/.codex/skills/<name>`, `~/.agents/skills/<name>` (per-skill) | Claude Code, Codex, pi (`~/.agents` is pi's native path) |
 | `ai/pi/models.json` | `~/.pi/agent/models.json` | pi — custom model provider endpoints |
 | `ai/pi/settings.json` | `~/.pi/agent/settings.json` | pi — theme, TUI, packages, warnings |
-| `ai/pi/mcp.json` | `~/.pi/agent/mcp.json` | pi — MCP server endpoints (gateway) |
+| `ai/pi/mcp-adapter.json` | `~/.pi/agent/mcp-adapter.json` | pi-mcp-adapter — MCP server endpoints (gateway) |
 | `ai/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code only — imports `AGENTS.md`, adds herdr/CC rules |
 | `ai/claude/agents/<name>` | `~/.claude/agents/` | Claude Code subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
 | `ai/claude/settings.json` | `~/.claude/settings.json` | Claude Code |

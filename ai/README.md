@@ -19,8 +19,9 @@ ai/
 │   ├── settings.json         # Linked to ~/.claude/settings.json
 │   └── *status_line.sh
 └── pi/
-    ├── mcp.json              # Pi MCP server config
-    └── models.json           # Pi model/provider config
+    ├── mcp-adapter.json      # pi-mcp-adapter server config
+    ├── models.json           # Pi model/provider config
+    └── settings.json         # Pi UI and package settings
 ```
 
 ## Bootstrap
@@ -48,8 +49,9 @@ The script is idempotent. It links only agent config that should be source-contr
 | `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code-specific instructions |
 | `claude/settings.json` | `~/.claude/settings.json` | Claude Code settings |
 | `claude/agents/<name>.md` | `~/.claude/agents/<name>.md` | Claude Code subagents |
-| `pi/mcp.json` | `~/.pi/agent/mcp.json` | Pi MCP server config |
+| `pi/mcp-adapter.json` | `~/.pi/agent/mcp-adapter.json` | pi-mcp-adapter server config |
 | `pi/models.json` | `~/.pi/agent/models.json` | Pi model/provider config |
+| `pi/settings.json` | `~/.pi/agent/settings.json` | Pi UI and package settings |
 
 ## What is intentionally not linked
 
