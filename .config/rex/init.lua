@@ -31,8 +31,9 @@ rex.bind("ctrl+space>p", "client.tab.previous")
 rex.bind("ctrl+space>tab", "client.tab.next")
 rex.bind("ctrl+space>shift+tab", "client.tab.previous")
 
--- Rename current tab/window and session.
+-- Rename current tab/window and session (tmux: prefix + $).
 rex.bind("ctrl+space>,", "client.tab.rename")
+-- Rex spells `$` as Shift+4 in key sequences.
 rex.bind("ctrl+space>shift+4", "session.rename")
 
 -- Reload Rex config.

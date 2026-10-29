@@ -29,5 +29,6 @@
   ],
   "extensions": [
     "-builtin:mcp"
-  ]
+  ],
+  "deviceId": "c0492308-8403-411c-b23c-1d5b5a75744e"
 }
