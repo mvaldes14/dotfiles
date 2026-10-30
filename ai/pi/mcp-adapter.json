@@ -2,7 +2,7 @@
   "mcpServers": {
     "gateway": {
       "type": "http",
-      "url": "http://10.14.0.231/mcp"
+      "url": "https://agentgateway.int.mvaldes.dev/mcp"
     }
   }
 }
