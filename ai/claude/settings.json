@@ -21,7 +21,7 @@
       "Read(./secrets/**)"
     ]
   },
-  "model": "opus[1m]",
+  "model": "opus",
   "hooks": {
     "PostToolUse": [
       {

@@ -30,12 +30,12 @@ Use the `obsidian` CLI, not `rg`. `file=` resolves by name exactly like a wikili
 obsidian read file="<spec-name>"              # load the spec
 obsidian links file="<spec-name>"             # outgoing links, for the one-hop follow
 obsidian search:context query="<title>" limit=5   # fallback discovery
-obsidian search:context query="<component>" path=Logs   # prior fixes
+obsidian search:context query="<component>" path=Work   # prior fixes live in Work/YYYY-MM-log.md
 ```
 
 **The Obsidian app must be running.** If a command fails, check `pgrep -x Obsidian` and report which problem it is rather than silently falling back to `rg`.
 
-If you found a spec, read it, then `obsidian read` each note from its `links` that looks relevant — one hop only, don't spider the vault. Fetch any `References` URLs with WebFetch. Search `Logs` for prior entries on the same component; past fixes are frequently the reason a task exists.
+If you found a spec, read it, then `obsidian read` each note from its `links` that looks relevant — one hop only, don't spider the vault. Fetch any `References` URLs with WebFetch. Search the monthly fix logs (`Work/*-log.md`) for prior entries on the same component; past fixes are frequently the reason a task exists.
 
 ### If there is no spec
 
@@ -107,7 +107,7 @@ PR body: goal from the spec (or the task description), acceptance criteria as a 
 - `mcp__doit__store_task_ai_result` — PR URL, summary of the change, anything the reviewer should look at first
 - `mcp__doit__update_subtask(completed=true)` for each subtask the agent actually finished — not the ones it skipped
 - Leave the task at `doing`. It becomes `done` when the PR merges, which is the user's call, not yours.
-- Append to `~/Obsidian/wiki/Logs/<today>.md` only if the work clears the knowledge-base bar in CLAUDE.md (non-obvious bug, >30min debugging, likely to recur). Routine feature work does not. If you log, confirm with "📝 Logged to history in obsidian".
+- Append an entry to `~/Obsidian/wiki/Work/<YYYY-MM>-log.md` (format in AGENTS.md Knowledge Base) only if the work clears the knowledge-base bar in CLAUDE.md (non-obvious bug, >30min debugging, likely to recur). Routine feature work does not. If you log, confirm with "📝 Logged to history in obsidian".
 
 ## Report
 
