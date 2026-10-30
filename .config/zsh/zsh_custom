@@ -1,7 +1,5 @@
-# Vorpal - Load environment on personal machines
-if [[ $(command -v vorpal) ]]; then
-  VORPAL_PATH="$(cat $HOME/.vorpal/.activated-path 2>/dev/null)"
-  source "$VORPAL_PATH/bin/vorpal-activate-shell"
+# Direnv - Load where installed
+if (( $+commands[direnv] )); then
   eval "$(direnv hook zsh)"
 fi
 

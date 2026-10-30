@@ -1,3 +1,12 @@
+# Bootstrap active Vorpal environment before plugin detection.
+if [[ -d "$HOME/.vorpal/bin" ]]; then
+  path=("$HOME/.vorpal/bin" $path)
+
+  if [[ -r "$HOME/.vorpal/bin/vorpal-activate-shell" ]]; then
+    source "$HOME/.vorpal/bin/vorpal-activate-shell"
+  fi
+fi
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 HISTFILE=$HOME/.zshistory
