@@ -46,7 +46,7 @@ return {
       { "<leader>o", group = "Obsidian" },      -- group
       { "<leader>X", group = "DB" },            -- group
       { "<leader>b", group = "Buffer" },        -- group
-      { "<leader>c", group = "Claude" },        -- group
+      { "<leader>c", group = "Code" },          -- group
     }
   end,
 }

@@ -118,10 +118,6 @@ vim.keymap.set("n", "<F4>", "<cmd> lua require('dap').step_out()<cr>", { desc = 
 vim.keymap.set("n", "<F5>", "<cmd> lua require('dap').continue()<cr>", { desc = "Debug Continue" })
 -- <leader>d* debug maps are registered on session start in plugins/dap.lua
 
--- AI
-vim.keymap.set({ "n" }, "<leader>co", "<cmd>ClaudeCode<cr>", { desc = "Claude Code Open" })
-vim.keymap.set({ "v" }, "<leader>cs", "<cmd>ClaudeCodeSend<cr>", { desc = "Claude Code Send" })
-
 -- YAML
 vim.keymap.set("n", "<leader>F", function()
   if vim.bo.filetype ~= "yaml" and vim.bo.filetype ~= "yml" then
@@ -148,54 +144,10 @@ vim.keymap.set("n", "<leader>F", function()
   client:notify("workspace/didChangeConfiguration", { settings = client.settings })
 end, { desc = "Format current buffer with yamlls" })
 
--- Vim window navigation, with multiplexer handoff at split edges.
-local function nav(wincmd, dir)
-  local prev = vim.api.nvim_get_current_win()
-  vim.cmd("wincmd " .. wincmd)
-  if vim.api.nvim_get_current_win() ~= prev then
-    return -- moved within Neovim
-  end
-
-  -- At a split edge: cross into the surrounding multiplexer.
-  if vim.env.HERDR_PANE_ID and vim.env.HERDR_PANE_ID ~= "" then
-    local herdr = vim.env.HERDR_BIN_PATH
-    if herdr == nil or herdr == "" then
-      herdr = "herdr"
-    end
-    vim.fn.system { herdr, "pane", "focus", "--direction", dir, "--current" }
-  elseif (vim.env.REX_BLOCK and vim.env.REX_BLOCK ~= "") or (vim.env.REX_SESSION and vim.env.REX_SESSION ~= "") then
-    local rex = "rex"
-    if vim.env.REX_BIN_DIR and vim.env.REX_BIN_DIR ~= "" then
-      rex = vim.env.REX_BIN_DIR .. "/rex"
-    end
-
-    local session = vim.env.REX_SESSION
-    if session and session ~= "" then
-      vim.fn.system { rex, "api", "call", "session.focus_direction", "--session", session, "{\"direction\":\"" .. dir .. "\"}" }
-    end
-  elseif vim.env.TMUX and vim.env.TMUX ~= "" then
-    local tmux = { left = "Left", down = "Down", up = "Up", right = "Right" }
-    pcall(vim.cmd, "TmuxNavigate" .. tmux[dir])
-  end
-end
-
-local function map(lhs, wincmd, dir, desc)
-  vim.keymap.set("n", lhs, function()
-    nav(wincmd, dir)
-  end, { silent = true, noremap = true, desc = desc })
-
-  vim.keymap.set("i", lhs, function()
+-- Window navigation across Neovim splits and Rex panes (vim-rex-navigator).
+for key, dir in pairs { h = "left", j = "down", k = "up", l = "right" } do
+  vim.keymap.set({ "n", "i", "t" }, "<C-" .. key .. ">", function()
     vim.cmd "stopinsert"
-    nav(wincmd, dir)
-  end, { silent = true, noremap = true, desc = desc })
-
-  vim.keymap.set("t", lhs, function()
-    vim.cmd "stopinsert"
-    nav(wincmd, dir)
-  end, { silent = true, noremap = true, desc = desc })
+    require("vim-rex-navigator").focus(dir)
+  end, { silent = true, desc = "Navigate " .. dir .. " (vim/rex)" })
 end
-
-map("<C-h>", "h", "left", "Navigate left (vim/mux)")
-map("<C-j>", "j", "down", "Navigate down (vim/mux)")
-map("<C-k>", "k", "up", "Navigate up (vim/mux)")
-map("<C-l>", "l", "right", "Navigate right (vim/mux)")
