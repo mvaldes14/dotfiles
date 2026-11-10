@@ -15,6 +15,18 @@
   "warnings": {
     "anthropicExtraUsage": false
   },
+  "otel": {
+    "enabled": true,
+    "endpoint": "https://events.mvaldes.dev",
+    "protocol": "http/protobuf",
+    "serviceName": "pi",
+    "captureContent": "metadata_only",
+    "signals": {
+      "traces": true,
+      "metrics": true,
+      "logs": true
+    }
+  },
   "tuiMode": "fullscreen",
   "fullscreenExitOutput": "resume-hint",
   "packages": [
@@ -25,7 +37,8 @@
     "npm:pi-web-access",
     "npm:@quintinshaw/pi-dynamic-workflows",
     "npm:pi-caveman",
-    "npm:pi-ask-user"
+    "npm:pi-ask-user",
+    "npm:pi-otel"
   ],
   "extensions": [
     "-builtin:mcp"
