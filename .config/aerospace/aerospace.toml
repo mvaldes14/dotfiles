@@ -61,7 +61,8 @@ automatically-unhide-macos-hidden-apps = true
     alt-shift-space = 'layout floating tiling'
 
 [[on-window-detected]]
-if.app-id = "com.mitchellh.ghostty" # term
+if.app-id = "com.superlogical.rex"
+##com.mitchellh.ghostty" # term
 run = "move-node-to-workspace 1"
 
 [[on-window-detected]]
