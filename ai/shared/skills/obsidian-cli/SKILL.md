@@ -1,77 +1,51 @@
 ---
 name: obsidian-cli
-description: Use this skill whenever the user asks about vault health, orphans, dead-ends, unresolved links, tags, tasks, files, or any vault-wide query. Always prefer the obsidian CLI over manual file searches.
+description: Use this skill whenever the user asks about vault notes, health, links, tags, tasks, files, or any vault-wide query. Access the always-available headless vault at ~/Obsidian/wiki.
 tags:
   - ai
 ---
-# Obsidian CLI
+# Obsidian headless vault
 
-The `obsidian` CLI is on PATH (`/usr/local/bin/obsidian`). Always use it for vault queries instead of grep/glob/Read/Write when a dedicated command exists.
+Vault is always available at `~/Obsidian/wiki` and synchronized by `obsidian-headless` (`ob`). No Obsidian desktop process is required. Never gate vault access on `pgrep -x Obsidian`.
 
-> Every invocation prints a loading line to stderr. Pipe through `2>/dev/null` when showing results to the user.
-
-**Inside the wiki vault, prefer these over the generic tools:**
-- `obsidian read` instead of Read
-- `obsidian create` / `obsidian append` instead of Write/Edit
-- `obsidian search` / `obsidian files` instead of Grep/Glob
-
-Most commands accept `total` (count only), `format=json`, and `verbose` modifiers.
+`ob` manages Sync only; it does not query note content. For note operations:
+- Prefer native `obsidian_*` tools when available.
+- Otherwise use filesystem tools against `~/Obsidian/wiki`: `rg`/`fd` for discovery, Read for inspection, Edit for targeted changes, Write only for new files or full rewrites.
+- Ignore root-level `.base` files when inventorying or searching content.
+- Do not run `ob sync` unless user asks for sync troubleshooting.
 
 ## Finding Files
 
 Prefer full-text content search and filename/prefix matching. The vault has few tags (only `Blog/` notes use them), so **do not rely on tag search** to locate files.
 
 ```bash
-obsidian search query="kubernetes"              # full-text content search
-obsidian search query="kubernetes" path=Resources limit=20
-obsidian search:context query="flux"            # with surrounding lines
+rg -n -i 'kubernetes' ~/Obsidian/wiki -g '*.md' -g '!Archive/**'
+rg -n -i 'flux' ~/Obsidian/wiki/Resources -g '*.md'
+fd -e md . ~/Obsidian/wiki/Resources | grep '/homelab-'
 ```
 
-`obsidian files` only filters by `folder=` and `ext=` — there is no name/glob flag. To find files by area prefix (`signoz-*`, `homelab-*`, `dev-*`, `youtube-*`), pipe to grep:
-
-```bash
-obsidian files folder=Resources 2>/dev/null | grep '^Resources/signoz-'   # by area prefix
-obsidian files 2>/dev/null | grep -i 'clickhouse'                          # by name substring
-obsidian files folder=Resources ext=md                                     # all Resources notes
-```
+When native tools are available, use `obsidian_search`, `obsidian_read`, `obsidian_write`, and related link/tag tools instead.
 
 ## Vault Health
 
-```bash
-obsidian orphans          # files with NO incoming links
-obsidian deadends         # files with NO outgoing links
-obsidian unresolved       # broken wikilinks (add verbose for source files)
-```
+Use native Obsidian tools for backlinks and tags. For vault-wide orphan, dead-end, or unresolved-link analysis, scan Markdown files and wikilinks under `~/Obsidian/wiki`; exclude `.base`, `Archive/`, and `Templates/` unless user requests them.
 
 ## Links & Tasks
 
-```bash
-obsidian backlinks file="Dashboard"      # what links TO a file
-obsidian links file="Dashboard"          # outgoing links FROM a file
-obsidian tasks todo                       # incomplete tasks (done / path=<file> to filter)
-obsidian tags                             # rarely useful — tags exist only in Blog/ notes
-```
+- Backlinks: use `obsidian_list_backlinks`.
+- Tags: use `obsidian_list_tags`; tags are normally only used in `Blog/`.
+- Tasks: task state lives in doit, not Obsidian. Search Markdown checkboxes only when explicitly requested.
 
 ## Read & Write Notes
 
-```bash
-obsidian read file="20251218-k8s-lsp"    # fuzzy by name
-obsidian read path=Resources/homelab-k8s-lsp.md
-obsidian append path=<path> content="text"
-obsidian prepend path=<path> content="text"
-obsidian create path=Inbox/20260223-new.md content="..." template="notes"
-```
+Use `obsidian_search` to resolve fuzzy names, then `obsidian_read` with exact vault-relative path. Before overwriting an existing note, read it first and confirm with user. Use `obsidian_append` for logs and journals.
 
 ## Frontmatter
 
-```bash
-obsidian properties file="note-name"                        # props on one file
-obsidian property:read name=status path=<path>
-obsidian property:set name=status value=done path=<path>
-obsidian property:remove name=status path=<path>
-```
+Read YAML frontmatter with `obsidian_read(parse_frontmatter=true)`. Preserve existing fields and follow vault frontmatter conventions when editing.
 
 ## Notes
-- `file=<name>` resolves fuzzily (like wikilinks); `path=<path>` is exact from vault root — use it when names are ambiguous.
-- Quote values with spaces: `path="Work/2026-02.md"`.
-- Default vault is whichever is active in Obsidian; use `vault=<name>` to target another.
+- Canonical vault path: `/home/mvaldes/Obsidian/wiki`.
+- No desktop app/process check.
+- `ob` binary means Obsidian Headless Sync client, not note-query CLI.
+- Use exact vault-relative paths after resolving note names.

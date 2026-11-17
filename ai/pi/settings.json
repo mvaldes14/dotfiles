@@ -4,7 +4,7 @@
   "theme": "light/dark",
   "hideThinkingBlock": true,
   "quietStartup": true,
-  "lastChangelogVersion": "1.4.0",
+  "lastChangelogVersion": "1.5.1",
   "outputPad": 0,
   "collapseChangelog": true,
   "autocompleteMaxVisible": 3,
@@ -42,5 +42,10 @@
   ],
   "extensions": [
     "-builtin:mcp"
-  ]
+  ],
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-mcp-adapter\",\"scope\":\"user\"}": "7.0.1",
+    "{\"source\":\"npm:pi-subagents\",\"scope\":\"user\"}": "0.87.0",
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0"
+  }
 }

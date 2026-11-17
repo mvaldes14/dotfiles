@@ -66,13 +66,12 @@ Keep anything tool-specific out of this file — it belongs in the per-harness o
   - To find notes by topic: `obsidian search query="[topics:homelab]"`; by exact alias: `obsidian search query='[aliases:/^eso$/]'` (without the regex it substring-matches)
 - **Links**: wikilinks by filename (`[[aws-route53|route53]]`), never markdown path links (`[x](foo.md)`) or links to titles that aren't filenames/aliases
 - **When to search the vault**: before answering questions about my stack, homelab, projects, or workflows
-- **How to search**: use the `obsidian` CLI (at `/usr/local/bin/obsidian`), not grep
-  - Full-text search: `obsidian search query="<term>"`
-  - Search with context: `obsidian search:context query="<term>"`
-  - Find notes by tag: `obsidian tag name=<tag> verbose`
-  - List all tags: `obsidian tags`
-  - List files: `obsidian files`
-  - **The Obsidian app must be running** for the CLI to respond. If a command fails, check `pgrep -x Obsidian` before assuming the CLI is broken — report which it is, don't silently fall back to `rg`.
+- **How to access**: vault is always available at `~/Obsidian/wiki`, synchronized by Obsidian Headless (`ob`)
+  - No desktop Obsidian process is required; never gate access on `pgrep -x Obsidian`
+  - `ob` manages Sync only and is not a note-query CLI
+  - Prefer native `obsidian_*` tools for search, read/write, tags, and backlinks
+  - If native tools are unavailable, use `rg`/`fd` against `~/Obsidian/wiki` and file read/edit tools
+  - Ignore root-level `.base` files when inventorying or searching content
 - **Task state lives in doit** (not Obsidian)
 - **doit** is a task manager exposed over MCP. Exact tool names vary by harness; check the
   available MCP tools for the `doit` server. No API key needed.
