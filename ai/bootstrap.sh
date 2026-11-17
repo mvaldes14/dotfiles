@@ -125,6 +125,14 @@ main() {
   link_file "$PI_DIR/models.json" "$HOME/.pi/agent/models.json"
   link_file "$PI_DIR/settings.json" "$HOME/.pi/agent/settings.json"
 
+  if [[ -d "$PI_DIR/agents" ]]; then
+    ensure_real_dir "$HOME/.pi/agent/agents"
+    for agent in "$PI_DIR"/agents/*.md; do
+      [[ -f "$agent" ]] || continue
+      link_file "$agent" "$HOME/.pi/agent/agents/$(basename -- "$agent")"
+    done
+  fi
+
   log "done"
 }
 

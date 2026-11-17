@@ -26,12 +26,13 @@ links shared config to harness paths without replacing existing regular files.
 | `ai/pi/models.json` | `~/.pi/agent/models.json` | pi — custom model provider endpoints |
 | `ai/pi/settings.json` | `~/.pi/agent/settings.json` | pi — theme, TUI, packages, warnings |
 | `ai/pi/mcp-adapter.json` | `~/.pi/agent/mcp-adapter.json` | pi-mcp-adapter — MCP server endpoints (gateway) |
+| `ai/pi/agents/<name>` | `~/.pi/agent/agents/` | Pi custom subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
 | `ai/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code only — imports `AGENTS.md`, adds herdr/CC rules |
 | `ai/claude/agents/<name>` | `~/.claude/agents/` | Claude Code subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
 | `ai/claude/settings.json` | `~/.claude/settings.json` | Claude Code |
 | `ai/claude/*status_line.sh` | referenced by `settings.json` | Claude Code |
 
-Claude Code personas live in `ai/claude/agents/`; pi uses `pi-subagents` as a package, not those Claude persona files. Third-party skills (e.g. `herdr`, `humanizer`) remain installer-managed in `~/.agents/skills/`. Bootstrap links repo-owned skills per skill rather than replacing installed ones. See [ai/README.md](ai/README.md) for full symlink map.
+Harness-specific personas live in `ai/claude/agents/` and `ai/pi/agents/`; schemas differ, so each harness gets its own definition. Third-party skills (e.g. `herdr`, `humanizer`) remain installer-managed in `~/.agents/skills/`. Bootstrap links repo-owned skills per skill rather than replacing installed ones. See [ai/README.md](ai/README.md) for full symlink map.
 
 ## Other configs and scripts
 

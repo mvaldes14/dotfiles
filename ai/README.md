@@ -19,6 +19,7 @@ ai/
 │   ├── settings.json         # Linked to ~/.claude/settings.json
 │   └── *status_line.sh
 └── pi/
+    ├── agents/               # Pi subagent/persona definitions
     ├── mcp-adapter.json      # pi-mcp-adapter server config
     ├── models.json           # Pi model/provider config
     └── settings.json         # Pi UI and package settings
@@ -52,6 +53,7 @@ The script is idempotent. It links only agent config that should be source-contr
 | `pi/mcp-adapter.json` | `~/.pi/agent/mcp-adapter.json` | pi-mcp-adapter server config |
 | `pi/models.json` | `~/.pi/agent/models.json` | Pi model/provider config |
 | `pi/settings.json` | `~/.pi/agent/settings.json` | Pi UI and package settings |
+| `pi/agents/<name>.md` | `~/.pi/agent/agents/<name>.md` | Pi custom subagents |
 
 ## What is intentionally not linked
 
