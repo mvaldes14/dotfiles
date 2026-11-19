@@ -8,7 +8,7 @@ Personal development environment configuration, primarily for macOS. `Brewfile` 
 
 - **Terminal:** Ghostty (TokyoNight Day/Night follows system appearance), JetBrainsMono Nerd Font.
 - **Shell:** zsh + Oh My Zsh, Starship, Atuin, zoxide, fzf, direnv (via Vorpal on personal machines).
-- **Workspace:** Herdr with auto-switching TokyoNight Day/Night themes, workspace/session helpers and Ctrl-Space keybindings. tmux config and scripts remain available as an alternative; its custom theme is disabled.
+- **Workspace:** Rex (`.config/rex/init.lua`) with a tmux-style prefix keymap. tmux config and scripts remain available as an alternative; its custom theme is disabled.
 - **Editor:** Neovim + lazy.nvim, LSP, Treesitter, DAP, completion and Git tooling. TokyoNight follows system light/dark preference.
 - **Kubernetes:** k9s uses `terminal` skin (terminal background/foreground); custom dark skins remain in `.config/k9s/skins/`.
 - **CLI:** lazygit uses default terminal colors; bat selects light/dark syntax theme automatically; Starship uses terminal foreground for Kubernetes, Helm and Lua prompt segments.
@@ -27,19 +27,19 @@ links shared config to harness paths without replacing existing regular files.
 | `ai/pi/settings.json` | `~/.pi/agent/settings.json` | pi — theme, TUI, packages, warnings |
 | `ai/pi/mcp-adapter.json` | `~/.pi/agent/mcp-adapter.json` | pi-mcp-adapter — MCP server endpoints (gateway) |
 | `ai/pi/agents/<name>` | `~/.pi/agent/agents/` | Pi custom subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
-| `ai/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code only — imports `AGENTS.md`, adds herdr/CC rules |
+| `ai/claude/CLAUDE.md` | `~/.claude/CLAUDE.md` | Claude Code only — imports `AGENTS.md`, adds Claude Code-specific rules |
 | `ai/claude/agents/<name>` | `~/.claude/agents/` | Claude Code subagents (`kate`, `mike`, `gomez`, `pandey`, `rachel`) |
 | `ai/claude/settings.json` | `~/.claude/settings.json` | Claude Code |
 | `ai/claude/*status_line.sh` | referenced by `settings.json` | Claude Code |
 
-Harness-specific personas live in `ai/claude/agents/` and `ai/pi/agents/`; schemas differ, so each harness gets its own definition. Third-party skills (e.g. `herdr`, `humanizer`) remain installer-managed in `~/.agents/skills/`. Bootstrap links repo-owned skills per skill rather than replacing installed ones. See [ai/README.md](ai/README.md) for full symlink map.
+Harness-specific personas live in `ai/claude/agents/` and `ai/pi/agents/`; schemas differ, so each harness gets its own definition. Third-party skills (e.g. `humanizer`) remain installer-managed in `~/.agents/skills/`. Bootstrap links repo-owned skills per skill rather than replacing installed ones. See [ai/README.md](ai/README.md) for full symlink map.
 
 ## Other configs and scripts
 
 - `.config/opencode/`: opencode agent config; `.config/tmux/`: optional tmux keybindings/plugins (custom theme source commented out).
 - `.config/nvim/`: Lua Neovim config with LSP, DAP, Treesitter, completion, Git and Obsidian integrations.
 - `.aws/config`, `.ssh/config`: cloud and SSH client settings.
-- `scripts/herdr-*`, `scripts/tmux-*`: workspace/session helpers; `scripts/jws-*`: JWS helpers.
+- `scripts/tmux-*`: tmux session helpers; `scripts/jws-*`: JWS helpers.
 - `Brewfile`: Homebrew CLI tools and macOS apps, including tools without repo-managed config.
 
 ## Bootstrap

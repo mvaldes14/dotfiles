@@ -32,7 +32,6 @@
   "packages": [
     "npm:pi-mcp-adapter",
     "npm:pi-subagents",
-    "npm:@henryqw/pi-herdr",
     "npm:pi-obsidian",
     "npm:pi-web-access",
     "npm:@quintinshaw/pi-dynamic-workflows",

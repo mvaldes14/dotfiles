@@ -97,7 +97,7 @@ format = '$symbol($version )'
 
 [kubernetes]
 symbol = "☸ "
-format = '$symbol$context '
+format = '$symbol$context( \($namespace\)) '
 disabled = false
 detect_files = []
 

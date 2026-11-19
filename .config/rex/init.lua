@@ -1,5 +1,5 @@
 -- ~/.config/rex/init.lua
--- Tmux/Herdr-inspired keymap.
+-- Tmux-inspired keymap.
 
 ------------------------------------------------------------
 -- Tmux-like prefix: Ctrl-Space
@@ -26,13 +26,13 @@ rex.bind("ctrl+space>t", "client.tab.new")
 rex.bind("ctrl+space>ctrl+t", "client.tab.new")
 
 -- Tab/window navigation.
--- prefix+l = previous tab, matching herdr last_pane / tmux switch-client -l.
+-- prefix+l = previous tab, matching tmux switch-client -l.
 rex.bind("ctrl+space>l", "client.tab.previous")
 rex.bind("ctrl+space>p", "client.tab.previous")
 rex.bind("ctrl+space>tab", "client.tab.next")
 rex.bind("ctrl+space>shift+tab", "client.tab.previous")
 
--- New session (herdr new_workspace / tmux new-session).
+-- New session (tmux new-session).
 rex.bind("ctrl+space>n", "session.new")
 
 -- Rename current tab/window and session (tmux: prefix + $).

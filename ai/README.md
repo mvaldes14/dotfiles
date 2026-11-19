@@ -14,7 +14,7 @@ ai/
 │       └── <skill>/
 │           └── SKILL.md
 ├── claude/                   # Claude Code-specific overlay
-│   ├── CLAUDE.md             # Imports shared AGENTS.md + Claude/herdr rules
+│   ├── CLAUDE.md             # Imports shared AGENTS.md + Claude Code rules
 │   ├── agents/               # Claude Code subagents/personas
 │   ├── settings.json         # Linked to ~/.claude/settings.json
 │   └── *status_line.sh

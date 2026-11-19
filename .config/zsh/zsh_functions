@@ -61,11 +61,6 @@ how() {
   nvim $selected
 }
 
-# Change kubernetes context
-kcc() {
-  kubectl config use-context $(kubectl config get-contexts | awk 'NR > 1 && $1 != "*" {print $1}' | fzf --no-preview)
-}
-
 WORK_REPO='signoz/platform-pod'
 
 # List open issues assigned to the user

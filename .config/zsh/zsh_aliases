@@ -17,13 +17,14 @@ has terraform && alias tf="terraform"
 has doppler && alias s="doppler run"
 has zoxide && alias cd="z"
 has k9s && alias kk="k9s"
+has kubie && alias kcc="kubie ctx"
+has kubie && alias kns="kubie ns"
 has obsidian && alias obs="obsidian"
 has vorpal && alias vp="vorpal"
 
 # Navigation and tmux
 alias dot='cd $DOTFILES'
 # [[ -x ~/.local/bin/tmux-sessionkiller.sh ]] && alias tmks=~/.local/bin/tmux-sessionkiller.sh
-[[ -x ~/.local/bin/herdr-sessionkiller.sh ]] && alias hks=~/.local/bin/herdr-sessionkiller.sh
 
 # Utilities
 has bat && alias cat=bat
