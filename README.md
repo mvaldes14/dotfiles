@@ -10,7 +10,7 @@ Personal development environment configuration, primarily for macOS. `Brewfile` 
 - **Shell:** zsh + Oh My Zsh, Starship, Atuin, zoxide, fzf, direnv (via Vorpal on personal machines).
 - **Workspace:** Rex (`.config/rex/init.lua`) with a tmux-style prefix keymap. tmux config and scripts remain available as an alternative; its custom theme is disabled.
 - **Editor:** Neovim + lazy.nvim, LSP, Treesitter, DAP, completion and Git tooling. TokyoNight follows system light/dark preference.
-- **Kubernetes:** k9s uses `terminal` skin (terminal background/foreground); custom dark skins remain in `.config/k9s/skins/`.
+- **Kubernetes:** k9s uses `tokyonight` skin; custom dark skins remain in `.config/k9s/skins/`.
 - **CLI:** lazygit uses default terminal colors; bat selects light/dark syntax theme automatically; Starship uses terminal foreground for Kubernetes, Helm and Lua prompt segments.
 - **Window management:** Aerospace on macOS. GlazeWM and Hyprland configs remain for other environments.
 - **AI:** pi, Claude Code, Codex and opencode share `ai/shared/AGENTS.md` and reusable skills; harness-specific settings live under `ai/` or `.config/opencode/`.
